@@ -1,3 +1,36 @@
+## 
+## FUNCTION get.edh() to get data API from the Epigraphic Database Heidelber with R
+## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
+##
+## version 0.2.1 (27-04-2020)
+##
+## Parameter description from https://edh-www.adw.uni-heidelberg.de/data/api
+##
+## Search parameters for inscriptions and geography:
+## province (get list of valid values at https://edh-www.adw.uni-heidelberg.de/data/api/terms/province, case insensitive)
+## country (get list of valid values at https://edh-www.adw.uni-heidelberg.de/data/api/terms/country, case insensitive)
+## findspot_modern (add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
+## findspot_ancient (add leading and/or trailing truncation by asterisk *, e.g. findspot_ancient=aquae*, case insensitive)
+## bbox (bounding box in the format bbox=minLong , minLat , maxLong , maxLat , example: https://edh-www.adw.uni-heidelberg.de/data/api/inscriptions/search?bbox=11,47,12,48)
+##
+## Search parameters for inscriptions:
+## hd_nr (HD-No of inscription)
+## year_not_before (integer, BC years are negative integers)
+## year_not_after (integer, BC years are negative integers)
+## tm_nr (integer value)
+## transcription (automatic leading & trailing truncation, brackets are ignored)
+## type (of inscription, get list of values at https://edh-www.adw.uni-heidelberg.de/data/api/terms/type, case insensitive)
+##
+## Search parameters for geography:
+## findspot (level of village, street etc.; add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
+## pleiades_id (Pleiades identifier of a place; integer value)
+## geonames_id (Geonames identifier of a place; integer value)
+## 
+## Additional parameters:
+## search (whether to search in "inscriptions" or in "geography")
+## addID (whether or not add numeric ID to the list)
+## printQ (print query?)
+
 get.edh <-
 function (search = c("inscriptions", "geography"), url = "https://edh-www.adw.uni-heidelberg.de/data/api", 
     hd_nr, province, country, findspot_modern, findspot_ancient, 
@@ -25,22 +58,21 @@ function (search = c("inscriptions", "geography"), url = "https://edh-www.adw.un
     if (match.arg(search) == "inscriptions") {
         URL <- paste(url, match.arg(search), "search?", sep = "/")
         string <- paste(URL, "hd_nr=", hd_nr, "&", "province=", 
-            "%22", province, "%22", "&", "country=", country, 
-            "&", "findspot_modern=", "%22", findspot_modern, 
-            "%22", "&", "findspot_ancient=", "%22", findspot_ancient, 
-            "%22", "&", "year_not_before=", year_not_before, 
-            "&", "year_not_after=", year_not_after, "&", "tm_nr=", 
-            tm_nr, "&", "transcription=", transcription, "&", 
-            "type=", type, "&", "bbox=", bbox, sep = "")
+            province, "&", "country=", country, "&", "findspot_modern=", 
+            findspot_modern, "&", "findspot_ancient=", findspot_ancient, 
+            "&", "year_not_before=", year_not_before, "&", "year_not_after=", 
+            year_not_after, "&", "tm_nr=", tm_nr, "&", "transcription=", 
+            transcription, "&", "type=", type, "&", "bbox=", 
+            bbox, sep = "")
     }
     else if (match.arg(search) == "geography") {
         URL <- paste(url, match.arg(search), "search?", sep = "/")
         string <- paste0(URL, "province=", "%22", province, "%22", 
             "&", "country=", country, "&", "findspot_modern=", 
-            "%22", findspot_modern, "%22", "&", "findspot_ancient=", 
-            "%22", findspot_ancient, "%22", "&", "findspot=", 
-            findspot, "&", "bbox=", bbox, "&", "pleiades_id=", 
-            pleiades_id, "&", "geonames_id=", geonames_id, sep = "")
+            findspot_modern, "&", "findspot_ancient=", findspot_ancient, 
+            "&", "findspot=", findspot, "&", "bbox=", bbox, "&", 
+            "pleiades_id=", pleiades_id, "&", "geonames_id=", 
+            geonames_id, sep = "")
     }
     else {
         stop("Only \"inscriptions\" and \"geography\" parameters are currently supported.")

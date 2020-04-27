@@ -1,3 +1,29 @@
+
+## 
+## FUNCTION request() to get data API from a given server
+## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
+##
+## First aimed to interact with DEiC's sciencedata.dk
+## version 0.2 (17-04-2020)
+##
+## Parameters
+## file (object under 'method')
+## URL (protocol and domain of the url)
+## method (the http "verb" for the object)
+##        "GET" (list)
+##        "POST" (place)
+##        "PUT" (update)
+##        "DELETE" (cancel)
+## authenticate (logical, use basic authentication?)
+## path (optional, add path to the url)
+## 
+## Additional parameters:
+## cred (vector for username and password credentials)
+## subdomain (optional, add subdomain to the url)
+## ... (extra parameters if required)
+##
+## Aliases: sddk(), SDDK()
+
 request <-
 function (file, URL = "https://sciencedata.dk", method = c("GET", 
     "POST", "PUT", "DELETE"), authenticate = TRUE, cred = NULL, 
@@ -79,3 +105,6 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                 as.vector(cred[2])), httr::add_headers(Accept = "")))
     }
 }
+# aliases
+SDDK <- sddk <- request
+request <- SDDK
