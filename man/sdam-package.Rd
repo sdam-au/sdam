@@ -32,7 +32,7 @@ customized URL address.
 Similarity by simple matching among column vectors is achieved by the \code{simil()} function 
 in order to make analyses of assemblages or artifacts.
 
-Note that this package is still under early development. 
+Note that this package still under early development. 
 }
 \author{
 Author: \packageAuthor{sdam} 

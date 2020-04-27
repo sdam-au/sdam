@@ -24,7 +24,7 @@ This is a wrapper function to obtain a sample data from the Epigraphic Database 
 
 }
 \value{
-A list of lists object with the items described in code{\link{get.edh}}.
+A list of lists object with the items described in \code{\link{get.edh}}.
 
 }
 \references{
