@@ -107,6 +107,33 @@ A list with the of valid values for countries from the EDH API are
 \code{"gi"}  \tab  Gibraltar               \tab  \code{"nl"}  \tab  Netherlands             \tab  \code{"ye"}  \tab  Yemen                 \cr 
 }
 
+And for the ancient Roman provices the valued values are
+
+\tabular{llllll}{
+\code{"Ach"}  \tab  Achaia                           \tab  \code{"Cor"}  \tab  Corsica                       \tab  \code{"Mes"}  \tab  Mesopotamia                   \cr 
+\code{"Aeg"}  \tab  Aegyptus                         \tab  \code{"Cre"}  \tab  Creta                         \tab  \code{"MoI"}  \tab  Moesia inferior               \cr 
+\code{"Aem"}  \tab  Aemilia (Regio VIII)             \tab  \code{"Cyp"}  \tab  Cyprus                        \tab  \code{"MoS"}  \tab  Moesia superior               \cr 
+\code{"Afr"}  \tab  Africa Proconsularis             \tab  \code{"Cyr"}  \tab  Cyrene                        \tab  \code{"Nar"}  \tab  Narbonensis                   \cr 
+\code{"AlC"}  \tab  Alpes Cottiae                    \tab  \code{"Dac"}  \tab  Dacia                         \tab  \code{"Nor"}  \tab  Noricum                       \cr 
+\code{"AlG"}  \tab  Alpes Graiae                     \tab  \code{"Dal"}  \tab  Dalmatia                      \tab  \code{"Num"}  \tab  Numidia                       \cr 
+\code{"AlM"}  \tab  Alpes Maritimae                  \tab  \code{"Epi"}  \tab  Epirus                        \tab  \code{"PaI"}  \tab  Pannonia inferior             \cr 
+\code{"AlP"}  \tab  Alpes Poeninae                   \tab  \code{"Etr"}  \tab  Etruria (Regio VII)           \tab  \code{"PaS"}  \tab  Pannonia superior             \cr 
+\code{"ApC"}  \tab  Apulia et Calabria (Regio II)    \tab  \code{"Gal"}  \tab  Galatia                       \tab  \code{"Pic"}  \tab  Picenum (Regio V)             \cr 
+\code{"Aqu"}  \tab  Aquitania                        \tab  \code{"GeI"}  \tab  Germania inferior             \tab  \code{"Rae"}  \tab  Raetia                        \cr 
+\code{"Ara"}  \tab  Arabia                           \tab  \code{"GeS"}  \tab  Germania superior             \tab  \code{"ReB"}  \tab  Regnum Bospori                \cr 
+\code{"Arm"}  \tab  Armenia                          \tab  \code{"HiC"}  \tab  Hispania citerior             \tab  \code{"Rom"}  \tab  Roma                          \cr 
+\code{"Asi"}  \tab  Asia                             \tab  \code{"Inc"}  \tab  Provincia incerta             \tab  \code{"Sam"}  \tab  Samnium (Regio IV)            \cr 
+\code{"Ass"}  \tab  Assyria                          \tab  \code{"Iud"}  \tab  Iudaea                        \tab  \code{"Sar"}  \tab  Sardinia                      \cr 
+\code{"Bae"}  \tab  Baetica                          \tab  \code{"LaC"}  \tab  Latium et Campania (Regio I)  \tab  \code{"Sic"}  \tab  Sicilia, Melita               \cr 
+\code{"Bar"}  \tab  Barbaricum                       \tab  \code{"Lig"}  \tab  Liguria (Regio IX)            \tab  \code{"Syr"}  \tab  Syria                         \cr 
+\code{"Bel"}  \tab  Belgica                          \tab  \code{"Lug"}  \tab  Lugdunensis                   \tab  \code{"Thr"}  \tab  Thracia                       \cr 
+\code{"BiP"}  \tab  Bithynia et Pontus               \tab  \code{"Lus"}  \tab  Lusitania                     \tab  \code{"Tra"}  \tab  Transpadana (Regio XI)        \cr 
+\code{"BrL"}  \tab  Bruttium et Lucania (Regio III)  \tab  \code{"LyP"}  \tab  Lycia et Pamphylia            \tab  \code{"Tri"}  \tab  Tripolitania                  \cr 
+\code{"Bri"}  \tab  Britannia                        \tab  \code{"MaC"}  \tab  Mauretania Caesariensis       \tab  \code{"Umb"}  \tab  Umbria (Regio VI)             \cr 
+\code{"Cap"}  \tab  Cappadocia                       \tab  \code{"MaT"}  \tab  Mauretania Tingitana          \tab  \code{"Val"}  \tab  Valeria                       \cr 
+\code{"Cil"}  \tab  Cilicia                          \tab  \code{"Mak"}  \tab  Macedonia                     \tab  \code{"VeH"}  \tab  Venetia et Histria (Regio X)  \cr 
+}
+
 }
 \value{
 A list object with the following items:
