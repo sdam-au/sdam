@@ -136,7 +136,7 @@ And for the ancient Roman provices the valued values are
 
 }
 \value{
-A list object with the following items:
+A list object with at least one the following items:
 
 \item{"ID"}{ }
 \item{"commentary"}{ }
@@ -144,6 +144,7 @@ A list object with the following items:
 \item{"depth"}{ }
 \item{"diplomatic_text"}{ }
 \item{"edh_geography_uri"}{ }
+\item{"findspot"}{ }
 \item{"findspot_ancient"}{ }
 \item{"findspot_modern"}{ }
 \item{"height"}{ }
@@ -153,12 +154,17 @@ A list object with the following items:
 \item{"letter_size"}{ }
 \item{"literature"}{ }
 \item{"material"}{ }
+\item{"military"}{ }
 \item{"modern_region"}{ }
 \item{"not_after"}{ }
 \item{"not_before"}{ }
-\item{"people"}{ }
+\item{}{ }
+\item{"people"}{This item is another list with at least one the following items: \code{"person_id"}, \code{"nomen"}, \code{"cognomen"}, \code{"praenomen"}, \code{"name"}, \code{"gender"}, \code{"status"}, \code{"tribus"} }
+\item{}{ }
+\item{"present_location"}{ }
 \item{"province_label"}{ }
 \item{"responsible_individual"}{ }
+\item{"social_economic_legal_history"}{ }
 \item{"transcription"}{ }
 \item{"trismegistos_uri"}{ }
 \item{"type_of_inscription"}{ }
@@ -166,6 +172,7 @@ A list object with the following items:
 \item{"uri"}{ }
 \item{"width"}{ }
 \item{"work_status"}{ }
+\item{"year_of_find"}{ }
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api
