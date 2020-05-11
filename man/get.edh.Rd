@@ -12,8 +12,7 @@ get.edh(search = c("inscriptions", "geography"),
         url = "https://edh-www.adw.uni-heidelberg.de/data/api", 
         hd_nr, province, country, findspot_modern, findspot_ancient, 
         year_not_before, year_not_after, tm_nr, transcription, type, 
-        bbox, findspot, pleiades_id, geonames_id, offset, limit, 
-        addID, printQ)
+        bbox, findspot, pleiades_id, geonames_id, addID, printQ)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -64,12 +63,6 @@ get.edh(search = c("inscriptions", "geography"),
 }
   \item{geonames_id}{
 	Geonames identifier of a place (integer)
-}
-  \item{offset}{
-	Clause to specify which row to start from retrieving data (optional and logical)
-}
-  \item{limit}{
-	Clause to limit the number of results (optional and integer)
 }
   \item{addID}{
 	Add identification to the output? (optional and logical)
@@ -145,9 +138,8 @@ And for the ancient Roman provices the valued values are
 \value{
 A list object with at least one the following items:
 
-\item{"ID"}{(Optional)}
+\item{"ID"}{ }
 \item{"commentary"}{ }
-\item{"fotos"}{ }
 \item{"country"}{ }
 \item{"depth"}{ }
 \item{"diplomatic_text"}{ }
@@ -155,7 +147,6 @@ A list object with at least one the following items:
 \item{"findspot"}{ }
 \item{"findspot_ancient"}{ }
 \item{"findspot_modern"}{ }
-\item{"geography"}{ }
 \item{"height"}{ }
 \item{"id"}{ }
 \item{"language"}{ }
@@ -168,12 +159,9 @@ A list object with at least one the following items:
 \item{"not_after"}{ }
 \item{"not_before"}{ }
 \item{}{ }
-\item{"people"}{This item is another list with at least one the following items: 
-\code{"person_id"}, \code{"nomen"}, \code{"cognomen"}, \code{"praenomen"}, \code{"name"}, \code{"gender"}, \code{"status"}, \code{"tribus"}, 
-\code{"origo"}, \code{"occupation"}, \code{"age: years"}, \code{"age: months"} }
+\item{"people"}{This item is another list with at least one the following items: \code{"person_id"}, \code{"nomen"}, \code{"cognomen"}, \code{"praenomen"}, \code{"name"}, \code{"gender"}, \code{"status"}, \code{"tribus"} }
 \item{}{ }
 \item{"present_location"}{ }
-\item{"religion"}{ }
 \item{"province_label"}{ }
 \item{"responsible_individual"}{ }
 \item{"social_economic_legal_history"}{ }
@@ -185,15 +173,11 @@ A list object with at least one the following items:
 \item{"width"}{ }
 \item{"work_status"}{ }
 \item{"year_of_find"}{ }
-
-And the query if specified. 
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api
 
 https://edh-www.adw.uni-heidelberg.de/data/api/terms/country
-
-https://edh-www.adw.uni-heidelberg.de/data/api/terms/province
 }
 \author{
 Antonio Rivero Ostoic
