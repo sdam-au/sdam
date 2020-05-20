@@ -1,9 +1,11 @@
 # sdam
 
-## Tools for performing analyses within the SDAM project at Aarhus University
+## Digital tools for the SDAM project at Aarhus University
 
-This package provides tools for performing analyses within [*Social Dynamics and complexity
-in the Ancient Mediterranean*](https://sdam-au.github.io/sdam-au/)  (SDAM), which is a research group at Aarhus University.
+This package provides digital tools for the [*Social Dynamics and complexity
+in the Ancient Mediterranean*](https://sdam-au.github.io/sdam-au/) (SDAM) project 
+at Aarhus University. 
+
 
 <br/>
 
@@ -39,4 +41,3 @@ str(EDH)
 ```
 
 TBD
-

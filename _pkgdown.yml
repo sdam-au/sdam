@@ -1,0 +1,7 @@
+destination: docs
+
+
+news:
+ releases:
+ - text: "sdam 0.2.0"
+   href: https://mplex.github.io/cedhar/sdam.html#news
