@@ -12,7 +12,8 @@ get.edh(search = c("inscriptions", "geography"),
         url = "https://edh-www.adw.uni-heidelberg.de/data/api", 
         hd_nr, province, country, findspot_modern, findspot_ancient, 
         year_not_before, year_not_after, tm_nr, transcription, type, 
-        bbox, findspot, pleiades_id, geonames_id, addID, printQ)
+        bbox, findspot, pleiades_id, geonames_id, offset, limit, 
+        addID, printQ)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -64,6 +65,12 @@ get.edh(search = c("inscriptions", "geography"),
   \item{geonames_id}{
 	Geonames identifier of a place (integer)
 }
+  \item{offset}{
+	Clause to specify which row to start from retrieving data (optional and integer)
+}
+  \item{limit}{
+	Clause to limit the number of results (optional and integer)
+}
   \item{addID}{
 	Add identification to the output? (optional and logical)
 }
@@ -76,10 +83,10 @@ Since with the \code{inscriptions} option the \code{id} "component" of the
 output list is not with a numeric format, then the function adds an \code{ID} 
 at the beginning of the list with the identifier with a numerical format. 
 
-Use function \code{\link{get.edhw}} in case you want to grab several items.
+Notice that \code{hd_nr} is not the same as \code{ID} nor \code{id}. 
 
-The other two search options from the [EDH] database [API], which are \code{"photos"} 
-and \code{"bibliography"} may be implemented in the future. 
+
+Use function \code{\link{get.edhw}} in case you want to grab several items.
 
 Entries in \code{country} are abbreviated country names where the inscription was located. 
 A list with the of valid values for countries from the EDH API are 
@@ -138,8 +145,9 @@ And for the ancient Roman provices the valued values are
 \value{
 A list object with at least one the following items:
 
-\item{"ID"}{ }
+\item{"ID"}{(Optional), only if \code{addID} is set to \code{TRUE}.}
 \item{"commentary"}{ }
+\item{"fotos"}{ }
 \item{"country"}{ }
 \item{"depth"}{ }
 \item{"diplomatic_text"}{ }
@@ -147,6 +155,7 @@ A list object with at least one the following items:
 \item{"findspot"}{ }
 \item{"findspot_ancient"}{ }
 \item{"findspot_modern"}{ }
+\item{"geography"}{ }
 \item{"height"}{ }
 \item{"id"}{ }
 \item{"language"}{ }
@@ -159,9 +168,12 @@ A list object with at least one the following items:
 \item{"not_after"}{ }
 \item{"not_before"}{ }
 \item{}{ }
-\item{"people"}{This item is another list with at least one the following items: \code{"person_id"}, \code{"nomen"}, \code{"cognomen"}, \code{"praenomen"}, \code{"name"}, \code{"gender"}, \code{"status"}, \code{"tribus"} }
+\item{"people"}{This item is another list with at least one the following items: \cr  
+\code{"person_id"} \cr  \code{"nomen"} \cr  \code{"cognomen"} \cr  \code{"praenomen"} \cr  \code{"name"} \cr  \code{"gender"} \cr  \code{"status"} \cr  \code{"tribus"} \cr  
+\code{"origo"} \cr  \code{"occupation"} \cr  \code{"age: years"} \cr  \code{"age: months"} }
 \item{}{ }
 \item{"present_location"}{ }
+\item{"religion"}{ }
 \item{"province_label"}{ }
 \item{"responsible_individual"}{ }
 \item{"social_economic_legal_history"}{ }
@@ -173,17 +185,23 @@ A list object with at least one the following items:
 \item{"width"}{ }
 \item{"work_status"}{ }
 \item{"year_of_find"}{ }
+\item{}{ }
+
+And also the query is printed if specified. 
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api
 
 https://edh-www.adw.uni-heidelberg.de/data/api/terms/country
+
+https://edh-www.adw.uni-heidelberg.de/data/api/terms/province
 }
 \author{
 Antonio Rivero Ostoic
 }
 \note{
-\code{hd_nr} is not the same as \code{ID}.
+The other two search options from the [EDH] database [API], which are \code{"photos"} 
+and \code{"bibliography"} may be implemented in the future. 
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

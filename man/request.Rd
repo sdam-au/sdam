@@ -13,7 +13,7 @@ A function to perform an HTTP request
 request(file, URL = "https://sciencedata.dk", method = c("GET", "POST", "PUT", "DELETE"), 
         authenticate = TRUE, cred = NULL, path = "/files", subdomain = NULL, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{file}{
 The request file
@@ -41,7 +41,7 @@ extra parameters if required
 }
 }
 \details{
-\code{request} is basically a HTTP request, first aimed to interact first with DEiC's \emph{sciencedata.dk}. 
+\code{request} is basically a HTTP request, first aimed to interact with DEiC's \emph{\url{https://sciencedata.dk}}. 
 
 }
 \value{
@@ -54,7 +54,7 @@ Depends on the method, an action on the server site.
 Antonio Rivero Ostoic
 }
 \note{
-Method POST is not currently supported at \emph{sciencedata.dk}
+Method \code{POST} is not currently supported at \emph{sciencedata.dk}.
 }
 
 %\section{Warning }{
