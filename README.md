@@ -40,4 +40,13 @@ data("EDH")
 str(EDH)
 ```
 
-TBD
+More TBD
+
+
+
+### Documentation
+
+Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/)
+
+
+
