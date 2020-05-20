@@ -1,17 +1,3 @@
-
-## 
-## FUNCTION simil() similarity based on data frame coocurrences
-## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
-##
-## version 0.1 (16-04-2020)
-##
-## Parameters
-## x  a data frame or a list object with vectors to compare
-## att (vector) column(s) in x representing attributes
-## null (optional) include NA or NULLs?
-## uniq (optional) remove duplicates?
-## diag.incl (optional) include entries in diagonal?
-
 simil <-
 function (x, att, null, uniq, diag.incl) 
 {
