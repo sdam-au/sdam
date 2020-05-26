@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -87,8 +87,22 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -115,14 +129,18 @@
     <p>A function to obtain variable data from the <code>EDH</code> data set and perform transformations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>edhw</span>(<span class='no'>vars</span>, <span class='kw'>as</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"list"</span>, <span class='st'>"df"</span>), <span class='no'>limit</span>, <span class='no'>id</span>, <span class='no'>na.rm</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>edhw</span>(<span class='no'>vars</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>as</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"list"</span>, <span class='st'>"df"</span>), <span class='no'>limit</span>, <span class='no'>id</span>, <span class='no'>na.rm</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>vars</th>
-      <td><p>Chosen variables from the <code>EDH</code> data set (vector)</p></td>
+      <td><p>Choose variables from <code>x</code>. If <code>x=NULL</code>, the entire <code>EDH</code> dataset is taken. (optional, vector)</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>A list object name with fragments of the <code>EDH</code> dataset (optional)</p></td>
     </tr>
     <tr>
       <th>as</th>
@@ -148,13 +166,20 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This is a convenient function to "extract" information from the <code>EDH</code> dataset attached to this 
-package through a vector of chosen <em>variables</em>. By default, a list object is returned but it is 
-possible to convert the list into a data frame, and if desired remove missing data in the output format.</p>
+    <p>This is a convenient function to "extract" <em>variables</em> from the <code>EDH</code> dataset attached 
+to this package through <code>vars</code>. When <code>vars</code> is missing, then all entries are taken.</p>
+<p>In case <code>x</code> is present, it is typically given as a fragment of the <code>EDH</code> dataset that can be 
+obtained for example with function <code><a href='get.edh.html'>get.edh()</a></code> or <code><a href='get.edhw.html'>get.edhw()</a></code>. Otherwise, it must be at least 
+a list object with a comparable structure to <code>EDH</code>.</p>
+<p>By default, a list object is returned but it is possible to convert the list into a data frame, and with 
+this option the ordering of the variables is given alphabetically. 
+If desired, it is also possible to remove missing data in the output format by activating <code>na.rm</code>.</p>
 <p>Arguments <code>id</code> and <code>limit</code> serve to reduce the returned output either to some Epigraphic 
 Database number or numbers, which are specified by <code>hd_nr</code>, or else by limiting the amount of 
 the returned output. This latter is like the <code>limit</code> argument of function <code><a href='get.edh.html'>get.edh()</a></code>, where 
-the offset can be specified as well.</p>
+the offset can be specified as well. 
+Argument <code>id</code> is for refering to precisely <code>hd_nr</code>s, while <code>"limit"</code> is a faster way to 
+get to these entries in the <code>EDH</code> dataset.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list or a data frame</p>
@@ -163,8 +188,7 @@ the offset can be specified as well.</p>
     <p>https://edh-www.adw.uni-heidelberg.de/data/api</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Argument <code>"id"</code> is for refering to precisely <code>hd_nr</code>s, while <code>"limit"</code> is a faster way to 
-get to these entries in the <code>EDH</code> dataset.</p>
+    <p>In case that the output chosen is a dataframe, then component <code>"people"</code> is ignored.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='get.edh.html'>get.edh</a></code>, <code><a href='get.edhw.html'>get.edhw</a></code></p></div>
