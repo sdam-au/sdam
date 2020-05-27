@@ -63,7 +63,38 @@ length(thr)
 
 ### Relative dating
 
-TBD
+Since `sdam` v.0.2.1 there is the option in `edhw()` to extract variables from a `EDH` dataset *fragments*.
+
+```r
+# extract variables of interes from object `thr` and convert it into a data frame
+thrdf0 <- edhw(vars=c("ID", "not_after", "not_before"), x=thr, as="df")
+
+# what object types is?
+is(thrdf0)
+#[1] "data.frame" "list"       "oldClass"   "vector"  
+```
+
+```r
+# to remove missing data activate 'na.rm' argument
+thrdf <- edhw(vars=c("ID", "not_after", "not_before"), x=thr, as="df", na.rm=TRUE)
+```
+
+Now we compare the outcomes of these options.
+
+```r
+cbind(head(thrdf0), head(thrdf))
+#      ID not_after not_before     ID not_after not_before
+#1 004345      0250       0151 004345      0250       0151
+#2 004366      0324       0308 004366      0324       0308
+#3 004753      0300       0151 004753      0300       0151
+#4 004798      0241       0238 004798      0241       0238
+#5 007032      0209       0208 007032      0209       0208
+#6 007047      <NA>       0068 007092      0136       0135
+```
+
+Hence, not available data is removed in `thrdf`.
+
+
 
 
 
@@ -71,5 +102,5 @@ TBD
 
 ### Documentation
 
-Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/)
+Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/) to find more TBD.
 
