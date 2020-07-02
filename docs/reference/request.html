@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -86,9 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -116,7 +113,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>request</span>(<span class='no'>file</span>, <span class='kw'>URL</span> <span class='kw'>=</span> <span class='st'>"https://sciencedata.dk"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>, <span class='st'>"POST"</span>, <span class='st'>"PUT"</span>, <span class='st'>"DELETE"</span>),
-        <span class='kw'>authenticate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cred</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/files"</span>, <span class='kw'>subdomain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+        <span class='kw'>authenticate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cred</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/files"</span>, <span class='kw'>subdomain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,6 +145,10 @@
     <tr>
       <th>subdomain</th>
       <td><p>subdomain to add to the url (optional)</p></td>
+    </tr>
+    <tr>
+      <th>force</th>
+      <td><p>force remote file overwriting? (optional)</p></td>
     </tr>
     <tr>
       <th>...</th>

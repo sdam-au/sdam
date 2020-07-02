@@ -11,7 +11,7 @@ A function to perform an HTTP request
 }
 \usage{
 request(file, URL = "https://sciencedata.dk", method = c("GET", "POST", "PUT", "DELETE"), 
-        authenticate = TRUE, cred = NULL, path = "/files", subdomain = NULL, ...)
+        authenticate = TRUE, cred = NULL, path = "/files", subdomain = NULL, force = FALSE, ...)
 }
 
 \arguments{
@@ -35,6 +35,9 @@ path to add to the url (optional)
 }
   \item{subdomain}{
 subdomain to add to the url (optional)
+}
+  \item{force}{
+force remote file overwriting? (optional)
 }
   \item{\dots}{
 extra parameters if required

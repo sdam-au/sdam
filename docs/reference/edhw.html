@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -86,23 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Releases</li>
-    <li>
-      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../news/index.html">Changelog</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -169,14 +152,14 @@
     <p>This is a convenient function to "extract" <em>variables</em> from the <code>EDH</code> dataset attached 
 to this package through <code>vars</code>. When <code>vars</code> is missing, then all entries are taken.</p>
 <p>In case <code>x</code> is present, it is typically given as a fragment of the <code>EDH</code> dataset that can be 
-obtained for example with function <code><a href='get.edh.html'>get.edh()</a></code> or <code><a href='get.edhw.html'>get.edhw()</a></code>. Otherwise, it must be at least 
+obtained for example with function <code>get.edh()</code> or <code>get.edhw()</code>. Otherwise, it must be at least 
 a list object with a comparable structure to <code>EDH</code>.</p>
 <p>By default, a list object is returned but it is possible to convert the list into a data frame, and with 
 this option the ordering of the variables is given alphabetically. 
 If desired, it is also possible to remove missing data in the output format by activating <code>na.rm</code>.</p>
 <p>Arguments <code>id</code> and <code>limit</code> serve to reduce the returned output either to some Epigraphic 
 Database number or numbers, which are specified by <code>hd_nr</code>, or else by limiting the amount of 
-the returned output. This latter is like the <code>limit</code> argument of function <code><a href='get.edh.html'>get.edh()</a></code>, where 
+the returned output. This latter is like the <code>limit</code> argument of function <code>get.edh()</code>, where 
 the offset can be specified as well. 
 Argument <code>id</code> is for refering to precisely <code>hd_nr</code>s, while <code>"limit"</code> is a faster way to 
 get to these entries in the <code>EDH</code> dataset.</p>
@@ -191,7 +174,7 @@ get to these entries in the <code>EDH</code> dataset.</p>
     <p>In case that the output chosen is a dataframe, then component <code>"people"</code> is ignored.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='get.edh.html'>get.edh</a></code>, <code><a href='get.edhw.html'>get.edhw</a></code></p></div>
+    <div class='dont-index'><p><code>get.edh</code>, <code>get.edhw</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'># TBD

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
 <h3 class="hasAnchor">
 <a href="#get-particular-inscriptions" class="anchor"></a>Get particular inscriptions</h3>
 <div class="sourceCode" id="cb6"><pre class="r"><span class="co"># obtain epigraphic data from Thracia</span>
-<span class="no">thr</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Thr"</span>)</pre></div>
+<span class="no">thr</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sdam/man/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Thr"</span>)</pre></div>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="co"># how many inscriptions in Thracia?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">thr</span>)
 <span class="co"># [1] 395</span></pre></div>
@@ -118,15 +118,15 @@
 <div id="relative-dating" class="section level3">
 <h3 class="hasAnchor">
 <a href="#relative-dating" class="anchor"></a>Relative dating</h3>
-<p>Since <code>sdam</code> v.0.2.1 there is the option in <code><a href="reference/edhw.html">edhw()</a></code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>.</p>
+<p>Since <code>sdam</code> v.0.2.1 there is the option in <code><a href="https://rdrr.io/pkg/sdam/man/edhw.html">edhw()</a></code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># extract variables of interes from object `thr` and convert it into a data frame</span>
-<span class="no">thrdf0</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
+<span class="no">thrdf0</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sdam/man/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
 
 <span class="co"># what object types is?</span>
 <span class="fu">is</span>(<span class="no">thrdf0</span>)
 <span class="co">#[1] "data.frame" "list"       "oldClass"   "vector"  </span></pre></div>
 <div class="sourceCode" id="cb9"><pre class="r"><span class="co"># to remove missing data activate 'na.rm' argument</span>
-<span class="no">thrdf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">na.rm</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
+<span class="no">thrdf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sdam/man/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">na.rm</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
 <p>Now we compare the outcomes of these options.</p>
 <div class="sourceCode" id="cb10"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">thrdf0</span>), <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">thrdf</span>))
 <span class="co">#      ID not_after not_before     ID not_after not_before</span>
