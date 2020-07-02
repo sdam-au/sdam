@@ -84,7 +84,6 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                   "/")[[1]])]), httr::authenticate(as.vector(cred[1]), 
                   as.vector(cred[2])), body = FILE, httr::config(followlocation = 0L))
             }
-            NA
         }
         else {
             ifelse(is.null(cred) == TRUE, status <- httr::HEAD(paste0(URL, 
