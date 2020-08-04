@@ -87,8 +87,22 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -169,7 +183,7 @@
     <p><code>request</code> is basically a HTTP request, first aimed to interact with DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em>. 
 However, it is possible to specify the URL path and subdomain if necessary.</p>
 <p>There are two types of folders in DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> that are <em>personal</em> and <em>shared</em> folders and both requires authentication with credentials.</p>
-<p>The <em>path</em> to the shared folders where the files are located must be specified with the <code>path</code> argument. However, for personal folders is the <code>file</code> argument that includes the path information. Many times, DEiC㤼㸲s <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> places the data on a <em>subdomain</em>, and for some methods like <code>PUT</code> it is required to specify the subdomain as well.</p>
+<p>The <em>path</em> to the shared folders where the files are located must be specified with the <code>path</code> argument. However, for personal folders is the <code>file</code> argument that includes the path information. Many times, DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> places the data on a <em>subdomain</em>, and for some methods like <code>PUT</code> it is required to specify the subdomain as well.</p>
 <p>When a file already exists on the remote server, there is a prompt question for overwriting the file when the <code>PUT</code> method is invoked, and by activating argument <code>force</code> we can prevent confirmation and replace the file.</p>
 <p>In case that accessing the server requires basic authentification, then package "<code>tcltk</code>" may be needed as well to input the credentials with a widget prompt, and there is the <code>cred</code> argument for performing a basic authentification without a prompt.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
