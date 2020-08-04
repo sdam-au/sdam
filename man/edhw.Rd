@@ -72,8 +72,12 @@ In case that the output chosen is a dataframe, then component \code{"people"} is
 \code{\link{get.edh}}, \code{\link{get.edhw}}
 }
 \examples{
-# TBD
+\dontrun{
+## load data set
+data(EDH)
 
+## make a list for three variables in 'EDH' (default)
+edhw(vars=c("ID", "not_after", "not_before") )}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

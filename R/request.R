@@ -4,7 +4,7 @@
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
 ## First aimed to interact with DEiC's sciencedata.dk
-## version 0.3 (02-07-2020)
+## version 0.2.3 (04-08-2020)
 ##
 ## Parameters
 ## file (object under 'method')
@@ -25,10 +25,12 @@
 ##
 ## Aliases: sddk(), SDDK()
 
+
 request <-
 function (file, URL = "https://sciencedata.dk", method = c("GET", 
     "POST", "PUT", "DELETE"), authenticate = TRUE, cred = NULL, 
-    path = "/files", subdomain = NULL, force = FALSE, ...) 
+    path = "/files", subdomain = NULL, force = FALSE, rm.file, 
+    ...) 
 {
     URL0 <- URL
     ifelse(is.null(subdomain) == FALSE, URL <- gsub("//", paste0("//", 
@@ -92,11 +94,13 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                 strsplit(file, "/")[[1]][length(strsplit(file, 
                   "/")[[1]])]), httr::authenticate(as.vector(cred[1]), 
                 as.vector(cred[2])), httr::config(followlocation = 0L)))
+            flg <- 0
             if (isTRUE(substring(status$status_code, 1, 1) == 
                 "2") == TRUE) {
-                stop("File already exist in remote directory. Set \"force\" to \"TRUE\" to overwrite it.")
+                ans <- readline("File name already exists in remote directory. Do you want to overwrite it? (y/n) \n ")
+                ifelse(substr(ans, 1, 1) == "y", flg <- 1, flg <- 2)
             }
-            else {
+            if (isTRUE(flg == 1) == TRUE) {
                 if (is.null(cred) == TRUE) {
                   httr::PUT(paste0(URL, strsplit(file, "/")[[1]][length(strsplit(file, 
                     "/")[[1]])]))
@@ -107,6 +111,17 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                     as.vector(cred[2])), body = FILE, httr::config(followlocation = 0L))
                 }
             }
+            else if (isTRUE(flg == 2) == TRUE) {
+                cat("File not overwritten.\n")
+            }
+            else {
+                NA
+            }
+        }
+        if (missing(rm.file) == FALSE && isTRUE(rm.file == TRUE) == 
+            TRUE) {
+            unlink(file)
+            cat("File on local machine deleted. \n")
         }
     }
     else if (match.arg(method) == "POST") {
@@ -131,6 +146,5 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                 as.vector(cred[2])), httr::add_headers(Accept = "")))
     }
 }
-# aliases
 SDDK <- sddk <- request
 request <- SDDK

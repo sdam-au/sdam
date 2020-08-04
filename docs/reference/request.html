@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -86,6 +86,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -113,7 +116,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>request</span>(<span class='no'>file</span>, <span class='kw'>URL</span> <span class='kw'>=</span> <span class='st'>"https://sciencedata.dk"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>, <span class='st'>"POST"</span>, <span class='st'>"PUT"</span>, <span class='st'>"DELETE"</span>),
-        <span class='kw'>authenticate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cred</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/files"</span>, <span class='kw'>subdomain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+        <span class='kw'>authenticate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cred</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/files"</span>, <span class='kw'>subdomain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='no'>rm.file</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,6 +155,10 @@
       <td><p>force remote file overwriting? (optional)</p></td>
     </tr>
     <tr>
+      <th>rm.file</th>
+      <td><p>remove file in local machine? (optional and logical)</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>extra parameters if required</p></td>
     </tr>
@@ -158,18 +166,41 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>request</code> is basically a HTTP request, first aimed to interact with DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em>.</p>
+    <p><code>request</code> is basically a HTTP request, first aimed to interact with DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em>. 
+However, it is possible to specify the URL path and subdomain if necessary.</p>
+<p>There are two types of folders in DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> that are <em>personal</em> and <em>shared</em> folders and both requires authentication with credentials.</p>
+<p>The <em>path</em> to the shared folders where the files are located must be specified with the <code>path</code> argument. However, for personal folders is the <code>file</code> argument that includes the path information. Many times, DEiC㤼㸲s <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> places the data on a <em>subdomain</em>, and for some methods like <code>PUT</code> it is required to specify the subdomain as well.</p>
+<p>When a file already exists on the remote server, there is a prompt question for overwriting the file when the <code>PUT</code> method is invoked, and by activating argument <code>force</code> we can prevent confirmation and replace the file.</p>
+<p>In case that accessing the server requires basic authentification, then package "<code>tcltk</code>" may be needed as well to input the credentials with a widget prompt, and there is the <code>cred</code> argument for performing a basic authentification without a prompt.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Depends on the method, an action on the server site.</p>
+    <p>Depends on the method, an action on the server site. 
+A <em>Response</em> message is returned when the method is <code>PUT</code> with the url and items <code>Date</code>, <code>Status</code>, <code>Content-Type</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Method <code>POST</code> is not currently supported at <em>sciencedata.dk</em>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><!-- %% ~~objects to See Also as \code{\link{help}}, ~~~ -->
+<a href='https://sciencedata.dk'>https://sciencedata.dk</a></p>
+<p><a href='https://mplex.github.io/cedhar/Sciencedata_dk.html'>https://mplex.github.io/cedhar/Sciencedata_dk.html</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># TBD
+    <pre class="examples"><div class='input'><span class='co'>## get a file from remote server</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"GET"</span>)}
 
-</div></pre>
+<span class='co'>## put a file in remote server</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>)}
+
+<span class='co'>## put an existing file in remote server and force overwriting</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>force</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
+
+<span class='co'>## remove a file in remote server</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"DELETE"</span>)}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

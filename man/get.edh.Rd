@@ -210,8 +210,10 @@ and \code{"bibliography"} may be implemented in the future.
 \code{\link{get.edhw}}, \code{\link{simil}}
 }
 \examples{
-# TBD
-
+## get inscriptions from EDH API data
+## Not run:
+get.edh(findspot_modern="madrid")
+## End(**Not run**)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
