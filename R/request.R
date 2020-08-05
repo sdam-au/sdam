@@ -100,7 +100,7 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                 ans <- readline("File name already exists in remote directory. Do you want to overwrite it? (y/n) \n ")
                 ifelse(substr(ans, 1, 1) == "y", flg <- 1, flg <- 2)
             }
-            if (isTRUE(flg == 1) == TRUE) {
+            if (isTRUE(flg != 2) == TRUE) {
                 if (is.null(cred) == TRUE) {
                   httr::PUT(paste0(URL, strsplit(file, "/")[[1]][length(strsplit(file, 
                     "/")[[1]])]))
@@ -113,9 +113,6 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
             }
             else if (isTRUE(flg == 2) == TRUE) {
                 cat("File not overwritten.\n")
-            }
-            else {
-                NA
             }
         }
         if (missing(rm.file) == FALSE && isTRUE(rm.file == TRUE) == 
