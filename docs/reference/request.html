@@ -180,7 +180,7 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>request</code> is basically a HTTP request, first aimed to interact with DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em>. 
+    <p><code>request</code> is basically a HTTP request, first aimed to interact with DEiC's (Danish e-Infrastructure Cooperation) <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em>. 
 However, it is possible to specify the URL path and subdomain if necessary.</p>
 <p>There are two types of folders in DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> that are <em>personal</em> and <em>shared</em> folders and both requires authentication with credentials.</p>
 <p>The <em>path</em> to the shared folders where the files are located must be specified with the <code>path</code> argument. However, for personal folders is the <code>file</code> argument that includes the path information. Many times, DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> places the data on a <em>subdomain</em>, and for some methods like <code>PUT</code> it is required to specify the subdomain as well.</p>
@@ -190,9 +190,10 @@ However, it is possible to specify the URL path and subdomain if necessary.</p>
 
     <p>Depends on the method, an action on the server site. 
 A <em>Response</em> message is returned when the method is <code>PUT</code> with the url and items <code>Date</code>, <code>Status</code>, <code>Content-Type</code>.</p>
+<p>Method <code>POST</code> is not currently supported at <em>sciencedata.dk</em>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Method <code>POST</code> is not currently supported at <em>sciencedata.dk</em>.</p>
+    <p>Aliases for this function are <code>sddk()</code> and <code>SDDK()</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><!-- %% ~~objects to See Also as \code{\link{help}}, ~~~ -->
@@ -206,15 +207,20 @@ A <em>Response</em> message is returned when the method is <code>PUT</code> with
 
 <span class='co'>## put a file in remote server</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>)}
+<span class='fu'>sddk</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>)}
 
 <span class='co'>## put an existing file in remote server and force overwriting</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>force</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
+<span class='fu'>sddk</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>force</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
+
+<span class='co'>## put an existing file in remote server and remove file from local machine</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>sddk</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>rm.file</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
+
 
 <span class='co'>## remove a file in remote server</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"DELETE"</span>)}</div></pre>
+<span class='fu'>SDDK</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"DELETE"</span>)}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
