@@ -16,7 +16,7 @@ edhw(vars, x = NULL, as = c("list", "df"), limit, id, na.rm, ...)
 Choose variables from \code{x}. If \code{x=NULL}, the entire \code{EDH} dataset is taken. (optional, vector)
 }
   \item{x}{
- A list object name with fragments of the \code{EDH} dataset (optional)
+ A list object name with fragments of the \code{EDH} dataset, or another EDH dataset created either with \code{rjson} or \code{jsonlite} (optional)
 }
   \item{as}{
 Format to return the output. Currently either as a \code{list} or a data frame \code{df} object.
@@ -54,7 +54,7 @@ Argument \code{id} is for refering to precisely \code{hd_nr}s, while \code{"limi
 get to these entries in the \code{EDH} dataset. 
 }
 \value{
-A list or a data frame 
+A list or a data frame, depending on the input. 
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api

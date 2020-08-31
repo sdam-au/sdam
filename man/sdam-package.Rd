@@ -13,8 +13,8 @@
 \tabular{ll}{
 Package: \tab sdam \cr
 Type: \tab Package \cr
-Version: \tab 0.2.3 \cr
-Date: \tab 4 August 2020 \cr
+Version: \tab 0.2.4 \cr
+Date: \tab 31 August 2020 \cr
 License: \tab CC BY-SA 4.0 \cr
 }
 
@@ -25,7 +25,7 @@ License: \tab CC BY-SA 4.0 \cr
 %\packageIndices{sdam}
 Currently, it is possible with the \code{sdam} package to access data from the Epigraphic Database 
 Heidelberg API with \code{get.edh()}, and the wrapper functions \code{get.edhw()} \code{edhw()} as well. 
-Most of the data is available in the dataset attached to the package, which is called \code{EDH}, which 
+Most of the data is available in the dataset attached to the package, called \code{EDH}, and which 
 can be manipulated by using the \code{edhw()} convenient function. 
 
 Besides, the \code{request()} function allows performing different types of 

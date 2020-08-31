@@ -17,7 +17,10 @@ You can install the `sdam` package from these GitHub repositories using the R co
 ```r
 ## Install package
 devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
+```
+or 
 
+```r
 devtools::install_github("sdam-au/sdam")
 ```
 
