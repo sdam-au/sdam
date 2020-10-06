@@ -13,8 +13,8 @@
 \tabular{ll}{
 Package: \tab sdam \cr
 Type: \tab Package \cr
-Version: \tab 0.2.4 \cr
-Date: \tab 31 August 2020 \cr
+Version: \tab 0.2.5 \cr
+Date: \tab 6 October 2020 \cr
 License: \tab CC BY-SA 4.0 \cr
 }
 
@@ -33,9 +33,9 @@ HTTP requests from a cloud repository like DEiC'S \url{https://sciencedata.dk} o
 customized URL address. 
 
 Similarity by simple matching among column vectors is achieved by the \code{simil()} function 
-in order to make analyses of assemblages or artifacts. 
+in order to make analyses of relations between assemblages and artifacts. 
 
-Note that this latter function still under early development. 
+Note that this latter function still under development. 
 }
 \author{
 Author: \packageAuthor{sdam} 

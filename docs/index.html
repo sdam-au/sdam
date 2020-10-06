@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -45,23 +45,6 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">Releases</li>
-    <li>
-      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
-    </li>
-    <li class="divider">
-    <li>
-      <a href="news/index.html">Changelog</a>
-    </li>
-  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -110,7 +93,7 @@
 <h3 class="hasAnchor">
 <a href="#get-particular-inscriptions" class="anchor"></a>Get particular inscriptions</h3>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="co"># obtain epigraphic data from Thracia</span>
-<span class="no">thr</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Thr"</span>)</pre></div>
+<span class="no">thr</span> <span class="kw">&lt;-</span> <span class="fu">get.edh</span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Thr"</span>)</pre></div>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># how many inscriptions in Thracia?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">thr</span>)
 <span class="co"># [1] 395</span></pre></div>
@@ -118,15 +101,15 @@
 <div id="relative-dating" class="section level3">
 <h3 class="hasAnchor">
 <a href="#relative-dating" class="anchor"></a>Relative dating</h3>
-<p>Since <code>sdam</code> v.0.2.1 there is the option in <code><a href="reference/edhw.html">edhw()</a></code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>.</p>
+<p>Since <code>sdam</code> v.0.2.1 there is the option in <code>edhw()</code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>.</p>
 <div class="sourceCode" id="cb9"><pre class="r"><span class="co"># extract variables of interes from object `thr` and convert it into a data frame</span>
-<span class="no">thrdf0</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
+<span class="no">thrdf0</span> <span class="kw">&lt;-</span> <span class="fu">edhw</span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
 
 <span class="co"># what object types is?</span>
 <span class="fu">is</span>(<span class="no">thrdf0</span>)
 <span class="co">#[1] "data.frame" "list"       "oldClass"   "vector"  </span></pre></div>
 <div class="sourceCode" id="cb10"><pre class="r"><span class="co"># to remove missing data activate 'na.rm' argument</span>
-<span class="no">thrdf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">na.rm</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
+<span class="no">thrdf</span> <span class="kw">&lt;-</span> <span class="fu">edhw</span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ID"</span>, <span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">thr</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">na.rm</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
 <p>Now we compare the outcomes of these options.</p>
 <div class="sourceCode" id="cb11"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">thrdf0</span>), <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">thrdf</span>))
 <span class="co">#      ID not_after not_before     ID not_after not_before</span>
@@ -138,10 +121,35 @@
 <span class="co">#6 007047      &lt;NA&gt;       0068 007092      0136       0135</span></pre></div>
 <p>Hence, not available data is removed in <code>thrdf</code>.</p>
 </div>
+<div id="people" class="section level3">
+<h3 class="hasAnchor">
+<a href="#people" class="anchor"></a>People</h3>
+<p>It is possible to extract the <code>people</code> component from the <code>EDH</code> API dataset, which is an integrated list with their own items.</p>
+<p>For instance, the following commands extract people named in Roman inscriptions in Thracia and Syria into a data frame object:</p>
+<div class="sourceCode" id="cb12"><pre class="r"><span class="fu">edhw</span>(<span class="kw">x</span><span class="kw">=</span><span class="fu">get.edh</span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Thr"</span>), <span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
+<span class="fu">edhw</span>(<span class="kw">x</span><span class="kw">=</span><span class="fu">get.edh</span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Syr"</span>), <span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)</pre></div>
+<p>The same can apply to the rest of Roman provinces.</p>
+<p>It is also possible to <code>limit</code> the amount of records to process, and with the following example we can extract the first four inscriptions by <code>hd_nr</code> id.</p>
+<div class="sourceCode" id="cb13"><pre class="r"><span class="fu">edhw</span>(<span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">limit</span><span class="kw">=</span><span class="fl">4</span>)
+<span class="co">#        id age: years             cognomen gender                                              name    nomen person_id praenomen           status   tribus</span>
+<span class="co">#1 HD000001       &lt;NA&gt;               Optata female                               Noniae P.f. Optatae    Nonia         1      &lt;NA&gt;             &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="co">#2 HD000001       &lt;NA&gt;               Artemo   male                                 C. Iulio Artemoni   Iulius         2        C.             &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="co">#3 HD000001       &lt;NA&gt;              Optatus   male                            C. Iulius C.f. Optatus   Iulius         3        C.             &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="co">#4 HD000002         70                Paris   male                                  C. Sextius Paris  Sextius         1        C.             &lt;NA&gt;     &lt;NA&gt;</span>
+<span class="co">#5 HD000003       &lt;NA&gt; Sisenna+ Rutilianus+   male      [P. M]ummio [P.f. Gal. S]isenna[e Rutiliano] Mummius+         1       P.+ senatorial order Galeria+</span>
+<span class="co">#6 HD000004       &lt;NA&gt;                [---]   &lt;NA&gt; [---?]AV(?)S(?)[---]L(?)L(?)A M. Porci Nigri ser.     &lt;NA&gt;         1      &lt;NA&gt;           slaves     &lt;NA&gt;</span>
+<span class="co">#7 HD000004       &lt;NA&gt;                Niger   &lt;NA&gt;                                    M. Porci Nigri  Porcius         2        M.             &lt;NA&gt;     &lt;NA&gt;</span></pre></div>
+<p>while a specific record is retrieved by using the <code>id</code> argument</p>
+<div class="sourceCode" id="cb14"><pre class="r"><span class="fu">edhw</span>(<span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">id</span><span class="kw">=</span><span class="fl">4444</span>)
+<span class="co">#        id     cognomen gender                   name    nomen person_id praenomen           status</span>
+<span class="co">#1 HD004444    Gordianus   male     M. Antoni Gordiani Antonius         1        M.             &lt;NA&gt;</span>
+<span class="co">#2 HD004444 Tranquillina female Sabiniae Tranquillinae  Sabinia         2      &lt;NA&gt;             &lt;NA&gt;</span>
+<span class="co">#3 HD004444  Mercurialis   male       Iul. Mercurialis  Iulius*         3      &lt;NA&gt; equestrian order</span></pre></div>
+</div>
 <div id="documentation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h3>
-<p>Look at the <a href="https://sdam-au.github.io/sdam/">‘sdam’ R package documentation</a> to find more TBD.</p>
+<p>Look at the <a href="https://sdam-au.github.io/sdam/">‘sdam’ R package documentation</a> to find more about the distinct variables in <code>EDH</code> dataset and applications with the different functions.</p>
 </div>
 </div>
 </div>

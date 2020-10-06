@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get data from the Epigraphic Database Heidelberg — get.edh • sdam</title>
+<title>Get data from the Epigraphic Database Heidelberg API — get.edh • sdam</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get data from the Epigraphic Database Heidelberg — get.edh" />
-<meta property="og:description" content="A function to obtain data from the Epigraphic Database Heidelberg repository." />
+<meta property="og:title" content="Get data from the Epigraphic Database Heidelberg API — get.edh" />
+<meta property="og:description" content="A function to obtain data from the Epigraphic Database Heidelberg API repository." />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -86,6 +86,23 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -103,13 +120,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get data from the Epigraphic Database Heidelberg</h1>
+    <h1>Get data from the Epigraphic Database Heidelberg API</h1>
     
     <div class="hidden name"><code>get.edh.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A function to obtain data from the Epigraphic Database Heidelberg repository.</p>
+    <p>A function to obtain data from the Epigraphic Database Heidelberg API repository.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get.edh</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"inscriptions"</span>, <span class='st'>"geography"</span>),
@@ -211,7 +228,7 @@ output list is not with a numeric format, then the function adds an <code>ID</co
 at the beginning of the list with the identifier with a numerical format.</p>
 <p>Notice that <code>hd_nr</code> is not the same as <code>ID</code> nor <code>id</code>.</p>
 
-<p>Use function <code><a href='get.edhw.html'>get.edhw</a></code> in case you want to grab several items.</p>
+<p>Use function <code>get.edhw</code> in case you want to grab several items.</p>
 <p>Entries in <code>country</code> are abbreviated country names where the inscription was located. 
 A list with the of valid values for countries from the EDH API are</p>
 <table class='table'>
@@ -324,7 +341,7 @@ And also the query is printed if specified.
 and <code>"bibliography"</code> may be implemented in the future.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='get.edhw.html'>get.edhw</a></code>, <code><a href='simil.html'>simil</a></code></p></div>
+    <div class='dont-index'><p><code>get.edhw</code>, <code>simil</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## get inscriptions from EDH API data</span>
@@ -357,21 +374,24 @@ and <code>"bibliography"</code> may be implemented in the future.</p>
 #&gt; [1] "Latin"
 #&gt; 
 #&gt; $last_update
-#&gt; [1] "2008-06-06"
+#&gt; [1] "2020-09-01"
 #&gt; 
 #&gt; $literature
 #&gt; [1] "J. Lostal Pros, Los miliarios de la provincia tarraconense (conventos tarraconense, cesaraugustano, cluniense y cartaginense) (Zaragoza 1992) 70, Nr. 65.; CIL 02, 03056."
 #&gt; 
 #&gt; $people
 #&gt; $people[[1]]
+#&gt; $people[[1]]$gender
+#&gt; [1] "male"
+#&gt; 
+#&gt; $people[[1]]$cognomen
+#&gt; [1] "Nerva+ Traianus+"
+#&gt; 
 #&gt; $people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
 #&gt; $people[[1]]$name
-#&gt; [1] "[Nerva] [Traianus]"
-#&gt; 
-#&gt; $people[[1]]$cognomen
-#&gt; [1] "Nerva+ Traianus+"
+#&gt; [1] "[Nerva Traianus]"
 #&gt; 
 #&gt; 
 #&gt; 

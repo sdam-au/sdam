@@ -2,24 +2,27 @@
 \alias{edhw}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Epigraphic Database Heidelberg wrapper function
+Wrapper function for the Epigraphic Database Heidelberg dataset
 }
 \description{
-A function to obtain variable data from the \code{EDH} data set and perform transformations.
+A function to obtain variable data and perform transformations on the \code{EDH} dataset.
 }
 \usage{
-edhw(vars, x = NULL, as = c("list", "df"), limit, id, na.rm, ...)
+edhw(vars, x = NULL, as = c("list", "df"), addID, limit, id, na.rm, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{vars}{
-Choose variables from \code{x}. If \code{x=NULL}, the entire \code{EDH} dataset is taken. (optional, vector)
+   Choose variables of interest from \code{x}. If \code{x=NULL}, the entire \code{EDH} dataset is taken. (optional, vector)
 }
   \item{x}{
  A list object name with fragments of the \code{EDH} dataset, or another EDH dataset created either with \code{rjson} or \code{jsonlite} (optional)
 }
   \item{as}{
 Format to return the output. Currently either as a \code{list} or a data frame \code{df} object.
+}
+  \item{addID}{
+	Add identification to the output? (optional and logical)
 }
   \item{limit}{
 Limit the returned output. Ignored if \code{id} is specified (optional, integer or vector)
@@ -36,7 +39,9 @@ Optional arguments if needed.
 }
 \details{
 This is a convenient function to "extract" \emph{variables} from the \code{EDH} dataset attached 
-to this package through \code{vars}. When \code{vars} is missing, then all entries are taken.
+to this package through \code{vars}. When \code{vars} is missing, then all entries are taken. 
+Component \code{"people"} is a separated list and should be considered as a separate case from 
+the rest of the variables
 
 In case \code{x} is present, it is typically given as a fragment of the \code{EDH} dataset that can be 
 obtained for example with function \code{get.edh()} or \code{get.edhw()}. Otherwise, it must be at least 
@@ -63,7 +68,7 @@ https://edh-www.adw.uni-heidelberg.de/data/api
 Antonio Rivero Ostoic
 }
 \note{
-In case that the output chosen is a dataframe, then component \code{"people"} is ignored. 
+In case that the output chosen is a dataframe, then component \code{"people"} should be chosen alone. 
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

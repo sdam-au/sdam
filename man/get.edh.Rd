@@ -2,10 +2,10 @@
 \alias{get.edh}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Get data from the Epigraphic Database Heidelberg
+Get data from the Epigraphic Database Heidelberg API
 }
 \description{
-A function to obtain data from the Epigraphic Database Heidelberg repository.
+A function to obtain data from the Epigraphic Database Heidelberg API repository.
 }
 \usage{
 get.edh(search = c("inscriptions", "geography"), 

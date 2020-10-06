@@ -2,7 +2,7 @@
 \alias{get.edhw}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Wrapper to get data from the Epigraphic Database Heidelberg
+Wrapper to get data from the Epigraphic Database Heidelberg API
 }
 \description{
 A wrapper function to obtain data from the Epigraphic Database Heidelberg repository.
@@ -20,7 +20,7 @@ get.edhw(hd_nr, ...)
 }
 }
 \details{
-This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg repository.
+This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg API repository.
 
 }
 \value{
