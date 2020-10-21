@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
       </span>
     </div>
 
@@ -228,7 +228,7 @@ output list is not with a numeric format, then the function adds an <code>ID</co
 at the beginning of the list with the identifier with a numerical format.</p>
 <p>Notice that <code>hd_nr</code> is not the same as <code>ID</code> nor <code>id</code>.</p>
 
-<p>Use function <code>get.edhw</code> in case you want to grab several items.</p>
+<p>Use function <code><a href='get.edhw.html'>get.edhw</a></code> in case you want to grab several items.</p>
 <p>Entries in <code>country</code> are abbreviated country names where the inscription was located. 
 A list with the of valid values for countries from the EDH API are</p>
 <table class='table'>
@@ -255,7 +255,7 @@ A list with the of valid values for countries from the EDH API are</p>
 </table>
 
 
-<p>And for the ancient Roman provices the valued values are</p>
+<p>And for the ancient Roman provices the valid values are</p>
 <table class='table'>
 <tr><td><code>"Ach"</code></td><td>Achaia</td><td><code>"Cor"</code></td><td>Corsica</td><td><code>"Mes"</code></td><td>Mesopotamia</td></tr>
 <tr><td><code>"Aeg"</code></td><td>Aegyptus</td><td><code>"Cre"</code></td><td>Creta</td><td><code>"MoI"</code></td><td>Moesia inferior</td></tr>
@@ -287,6 +287,7 @@ A list with the of valid values for countries from the EDH API are</p>
 
     <p>A list object with at least one the following items:</p>
 <dt>"ID"</dt><dd><p>(Optional), only if <code>addID</code> is set to <code>TRUE</code>.</p></dd>
+<dt></dt><dd><p></p></dd>
 <dt>"commentary"</dt><dd><p></p></dd>
 <dt>"fotos"</dt><dd><p></p></dd>
 <dt>"country"</dt><dd><p></p></dd>
@@ -309,9 +310,9 @@ A list with the of valid values for countries from the EDH API are</p>
 <dt>"not_after"</dt><dd><p></p></dd>
 <dt>"not_before"</dt><dd><p></p></dd>
 <dt></dt><dd><p></p></dd>
-<dt>"people"</dt><dd><p>This item is another list with at least one the following items: <br />  
+<dt>"people"</dt><dd><p>This item is another list with at least one the following items: <br />  <br />  
 <code>"person_id"</code> <br />  <code>"nomen"</code> <br />  <code>"cognomen"</code> <br />  <code>"praenomen"</code> <br />  <code>"name"</code> <br />  <code>"gender"</code> <br />  <code>"status"</code> <br />  <code>"tribus"</code> <br />  
-<code>"origo"</code> <br />  <code>"occupation"</code> <br />  <code>"age: years"</code> <br />  <code>"age: months"</code></p></dd>
+<code>"origo"</code> <br />  <code>"occupation"</code> <br />  <code>"age: years"</code> <br />  <code>"age: months"</code> <br />  <code>"age: days"</code></p></dd>
 <dt></dt><dd><p></p></dd>
 <dt>"present_location"</dt><dd><p></p></dd>
 <dt>"religion"</dt><dd><p></p></dd>
@@ -328,7 +329,7 @@ A list with the of valid values for countries from the EDH API are</p>
 <dt>"year_of_find"</dt><dd><p></p></dd>
 <dt></dt><dd><p></p></dd>
 
-And also the query is printed if specified. 
+And also the query is printed if specified by printQ. 
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -341,7 +342,7 @@ And also the query is printed if specified.
 and <code>"bibliography"</code> may be implemented in the future.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>get.edhw</code>, <code>simil</code></p></div>
+    <div class='dont-index'><p><code><a href='get.edhw.html'>get.edhw</a></code>, <code><a href='simil.html'>simil</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## get inscriptions from EDH API data</span>
@@ -381,14 +382,14 @@ and <code>"bibliography"</code> may be implemented in the future.</p>
 #&gt; 
 #&gt; $people
 #&gt; $people[[1]]
-#&gt; $people[[1]]$gender
-#&gt; [1] "male"
+#&gt; $people[[1]]$person_id
+#&gt; [1] "1"
 #&gt; 
 #&gt; $people[[1]]$cognomen
 #&gt; [1] "Nerva+ Traianus+"
 #&gt; 
-#&gt; $people[[1]]$person_id
-#&gt; [1] "1"
+#&gt; $people[[1]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; $people[[1]]$name
 #&gt; [1] "[Nerva Traianus]"

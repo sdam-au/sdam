@@ -5,7 +5,7 @@
 Wrapper to get data from the Epigraphic Database Heidelberg API
 }
 \description{
-A wrapper function to obtain data from the Epigraphic Database Heidelberg repository.
+A wrapper function to obtain records data from the Epigraphic Database Heidelberg repository.
 }
 \usage{
 get.edhw(hd_nr, ...)
@@ -20,7 +20,8 @@ get.edhw(hd_nr, ...)
 }
 }
 \details{
-This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg API repository.
+This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg open repository through its API. 
+In this sense, it is a complement of the function \code{\link{get.edh}} from this package.
 
 }
 \value{
@@ -34,7 +35,7 @@ https://edh-www.adw.uni-heidelberg.de/data/api
 Antonio Rivero Ostoic
 }
 \note{
-Large samples can take a lot of time.
+Depending on the Internet connection, large samples can take a lot of time.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -43,7 +44,7 @@ Large samples can take a lot of time.
 \code{\link{get.edh}}, \code{\link{simil}}
 }
 \examples{
-## get 10 records from EDH API data
+## get the first 10 records from EDH API data
 ## Not run:
 get.edhw(hd_nr=1:10)
 ## End(**Not run**)

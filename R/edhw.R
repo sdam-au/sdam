@@ -1,34 +1,63 @@
+
+## 
+## FUNCTION edhw() to manipulate data API from Epigraphic Database Heidelberg EDH
+## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
+##
+## version 0.3.3 (20-10-2020)
+##
+## PARAMETERS
+##
+## vars   (variables or attributes to be chosen)
+## as     (type of output, lists or data frames)
+##
+## OPTIONAL PARAMETERS
+##
+## x      (typically fragments of EDH dataset)
+## addID  (logical, add "HD id" to output?)
+## limit  (integers, vector with HD nr records to limit output)
+## id     (integer or character, select only the hd_nr id)
+## na.rm  (remove data entries with NA?)
+## bycols (logical, return multiple people entries by data frame columns?)
+## ...    (optional parameters)
+##
+
+
 edhw <-
 function (vars, x = NULL, as = c("list", "df"), addID, limit, 
-    id, na.rm, ...) 
+    id, na.rm, bycols, ...) 
 {
-    flgx <- TRUE
     flgdf <- FALSE
     if (is.null(x) == TRUE) {
+        warning("\"x\" is NULL and dataset \"EDH\" is taken if available.")
         if (!(exists("EDH"))) {
             utils::data("EDH", package = "sdam", envir = environment())
             EDH <- get("EDH", envir = environment())
+            EDH$cite <- NULL
         }
         else {
             NA
         }
-        EDH$cite <- NULL
-        flgx <- FALSE
         x <- EDH
     }
     else if (isTRUE(is.data.frame(x) == TRUE) == TRUE) {
         flgdf <- TRUE
         ifelse(isTRUE(is.list(x) == TRUE) == TRUE, x <- as.data.frame(x), 
             NA)
-        ifelse((match.arg(as) == "df")%%(class(x) %in% c("tbl_df", 
-            "tbl") == FALSE), x[x == "list()"] <- NA, NA)
     }
     else {
         ifelse(isTRUE(is.character(x) == TRUE) == TRUE, x <- eval(parse(text = x)), 
             NA)
     }
-    ifelse(missing(addID) == FALSE && isTRUE(addID == TRUE) == 
-        FALSE, addID <- FALSE, addID <- TRUE)
+    if (missing(addID) == FALSE && isTRUE(addID == FALSE) == 
+        TRUE) {
+        ifelse(isTRUE("id" %in% vars) == TRUE, addID <- TRUE, 
+            addID <- FALSE)
+    }
+    else {
+        addID <- TRUE
+    }
+    ifelse(missing(bycols) == FALSE && isTRUE(bycols == TRUE) == 
+        TRUE, bycols <- TRUE, bycols <- FALSE)
     if (missing(vars) == TRUE) {
         if (match.arg(as) == "list") {
             ifelse(isTRUE(flgdf == TRUE) == TRUE, return(as.list(x)), 
@@ -40,15 +69,23 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
         }
     }
     else {
-        NA
+        ifelse(isTRUE("id" %in% vars) == TRUE, vars <- vars[which(!(vars == 
+            "id"))], NA)
     }
     ifelse(isTRUE(flgdf == FALSE) == TRUE, xvars <- unique(names(unlist(x))), 
         xvars <- colnames(x))
     if (isTRUE(vars != "people") == TRUE && all(vars %in% xvars) == 
         FALSE) {
         warning(paste("Variable(s)", vars[which(!(vars %in% xvars))], 
-            "is/are not present and disregarded.", sep = " "))
+            "is/are not present in \"x\" and they are disregarded.", 
+            sep = " "))
         vars <- vars[which(vars %in% xvars)]
+    }
+    else if (isTRUE(vars %in% xvars) == FALSE && isTRUE(length(unlist(strsplit(xvars, 
+        split = "people."))) > length(xvars)) == FALSE) {
+        warning(paste("Variable(s)", vars[which(!(vars %in% xvars))], 
+            "is/are not present in input data.", sep = " "))
+        return(NULL)
     }
     else {
         NA
@@ -73,24 +110,7 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
     if (isTRUE(flgdf == TRUE) == TRUE) {
         warning("When \"x\" is a data frame, argument \"limit\" is not available.")
         if (match.arg(as) == "df") {
-            edhlm <- split(x, seq(nrow(x)))
-            edhlv <- lapply(edhlm, `[`, vars)
-            edhl <- vector("list", length(edhlv))
-            for (k in seq_len(length(edhlv))) {
-                edhlv[[k]] <- apply(edhlv[[k]], 2, function(x) suppressWarnings(levels(x) <- sub("NULL", 
-                  NA, x)))
-                edhlv[[k]][edhlv[[k]] == ""] <- NA
-                edhlv[[k]][edhlv[[k]] == "list()"] <- NA
-                edhll <- vector("list", length(vars))
-                attr(edhll, "names") <- vars
-                for (i in seq_len(length(vars))) {
-                  edhll[[i]] <- as.list(edhlv[[k]])
-                }
-                rm(i)
-                edhl[[k]] <- edhll
-            }
-            rm(k)
-            rm(edhll)
+            return(x)
         }
         else if (match.arg(as) == "list") {
             edhl <- list()
@@ -118,7 +138,7 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
         if (missing(vars) == FALSE && isTRUE(is.vector(vars) == 
             TRUE) == TRUE) {
             edhl <- lapply(edhlm, `[`, vars)
-            ifelse(isTRUE(vars == "people") == TRUE, flgp <- TRUE, 
+            ifelse(isTRUE("people" %in% vars) == TRUE, flgp <- TRUE, 
                 NA)
             if (isTRUE(length(unique(names(unlist(edhl)))) != 
                 length(vars)) == FALSE) {
@@ -153,63 +173,203 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
             rm(n)
         }
         else if (isTRUE(flgp == TRUE) == TRUE) {
-            if (isTRUE(flgx == TRUE) == TRUE) {
-                pnames <- lapply(edhl, "names")
-                edhlp <- edhl[which(!(is.na(unlist(pnames))))]
-                plbs <- unique(attr(unlist(edhlp), "names"))
-                plbs <- sort(unique(unlist(strsplit(plbs, split = "people."))))
-                ifelse(isTRUE(addID == TRUE) == TRUE, plbs[1] <- "id", 
-                  NA)
+            ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
+                TRUE) == TRUE, warning("Argument \"na.rm\" is deactivated for variable \"people\"."), 
+                NA)
+            pnames <- lapply(edhl, "names")
+            if (all(is.na(edhl)) == FALSE) {
+                if (isTRUE(vars == "people") == TRUE) {
+                  edhlp <- edhl[which(!(is.na(unlist(pnames))))]
+                  if (isTRUE(length(edhlp) > 0) == TRUE) {
+                    plbs <- unique(attr(unlist(edhlp), "names"))
+                    plbs <- sort(unique(unlist(strsplit(plbs, 
+                      split = "people."))))
+                    ifelse(isTRUE(addID == TRUE) == TRUE, plbs[1] <- "id", 
+                      plbs <- plbs[2:length(plbs)])
+                  }
+                  else {
+                    return(NULL)
+                  }
+                }
+                else {
+                  edhlp <- lapply(edhlm, `[`, "people")
+                  edhlq <- lapply(edhlm, `[`, vars[which(vars != 
+                    "people")])
+                  if (isTRUE(length(edhlp) > 0) == TRUE) {
+                    plbs <- unique(attr(unlist(edhlp), "names"))
+                    plbs <- sort(unique(unlist(strsplit(plbs, 
+                      split = "people."))))
+                    ifelse(isTRUE(addID == TRUE) == TRUE, plbs[1] <- "id", 
+                      plbs <- plbs[2:length(plbs)])
+                  }
+                  else {
+                    NA
+                  }
+                  if (isTRUE(length(edhlq) > 0) == TRUE) {
+                    qlbs <- unique(unlist(lapply(edhlq, "names")))
+                  }
+                  else {
+                    NA
+                  }
+                  ifelse(isTRUE(addID == TRUE) == TRUE, qlbs <- append("id", 
+                    qlbs), NA)
+                }
             }
             else {
-                edhlp <- list()
-                for (i in seq_len(length(edhl))) {
-                  if (is.na(names(edhl[[i]])) == FALSE) {
-                    edhlp[[length(edhlp) + 1L]] <- edhl[[i]]
+                return(as.data.frame(edhl))
+            }
+            ids <- vector()
+            for (i in seq_len(length(edhl))) {
+                ids <- append(ids, edhlm[[i]]$id)
+            }
+            rm(i)
+            ids <- ids[which(is.na(pnames) == FALSE)]
+            if (isTRUE(bycols == TRUE) == FALSE) {
+                xdfp <- data.frame(matrix(ncol = length(plbs), 
+                  nrow = 0))
+                colnames(xdfp) <- plbs
+                for (k in seq_len(length(edhlp))) {
+                  if (is.null(unlist(edhlp[[k]])) == FALSE) {
+                    tmpdf <- data.frame(matrix(ncol = length(plbs), 
+                      nrow = 0))
+                    colnames(tmpdf) <- plbs
+                    for (i in seq_len(length(edhlp[[k]]$people))) {
+                      edhlp[[k]]$people[[i]] <- edhlp[[k]]$people[[i]][order(names(edhlp[[k]]$people[[i]]))]
+                      edhlp[[k]]$people[[i]][lengths(edhlp[[k]]$people[[i]]) == 
+                        0L] <- NA
+                      tmpdf[i, which((plbs %in% attr(edhlp[[k]]$people[[i]], 
+                        "names")))] <- as.vector(unlist(edhlp[[k]]$people[[i]]))
+                    }
+                    rm(i)
+                    ifelse(isTRUE(addID == TRUE) == TRUE, tmpdf[, 
+                      1] <- ids[k], NA)
+                    xdfp <- rbind(xdfp, tmpdf)
                   }
                   else {
                     NA
                   }
                 }
-                rm(i)
-                plbs <- rev(sort(unique(names(unlist(edhl)))))
-                plbs <- sort(unique(unlist(strsplit(plbs, split = "people."))))
-                ifelse(isTRUE(addID == TRUE) == TRUE, plbs[1] <- "id", 
-                  NA)
+                rm(k)
+                if (isTRUE(vars == "people") == TRUE) {
+                  return(xdfp)
+                }
+                else {
+                  if (isTRUE(any(is.na(qlbs)) == TRUE)) {
+                    xdfq <- data.frame(matrix(ncol = length(as.vector(stats::na.omit(qlbs))), 
+                      nrow = length(edhlq)))
+                    colnames(xdfq) <- as.vector(stats::na.omit(qlbs))
+                    for (i in seq_len(length(edhlq))) {
+                      edhlq[[i]] <- edhlq[[i]][order(names(edhlq[[i]]))]
+                      edhlq[[i]][lengths(edhlq[[i]]) == 0L] <- NA
+                      xdfq[i, 2:ncol(xdfq)] <- as.vector(unlist(edhlq[[i]]))
+                    }
+                    rm(i)
+                  }
+                  else {
+                    xdfq <- data.frame(matrix(ncol = length(qlbs), 
+                      nrow = length(edhlq)))
+                    colnames(xdfq) <- qlbs
+                    for (i in seq_len(length(edhlq))) {
+                      edhlq[[i]] <- edhlq[[i]][order(names(edhlq[[i]]))]
+                      edhlq[[i]][lengths(edhlq[[i]]) == 0L] <- NA
+                      xdfq[i, which((qlbs %in% attr(edhlq[[i]], 
+                        "names")))] <- as.vector(unlist(edhlq[[i]]))
+                    }
+                    rm(i)
+                  }
+                  ifelse(isTRUE(addID == TRUE) == TRUE, xdfq[, 
+                    1] <- ids, NA)
+                  xdfpq <- merge(xdfp, xdfq, all.x = TRUE)
+                  return(xdfpq)
+                }
             }
-            xdfp <- data.frame(matrix(ncol = length(plbs), nrow = 0))
-            colnames(xdfp) <- plbs
-            for (k in seq_len(length(edhlp))) {
-                tmpdf <- data.frame(matrix(ncol = length(plbs), 
+            else if (isTRUE(bycols == TRUE) == TRUE) {
+                pp <- max(as.numeric(unlist(edhlm)[which(attr(unlist(edhlm), 
+                  "names") == "people.person_id")]))
+                plbss <- vector()
+                for (i in seq_len(pp)) {
+                  plbss <- append(plbss, paste(plbs[2:length(plbs)], 
+                    i, sep = ""))
+                }
+                rm(i)
+                ifelse(isTRUE(addID == TRUE) == TRUE, plbss <- append("id", 
+                  plbss), NA)
+                options(stringsAsFactors = FALSE)
+                xdfpp <- data.frame(matrix(ncol = length(plbss), 
                   nrow = 0))
-                colnames(tmpdf) <- plbs
-                for (i in seq_len(length(edhlp[[k]]$people))) {
-                  edhlp[[k]]$people[[i]] <- edhlp[[k]]$people[[i]][order(names(edhlp[[k]]$people[[i]]))]
-                  edhlp[[k]]$people[[i]][lengths(edhlp[[k]]$people[[i]]) == 
-                    0L] <- NA
-                  tmpdf[i, which((plbs %in% attr(edhlp[[k]]$people[[i]], 
-                    "names")))] <- as.vector(unlist(edhlp[[k]]$people[[i]]))
+                for (k in seq_len(length(edhlp))) {
+                  tmpdf <- data.frame(matrix(ncol = length(plbs), 
+                    nrow = 0))
+                  colnames(tmpdf) <- plbs
+                  for (i in seq_len(length(edhlp[[k]]$people))) {
+                    edhlp[[k]]$people[[i]] <- edhlp[[k]]$people[[i]][order(names(edhlp[[k]]$people[[i]]))]
+                    edhlp[[k]]$people[[i]][lengths(edhlp[[k]]$people[[i]]) == 
+                      0L] <- NA
+                    tmpdf[i, which((plbs %in% attr(edhlp[[k]]$people[[i]], 
+                      "names")))] <- as.vector(unlist(edhlp[[k]]$people[[i]]))
+                  }
+                  rm(i)
+                  if (isTRUE(nrow(tmpdf) > 1L) == TRUE) {
+                    vecp <- vector()
+                    for (i in seq_len(nrow(tmpdf))) {
+                      vecp <- append(vecp, unlist(tmpdf[i, 2:ncol(tmpdf)], 
+                        use.names = FALSE))
+                    }
+                    rm(i)
+                    ifelse(isTRUE(dim(tmpdf)[1] == pp) == TRUE, 
+                      vecpp <- c(ids[k], vecp), vecpp <- c(ids[k], 
+                        vecp, rep(NA, (length(plbss) - length(vecp) - 
+                          1L))))
+                    xdfpp <- (rbind(xdfpp, vecpp))
+                  }
+                  else if (isTRUE(nrow(tmpdf) == 1L) == TRUE) {
+                    if (isTRUE(dim(xdfpp)[1] == 0) == TRUE) {
+                      xdfpp <- rbind(as.vector(unlist(xdfpp)), 
+                        c(ids[k], as.vector(unlist(tmpdf[2:ncol(tmpdf)])), 
+                          rep(NA, (length(plbss) - ncol(tmpdf)))))
+                    }
+                    else {
+                      xdfpp <- (rbind(xdfpp, c(ids[k], as.vector(unlist(tmpdf[2:ncol(tmpdf)])), 
+                        rep(NA, (length(plbss) - ncol(tmpdf))))))
+                    }
+                  }
                 }
-                rm(i)
-                ids <- vector()
-                for (i in seq_len(length(edhl))) {
-                  ids <- append(ids, edhlm[[i]]$id)
+                rm(k)
+                xdfpp <- as.data.frame(xdfpp)
+                colnames(xdfpp) <- plbss
+                rownames(xdfpp) <- NULL
+                if (isTRUE(vars == "people") == TRUE) {
+                  return(xdfpp)
                 }
-                rm(i)
-                ifelse(isTRUE(addID == TRUE) == TRUE, tmpdf[, 
-                  1] <- ids[k], NA)
-                xdfp <- rbind(xdfp, tmpdf)
+                else {
+                  xdfq <- data.frame(matrix(ncol = length(as.vector(stats::na.omit(qlbs))), 
+                    nrow = length(edhlq)))
+                  colnames(xdfq) <- as.vector(stats::na.omit(qlbs))
+                  for (i in seq_len(length(edhlq))) {
+                    edhlq[[i]] <- edhlq[[i]][order(names(edhlq[[i]]))]
+                    edhlq[[i]][lengths(edhlq[[i]]) == 0L] <- NA
+                    xdfq[i, 2:ncol(xdfq)] <- as.vector(unlist(edhlq[[i]]))
+                  }
+                  rm(i)
+                  ifelse(isTRUE(addID == TRUE) == TRUE, xdfq[, 
+                    1] <- ids, NA)
+                  xdfpq <- merge(xdfpp, xdfq, all.x = TRUE)
+                  return(xdfpq)
+                }
             }
-            rm(k)
-            ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
-                TRUE) == TRUE, warning("Argument \"na.rm\" is deactivated for variable \"people\"."), 
-                NA)
-            return(xdfp)
         }
         if (isTRUE(flgp == FALSE) == TRUE) {
+            ids <- vector()
+            for (i in seq_len(length(edhl0))) {
+                ids <- append(ids, edhlm[[i]]$id)
+            }
+            rm(i)
+            ids <- ids[which(is.na(pnames) == FALSE)]
             ifelse(isTRUE(flgdf == TRUE) == TRUE, vlbs <- (unique(unlist(lapply(edhl0, 
                 "names")))), vlbs <- sort(unique(unlist(lapply(edhl0, 
                 "names")))))
+            ifelse(isTRUE(addID == TRUE) == TRUE, vlbs <- append("id", 
+                vlbs), NA)
             xdf <- data.frame(matrix(ncol = length(vlbs), nrow = length(edhl0)))
             colnames(xdf) <- vlbs
             for (i in seq_len(length(edhl0))) {
@@ -218,6 +378,8 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
                 xdf[i, which((vlbs %in% attr(edhl0[[i]], "names")))] <- as.vector(unlist(edhl0[[i]]))
             }
             rm(i)
+            ifelse(isTRUE(addID == TRUE) == TRUE, xdf[, 1] <- ids, 
+                NA)
             ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
                 TRUE) == TRUE, return(stats::na.omit(xdf)), return(xdf))
         }
@@ -230,7 +392,7 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
                 if (isTRUE(flgp == TRUE) == TRUE) {
                   if (isTRUE(addID == TRUE) == TRUE) {
                     ifelse(is.null(edhl[[n]]$people) == FALSE, 
-                      edhl0[[length(edhl0) + 1L]] <- list(edhlm[[n]]$id, 
+                      edhl0[[length(edhl0) + 1L]] <- c(edhlm[[n]]$id, 
                         edhl[[n]]$people), NA)
                   }
                   else {
@@ -249,7 +411,15 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
             return(edhl0)
         }
         else {
-            return(edhl)
+            edhl1 <- edhl
+            for (n in seq_len(length(edhl))) {
+                ifelse(any(is.na(attr(edhl[[n]], "names"))) == 
+                  FALSE, NA, attr(edhl1[[n]], "names")[which(is.na(attr(edhl[[n]], 
+                  "names")))] <- vars[which(is.na(attr(edhl[[n]], 
+                  "names")))])
+            }
+            rm(n)
+            return(edhl1)
         }
     }
     else {
