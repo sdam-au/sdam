@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
       </span>
     </div>
 
@@ -129,7 +129,7 @@
     <p>A function to obtain variable data and perform transformations on the Epigraphic Database Heidelberg <code>EDH</code> dataset.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>edhw</span>(<span class='no'>vars</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>as</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"list"</span>, <span class='st'>"df"</span>), <span class='no'>addID</span>, <span class='no'>limit</span>, <span class='no'>id</span>, <span class='no'>na.rm</span>, <span class='no'>bycols</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>edhw</span>(<span class='no'>vars</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>as</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"list"</span>, <span class='st'>"df"</span>), <span class='no'>addID</span>, <span class='no'>limit</span>, <span class='no'>id</span>, <span class='no'>na.rm</span>, <span class='no'>wide</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,7 +148,7 @@
     </tr>
     <tr>
       <th>addID</th>
-      <td><p>Add identification to the output? (optional and logical; default is <code>TRUE</code>)</p></td>
+      <td><p>Add identification to the output? (optional and logical)</p></td>
     </tr>
     <tr>
       <th>limit</th>
@@ -163,12 +163,12 @@
       <td><p>Remove entries with NA data? (logical and optional)</p></td>
     </tr>
     <tr>
-      <th>bycols</th>
-      <td><p>Place people in data frame by colunms? (logical and optional)</p></td>
+      <th>wide</th>
+      <td><p>Use a wide format in data frame? Only for <code>"people"</code>. (logical and optional)</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other optional arguments if needed.</p></td>
+      <td><p>Optional arguments if needed.</p></td>
     </tr>
     </table>
 
@@ -192,16 +192,21 @@ the returned output. <code>limit</code> here is like the <code>limit</code> argu
 this case the offset can be specified as a sequence. 
 While <code>"limit"</code> is a faster way to get to entries in the <code>EDH</code> dataset, argument <code>id</code> is for 
 refering to precisely one or more <code>hd_nr</code>s in the Epigraphic Database Heidelberg API.</p>
-<p>Component "<code>people</code>" is a separated list in the <code>EDH</code> dataset, and it can be combined with the rest of the variables. 
-In the case that the output is a data frame, it is possible to place the different people from a single entry 
-"by columns" or column by column in the data frame when <code>bycols</code> is activated. In this latter case, the <code>hd_nr</code> id(s) 
-are included in the output and argument <code>addID</code> will be ignored.</p>
+<p>Component "<code>people</code>" is a separated list in the <code>EDH</code> dataset, and it should be considered as 
+a separate case from the rest of the variables. 
+In the case that the output is a data frame, the default output is a <em>long</em> table; that is records can 
+appear in different rows and each variable is assigned into a single column. By setting <code>wide</code> to <code>TRUE</code>, 
+it is possible to place the different people from a single entry column by column in the data frame and each 
+record has a single row.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list or a data frame, depending on the <code>as</code> input.</p>
+    <p>A list or a data frame, depending on the input.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>https://edh-www.adw.uni-heidelberg.de/data/api</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>In case that the output chosen is a dataframe, then component <code>"people"</code> should be chosen alone.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='get.edh.html'>get.edh</a></code>, <code><a href='get.edhw.html'>get.edhw</a></code></p></div>
@@ -211,8 +216,8 @@ are included in the output and argument <code>addID</code> will be ignored.</p>
 <span class='co'>## load data set</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>EDH</span>)
 
-<span class='co'>## make a list for three variables in 'EDH' (default) for the first four records</span>
-<span class='fu'>edhw</span>(<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"people"</span>, <span class='st'>"not_after"</span>, <span class='st'>"not_before"</span>), <span class='kw'>limit</span><span class='kw'>=</span><span class='fl'>4</span> )}</div></pre>
+<span class='co'>## make a list for three variables in 'EDH' (default)</span>
+<span class='fu'>edhw</span>(<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ID"</span>, <span class='st'>"not_after"</span>, <span class='st'>"not_before"</span>) )}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

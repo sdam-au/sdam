@@ -8,7 +8,7 @@ Wrapper function for the \code{EDH} dataset
 A function to obtain variable data and perform transformations on the Epigraphic Database Heidelberg \code{EDH} dataset.
 }
 \usage{
-edhw(vars, x = NULL, as = c("list", "df"), addID, limit, id, na.rm, bycols, ...)
+edhw(vars, x = NULL, as = c("list", "df"), addID, limit, id, na.rm, wide, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +22,7 @@ edhw(vars, x = NULL, as = c("list", "df"), addID, limit, id, na.rm, bycols, ...)
    Format to return the output. Currently either as a \code{list} or a data frame \code{df} object.
 }
   \item{addID}{
-   Add identification to the output? (optional and logical; default is \code{TRUE})
+   Add identification to the output? (optional and logical)
 }
   \item{limit}{
    Limit the returned output. Ignored if \code{id} is specified (optional, integer or vector)
@@ -33,11 +33,11 @@ edhw(vars, x = NULL, as = c("list", "df"), addID, limit, id, na.rm, bycols, ...)
   \item{na.rm}{
    Remove entries with NA data? (logical and optional)
 }
-  \item{bycols}{
-   Place people in data frame by colunms? (logical and optional)
+  \item{wide}{
+   Use a wide format in data frame? Only for \code{"people"}. (logical and optional)
 }
   \item{\dots}{
-   Other optional arguments if needed.
+   Optional arguments if needed.
 }
 }
 \details{
@@ -63,13 +63,15 @@ this case the offset can be specified as a sequence.
 While \code{"limit"} is a faster way to get to entries in the \code{EDH} dataset, argument \code{id} is for 
 refering to precisely one or more \code{hd_nr}s in the Epigraphic Database Heidelberg API.
 
-Component "\code{people}" is a separated list in the \code{EDH} dataset, and it can be combined with the rest of the variables. 
-In the case that the output is a data frame, it is possible to place the different people from a single entry 
-"by columns" or column by column in the data frame when \code{bycols} is activated. In this latter case, the \code{hd_nr} id(s) 
-are included in the output and argument \code{addID} will be ignored.
+Component "\code{people}" is a separated list in the \code{EDH} dataset, and it should be considered as 
+a separate case from the rest of the variables. 
+In the case that the output is a data frame, the default output is a \emph{long} table; that is records can 
+appear in different rows and each variable is assigned into a single column. By setting \code{wide} to \code{TRUE}, 
+it is possible to place the different people from a single entry column by column in the data frame and each 
+record has a single row. 
 }
 \value{
-A list or a data frame, depending on the \code{as} input. 
+A list or a data frame, depending on the input. 
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api
@@ -77,9 +79,9 @@ https://edh-www.adw.uni-heidelberg.de/data/api
 \author{
 Antonio Rivero Ostoic
 }
-%\note{
-%In case that the output chosen is a dataframe, then component \code{"people"} should be chosen alone. 
-%}
+\note{
+In case that the output chosen is a dataframe, then component \code{"people"} should be chosen alone. 
+}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -91,8 +93,8 @@ Antonio Rivero Ostoic
 ## load data set
 data(EDH)
 
-## make a list for three variables in 'EDH' (default) for the first four records
-edhw(vars=c("people", "not_after", "not_before"), limit=4 )}
+## make a list for three variables in 'EDH' (default)
+edhw(vars=c("ID", "not_after", "not_before") )}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

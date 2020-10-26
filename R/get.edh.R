@@ -1,8 +1,9 @@
+
 ## 
 ## FUNCTION get.edh() to get data API from the Epigraphic Database Heidelber with R
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.2.5 (15-10-2020)
+## version 0.2.6 (26-10-2020)
 ##
 ## Parameter description from https://edh-www.adw.uni-heidelberg.de/data/api
 ##
@@ -14,8 +15,8 @@
 ## findspot_modern (add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
 ## findspot_ancient (add leading and/or trailing truncation by asterisk *, e.g. findspot_ancient=aquae*, case insensitive)
 ## bbox (bounding box in the format bbox=minLong , minLat , maxLong , maxLat , example: https://edh-www.adw.uni-heidelberg.de/data/api/inscriptions/search?bbox=11,47,12,48)
-## offset 
-## limit 
+## offset (which row to start retrievening data)
+## limit (limit the number of results)
 ##
 ## SEARCH PARAMETERS FOR INSCRIPTIONS:
 ## hd_nr (HD-No of inscription)
@@ -32,7 +33,7 @@
 ## 
 ## ADDITIONAL PARAMETERS:
 ## addID (whether or not add numeric ID to the list)
-## printQ (print query?)
+## printQ (also print query?)
 
 
 get.edh <-
@@ -107,6 +108,17 @@ function (search = c("inscriptions", "geography"), url = "https://edh-www.adw.un
     }
     if (any(sst == "limit=") == TRUE) {
         total <- rjson::fromJSON(file = sub("=$", "=1", string))$total
+        if (isTRUE(total > 4000) == TRUE && any(sst == "offset=") == 
+            TRUE) {
+            timeout <- paste("Total number of records is", total, 
+                "and only 4000 records are returned.", "Use offset=4000 to complete the query.", 
+                sep = " ")
+            warning(timeout)
+            total <- 4000
+        }
+        else {
+            NA
+        }
         ifelse(isTRUE(total == 1L) == TRUE, NA, sst[which(sst == 
             "limit=")] <- paste0("limit=", total, sep = ""))
         rm(total)

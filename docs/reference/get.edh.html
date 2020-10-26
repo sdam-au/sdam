@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
       </span>
     </div>
 
@@ -287,7 +287,6 @@ A list with the of valid values for countries from the EDH API are</p>
 
     <p>A list object with at least one the following items:</p>
 <dt>"ID"</dt><dd><p>(Optional), only if <code>addID</code> is set to <code>TRUE</code>.</p></dd>
-<dt></dt><dd><p></p></dd>
 <dt>"commentary"</dt><dd><p></p></dd>
 <dt>"fotos"</dt><dd><p></p></dd>
 <dt>"country"</dt><dd><p></p></dd>
@@ -310,9 +309,9 @@ A list with the of valid values for countries from the EDH API are</p>
 <dt>"not_after"</dt><dd><p></p></dd>
 <dt>"not_before"</dt><dd><p></p></dd>
 <dt></dt><dd><p></p></dd>
-<dt>"people"</dt><dd><p>This item is another list with at least one the following items: <br />  <br />  
+<dt>"people"</dt><dd><p>This item is another list with at least one the following items: <br />  
 <code>"person_id"</code> <br />  <code>"nomen"</code> <br />  <code>"cognomen"</code> <br />  <code>"praenomen"</code> <br />  <code>"name"</code> <br />  <code>"gender"</code> <br />  <code>"status"</code> <br />  <code>"tribus"</code> <br />  
-<code>"origo"</code> <br />  <code>"occupation"</code> <br />  <code>"age: years"</code> <br />  <code>"age: months"</code> <br />  <code>"age: days"</code></p></dd>
+<code>"origo"</code> <br />  <code>"occupation"</code> <br />  <code>"age: years"</code> <br />  <code>"age: months"</code></p></dd>
 <dt></dt><dd><p></p></dd>
 <dt>"present_location"</dt><dd><p></p></dd>
 <dt>"religion"</dt><dd><p></p></dd>
@@ -329,7 +328,7 @@ A list with the of valid values for countries from the EDH API are</p>
 <dt>"year_of_find"</dt><dd><p></p></dd>
 <dt></dt><dd><p></p></dd>
 
-And also the query is printed if specified by printQ. 
+And also the query is printed if specified. 
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -382,14 +381,14 @@ and <code>"bibliography"</code> may be implemented in the future.</p>
 #&gt; 
 #&gt; $people
 #&gt; $people[[1]]
+#&gt; $people[[1]]$gender
+#&gt; [1] "male"
+#&gt; 
 #&gt; $people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
 #&gt; $people[[1]]$cognomen
 #&gt; [1] "Nerva+ Traianus+"
-#&gt; 
-#&gt; $people[[1]]$gender
-#&gt; [1] "male"
 #&gt; 
 #&gt; $people[[1]]$name
 #&gt; [1] "[Nerva Traianus]"

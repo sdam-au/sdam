@@ -48,7 +48,7 @@ Other similarity measures will be added in the near future.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}, \code{\link{edhw}}
+\code{\link{get.edh}}
 }
 \examples{
 # TBD 

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
       </span>
     </div>
 
@@ -110,6 +110,7 @@
 <div id="get-particular-inscriptions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-particular-inscriptions" class="anchor"></a>Get particular inscriptions</h3>
+<p>For instance, the following commands extract people named in Roman inscriptions in Iudaea and record them in object <code>iud</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="co"># obtain epigraphic data from Iudaea</span>
 <span class="no">iud</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Iud"</span>)</pre></div>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># how many inscriptions in Iudaea?</span>
@@ -119,14 +120,14 @@
 <div id="relative-dating" class="section level3">
 <h3 class="hasAnchor">
 <a href="#relative-dating" class="anchor"></a>Relative dating</h3>
-<p>Since <code>sdam</code> v.0.2.1 there is the option in <code><a href="reference/edhw.html">edhw()</a></code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>.</p>
+<p>Since <code>sdam</code> v.0.2.0 there is the option in <code><a href="reference/edhw.html">edhw()</a></code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>. To place Roman inscriptions in Iudaea into a data frame object <code>iud_df</code></p>
 <div class="sourceCode" id="cb9"><pre class="r"><span class="co"># extract variables of interes from object `iud` and convert it into a data frame</span>
 <span class="no">iud_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">iud</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
 
 <span class="co"># what object types is?</span>
 <span class="fu">is</span>(<span class="no">iud_df</span>)
 <span class="co">#[1] "data.frame" "list"       "oldClass"   "vector"  </span></pre></div>
-<p>To remove missing data activate <code>na.rm</code> argument in the function</p>
+<p>To remove missing data form <code>iud_df</code>, we activate <code>na.rm</code> argument in the function as for <code>iud_df0</code></p>
 <div class="sourceCode" id="cb10"><pre class="r"><span class="co"># extract variables of interes from object `iud` and convert it into a data frame</span>
 <span class="no">iud_df0</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">iud</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">na.rm</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
 <p>Now we compare outcomes with these two options.</p>
@@ -148,14 +149,14 @@
 <h3 class="hasAnchor">
 <a href="#people" class="anchor"></a>People</h3>
 <p>It is possible to extract the <code>people</code> component from the <code>EDH</code> API dataset, which is an integrated list with their own items.</p>
-<p>For instance, the following commands extract people named in Roman inscriptions in Iudaea and Syria into a data frame object:</p>
+<p>For instance, the following commands extract people named in Roman inscriptions in Iudaea and Syria into a data frame object with a <em>long</em> (default) and a data frame with a <em>wide</em> format:</p>
 <div class="sourceCode" id="cb12"><pre class="r"><span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Iud"</span>), <span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
-<span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Syr"</span>), <span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)</pre></div>
+<span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Syr"</span>), <span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">wide</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></div>
 <p>The same can apply to the rest of Roman provinces recorded in the <code>EDH</code> dataset.</p>
 <div id="specifying-output" class="section level4">
 <h4 class="hasAnchor">
 <a href="#specifying-output" class="anchor"></a>Specifying output</h4>
-<p>It is also possible to <code>limit</code> the amount of records to process, and with the following example we can extract the first four inscriptions by <code>hd_nr</code> id.</p>
+<p>It is also possible to <code>limit</code> the amount of records to process, and with the following example we can extract the first four inscriptions by <code>hd_nr</code> id in a data frame with a long format.</p>
 <div class="sourceCode" id="cb13"><pre class="r"><span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="st">"people"</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>, <span class="kw">limit</span><span class="kw">=</span><span class="fl">4</span>)
 <span class="co">#        id age: years             cognomen gender                                              name    nomen person_id praenomen           status   tribus</span>
 <span class="co">#1 HD000001       &lt;NA&gt;               Optata female                               Noniae P.f. Optatae    Nonia         1      &lt;NA&gt;             &lt;NA&gt;     &lt;NA&gt;</span>

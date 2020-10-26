@@ -21,7 +21,7 @@ A list object of 82464 items (until 20-11-2019) with at least one of the followi
 \code{"material"}, \code{"military"}, \code{"modern_region"}, \code{"not_after"}, 
 \code{"not_before"}, \code{"people"} (which is a list with: \code{"person_id"}, \code{"nomen"}, \code{"cognomen"}, 
 \code{"praenomen"}, \code{"name"}, \code{"gender"}, \code{"status"}, \code{"tribus"}, 
-\code{"origo"}, \code{"occupation"}, \code{"age: years"}, \code{"age: months"}), \code{"age: days"}, 
+\code{"origo"}, \code{"occupation"}, \code{"age: years"}, \code{"age: months"}), 
 \code{"present_location"}, \code{"province_label"}, \code{"religion"}, \code{"responsible_individual"}, 
 \code{"social_economic_legal_history"}, \code{"transcription"}, \code{"trismegistos_uri"}, 
 \code{"type_of_inscription"}, \code{"type_of_monument"}, \code{"uri"}, \code{"width"}, 

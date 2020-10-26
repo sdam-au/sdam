@@ -146,7 +146,6 @@ And for the ancient Roman provices the valid values are
 A list object with at least one the following items:
 
 \item{"ID"}{(Optional), only if \code{addID} is set to \code{TRUE}.}
-\item{}{ }
 \item{"commentary"}{ }
 \item{"fotos"}{ }
 \item{"country"}{ }
@@ -169,9 +168,9 @@ A list object with at least one the following items:
 \item{"not_after"}{ }
 \item{"not_before"}{ }
 \item{}{ }
-\item{"people"}{This item is another list with at least one the following items: \cr  \cr  
+\item{"people"}{This item is another list with at least one the following items: \cr  
 \code{"person_id"} \cr  \code{"nomen"} \cr  \code{"cognomen"} \cr  \code{"praenomen"} \cr  \code{"name"} \cr  \code{"gender"} \cr  \code{"status"} \cr  \code{"tribus"} \cr  
-\code{"origo"} \cr  \code{"occupation"} \cr  \code{"age: years"} \cr  \code{"age: months"} \cr  \code{"age: days"} }
+\code{"origo"} \cr  \code{"occupation"} \cr  \code{"age: years"} \cr  \code{"age: months"} }
 \item{}{ }
 \item{"present_location"}{ }
 \item{"religion"}{ }
@@ -188,7 +187,7 @@ A list object with at least one the following items:
 \item{"year_of_find"}{ }
 \item{}{ }
 
-And also the query is printed if specified by \code{printQ}. 
+And also the query is printed if specified. 
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api

@@ -3,7 +3,7 @@
 ## FUNCTION edhw() to manipulate data API from Epigraphic Database Heidelberg EDH
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.3.3 (20-10-2020)
+## version 0.4.0 (26-10-2020)
 ##
 ## PARAMETERS
 ##
@@ -12,19 +12,19 @@
 ##
 ## OPTIONAL PARAMETERS
 ##
-## x      (typically fragments of EDH dataset)
-## addID  (logical, add "HD id" to output?)
-## limit  (integers, vector with HD nr records to limit output)
-## id     (integer or character, select only the hd_nr id)
-## na.rm  (remove data entries with NA?)
-## bycols (logical, return multiple people entries by data frame columns?)
-## ...    (optional parameters)
+## x     (typically fragments of EDH dataset)
+## addID (logical, add "HD id" to output?)
+## limit (integers, vector with HD nr records to limit output)
+## id    (integer or character, select only the hd_nr id)
+## na.rm (remove data entries with NA?)
+## wide  (logical, use wide format in data frame?)
+## ...   (optional parameters)
 ##
 
 
 edhw <-
 function (vars, x = NULL, as = c("list", "df"), addID, limit, 
-    id, na.rm, bycols, ...) 
+    id, na.rm, wide, ...) 
 {
     flgdf <- FALSE
     if (is.null(x) == TRUE) {
@@ -56,8 +56,8 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
     else {
         addID <- TRUE
     }
-    ifelse(missing(bycols) == FALSE && isTRUE(bycols == TRUE) == 
-        TRUE, bycols <- TRUE, bycols <- FALSE)
+    ifelse(missing(wide) == FALSE && isTRUE(wide == TRUE) == 
+        TRUE, wide <- TRUE, wide <- FALSE)
     if (missing(vars) == TRUE) {
         if (match.arg(as) == "list") {
             ifelse(isTRUE(flgdf == TRUE) == TRUE, return(as.list(x)), 
@@ -74,10 +74,12 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
     }
     ifelse(isTRUE(flgdf == FALSE) == TRUE, xvars <- unique(names(unlist(x))), 
         xvars <- colnames(x))
+    ifelse(isTRUE("people" %in% vars) == TRUE, flgp <- TRUE, 
+        flgp <- FALSE)
     if (isTRUE(vars != "people") == TRUE && all(vars %in% xvars) == 
         FALSE) {
         warning(paste("Variable(s)", vars[which(!(vars %in% xvars))], 
-            "is/are not present in \"x\" and they are disregarded.", 
+            "is/are not present in \"x\" and may be disregarded.", 
             sep = " "))
         vars <- vars[which(vars %in% xvars)]
     }
@@ -86,6 +88,19 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
         warning(paste("Variable(s)", vars[which(!(vars %in% xvars))], 
             "is/are not present in input data.", sep = " "))
         return(NULL)
+    }
+    else if (all(vars %in% xvars) == FALSE) {
+        if (isTRUE(length(vars[which(!(vars %in% xvars))][vars[which(!(vars %in% 
+            xvars))] != "people"]) > 0) == TRUE) {
+            warning(paste("Variable(s)", paste(vars[which(!(vars %in% 
+                xvars))][vars[which(!(vars %in% xvars))] != "people"], 
+                collapse = ", "), "is(are) not present in \"x\" and might been disregarded.", 
+                sep = " "))
+        }
+        npvars <- vars[(vars %in% xvars)]
+        ifelse(isTRUE(flgp == TRUE) == TRUE, vars <- c("people", 
+            npvars), vars <- npvars)
+        rm(npvars)
     }
     else {
         NA
@@ -133,13 +148,10 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
     else {
         NA
     }
-    flgp <- FALSE
     if (isTRUE(flgdf == TRUE) == FALSE) {
         if (missing(vars) == FALSE && isTRUE(is.vector(vars) == 
             TRUE) == TRUE) {
             edhl <- lapply(edhlm, `[`, vars)
-            ifelse(isTRUE("people" %in% vars) == TRUE, flgp <- TRUE, 
-                NA)
             if (isTRUE(length(unique(names(unlist(edhl)))) != 
                 length(vars)) == FALSE) {
                 for (k in seq_len(length(edhl))) {
@@ -224,7 +236,7 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
             }
             rm(i)
             ids <- ids[which(is.na(pnames) == FALSE)]
-            if (isTRUE(bycols == TRUE) == FALSE) {
+            if (isTRUE(wide == TRUE) == FALSE) {
                 xdfp <- data.frame(matrix(ncol = length(plbs), 
                   nrow = 0))
                 colnames(xdfp) <- plbs
@@ -283,7 +295,7 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
                   return(xdfpq)
                 }
             }
-            else if (isTRUE(bycols == TRUE) == TRUE) {
+            else if (isTRUE(wide == TRUE) == TRUE) {
                 pp <- max(as.numeric(unlist(edhlm)[which(attr(unlist(edhlm), 
                   "names") == "people.person_id")]))
                 plbss <- vector()

@@ -53,6 +53,10 @@ str(EDH)
 
 ### Get particular inscriptions
 
+For instance, the following commands extract people named in Roman inscriptions in Iudaea and record them 
+in object `iud`.
+
+
 ```r
 # obtain epigraphic data from Iudaea
 iud <- get.edh(search="inscriptions", province="Iud")
@@ -67,7 +71,8 @@ length(iud)
 
 ### Relative dating
 
-Since `sdam` v.0.2.1 there is the option in `edhw()` to extract variables from a `EDH` dataset *fragments*.
+Since `sdam` v.0.2.0 there is the option in `edhw()` to extract variables from a `EDH` dataset *fragments*. 
+To place Roman inscriptions in Iudaea into a data frame object `iud_df`
 
 ```r
 # extract variables of interes from object `iud` and convert it into a data frame
@@ -79,7 +84,7 @@ is(iud_df)
 ```
 
 
-To remove missing data activate `na.rm` argument in the function
+To remove missing data form `iud_df`, we activate `na.rm` argument in the function as for `iud_df0`
 
 ```r
 # extract variables of interes from object `iud` and convert it into a data frame
@@ -111,11 +116,12 @@ Hence, not available data is removed in `iud_df0`.
 
 It is possible to extract the `people` component from the `EDH` API dataset, which is an integrated list with their own items.
 
-For instance, the following commands extract people named in Roman inscriptions in Iudaea and Syria into a data frame object:
+For instance, the following commands extract people named in Roman inscriptions in Iudaea and Syria into a data frame object 
+with a *long* (default) and a data frame with a *wide* format:
 
 ```r
 edhw(x=get.edh(search="inscriptions", province="Iud"), vars="people", as="df")
-edhw(x=get.edh(search="inscriptions", province="Syr"), vars="people", as="df")
+edhw(x=get.edh(search="inscriptions", province="Syr"), vars="people", as="df", wide=TRUE)
 ```
 
 The same can apply to the rest of Roman provinces recorded in the `EDH` dataset.
@@ -123,7 +129,8 @@ The same can apply to the rest of Roman provinces recorded in the `EDH` dataset.
 
 #### Specifying output
 
-It is also possible to `limit` the amount of records to process, and with the following example we can extract the first four inscriptions by `hd_nr` id.
+It is also possible to `limit` the amount of records to process, and with the following example we can extract the first four 
+inscriptions by `hd_nr` id in a data frame with a long format.
 
 ```r
 edhw(vars="people", as="df", limit=4)
