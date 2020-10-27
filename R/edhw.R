@@ -3,7 +3,7 @@
 ## FUNCTION edhw() to manipulate data API from Epigraphic Database Heidelberg EDH
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.4.0 (26-10-2020)
+## version 0.4.1 (27-10-2020)
 ##
 ## PARAMETERS
 ##
@@ -16,7 +16,7 @@
 ## addID (logical, add "HD id" to output?)
 ## limit (integers, vector with HD nr records to limit output)
 ## id    (integer or character, select only the hd_nr id)
-## na.rm (remove data entries with NA?)
+## na.rm (remove data entries with <NA>?)
 ## wide  (logical, use wide format in data frame?)
 ## ...   (optional parameters)
 ##
@@ -218,7 +218,8 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
                     NA
                   }
                   if (isTRUE(length(edhlq) > 0) == TRUE) {
-                    qlbs <- unique(unlist(lapply(edhlq, "names")))
+                    qlbs <- sort(unique(unlist(lapply(edhlq, 
+                      "names"))))
                   }
                   else {
                     NA
