@@ -219,7 +219,7 @@ function (vars, x = NULL, as = c("list", "df"), addID, limit,
                   }
                   if (isTRUE(length(edhlq) > 0) == TRUE) {
                     qlbs <- sort(unique(unlist(lapply(edhlq, 
-                      "names"))))
+                      "names"))), na.last = TRUE)
                   }
                   else {
                     NA
