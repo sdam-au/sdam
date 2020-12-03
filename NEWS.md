@@ -1,8 +1,12 @@
-## sdam 0.2.0
+## `sdam` v0.3.0
 
-* New function `edhw()` for manipulation of the `EDH` dataset.
+* New functions `prex()` and `plot.dates()`.
 
-## sdam 0.1.0
+## `sdam` v0.2.0
 
-* First functions `get.edh()`, `get.edhw()`, `request()`, `simil()`, and the `EDH` dataset
+* New function `edhw()` for manipulation of `EDH`.
+
+## `sdam` v0.1.0
+
+* First functions `get.edh()`, `get.edhw()`, `request()`, `simil()`, and `EDH` dataset.
 

@@ -11,40 +11,40 @@ A function to perform an HTTP request
 }
 \usage{
 request(file, URL = "https://sciencedata.dk", method = c("GET", "POST", "PUT", "DELETE"), 
-        authenticate = TRUE, cred = NULL, path = "/files", subdomain = NULL, force = FALSE, 
+        anonymous = FALSE, cred = NULL, path = "/files", subdomain = NULL, force = FALSE, 
         rm.file, ...)
 }
 
 \arguments{
   \item{file}{
-The request file
+   the request file
 }
   \item{URL}{
-protocol and domain of the url
+   protocol and domain of the url
 }
   \item{method}{
-the http \emph{verb} for the object
+   the http \emph{verb} for the object
 }
-  \item{authenticate}{
-use basic authentication? (logical) 
+  \item{anonymous}{
+    unauthenticated user? (logical) 
 }
   \item{cred}{
-username and password credentials (vector) 
+   authentication credentials (vector with username and password) 
 }
   \item{path}{
-path to add to the url (optional)
+   path to add to the url (optional)
 }
   \item{subdomain}{
-subdomain to add to the url (optional)
+   subdomain to add to the url (optional)
 }
   \item{force}{
-force remote file overwriting? (optional)
+   force remote file overwriting? (optional)
 }
   \item{rm.file}{
-remove file in local machine? (optional and logical)
+   remove file in local machine? (optional and logical)
 }
   \item{\dots}{
-extra parameters if required
+   extra parameters if required
 }
 }
 \details{
@@ -57,7 +57,8 @@ The \emph{path} to the shared folders where the files are located must be specif
 
 When a file already exists on the remote server, there is a prompt question for overwriting the file when the \code{PUT} method is invoked, and by activating argument \code{force} we can prevent confirmation and replace the file.
 
-In case that accessing the server requires basic authentification, then package "\code{\link{tcltk}}" may be needed as well to input the credentials with a widget prompt, and there is the \code{cred} argument for performing a basic authentification without a prompt.
+In case that accessing the server requires basic authentification, then package "\code{\link{tcltk}}" may be needed as well to input the credentials with a widget prompt, and there is the \code{cred} argument for performing a basic authentification without a prompt. Public folders can be accessed as 
+\code{anonymous} user.
 }
 \value{
 Depends on the method, an action on the server site. 
@@ -88,9 +89,9 @@ Aliases for this function are \code{sddk()} and \code{SDDK()}.
 }
 
 \examples{
-## get a file from remote server
+## get a public file from remote server as anonymous user
 \dontrun{
-request("filename.extension", method="GET")}
+request("filename.extension", method="GET", anonymous=TRUE)}
 
 ## put a file in remote server
 \dontrun{

@@ -71,7 +71,7 @@ length(iud)
 
 ### Relative dating
 
-Since `sdam` v.0.2.0 there is the option in `edhw()` to extract variables from a `EDH` dataset *fragments*. 
+Since `sdam` v0.2.0 there is the option in `edhw()` to extract variables from a `EDH` dataset *fragments*. 
 To place Roman inscriptions in Iudaea into a data frame object `iud_df`
 
 ```r
@@ -154,6 +154,27 @@ edhw(vars="people", as="df", id=4444)
 #2 HD004444 Tranquillina female Sabiniae Tranquillinae  Sabinia         2      <NA>             <NA>
 #3 HD004444  Mercurialis   male       Iul. Mercurialis  Iulius*         3      <NA> equestrian order
 ```
+
+
+### Probability of existence
+
+Since `sdam` v0.3.0 there is a dedicated function to compute probability of existence of date points or intervals. 
+We obtain inscriptions from Iudaea in EDH data base, and then compute the aoristic sum with a 5-bin chronological phases. 
+
+```r
+prex(x=get.edh(search="inscriptions", province="Iud"), vars=c("not_before", "not_after"), cp="bin5")
+#   Arch     Class      Hell       Rom       Byz 
+#    0.000     0.000  1337.904 13405.017     0.000
+```
+
+Since most of the inscriptions are within the Roman period, we try an eight-bin chronological phases option. 
+
+```r
+prex(x=get.edh(search="inscriptions", province="Iud"), vars=c("not_before", "not_after"), cp="bin8")
+#   Arch     Class      Hell      ERom      MRom      LRom      EByz      LByz 
+#   0.0000    0.0000 1337.9040 2396.4529 1200.5623  320.5379    0.0000    0.0000
+```
+
 
 
 

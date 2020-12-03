@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@
 <div id="relative-dating" class="section level3">
 <h3 class="hasAnchor">
 <a href="#relative-dating" class="anchor"></a>Relative dating</h3>
-<p>Since <code>sdam</code> v.0.2.0 there is the option in <code><a href="reference/edhw.html">edhw()</a></code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>. To place Roman inscriptions in Iudaea into a data frame object <code>iud_df</code></p>
+<p>Since <code>sdam</code> v0.2.0 there is the option in <code><a href="reference/edhw.html">edhw()</a></code> to extract variables from a <code>EDH</code> dataset <em>fragments</em>. To place Roman inscriptions in Iudaea into a data frame object <code>iud_df</code></p>
 <div class="sourceCode" id="cb9"><pre class="r"><span class="co"># extract variables of interes from object `iud` and convert it into a data frame</span>
 <span class="no">iud_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"not_after"</span>, <span class="st">"not_before"</span>), <span class="kw">x</span><span class="kw">=</span><span class="no">iud</span>, <span class="kw">as</span><span class="kw">=</span><span class="st">"df"</span>)
 
@@ -173,6 +173,18 @@
 <span class="co">#2 HD004444 Tranquillina female Sabiniae Tranquillinae  Sabinia         2      &lt;NA&gt;             &lt;NA&gt;</span>
 <span class="co">#3 HD004444  Mercurialis   male       Iul. Mercurialis  Iulius*         3      &lt;NA&gt; equestrian order</span></pre></div>
 </div>
+</div>
+<div id="probability-of-existence" class="section level3">
+<h3 class="hasAnchor">
+<a href="#probability-of-existence" class="anchor"></a>Probability of existence</h3>
+<p>Since <code>sdam</code> v0.3.0 there is a dedicated function to compute probability of existence of date points or intervals. We obtain inscriptions from Iudaea in EDH data base, and then compute the aoristic sum with a 5-bin chronological phases.</p>
+<div class="sourceCode" id="cb15"><pre class="r"><span class="fu"><a href="reference/prex.html">prex</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Iud"</span>), <span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"not_before"</span>, <span class="st">"not_after"</span>), <span class="kw">cp</span><span class="kw">=</span><span class="st">"bin5"</span>)
+<span class="co">#   Arch     Class      Hell       Rom       Byz </span>
+<span class="co">#    0.000     0.000  1337.904 13405.017     0.000</span></pre></div>
+<p>Since most of the inscriptions are within the Roman period, we try an eight-bin chronological phases option.</p>
+<div class="sourceCode" id="cb16"><pre class="r"><span class="fu"><a href="reference/prex.html">prex</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="reference/get.edh.html">get.edh</a></span>(<span class="kw">search</span><span class="kw">=</span><span class="st">"inscriptions"</span>, <span class="kw">province</span><span class="kw">=</span><span class="st">"Iud"</span>), <span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"not_before"</span>, <span class="st">"not_after"</span>), <span class="kw">cp</span><span class="kw">=</span><span class="st">"bin8"</span>)
+<span class="co">#   Arch     Class      Hell      ERom      MRom      LRom      EByz      LByz </span>
+<span class="co">#   0.0000    0.0000 1337.9040 2396.4529 1200.5623  320.5379    0.0000    0.0000</span></pre></div>
 </div>
 <div id="documentation" class="section level3">
 <h3 class="hasAnchor">

@@ -4,31 +4,31 @@
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
 ## First aimed to interact with DEiC's sciencedata.dk
-## version 0.2.3 (04-08-2020)
+## version 0.2.5 (29-10-2020)
 ##
-## Parameters
-## file (object under 'method')
-## URL (protocol and domain of the url)
-## method (the http "verb" for the object)
-##        "GET" (list)
-##        "POST" (place)
-##        "PUT" (update)
-##        "DELETE" (cancel)
-## authenticate (logical, use basic authentication?)
-## path (optional, add path to the url)
+## PARAMETERS
+## file      (object under 'method')
+## URL       (protocol and domain of the url)
+## method    (the http "verb" for the object)
+##             "GET" (list)
+##             "POST" (place)
+##             "PUT" (update)
+##             "DELETE" (cancel)
+## anonymous (logical, unauthenticated user?)
+## path      (optional, add path to the url)
 ## 
-## Additional parameters:
-## cred (vector for username and password credentials)
+## ADDITIONAL PARAMETERS:
+## cred      (vector for username and password credentials)
 ## subdomain (optional, add subdomain to the url)
-## force (optional, force remote file overwriting)
-## ... (extra parameters if required)
+## force     (optional, force remote file overwriting)
+## ...       (extra parameters if required)
 ##
 ## Aliases: sddk(), SDDK()
 
 
 request <-
 function (file, URL = "https://sciencedata.dk", method = c("GET", 
-    "POST", "PUT", "DELETE"), authenticate = TRUE, cred = NULL, 
+    "POST", "PUT", "DELETE"), anonymous = FALSE, cred = NULL, 
     path = "/files", subdomain = NULL, force = FALSE, rm.file, 
     ...) 
 {
@@ -41,7 +41,7 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
         "")[[1]])] != "/") == TRUE, path <- paste0(path, "/", 
         sep = ""), NA)
     URL <- paste0(URL, path, "/", sep = "")
-    if (isTRUE(authenticate) == TRUE && is.null(cred) == TRUE) {
+    if (isTRUE(anonymous) == FALSE && is.null(cred) == TRUE) {
         getLoginDetails <- function() {
             tt <- tcltk::tktoplevel()
             tcltk::tkwm.title(tt, "login credentials")

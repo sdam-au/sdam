@@ -8,10 +8,13 @@ Wrapper to get data from the Epigraphic Database Heidelberg API
 A wrapper function to obtain data from the Epigraphic Database Heidelberg repository.
 }
 \usage{
-get.edhw(hd_nr, ...)
+get.edhw(file = NULL, hd_nr, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
+  \item{file}{
+	JSON file with EDH data (optional)
+}
   \item{hd_nr}{
 	HD number of inscriptions
 }
@@ -20,8 +23,11 @@ get.edhw(hd_nr, ...)
 }
 }
 \details{
-This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg API repository.
+This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg API repository 
+by their HD numbers or, alternatively, a file with a valid format JSON can be specified in \code{file}. 
 
+In any case, the JSON output will be convereted into a list object with the \code{\link[rjson]{rjson}} 
+package.
 }
 \value{
 A list of lists object with the items described in \code{\link{get.edh}}.
@@ -51,4 +57,4 @@ get.edhw(hd_nr=1:10)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ IO }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }% use one of  RShowDoc("KEYWORDS")

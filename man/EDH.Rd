@@ -11,7 +11,7 @@ This is a data set retrieved from the Epigraphic Database Heidelberg API reposit
 data("EDH")
 }
 \format{
-A list object of 82464 items (until 20-11-2019) with at least one of the following 46 
+A list object of 83822 records (until 03-11-2020) with at least one of the following 47 
 (or more) names in the EDH list: 
 
 \code{"ID"}, \code{"commentary"}, \code{"fotos"}, \code{"country"}, 
@@ -21,8 +21,8 @@ A list object of 82464 items (until 20-11-2019) with at least one of the followi
 \code{"material"}, \code{"military"}, \code{"modern_region"}, \code{"not_after"}, 
 \code{"not_before"}, \code{"people"} (which is a list with: \code{"person_id"}, \code{"nomen"}, \code{"cognomen"}, 
 \code{"praenomen"}, \code{"name"}, \code{"gender"}, \code{"status"}, \code{"tribus"}, 
-\code{"origo"}, \code{"occupation"}, \code{"age: years"}, \code{"age: months"}), 
-\code{"present_location"}, \code{"province_label"}, \code{"religion"}, \code{"responsible_individual"}, 
+\code{"origo"}, \code{"occupation"}, \code{"age: years"}, \code{"age: months"}, \code{"age: days"}), 
+\code{"present_location"}, \code{"province_label"}, \code{"religion"},  \cr  \code{"responsible_individual"}, 
 \code{"social_economic_legal_history"}, \code{"transcription"}, \code{"trismegistos_uri"}, 
 \code{"type_of_inscription"}, \code{"type_of_monument"}, \code{"uri"}, \code{"width"}, 
 \code{"work_status"}, and \code{"year_of_find"}. 

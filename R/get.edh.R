@@ -1,9 +1,9 @@
 
 ## 
-## FUNCTION get.edh() to get data API from the Epigraphic Database Heidelber with R
+## FUNCTION get.edh() to get data API from the Epigraphic Database Heidelberg EDH
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.2.6 (26-10-2020)
+## version 0.2.7 (28-10-2020)
 ##
 ## Parameter description from https://edh-www.adw.uni-heidelberg.de/data/api
 ##
@@ -15,8 +15,8 @@
 ## findspot_modern (add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
 ## findspot_ancient (add leading and/or trailing truncation by asterisk *, e.g. findspot_ancient=aquae*, case insensitive)
 ## bbox (bounding box in the format bbox=minLong , minLat , maxLong , maxLat , example: https://edh-www.adw.uni-heidelberg.de/data/api/inscriptions/search?bbox=11,47,12,48)
-## offset (which row to start retrievening data)
-## limit (limit the number of results)
+## offset (which row to start from retrieving data, integer)
+## limit (limit the number of results, integer or vector)
 ##
 ## SEARCH PARAMETERS FOR INSCRIPTIONS:
 ## hd_nr (HD-No of inscription)
@@ -32,6 +32,7 @@
 ## geonames_id (Geonames identifier of a place; integer value)
 ## 
 ## ADDITIONAL PARAMETERS:
+## maxlimit (Maximum limit of the query; integer with default value)
 ## addID (whether or not add numeric ID to the list)
 ## printQ (also print query?)
 
@@ -41,7 +42,7 @@ function (search = c("inscriptions", "geography"), url = "https://edh-www.adw.un
     hd_nr, province, country, findspot_modern, findspot_ancient, 
     year_not_before, year_not_after, tm_nr, transcription, type, 
     bbox, findspot, pleiades_id, geonames_id, offset, limit, 
-    addID, printQ) 
+    maxlimit = 4000, addID, printQ) 
 {
     ifelse(missing(hd_nr) == FALSE, NA, hd_nr <- "")
     ifelse(missing(province) == FALSE, NA, province <- "")
@@ -108,13 +109,14 @@ function (search = c("inscriptions", "geography"), url = "https://edh-www.adw.un
     }
     if (any(sst == "limit=") == TRUE) {
         total <- rjson::fromJSON(file = sub("=$", "=1", string))$total
-        if (isTRUE(total > 4000) == TRUE && any(sst == "offset=") == 
+        if (isTRUE(total > maxlimit) == TRUE && any(sst == "offset=") == 
             TRUE) {
-            timeout <- paste("Total number of records is", total, 
-                "and only 4000 records are returned.", "Use offset=4000 to complete the query.", 
-                sep = " ")
+            timeout <- paste(paste("Total number of records is", 
+                total, "and only", maxlimit, "records are returned.", 
+                sep = " "), paste("Use offset =", maxlimit, "to complete the query, or set maxlimit =", 
+                total, sep = " "), sep = "\n")
             warning(timeout)
-            total <- 4000
+            total <- maxlimit
         }
         else {
             NA

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>request</span>(<span class='no'>file</span>, <span class='kw'>URL</span> <span class='kw'>=</span> <span class='st'>"https://sciencedata.dk"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>, <span class='st'>"POST"</span>, <span class='st'>"PUT"</span>, <span class='st'>"DELETE"</span>),
-        <span class='kw'>authenticate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>cred</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/files"</span>, <span class='kw'>subdomain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='kw'>anonymous</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cred</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/files"</span>, <span class='kw'>subdomain</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='no'>rm.file</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -138,7 +138,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p>The request file</p></td>
+      <td><p>the request file</p></td>
     </tr>
     <tr>
       <th>URL</th>
@@ -149,12 +149,12 @@
       <td><p>the http <em>verb</em> for the object</p></td>
     </tr>
     <tr>
-      <th>authenticate</th>
-      <td><p>use basic authentication? (logical)</p></td>
+      <th>anonymous</th>
+      <td><p>unauthenticated user? (logical)</p></td>
     </tr>
     <tr>
       <th>cred</th>
-      <td><p>username and password credentials (vector)</p></td>
+      <td><p>authentication credentials (vector with username and password)</p></td>
     </tr>
     <tr>
       <th>path</th>
@@ -185,7 +185,8 @@ However, it is possible to specify the URL path and subdomain if necessary.</p>
 <p>There are two types of folders in DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> that are <em>personal</em> and <em>shared</em> folders and both requires authentication with credentials.</p>
 <p>The <em>path</em> to the shared folders where the files are located must be specified with the <code>path</code> argument. However, for personal folders is the <code>file</code> argument that includes the path information. Many times, DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> places the data on a <em>subdomain</em>, and for some methods like <code>PUT</code> it is required to specify the subdomain as well.</p>
 <p>When a file already exists on the remote server, there is a prompt question for overwriting the file when the <code>PUT</code> method is invoked, and by activating argument <code>force</code> we can prevent confirmation and replace the file.</p>
-<p>In case that accessing the server requires basic authentification, then package "<code>tcltk</code>" may be needed as well to input the credentials with a widget prompt, and there is the <code>cred</code> argument for performing a basic authentification without a prompt.</p>
+<p>In case that accessing the server requires basic authentification, then package "<code>tcltk</code>" may be needed as well to input the credentials with a widget prompt, and there is the <code>cred</code> argument for performing a basic authentification without a prompt. Public folders can be accessed as 
+<code>anonymous</code> user.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Depends on the method, an action on the server site. 
@@ -201,9 +202,9 @@ A <em>Response</em> message is returned when the method is <code>PUT</code> with
 <p><a href='https://mplex.github.io/cedhar/Sciencedata_dk.html'>https://mplex.github.io/cedhar/Sciencedata_dk.html</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## get a file from remote server</span>
+    <pre class="examples"><div class='input'><span class='co'>## get a public file from remote server as anonymous user</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"GET"</span>)}
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"GET"</span>, <span class='kw'>anonymous</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
 
 <span class='co'>## put a file in remote server</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {

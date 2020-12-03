@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@
         <span class='no'>hd_nr</span>, <span class='no'>province</span>, <span class='no'>country</span>, <span class='no'>findspot_modern</span>, <span class='no'>findspot_ancient</span>,
         <span class='no'>year_not_before</span>, <span class='no'>year_not_after</span>, <span class='no'>tm_nr</span>, <span class='no'>transcription</span>, <span class='no'>type</span>,
         <span class='no'>bbox</span>, <span class='no'>findspot</span>, <span class='no'>pleiades_id</span>, <span class='no'>geonames_id</span>, <span class='no'>offset</span>, <span class='no'>limit</span>,
-        <span class='no'>addID</span>, <span class='no'>printQ</span>)</pre>
+        <span class='kw'>maxlimit</span> <span class='kw'>=</span> <span class='fl'>4000</span>, <span class='no'>addID</span>, <span class='no'>printQ</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,6 +212,10 @@
       <td><p>Clause to limit the number of results (optional and integer)</p></td>
     </tr>
     <tr>
+      <th>maxlimit</th>
+      <td><p>Maximum limit of the query (integer, default 4000)</p></td>
+    </tr>
+    <tr>
       <th>addID</th>
       <td><p>Add identification to the output? (optional and logical)</p></td>
     </tr>
@@ -255,7 +259,7 @@ A list with the of valid values for countries from the EDH API are</p>
 </table>
 
 
-<p>And for the ancient Roman provices the valid values are</p>
+<p>And for the ancient Roman provinces the valid values are</p>
 <table class='table'>
 <tr><td><code>"Ach"</code></td><td>Achaia</td><td><code>"Cor"</code></td><td>Corsica</td><td><code>"Mes"</code></td><td>Mesopotamia</td></tr>
 <tr><td><code>"Aeg"</code></td><td>Aegyptus</td><td><code>"Cre"</code></td><td>Creta</td><td><code>"MoI"</code></td><td>Moesia inferior</td></tr>
@@ -287,6 +291,7 @@ A list with the of valid values for countries from the EDH API are</p>
 
     <p>A list object with at least one the following items:</p>
 <dt>"ID"</dt><dd><p>(Optional), only if <code>addID</code> is set to <code>TRUE</code>.</p></dd>
+<dt></dt><dd><p></p></dd>
 <dt>"commentary"</dt><dd><p></p></dd>
 <dt>"fotos"</dt><dd><p></p></dd>
 <dt>"country"</dt><dd><p></p></dd>
@@ -309,9 +314,9 @@ A list with the of valid values for countries from the EDH API are</p>
 <dt>"not_after"</dt><dd><p></p></dd>
 <dt>"not_before"</dt><dd><p></p></dd>
 <dt></dt><dd><p></p></dd>
-<dt>"people"</dt><dd><p>This item is another list with at least one the following items: <br />  
+<dt>"people"</dt><dd><p>This item is another list with at least one the following items: <br />  <br />  
 <code>"person_id"</code> <br />  <code>"nomen"</code> <br />  <code>"cognomen"</code> <br />  <code>"praenomen"</code> <br />  <code>"name"</code> <br />  <code>"gender"</code> <br />  <code>"status"</code> <br />  <code>"tribus"</code> <br />  
-<code>"origo"</code> <br />  <code>"occupation"</code> <br />  <code>"age: years"</code> <br />  <code>"age: months"</code></p></dd>
+<code>"origo"</code> <br />  <code>"occupation"</code> <br />  <code>"age: years"</code> <br />  <code>"age: months"</code> <br />  <code>"age: days"</code></p></dd>
 <dt></dt><dd><p></p></dd>
 <dt>"present_location"</dt><dd><p></p></dd>
 <dt>"religion"</dt><dd><p></p></dd>
@@ -328,7 +333,7 @@ A list with the of valid values for countries from the EDH API are</p>
 <dt>"year_of_find"</dt><dd><p></p></dd>
 <dt></dt><dd><p></p></dd>
 
-And also the query is printed if specified. 
+And also the query is printed if specified by printQ. 
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -381,17 +386,17 @@ and <code>"bibliography"</code> may be implemented in the future.</p>
 #&gt; 
 #&gt; $people
 #&gt; $people[[1]]
-#&gt; $people[[1]]$gender
-#&gt; [1] "male"
+#&gt; $people[[1]]$cognomen
+#&gt; [1] "Nerva+ Traianus+"
 #&gt; 
 #&gt; $people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
-#&gt; $people[[1]]$cognomen
-#&gt; [1] "Nerva+ Traianus+"
-#&gt; 
 #&gt; $people[[1]]$name
 #&gt; [1] "[Nerva Traianus]"
+#&gt; 
+#&gt; $people[[1]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; 
 #&gt; 

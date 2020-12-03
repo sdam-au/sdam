@@ -1,1 +1,5 @@
 exportPattern("^[[:alpha:]]+")
+S3method(plot, dates)
+importFrom("grDevices", "dev.off", "pdf")
+importFrom("graphics", "boxplot", "plot", "points", "segments")
+importFrom("utils", "head", "tail")

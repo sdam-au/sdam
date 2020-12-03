@@ -13,8 +13,8 @@
 \tabular{ll}{
 Package: \tab sdam \cr
 Type: \tab Package \cr
-Version: \tab 0.2.8 \cr
-Date: \tab 26 October 2020 \cr
+Version: \tab 0.3.3 \cr
+Date: \tab 3 December 2020 \cr
 License: \tab CC BY-SA 4.0 \cr
 }
 
@@ -32,10 +32,12 @@ Besides, the \code{request()} function allows performing different types of
 HTTP requests from a cloud repository like DEiC'S \url{https://sciencedata.dk} or another 
 customized URL address. 
 
-Similarity by simple matching among column vectors is achieved by the \code{simil()} function 
+Similarity by simple matching among column vectors is achieved by the \code{simil()} function (still under development)
 in order to make analyses of relations between assemblages and artifacts. 
 
-Note that this latter function still under development. 
+There is also the possibility to compute probabilities of existence with \code{prex()} with either 
+the aoristic sum or count matching for observations. Function \code{plot.dates()} allows visualizing 
+interval time events. 
 }
 \author{
 Author: \packageAuthor{sdam} 

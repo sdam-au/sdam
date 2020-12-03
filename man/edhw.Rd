@@ -2,24 +2,34 @@
 \alias{edhw}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Wrapper function for the \code{EDH} dataset
+Wrapper function for manipulation of \code{EDH} dataset
 }
 \description{
 A function to obtain variable data and perform transformations on the Epigraphic Database Heidelberg \code{EDH} dataset.
 }
 \usage{
-edhw(vars, x = NULL, as = c("list", "df"), addID, limit, id, na.rm, wide, ...)
+edhw(x = NULL, vars, as = c("list", "df"), type = c("long", "wide", "narrow"), split, 
+     select, addID, limit, id, na.rm)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
-  \item{vars}{
-   Choose variables of interest from \code{x}. If \code{x=NULL}, the entire \code{EDH} dataset is taken. (optional, vector)
-}
   \item{x}{
    A list object name with fragments of the \code{EDH} dataset (optional)
 }
+  \item{vars}{
+   Variables of interest from \code{x}; if \code{x=NULL}, the entire \code{EDH} dataset is taken. (optional, vector)
+}
   \item{as}{
-   Format to return the output. Currently either as a \code{list} or a data frame \code{df} object.
+   Format to return the output. Currently either as a \code{"list"} or a data frame \code{"df"} object.
+}
+  \item{type}{
+   Type format of data frame. Currently either \code{"long"} or \code{"wide"} (\code{"narrow"} not yet implemented)
+}
+  \item{split}{
+   Divide the data into groups by id? (optional and logical)
+}
+  \item{select}{
+   Choose \code{"people"} variables (optional, vector)
 }
   \item{addID}{
    Add identification to the output? (optional and logical)
@@ -28,13 +38,10 @@ edhw(vars, x = NULL, as = c("list", "df"), addID, limit, id, na.rm, wide, ...)
    Limit the returned output. Ignored if \code{id} is specified (optional, integer or vector)
 }
   \item{id}{
-   Select only the \code{hd_nr} id(s) (optional, integer or character)
+   Select only \code{hd_nr} records (optional, integer or character)
 }
   \item{na.rm}{
-   Remove entries with NA data? (logical and optional)
-}
-  \item{wide}{
-   Use a wide format in data frame? Only for \code{"people"}. (logical and optional)
+   Remove entries with NA data? (optional and logical)
 }
   \item{\dots}{
    Optional arguments if needed.
@@ -63,15 +70,19 @@ this case the offset can be specified as a sequence.
 While \code{"limit"} is a faster way to get to entries in the \code{EDH} dataset, argument \code{id} is for 
 refering to precisely one or more \code{hd_nr}s in the Epigraphic Database Heidelberg API.
 
-Component "\code{people}" is a separated list in the \code{EDH} dataset, and it should be considered as 
+Component \code{"people"} is a separated list in the \code{EDH} dataset, and it should be considered as 
 a separate case from the rest of the variables. 
-In the case that the output is a data frame, the default output is a \emph{long} table; that is records can 
-appear in different rows and each variable is assigned into a single column. By setting \code{wide} to \code{TRUE}, 
-it is possible to place the different people from a single entry column by column in the data frame and each 
-record has a single row. 
+In the case that the output is a data frame, the default output is a `long' \code{type} table; that is records can 
+appear in different rows and each variable is assigned into a single column, and with this option is possible to 
+\code{select} \code{"people"} variables.
+
+By setting \code{"wide"} in \code{type}, it is possible to place the different people from a single entry 
+column by column in the data frame and each record has a single row. Finally, argument \code{split} allows 
+dividing the data in the data frame into groups by `id', which corresponds to the HD number of inscription 
+in the \code{EDH} dataset. 
 }
 \value{
-A list or a data frame, depending on the input. 
+A list or a data frame with a long or wide format, depending on the arguments inputs. 
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api
@@ -80,13 +91,14 @@ https://edh-www.adw.uni-heidelberg.de/data/api
 Antonio Rivero Ostoic
 }
 \note{
-In case that the output chosen is a dataframe, then component \code{"people"} should be chosen alone. 
+When choosing \code{"people"} variables with \code{select} with a data frame output, then this attribute should be chosen 
+in \code{vars}. 
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}, \code{\link{get.edhw}}
+\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{prex}}, \code{\link{plot.dates}}
 }
 \examples{
 \dontrun{
@@ -94,7 +106,11 @@ In case that the output chosen is a dataframe, then component \code{"people"} sh
 data(EDH)
 
 ## make a list for three variables in 'EDH' (default)
-edhw(vars=c("ID", "not_after", "not_before") )}
+edhw(vars=c("type_of_inscription", "not_after", "not_before") )
+
+## select 'gender' from 'people' in 'EDH' (default)
+edhw(vars=c("people", "not_after", "not_before"), select="gender" )}
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
