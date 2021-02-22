@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -86,23 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Releases</li>
-    <li>
-      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../news/index.html">Changelog</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -138,8 +121,8 @@
 <table class='table'>
 <tr><td>Package:</td><td>sdam</td></tr>
 <tr><td>Type:</td><td>Package</td></tr>
-<tr><td>Version:</td><td>0.3.3</td></tr>
-<tr><td>Date:</td><td>3 December 2020</td></tr>
+<tr><td>Version:</td><td>0.4.0</td></tr>
+<tr><td>Date:</td><td>22 February 2021</td></tr>
 <tr><td>License:</td><td>CC BY-SA 4.0</td></tr>
 </table>
 
@@ -148,18 +131,21 @@
 <p><!-- %The DESCRIPTION file: -->
 <!-- %\packageDESCRIPTION{sdam} --></p>
 <p><!-- %\packageIndices{sdam} -->
-Currently, it is possible with the <code>sdam</code> package to access data from the Epigraphic Database 
-Heidelberg API with <code><a href='get.edh.html'>get.edh()</a></code>, and the wrapper functions <code><a href='get.edhw.html'>get.edhw()</a></code> <code><a href='edhw.html'>edhw()</a></code> as well. 
-Most of the data is available in the dataset attached to the package, called <code>EDH</code>, and which 
-can be manipulated by using the <code><a href='edhw.html'>edhw()</a></code> convenient function.</p>
-<p>Besides, the <code><a href='request.html'>request()</a></code> function allows performing different types of 
-HTTP requests from a cloud repository like DEiC'S <a href='https://sciencedata.dk'>https://sciencedata.dk</a> or another 
-customized URL address.</p>
+Currently, it is possible with the <code>"sdam"</code> package to access data from the Epigraphic Database 
+Heidelberg API with <code><a href='get.edh.html'>get.edh()</a></code>, and the wrapper function <code><a href='get.edhw.html'>get.edhw()</a></code>. 
+Most of the data is available in the <code>EDH</code> dataset attached to the package, which 
+can be manipulated by using <code><a href='edhw.html'>edhw()</a></code>.</p>
+<p>Besides, the <code><a href='request.html'>request()</a></code> function allows performing different types of HTTP requests to 
+DEiC'S <a href='https://sciencedata.dk'>https://sciencedata.dk</a> or another cloud repository with a customized URL address.</p>
+<p>There is also the possibility to compute probabilities of existence with <code><a href='prex.html'>prex()</a></code> with either 
+the aoristic sum or count matching for observations for different periodization options. 
+Function <code><a href='plot.dates.html'>plot.dates()</a></code> allows visualizing interval time events that can be manipulated by the 
+internal function <code>dts</code> as illustrated in a vignette.</p>
+<p>Another plotting function in <code>"sdam"</code> is found in <code><a href='plot.map.html'>plot.map()</a></code> that allows visualizing maps 
+of ancient Roman provinces that are found in <code>EDH</code>. This function depends on two datasets that 
+are <code>rpmp</code> .</p>
 <p>Similarity by simple matching among column vectors is achieved by the <code><a href='simil.html'>simil()</a></code> function (still under development)
 in order to make analyses of relations between assemblages and artifacts.</p>
-<p>There is also the possibility to compute probabilities of existence with <code><a href='prex.html'>prex()</a></code> with either 
-the aoristic sum or count matching for observations. Function <code><a href='plot.dates.html'>plot.dates()</a></code> allows visualizing 
-interval time events.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/multigraph/man/multigraph.html'>multigraph</a></code></p></div>

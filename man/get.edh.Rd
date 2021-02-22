@@ -215,7 +215,7 @@ and \code{"bibliography"} may be implemented in the future.
 %}
 
 \seealso{
-\code{\link{get.edhw}}, \code{\link{simil}}
+\code{\link{get.edhw}}, \code{\link{plot.map}}, \code{\link{simil}}
 }
 \examples{
 ## get inscriptions from EDH API data

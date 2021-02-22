@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -86,23 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Releases</li>
-    <li>
-      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../news/index.html">Changelog</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -129,19 +112,23 @@
     <p>A function to plot interval dates.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot.dates</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>taq</span>, <span class='no'>tpq</span>, <span class='no'>out</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>plot.dates</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>taq</span>, <span class='no'>tpq</span>, <span class='no'>out</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
            <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>cex</span>, <span class='no'>pch</span>, <span class='no'>col</span>, <span class='no'>lwd</span>, <span class='no'>lty</span>, <span class='no'>alpha</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>path to file for a PDF format (optional)</p></td>
-    </tr>
-    <tr>
       <th>x</th>
       <td><p>data frame object of variables and observations. If <code>NULL</code> then <code>EDH</code> dataset is taken.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>optional identifiers (vector).</p></td>
+    </tr>
+    <tr>
+      <th>file</th>
+      <td><p>path to file for a PDF format (optional)</p></td>
     </tr>
     <tr>
       <th>taq</th>
@@ -207,9 +194,6 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A graphical plot.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>For chronological periods see <em>Bevan et al</em>, 2013 (<code>doi: 10.1111/j.1475-4754.2012.00674.x</code>)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='get.edh.html'>get.edh</a></code>, <code><a href='edhw.html'>edhw</a></code>, <code><a href='prex.html'>prex</a></code>.</p></div>

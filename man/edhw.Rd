@@ -8,8 +8,8 @@ Wrapper function for manipulation of \code{EDH} dataset
 A function to obtain variable data and perform transformations on the Epigraphic Database Heidelberg \code{EDH} dataset.
 }
 \usage{
-edhw(x = NULL, vars, as = c("list", "df"), type = c("long", "wide", "narrow"), split, 
-     select, addID, limit, id, na.rm)
+edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), split, 
+     select, addID, limit, id, na.rm, clean, province, gender, ...)
 }
 
 \arguments{
@@ -42,6 +42,15 @@ edhw(x = NULL, vars, as = c("list", "df"), type = c("long", "wide", "narrow"), s
 }
   \item{na.rm}{
    Remove entries with NA data? (optional and logical)
+}
+  \item{clean}{
+   clean list object \code{x}? (optional and logical)
+}
+  \item{province}{
+   Roman province (character, optional)
+}
+  \item{gender}{
+   people gender in \code{EDH} (character, optional)
 }
   \item{\dots}{
    Optional arguments if needed.
@@ -80,6 +89,9 @@ By setting \code{"wide"} in \code{type}, it is possible to place the different p
 column by column in the data frame and each record has a single row. Finally, argument \code{split} allows 
 dividing the data in the data frame into groups by `id', which corresponds to the HD number of inscription 
 in the \code{EDH} dataset. 
+
+Ad hoc arguments are \code{clean} to force \code{NA}s, and the \code{EDH} entries \code{province} and code{gender} 
+for entering a Roman province and people's gender in \code{x}.
 }
 \value{
 A list or a data frame with a long or wide format, depending on the arguments inputs. 
@@ -98,7 +110,7 @@ in \code{vars}.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{prex}}, \code{\link{plot.dates}}
+\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{prex}}, \code{\link{plot.dates}}, \code{\link{EDH}}
 }
 \examples{
 \dontrun{

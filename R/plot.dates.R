@@ -3,18 +3,37 @@
 ## PLOT FUNCTION plot.dates() to plot time intervals
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.3 (18-11-2020)
+## version 0.0.8 (22-12-2020)
 ##
 ## PARAMETERS
-## ...   (optional parameters)
-##
+## x      (data frame object of variables and observations)
+## y      (optional identifiers)
+## file   (path to file for a PDF format=
+## taq    (terminus ante quem)
+## tpq    (terminus post quem)
+## out    (number of outliers to omit)
+## 
+## OPTIONAL PARAMETERS
+## main   (main tile)
+## xlab   (x label)
+## ylab   (y label)
+## xlim   (x limit)
+## pch    (symbol for taq and tpq)
+## cex    (size of pch)
+## col    (colors of pch and time interval segment)
+## lwd    (width)
+## lty    (shape)
+## alpha  (alpha color transparency)
+## ...    (optional parameters)
 
 
 plot.dates <-
-function (file = NULL, x = NULL, taq, tpq, out, main = NULL, 
-    xlab = NULL, ylab = NULL, xlim = NULL, cex, pch, col, lwd, 
-    lty, alpha, ...) 
+function (x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, 
+    ylab = NULL, xlim = NULL, cex, pch, col, lwd, lty, alpha, 
+    ...) 
 {
+    ifelse(missing(taq) == TRUE, taq <- "not_before", NA)
+    ifelse(missing(tpq) == TRUE, tpq <- "not_after", NA)
     ifelse(missing(lwd) == TRUE, lwd <- 1L, NA)
     ifelse(missing(lty) == TRUE, lty <- 1L, NA)
     ifelse(missing(cex) == TRUE, cex <- 1L, NA)
@@ -27,10 +46,15 @@ function (file = NULL, x = NULL, taq, tpq, out, main = NULL,
             3)[1:3], col <- col[1:3])
     }
     ifelse(missing(alpha) == TRUE, alpha <- 0.25, NA)
-    ifelse(is.null(xlab) == TRUE, xlab <- "years", na)
-    ifelse(isTRUE(is.data.frame(x) == TRUE) == TRUE, xdates <- x, 
-        xdates <- suppressWarnings(edhw(x = x, vars = c(taq, 
-            tpq), as = "df", ...)))
+    ifelse(is.null(xlab) == TRUE, xlab <- "years", NA)
+    if (missing(x) == FALSE) {
+        ifelse(isTRUE(is.data.frame(x) == TRUE) == TRUE, xdates <- x, 
+            xdates <- suppressWarnings(edhw(x = x, vars = c(taq, 
+                tpq), as = "df", ...)))
+    }
+    else {
+        stop("'x' is missing.")
+    }
     nb <- as.numeric(as.vector(xdates[, which(colnames(xdates) %in% 
         taq)]))
     na <- as.numeric(as.vector(xdates[, which(colnames(xdates) %in% 
@@ -60,11 +84,12 @@ function (file = NULL, x = NULL, taq, tpq, out, main = NULL,
         years <- c(min(nb, na.rm = TRUE), max(na, na.rm = TRUE))
     }
     ifelse(is.null(xlim) == TRUE, xlim <- years, NA)
-    ID <- as.numeric(sub("[[:alpha:]]+", "", xdates$id))
+    ifelse(missing(y) == FALSE, ID <- y, ID <- as.numeric(sub("[[:alpha:]]+", 
+        "", xdates$id)))
     warns = -1
     if (is.null(file) == TRUE) {
         plot(nb, ID, pch = pch, cex = cex, col = col[1], xlab = xlab, 
-            ylab = ylab, xlim = xlim, main = main)
+            ylab = ylab, xlim = xlim, main = main, ...)
         points(na, ID, pch = pch, cex = cex, col = col[2])
         segments(nb, ID, na, ID, lwd = lwd, lty = lty, col = grDevices::adjustcolor(col[3], 
             alpha = alpha))
@@ -72,7 +97,7 @@ function (file = NULL, x = NULL, taq, tpq, out, main = NULL,
     else {
         pdf(file)
         plot(nb, ID, pch = pch, cex = cex, col = col[1], xlab = xlab, 
-            ylab = ylab, xlim = xlim, main = main)
+            ylab = ylab, xlim = xlim, main = main, ...)
         points(na, ID, pch = pch, cex = cex, col = col[2])
         segments(nb, ID, na, ID, lwd = lwd, lty = lty, col = grDevices::adjustcolor(col[3], 
             alpha = alpha))

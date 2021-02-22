@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -86,23 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Releases</li>
-    <li>
-      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="../news/index.html">Changelog</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -129,8 +112,8 @@
     <p>A function to compute the probability of existence of events.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>prex</span>(<span class='no'>x</span>, <span class='no'>vars</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bin5"</span>, <span class='st'>"bin8"</span>), <span class='kw'>aoristic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>weight</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>DF</span>,
-     <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>prex</span>(<span class='no'>x</span>, <span class='no'>taq</span>, <span class='no'>tpq</span>, <span class='no'>vars</span>, <span class='kw'>bins</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>cp</span>, <span class='kw'>aoristic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>weight</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+     <span class='no'>DF</span>, <span class='no'>out</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,6 +121,14 @@
     <tr>
       <th>x</th>
       <td><p>list or data frame object of variables and observations.</p></td>
+    </tr>
+    <tr>
+      <th>taq</th>
+      <td><p><em>terminus ante quem</em> (TAQ)</p></td>
+    </tr>
+    <tr>
+      <th>tpq</th>
+      <td><p><em>terminus post quem</em> (TPQ)</p></td>
     </tr>
     <tr>
       <th>vars</th>
@@ -149,7 +140,7 @@
     </tr>
     <tr>
       <th>cp</th>
-      <td><p>chronological phase.<code>"bin5"</code> or <code>"bin8"</code> for five- or eight-periods</p></td>
+      <td><p>chronological phase</p></td>
     </tr>
     <tr>
       <th>aoristic</th>
@@ -162,6 +153,10 @@
     <tr>
       <th>DF</th>
       <td><p>return also data frame with observations? Ignored for plot (logical and optional)</p></td>
+    </tr>
+    <tr>
+      <th>out</th>
+      <td><p>number of outliers to omit (integer or vector where first entry id for latest date)</p></td>
     </tr>
     <tr>
       <th>plot</th>
@@ -179,19 +174,20 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Currently, the probability of existence is the <em>aoristic sum</em> computed accross 
-events for a single portion of time.</p>
-<p>When <code>aoristic</code> is set to <code>FALSE</code>, then a simple matching of only <em>terminus ante quem</em> TAQ 
-and <em>terminus post quem</em> TPQ is computed.</p>
+    <p>Currently, the probability of existence is the <em>aoristic sum</em> computed accross events for portions of time 
+delimited by a TAQ in <code>taq</code> and TPQ in <code>tpq</code>, or else by the boundaries of existence in <code>vars</code>.</p>
+<p>In case that <code>bins</code> is <code>NULL</code>, then the time breaks take the chronological periods in <code>cp</code>, which 
+by default is <code>"bin5"</code> or five-periods for the <code>EDH</code> dataset. Another built-in option is <code>"bin8"</code> 
+for eight chronological periods, but <code>cp</code> is open for other periodization models as long as they are recorded 
+as a list object.</p>
+<p>When <code>aoristic</code> is set to <code>FALSE</code>, then a simple matching of only TAQ and TPQ is computed from <code>x</code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame with values according to either <code>bins</code> or <code>cp</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>For aoristic sum refer to Crema, E. (2012) <em>INSERT TITLE</em></p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Further measures of probability of existence will be incorporated.</p>
+    <p>For aoristic sum: Crema, E. (2012) ``Modelling temporal uncertainty in archaeological analysis'' <em>J Archaeol Method Theory</em>.</p>
+<p>For default chronological periods: see <em>Bevan et al</em>, 2013 (<code>doi: 10.1111/j.1475-4754.2012.00674.x</code>)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='edhw.html'>edhw</a></code>, <code><a href='plot.dates.html'>plot.dates</a></code></p></div>
