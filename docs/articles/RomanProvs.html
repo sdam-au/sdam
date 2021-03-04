@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plotting ancient Roman provinces and regions with 'sdam' • sdam</title>
+<title>Plotting ancient Roman provinces and regions • sdam</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Plotting ancient Roman provinces and regions with 'sdam'">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Plotting ancient Roman provinces and regions">
 <meta property="og:description" content="sdam">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -54,7 +54,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions with 'sdam'</a>
+      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
+    </li>
+    <li>
+      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
     </li>
   </ul>
 </li>
@@ -75,7 +78,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Plotting ancient Roman provinces and regions with ‘sdam’</h1>
+      <h1 data-toc-skip>Plotting ancient Roman provinces and regions</h1>
                         <h4 class="author">Antonio Rivero Ostoic</h4>
             <address class="author_afil">
       <center>
@@ -86,7 +89,7 @@
 </center></a>
       </address>
                   
-            <h4 class="date">22 February 2021</h4>
+            <h4 class="date">4 March 2021</h4>
       
       
       <div class="hidden name"><code>RomanProvs.Rmd</code></div>
@@ -126,10 +129,10 @@ h3 {
 <div style="margin-bottom:30px;">
 
 </div>
-<p>Load <code>"sdam"</code> and check version</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load package and check version</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"sdam"</span>)</pre></body></html></div>
-<pre><code>## [1] '0.4.0'</code></pre>
+<pre><code>[1] '0.4.2'</code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
@@ -138,7 +141,8 @@ h3 {
 <h2 class="hasAnchor">
 <a href="#roman-provinces" class="anchor"></a>Roman provinces</h2>
 <p>Package <code>"sdam"</code> comes with some datasets related to the Epigraphic Database Heidelberg, and also information about ancient Roman provinces and regions.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">package</span><span class="kw">=</span><span class="st">"sdam"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># retrieve available datasets</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">package</span><span class="kw">=</span><span class="st">"sdam"</span>)</pre></body></html></div>
 <pre><code>Datasets in package ‘sdam’:
 
 EDH                                                 Epigraphic Database Heidelberg Dataset
@@ -152,15 +156,15 @@ rpmcd                                               Caption maps and affiliation
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># Roman province acronyms according to EDH</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"rp"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">rp</span>))</pre></body></html></div>
-<pre><code>##  [1] "Ach" "Aeg" "Aem" "Afr" "AlC" "AlG" "AlM" "AlP" "ApC" "Aqu" "Ara" "Arm" "Asi" "Ass" "Bae" "Bar"
-## [17] "Bel" "BiP" "BrL" "Bri" "Cap" "Cil" "Cor" "Cre" "Cyp" "Cyr" "Dac" "Dal" "Epi" "Etr" "Gal" "GeI"
-## [33] "GeS" "HiC" "Inc" "Iud" "LaC" "Lig" "Lug" "Lus" "LyP" "MaC" "MaT" "Mak" "Mes" "MoI" "MoS" "Nar"
-## [49] "Nor" "Num" "PaI" "PaS" "Pic" "Rae" "ReB" "Rom" "Sam" "Sar" "Sic" "Syr" "Thr" "Tra" "Tri" "Umb"
-## [65] "Val" "VeH"</code></pre>
+<pre><code> [1] "Ach" "Aeg" "Aem" "Afr" "AlC" "AlG" "AlM" "AlP" "ApC" "Aqu" "Ara" "Arm" "Asi" "Ass" "Bae" "Bar"
+[17] "Bel" "BiP" "BrL" "Bri" "Cap" "Cil" "Cor" "Cre" "Cyp" "Cyr" "Dac" "Dal" "Epi" "Etr" "Gal" "GeI"
+[33] "GeS" "HiC" "Inc" "Iud" "LaC" "Lig" "Lug" "Lus" "LyP" "MaC" "MaT" "Mak" "Mes" "MoI" "MoS" "Nar"
+[49] "Nor" "Num" "PaI" "PaS" "Pic" "Rae" "ReB" "Rom" "Sam" "Sar" "Sic" "Syr" "Thr" "Tra" "Tri" "Umb"
+[65] "Val" "VeH"</code></pre>
 <div style="margin-bottom:40px;">
 
 </div>
-<p>Such output can result useful for other computations within <code>"sdam"</code> like accessing parts of <code>EDH</code> corresponding to the province with function <code><a href="../reference/edhw.html">edhw()</a></code>.</p>
+<p>Such output can result useful for other computations within <code>"sdam"</code> like accessing parts of <code>EDH</code> corresponding to the province with function <code>edhw()</code>.</p>
 <div style="margin-bottom:60px;">
 
 </div>
@@ -168,80 +172,76 @@ rpmcd                                               Caption maps and affiliation
 <div id="cartographical-maps" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cartographical-maps" class="anchor"></a>Cartographical maps</h2>
-<p>Cartographical maps of Roman provinces under emperors Trajan and Hadrian (year 117AD), and Italian regions under emperor Augustus (year 27 BC) can be plotted with function <code><a href="../reference/plot.map.html">plot.map()</a></code>. This is a convenient function that depends on <code>"rpmp"</code>, which ia a dataset that contains the names and vector shapes of the maps and, if wanted, it also invokes dataset <code>"rpmcd"</code> for including map captions in the plot plus date(s) when such territory ``officially’’ became a Roman province.</p>
+<p>Cartographical maps of Roman provinces under emperors Trajan and Hadrian (year 117AD), and Italian regions under emperor Augustus (year 27 BC) can be plotted with function <code>plot.map()</code>. This is a convenient function that depends on <code>"rpmp"</code>, which is a dataset that contains the names and vector shapes of the maps and, if wanted, it also invokes dataset <code>"rpmcd"</code> for including map captions in the plot plus date(s) when such territory ``officially’’ became a Roman province.</p>
 <div style="margin-bottom:30px;">
 
 </div>
 <p>As an example, we start with the first province in <code>"rp"</code> that corresponds to <code>"Ach"</code> or <code>"Achaia"</code>:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># plot cartographical map of Achaia</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rp</span>)[<span class="fl">1</span>])</pre></body></html></div>
-<p><img src="RomanProvs_files/figure-html/mapprov-1.png" width="700"></p>
-<div style="margin-bottom:120px;">
-
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># cartographical map of ancient Achaia</span>
+<span class="fu">plot.map</span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rp</span>)[<span class="fl">1</span>])</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<img src="RomanProvs_files/figure-html/mapprov-1.png" alt="year 117 AD" width="50%"><p class="caption">
+year 117 AD
+</p>
 </div>
-<div id="italian-regions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#italian-regions" class="anchor"></a>Italian regions</h3>
-<p>Similarly, a plot of the cartographical map for the last entry in <code>"rp"</code> that is the Italian region <code>"VeH"</code> or <code>"Venetia et Histria (Regio X)"</code> is obtained as:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># plot cartographical map of Venetia et Histria (Regio X)</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rp</span>),<span class="fl">1</span>))</pre></body></html></div>
-<p><img src="RomanProvs_files/figure-html/mapreg-1.png" width="700"></p>
 <div style="margin-bottom:60px;">
 
 </div>
-<p>Not all entries in <code>"rp"</code> are currently supported in <code><a href="../reference/plot.map.html">plot.map()</a></code>, only the territories belonging to the Roman Empire in year 117AD. However, there is also a silhouette of Italy, which is depicted using the plotting function without a caption by setting the <code>cap</code> argument into <code>FALSE</code>:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># plot silhouette of Italy</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="st">"Ita"</span>, <span class="kw">cap</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
-<p><img src="RomanProvs_files/figure-html/mapita-1.png" width="700"></p>
+<p>Not all entries in <code>"rp"</code> are currently supported in <code>plot.map()</code>, only the territories formally belonging to the Roman Empire in year 117AD plus a silhouette of Italy. Below, the Italian peninsula is depicted without a caption by disabling <code>cap</code> in the function.</p>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># silhouette of Italian peninsula</span>
+<span class="fu">plot.map</span>(<span class="kw">x</span><span class="kw">=</span><span class="st">"Ita"</span>, <span class="kw">cap</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<p><img src="RomanProvs_files/figure-html/mapita-1.png" width="50%" style="display: block; margin: auto;"></p>
 <div style="margin-bottom:60px;">
 
-</div>
 </div>
 </div>
 <div id="dating-provinces" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dating-provinces" class="anchor"></a>Dating provinces</h2>
-<p>Dataset <code>"rpmcd"</code> contains the approx. year when the province became part of the Roman Empire and, in the case of regions, a year of consolidation for the Italian peninsula.</p>
-<p>As with <code>"rpmp"</code> dataset, <code>"rpmcd"</code> is another datase with a list of lists where information about map shapes is recorded. Additionally, the years are located in the <code>provd</code> component for each entry corresponding to the supported province or region.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># 'provd' component of each entry is a date</span>
+<p>As with the <code>"rpmp"</code> dataset, <code>"rpmcd"</code> is another set of data with a list of lists format where the shapes of cartographical maps are recorded in different slots of the first component. Additionally to the plotted map information, the dataset <code>"rpmcd"</code> contains in the <code>provd</code> component of each entry, the approx. year when the province became part of the Roman Empire. In the case of the regions, such date corresponds to a year of the Italian consolidation.</p>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># date for each province is in 'provd' component of dataset</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"rpmcd"</span>)
-<span class="no">rpmcd</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">provd</span></pre></body></html></div>
-<pre><code>## [1] "27 BC"</code></pre>
+<span class="no">rpmcd</span>$<span class="no">Ach</span>$<span class="no">provd</span></pre></body></html></div>
+<pre><code>[1] "27 BC"</code></pre>
 <div style="margin-bottom:30px;">
 
 </div>
 <p>Since all years are located in the second component, we obtain the affiliation dates from these components for all provinces/regions and recorded this information in object <code>est</code> (that stand for established).</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># dates in an atomic vector</span>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># atomic vector with dates in 'rpmcd' </span>
 <span class="no">est</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">rpmcd</span>, <span class="kw">function</span> (<span class="no">x</span>) <span class="no">x</span><span class="kw">[[</span><span class="fl">2</span>]]), <span class="kw">use.names</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
-<pre><code>##  [1] "27 BC"          "30 BC"          "146 BC"         "63AD or 58AD"   "63AD or 14BC"  
-##  [6] "63AD or 14BC"   "51 BC"          "105 AD"         "114 AD"         "133 BC"        
-## [11] "116 AD"         "197 BC"         "51 BC"          "74BC or 64BC"   "43 AD"         
-## [16] "17 AD"          "64 BC"          "238 BC"         "66 BC?"         "58 or 30 BC"   
-## [21] "74 BC"          "106 AD"         "32BC or 10AD"   "148 BC"         "25 BC"         
-## [26] "27 BC"          "27 BC"          "197 BC"         "272 BC"         "6 AD"          
-## [31] "51 BC"          "197 BC"         "43 AD"          "42AD or 44AD"   "148 BC?"       
-## [36] "42 AD or 44 AD" "116 AD"         "6 AD"           "6 AD"           "121 BC"        
-## [41] "16BC or 15BC"   "9AD or 10AD"    "9AD or 10AD"    "16BC or 15BC"   "238 BC"        
-## [46] "241 BC"         "64 BC"          "46 AD"          "272 BC (Ita c)" "272 BC (Ita c)"
-## [51] "272 BC (Ita c)" "272 BC (Ita c)" "272 BC (Ita c)" "272 BC (Ita c)" "272 BC (Ita c)"
-## [56] "272 BC (Ita c)" "272 BC (Ita c)" "272 BC (Ita c)" "272 BC (Ita c)"</code></pre>
+<pre><code> [1] "27 BC"              "30 BC"              "146 BC"             "63AD or 58AD"      
+ [5] "63AD or 14BC"       "63AD or 14BC"       "51 BC"              "105 AD"            
+ [9] "114 AD"             "133 BC"             "116 AD"             "197 BC"            
+[13] "51 BC"              "74BC or 64BC"       "43 AD"              "17 AD"             
+[17] "64 BC"              "238 BC"             "66 BC?"             "58-30 BC"          
+[21] "74 BC"              "106 AD"             "32BC or 10AD"       "148 BC"            
+[25] "25 BC"              "27 BC"              "27 BC"              "197 BC"            
+[29] "272 BC"             "6 AD"               "51 BC"              "197 BC"            
+[33] "43 AD"              "42AD or 44AD"       "148 BC?"            "42 AD or 44 AD"    
+[37] "116 AD"             "6 AD"               "6 AD"               "121 BC"            
+[41] "16BC or 15BC"       "9AD or 10AD"        "9AD or 10AD"        "16BC or 15BC"      
+[45] "238 BC"             "241 BC"             "64 BC"              "46 AD"             
+[49] "272 BC (Ita cons.)" "272 BC (Ita cons.)" "272 BC (Ita cons.)" "272 BC (Ita cons.)"
+[53] "272 BC (Ita cons.)" "272 BC (Ita cons.)" "272 BC (Ita cons.)" "272 BC (Ita cons.)"
+[57] "272 BC (Ita cons.)" "272 BC (Ita cons.)" "272 BC (Ita cons.)"</code></pre>
 <div style="margin-bottom:30px;">
 
 </div>
-<p>Then we use a regular expression to remove the text <code>"(Ita c)"</code> from the last 11 entries in <code>est</code> that correspond to the Italian regions. In this way, we count only date information in this object for further computation:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">est</span>[(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)-<span class="fl">10</span>):<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span>(<span class="st">" [(].*"</span>,<span class="st">""</span>,<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">est</span>,<span class="fl">11</span>))</pre></body></html></div>
-<pre><code>##  [1] "27 BC"          "30 BC"          "146 BC"         "63AD or 58AD"   "63AD or 14BC"  
-##  [6] "63AD or 14BC"   "51 BC"          "105 AD"         "114 AD"         "133 BC"        
-## [11] "116 AD"         "197 BC"         "51 BC"          "74BC or 64BC"   "43 AD"         
-## [16] "17 AD"          "64 BC"          "238 BC"         "66 BC?"         "58 or 30 BC"   
-## [21] "74 BC"          "106 AD"         "32BC or 10AD"   "148 BC"         "25 BC"         
-## [26] "27 BC"          "27 BC"          "197 BC"         "272 BC"         "6 AD"          
-## [31] "51 BC"          "197 BC"         "43 AD"          "42AD or 44AD"   "148 BC?"       
-## [36] "42 AD or 44 AD" "116 AD"         "6 AD"           "6 AD"           "121 BC"        
-## [41] "16BC or 15BC"   "9AD or 10AD"    "9AD or 10AD"    "16BC or 15BC"   "238 BC"        
-## [46] "241 BC"         "64 BC"          "46 AD"          "272 BC"         "272 BC"        
-## [51] "272 BC"         "272 BC"         "272 BC"         "272 BC"         "272 BC"        
-## [56] "272 BC"         "272 BC"         "272 BC"         "272 BC"</code></pre>
+<p>Then we use a regular expression to remove the text <code>" (Ita c)"</code> from the last 11 entries in <code>est</code> that correspond to the Italian regions. In this way, we count only date information in this object for further computation:</p>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># remove text in regions</span>
+<span class="no">est</span>[(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)-<span class="fl">10</span>):<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span>(<span class="st">" [(].*"</span>,<span class="st">""</span>,<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">est</span>,<span class="fl">11</span>))</pre></body></html></div>
+<pre><code> [1] "27 BC"          "30 BC"          "146 BC"         "63AD or 58AD"   "63AD or 14BC"  
+ [6] "63AD or 14BC"   "51 BC"          "105 AD"         "114 AD"         "133 BC"        
+[11] "116 AD"         "197 BC"         "51 BC"          "74BC or 64BC"   "43 AD"         
+[16] "17 AD"          "64 BC"          "238 BC"         "66 BC?"         "58-30 BC"      
+[21] "74 BC"          "106 AD"         "32BC or 10AD"   "148 BC"         "25 BC"         
+[26] "27 BC"          "27 BC"          "197 BC"         "272 BC"         "6 AD"          
+[31] "51 BC"          "197 BC"         "43 AD"          "42AD or 44AD"   "148 BC?"       
+[36] "42 AD or 44 AD" "116 AD"         "6 AD"           "6 AD"           "121 BC"        
+[41] "16BC or 15BC"   "9AD or 10AD"    "9AD or 10AD"    "16BC or 15BC"   "238 BC"        
+[46] "241 BC"         "64 BC"          "46 AD"          "272 BC"         "272 BC"        
+[51] "272 BC"         "272 BC"         "272 BC"         "272 BC"         "272 BC"        
+[56] "272 BC"         "272 BC"         "272 BC"         "272 BC"        </code></pre>
 <!-- ```{r estout, size="tiny", echo=TRUE, eval=FALSE}
 # [1] "27 BC"          "30 BC"          "146 BC"         "63AD or 58AD"   "63AD or 14BC"   "63AD or 14BC"   "51 BC"          "105 AD"         "114 AD"         "133 BC"        
 #[11] "116 AD"         "197 BC"         "51 BC"          "74BC or 64BC"   "43 AD"          "17 AD"          "64 BC"          "238 BC"         "66 BC?"         "58 or 30 BC"   
@@ -256,9 +256,9 @@ rpmcd                                               Caption maps and affiliation
 <div id="treating-dates" class="section level3">
 <h3 class="hasAnchor">
 <a href="#treating-dates" class="anchor"></a>Treating dates</h3>
-<p><code>"sdam"</code> has the internal function <code><a href="../reference/dts.html">dts()</a></code> to convert dates having characters into a numerical format, which may be useful in further computations like when working with chronologies.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># dates internal function</span>
-<span class="fu"><a href="../reference/dts.html">dts</a></span>(<span class="no">est</span>)</pre></body></html></div>
+<p><code>"sdam"</code> has the internal function <code>dts()</code> to convert dates having characters into a numerical format, which may be useful in further computations like when working with chronologies.</p>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># dates internal function</span>
+<span class="fu">dts</span>(<span class="no">est</span>)</pre></body></html></div>
 <!-- ```{r dtsout, size="tiny", echo=TRUE, eval=FALSE}
 #         27 BC          30 BC         146 BC   63AD or 58AD   63AD or 14BC   63AD or 14BC          51 BC         105 AD         114 AD         133 BC         116 AD 
 #           -27            -30           -146             63             63             63            -51            105            114           -133            116 
@@ -276,50 +276,69 @@ rpmcd                                               Caption maps and affiliation
 <div style="margin-bottom:30px;">
 
 </div>
-<p>In the following example, we omit the 11 Italian regions in object <code>chron</code> that records the dates in ascending order when the territory became officially part of the Roman Empire. In case an item has two competing dates, which is here related with the word <code>or</code>, then <code><a href="../reference/dts.html">dts()</a></code> takes only the first date.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">chron</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="../reference/dts.html">dts</a></span>(<span class="no">est</span>[<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)-<span class="fl">11</span>)]))</pre></body></html></div>
-<pre><code>##         272 BC         241 BC         238 BC         238 BC         197 BC         197 BC 
-##           -272           -241           -238           -238           -197           -197 
-##         197 BC         148 BC        148 BC?         146 BC         133 BC         121 BC 
-##           -197           -148           -148           -146           -133           -121 
-##   74BC or 64BC          74 BC         66 BC?          64 BC          64 BC    58 or 30 BC 
-##            -74            -74            -66            -64            -64            -58 
-##          51 BC          51 BC          51 BC   32BC or 10AD          30 BC          27 BC 
-##            -51            -51            -51            -32            -30            -27 
-##          27 BC          27 BC          25 BC   16BC or 15BC   16BC or 15BC           6 AD 
-##            -27            -27            -25            -16            -16              6 
-##           6 AD           6 AD    9AD or 10AD    9AD or 10AD          17 AD   42AD or 44AD 
-##              6              6              9              9             17             42 
-## 42 AD or 44 AD          43 AD          43 AD          46 AD   63AD or 58AD   63AD or 14BC 
-##             42             43             43             46             63             63 
-##   63AD or 14BC         105 AD         106 AD         114 AD         116 AD         116 AD 
-##             63            105            106            114            116            116</code></pre>
-<!-- ```{r chronout, size="tiny", echo=TRUE, eval=FALSE}
-#        272 BC         241 BC         238 BC         238 BC         197 BC         197 BC         197 BC         148 BC        148 BC?         146 BC         133 BC 
-#          -272           -241           -238           -238           -197           -197           -197           -148           -148           -146           -133 
-#        121 BC   74BC or 64BC          74 BC         66 BC?          64 BC          64 BC    58 or 30 BC          51 BC          51 BC          51 BC   32BC or 10AD 
-#          -121            -74            -74            -66            -64            -64            -58            -51            -51            -51            -32 
-#         30 BC          27 BC          27 BC          27 BC          25 BC   16BC or 15BC   16BC or 15BC           6 AD           6 AD           6 AD    9AD or 10AD 
-#           -30            -27            -27            -27            -25            -16            -16              6              6              6              9 
-#   9AD or 10AD          17 AD   42AD or 44AD 42 AD or 44 AD          43 AD          43 AD          46 AD   63AD or 58AD   63AD or 14BC   63AD or 14BC         105 AD 
-#             9             17             42             42             43             43             46             63             63             63            105 
-#        106 AD         114 AD         116 AD         116 AD 
-#           106            114            116            116
-``` -->
+<p>In the following example, object <code>chron</code> records the dates in ascending order when the territory became officially part of the Roman Empire. In case an item has two competing dates, which is here related with the word <code>or</code>, then <code>dts()</code> takes only the first date.</p>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># dates in the order of their occurrence</span>
+<span class="no">chron</span></pre></body></html></div>
+<pre><code>        272 BC         241 BC         238 BC         238 BC         197 BC         197 BC 
+          -272           -241           -238           -238           -197           -197 
+        197 BC         148 BC        148 BC?         146 BC         133 BC         121 BC 
+          -197           -148           -148           -146           -133           -121 
+  74BC or 64BC          74 BC         66 BC?          64 BC          64 BC          51 BC 
+           -74            -74            -66            -64            -64            -51 
+         51 BC          51 BC   32BC or 10AD          30 BC          27 BC          27 BC 
+           -51            -51            -32            -30            -27            -27 
+         27 BC          25 BC   16BC or 15BC   16BC or 15BC           6 AD           6 AD 
+           -27            -25            -16            -16              6              6 
+          6 AD    9AD or 10AD    9AD or 10AD          17 AD   42AD or 44AD 42 AD or 44 AD 
+             6              9              9             17             42             42 
+         43 AD          43 AD          46 AD   63AD or 58AD   63AD or 14BC   63AD or 14BC 
+            43             43             46             63             63             63 
+        105 AD         106 AD         114 AD         116 AD         116 AD 
+           105            106            114            116            116 </code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
-<p>The code below produces cartographical maps of Roman provinces and regions according to their incorporation to the Roman Empire</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>)))))
-    <span class="fu"><a href="https://rdrr.io/r/base/try.html">try</a></span>(<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span>(<span class="st">"."</span>, <span class="st">""</span>,<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rpmcd</span>)[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">est</span><span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>))[<span class="no">i</span>])]), <span class="kw">date</span><span class="kw">=</span><span class="fl">TRUE</span>))</pre></body></html></div>
+<p>For instance, the plot animation below –with a GIF file produced with the <code>gifski</code> package– shows the Italian regions in year 27 BC.</p>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># exclude 'Ita', first entry in chronology</span>
+<span class="no">reg</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rpmcd</span>)[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">est</span><span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>))[<span class="fl">1</span>])][-<span class="fl">1</span>]
+    <span class="kw">for</span>(<span class="no">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">reg</span>)))
+        <span class="fu">plot.map</span>(<span class="kw">x</span><span class="kw">=</span><span class="no">reg</span>[<span class="no">j</span>], <span class="kw">cap</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<img src="RomanProvs_files/figure-html/unnamed-chunk-3-.gif" alt="Italian regions under Augustus (27 BC)" width="50%"><p class="caption">
+Italian regions under Augustus (27 BC)
+</p>
+</div>
 <div style="margin-bottom:60px;">
 
 </div>
 </div>
-<div id="note" class="section level3">
+<div id="plotting-roman-provinces-by-date" class="section level3">
 <h3 class="hasAnchor">
-<a href="#note" class="anchor"></a>Note</h3>
-<p>Note that the positioning of the dates with <code><a href="../reference/plot.map.html">plot.map()</a></code> is for a <code>pdf</code> output and it may change with another format. Since this function depends on the <code>"grid"</code> package and not <code>"graphics"</code> you may need <code>"gridExtra"</code> for multiple plots rather that <code><a href="https://rdrr.io/r/graphics/par.html">par(mfrow=x,x)</a></code>.</p>
+<a href="#plotting-roman-provinces-by-date" class="anchor"></a>Plotting Roman provinces by date</h3>
+<p>In a similar manner as the Italian regions, the code below produces cartographical maps of Roman provinces (as they were in year 117 AD) according to the year of their incorporation to the Roman Empire.</p>
+<div style="margin-bottom:30px;">
+
+</div>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># discharge oldest date for the Italian regions</span>
+<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>))))[-<span class="fl">1</span>]) {
+    <span class="co"># choose provinces according to date</span>
+    <span class="no">prv</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rpmcd</span>)[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">est</span><span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>))[<span class="no">i</span>])]
+    <span class="kw">for</span>(<span class="no">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">prv</span>))) {
+        <span class="co"># plot with customized date color and positioning</span>
+        <span class="fu">plot.map</span>(<span class="kw">x</span><span class="kw">=</span><span class="no">prv</span>[<span class="no">j</span>], <span class="kw">date</span><span class="kw">=</span><span class="fl">TRUE</span>, <span class="kw">fcol2</span><span class="kw">=</span><span class="st">"#FFFF00"</span>, <span class="kw">xd</span><span class="kw">=</span><span class="fl">.7</span>, <span class="kw">yd</span><span class="kw">=</span><span class="fl">.42</span>)
+    }
+}</pre></body></html></div>
+<div class="figure" style="text-align: center">
+<img src="RomanProvs_files/figure-html/unnamed-chunk-4-.gif" alt="Roman provinces as in year 117 AD" width="50%"><p class="caption">
+Roman provinces as in year 117 AD
+</p>
+</div>
+<div style="margin-bottom:60px;">
+
+</div>
+<!-- Note that the positioning of the dates with `plot.map()` is for a `pdf` output and it may change with another format. 
+Since this function depends on the `"grid"` package and not `"graphics"` you may need `"gridExtra"` for multiple plots rather 
+that `par(mfrow=x,x)`. -->
 <div style="margin-bottom:60px;">
 
 </div>
@@ -329,13 +348,15 @@ rpmcd                                               Caption maps and affiliation
 <a href="#see-also" class="anchor"></a>See also</h3>
 <ul>
 <li>
-<a href="https://sdam-au.github.io/sdam-au/">Social Dynamics and complexity in the Ancient Mediterranean Project</a> <!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) -->
+<a href="https://sdam-au.github.io/sdam/articles/Encoding.html">Re-encoding Greek characters from ‘EDH’ dataset</a> <!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) -->
 </li>
 <li><a href="https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf"><code>"sdam"</code> manual</a></li>
+<li><a href="https://sdam-au.github.io/sdam-au/">Social Dynamics and complexity in the Ancient Mediterranean Project</a></li>
 </ul>
 <div style="margin-bottom:60px;">
 
 </div>
+<p> </p>
 </div>
 </div>
   </div>

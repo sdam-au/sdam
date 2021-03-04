@@ -41,8 +41,7 @@
 
 <meta property="og:title" content="Caption maps and affiliation dates of Roman provinces — rpmcd" />
 <meta property="og:description" content="This is a list with specifications to plot caption maps of 59 Roman provinces (year 117 AD) 
-and Italian regions under emperor Augustus (year 27 BC). Additionally, there is attached 
-an affiliation date for each Roman province." />
+and Italian regions under emperor Augustus (year 27 BC)." />
 
 
 
@@ -74,7 +73,7 @@ an affiliation date for each Roman province." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -88,6 +87,9 @@ an affiliation date for each Roman province." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -112,8 +114,7 @@ an affiliation date for each Roman province." />
 
     <div class="ref-description">
     <p>This is a list with specifications to plot caption maps of 59 Roman provinces (year 117 AD) 
-and Italian regions under emperor Augustus (year 27 BC). Additionally, there is attached 
-an affiliation date for each Roman province.</p>
+and Italian regions under emperor Augustus (year 27 BC).</p>
     </div>
 
     <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"rpmcd"</span>)</pre>
@@ -121,9 +122,10 @@ an affiliation date for each Roman province.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><code>rpmcd</code> is a list of lists for each province or region with two min components, one is 
-a list with shape data for a cartographical map caption, and the second component has a date 
-when the territory became Roman province.</p>
+    <p><code>rpmcd</code> is a list of lists for each province or region with two main components. One component is 
+a list with shape data for a cartographical map caption in different slots, and the second component 
+has an affiliation date for each Roman province or when the territory became Roman province. 
+<code><a href='https://rdrr.io/r/base/names.html'>names(rpmcd)</a></code> has the acronyms according to <code>EDH</code> dataset.</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>https://commons.wikimedia.org/wiki/File:RomanEmpire_117.svg</p>
@@ -131,7 +133,7 @@ when the territory became Roman province.</p>
 <p>https://commons.wikimedia.org/wiki/File:Regioni_dell'Italia_Augustea.svg</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='rpmp.html'>rpmp</a></code>, <code><a href='plot.map.html'>plot.map</a></code>, <code><a href='rp.html'>rp</a></code>, <code><a href='EDH.html'>EDH</a></code></p></div>
+    <div class='dont-index'><p><code>rpmp</code>, <code>plot.map</code>, <code>rp</code>, <code>EDH</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

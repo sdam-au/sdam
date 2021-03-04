@@ -59,9 +59,9 @@ edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), s
 \details{
 This is a convenient function to "extract" \emph{variables} from the \code{EDH} dataset attached 
 to this package. However, the input in \code{x} can be fragments of the \code{EDH} dataset or from 
-the the Epigraphic Database Heidelberg API obtained by functions \code{get.edh()} or \code{get.edhw()}
+the Epigraphic Database Heidelberg API obtained by functions \code{get.edh()} or \code{get.edhw()}
 with the \code{rjson} format. 
-When \code{x} is explicited, it must be at least a list object with a comparable structure to the \code{EDH} dataset. 
+When \code{x} is explicit, it must be at least a list object with a comparable structure to the \code{EDH} dataset. 
 
 
 Through \code{vars} argument and return the output either \code{as} a list with \code{list} 
@@ -77,7 +77,7 @@ Database number or numbers, which are specified by \code{hd_nr}, or else by limi
 the returned output. \code{limit} here is like the \code{limit} argument of function \code{get.edh()}, but in 
 this case the offset can be specified as a sequence. 
 While \code{"limit"} is a faster way to get to entries in the \code{EDH} dataset, argument \code{id} is for 
-refering to precisely one or more \code{hd_nr}s in the Epigraphic Database Heidelberg API.
+referring to precisely one or more \code{hd_nr}s in the Epigraphic Database Heidelberg API.
 
 Component \code{"people"} is a separated list in the \code{EDH} dataset, and it should be considered as 
 a separate case from the rest of the variables. 
@@ -90,7 +90,7 @@ column by column in the data frame and each record has a single row. Finally, ar
 dividing the data in the data frame into groups by `id', which corresponds to the HD number of inscription 
 in the \code{EDH} dataset. 
 
-Ad hoc arguments are \code{clean} to force \code{NA}s, and the \code{EDH} entries \code{province} and code{gender} 
+Ad hoc arguments are the \code{EDH} entries \code{province} and \code{gender} 
 for entering a Roman province and people's gender in \code{x}.
 }
 \value{

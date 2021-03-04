@@ -57,14 +57,13 @@ The \emph{path} to the shared folders where the files are located must be specif
 
 When a file already exists on the remote server, there is a prompt question for overwriting the file when the \code{PUT} method is invoked, and by activating argument \code{force} we can prevent confirmation and replace the file.
 
-In case that accessing the server requires basic authentification, then package "\code{\link{tcltk}}" may be needed as well to input the credentials with a widget prompt, and there is the \code{cred} argument for performing a basic authentification without a prompt. Public folders can be accessed as 
-\code{anonymous} user.
+In case that accessing the server requires basic authentication, then package "\code{\link{tcltk}}" may be needed as well to input the credentials with a widget prompt, and there is the \code{cred} argument for performing a basic authentication without a prompt. Public folders can be accessed as \code{anonymous} user.
 }
 \value{
 Depends on the method, an action on the server site. 
 A \emph{Response} message is returned when the method is \code{PUT} with the url and items \code{Date}, \code{Status}, \code{Content-Type}.
 
-Method \code{POST} is not currently supported at \emph{sciencedata.dk}.
+Currently, method \code{POST} is not supported at \emph{sciencedata.dk}.
 }
 %\references{
 %% ~put references to the literature/web site here ~

@@ -178,11 +178,17 @@ prex(x=get.edh(search="inscriptions", province="Iud"), vars=c("not_before", "not
 
 
 
+### Vignettes
+
+* [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
+* [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
 
 
+<!-- Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/) to find more about the distinct variables in `EDH` dataset 
+and applications with the different functions. -->
 
-### Documentation
 
-Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/) to find more about the distinct variables in `EDH` dataset 
-and applications with the different functions.
+### See also
+* [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+* [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
 

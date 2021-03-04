@@ -2,11 +2,11 @@
 #title: |
 #    | Plotting ancient Roman provinces, 
 #    | dates and regions with "sdam"
-title: Plotting ancient Roman provinces and regions with 'sdam'
+title: Plotting ancient Roman provinces and regions
 shorttitle: "Ancient Roman provinces"
 #subtitle: <h1>dates and regions with "sdam"</h1>
 #date: "`r format(Sys.time(), '%d %B %Y')`"
-date: "22 February 2021" 
+date:  "4 March 2021" 
 author: 
   - name: "Antonio Rivero Ostoic"
     affiliation: <center>CEDHAR, Aarhus University</center>
@@ -39,8 +39,9 @@ h3 {
 
 ```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo=TRUE,error=TRUE)
+knitr::opts_chunk$set(comment = "")
 library("sdam")
-#source("C:/R/AUArts/sdam-rev/bld/plot.map1.r")
+#source("C:/R/AUArts/sdam-rev/bld/plot.map3.r")
 #load(file="C:/R/AUArts/data-epi/edhatt.rda")
 #load(file="C:/R/AUArts/data-epi/edh_ppd.rda")
 ```
@@ -76,12 +77,11 @@ devtools::install_github("sdam-au/sdam")
 devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
 ```
 
-
 <div style="margin-bottom:30px;"> </div>
 
-Load `"sdam"` and check version
 
 ```{r}
+# load package and check version
 library("sdam")
 packageVersion("sdam")
 ```
@@ -97,6 +97,7 @@ information about ancient Roman provinces and regions.
 
 
 ```{r, datasets, echo=TRUE, eval=FALSE}
+# retrieve available datasets
 data(package="sdam")
 ```
 
@@ -137,7 +138,7 @@ corresponding to the province with function `edhw()`.
 
 Cartographical maps of Roman provinces under emperors Trajan and Hadrian (year 117AD), and Italian regions 
 under emperor Augustus (year 27 BC) can be plotted with function `plot.map()`. This is a convenient function that 
-depends on  `"rpmp"`, which ia a dataset that  contains the names and vector shapes of the maps and, if wanted, 
+depends on `"rpmp"`, which is a dataset that contains the names and vector shapes of the maps and, if wanted, 
 it also invokes dataset `"rpmcd"` for including map captions in the plot plus date(s) when such territory ``officially'' 
 became a Roman province.
 
@@ -147,62 +148,42 @@ became a Roman province.
 
 As an example, we start with the first province in `"rp"` that corresponds to `"Ach"` or `"Achaia"`:
 
-```{r, mapprov, echo=TRUE, eval=TRUE}
-# plot cartographical map of Achaia
+```{r, mapprov, echo=TRUE, eval=TRUE, out.width="50%", fig.align="center", fig.cap="year 117 AD"}
+# cartographical map of ancient Achaia
 plot.map(x=names(rp)[1])
 ```
 
-
-
-<div style="margin-bottom:120px;"> </div>
-
-### Italian regions
-
-Similarly, a plot of the cartographical map for the last entry in `"rp"` that is 
-the Italian region `"VeH"` or `"Venetia et Histria (Regio X)"` is obtained as:
-
-
-```{r, mapreg, echo=TRUE, eval=TRUE}
-# plot cartographical map of Venetia et Histria (Regio X)
-plot.map(x=tail(names(rp),1))
-```
-
-
 <div style="margin-bottom:60px;"> </div>
-
 
 
 Not all entries in `"rp"` are currently supported in `plot.map()`, only the territories 
-belonging to the Roman Empire in year 117AD. However, there is also a silhouette of Italy, 
-which is depicted using the plotting function without a caption by setting the `cap` argument 
-into `FALSE`:
+formally belonging to the Roman Empire in year 117AD plus a silhouette of Italy. 
+Below, the Italian peninsula is depicted without a caption by disabling `cap` in the function. 
 
 
-
-```{r, mapita, echo=TRUE, eval=TRUE}
-# plot silhouette of Italy
+```{r, mapita, echo=TRUE, eval=TRUE, out.width="50%", fig.align="center"}
+# silhouette of Italian peninsula
 plot.map(x="Ita", cap=FALSE)
 ```
 
-
-
 <div style="margin-bottom:60px;"> </div>
+
 
 
 ## Dating provinces
 
-Dataset `"rpmcd"` contains the approx. year when the province became part of the Roman Empire and, 
-in the case of regions, a year of consolidation for the Italian peninsula. 
+As with the `"rpmp"` dataset, `"rpmcd"` is another set of data with a list of lists format 
+where the shapes of cartographical maps are recorded in different slots of the first component. 
+Additionally to the plotted map information, the dataset `"rpmcd"` contains in the `provd` 
+component of each entry, the approx. year when the province became part of the Roman Empire. 
+In the case of the regions, such date corresponds to a year of the Italian consolidation. 
 
-As with `"rpmp"` dataset, `"rpmcd"` is another datase with a list of lists where information about map 
-shapes is recorded. Additionally, the years are located in the `provd` component for each entry 
-corresponding to the supported province or region. 
 
 
 ```{r, provd, echo=TRUE, eval=TRUE}
-# 'provd' component of each entry is a date
+# date for each province is in 'provd' component of dataset
 data("rpmcd")
-rpmcd[[1]]$provd
+rpmcd$Ach$provd
 ```
 
 <div style="margin-bottom:30px;"> </div>
@@ -211,19 +192,20 @@ Since all years are located in the second component, we obtain the affiliation d
 for all provinces/regions and recorded this information in object `est` (that stand for established). 
 
 ```{r, est, echo=-3, eval=TRUE}
-# dates in an atomic vector
+# atomic vector with dates in 'rpmcd' 
 est <- unlist(lapply(rpmcd, function (x) x[[2]]), use.names=FALSE)
 est
 ```
 
 <div style="margin-bottom:30px;"> </div>
 
-Then we use a regular expression to remove the text `"(Ita c)"` from the last 11 entries in `est` that 
+Then we use a regular expression to remove the text `" (Ita c)"` from the last 11 entries in `est` that 
 correspond to the Italian regions. In this way, we count only date information in this object for further 
 computation:
 
 
-```{r, est2, echo=-2, eval=TRUE}
+```{r, est2, echo=-3, eval=TRUE}
+# remove text in regions
 est[(length(est)-10):length(est)] <- sub(" [(].*","",tail(est,11))
 est
 ```
@@ -272,38 +254,63 @@ dts(est)
 <div style="margin-bottom:30px;"> </div>
 
 
-In the following example, we omit the 11 Italian regions in object `chron` that records the dates in ascending order 
-when the territory became officially part of the Roman Empire. 
+In the following example, object `chron` records the dates in ascending order when the territory became officially part of the Roman Empire. 
 In case an item has two competing dates, which is here related with the word `or`, then `dts()` takes only the first date. 
 
 
 
-```{r, chron, echo=-2, eval=TRUE}
+```{r, chron, echo=-2, eval=TRUE, size="tiny"}
+# dates in the order of their occurrence
 chron <- sort(dts(est[seq_len(length(est)-11)]))
 chron
 ```
 
-<!-- ```{r chronout, size="tiny", echo=TRUE, eval=FALSE}
-#        272 BC         241 BC         238 BC         238 BC         197 BC         197 BC         197 BC         148 BC        148 BC?         146 BC         133 BC 
-#          -272           -241           -238           -238           -197           -197           -197           -148           -148           -146           -133 
-#        121 BC   74BC or 64BC          74 BC         66 BC?          64 BC          64 BC    58 or 30 BC          51 BC          51 BC          51 BC   32BC or 10AD 
-#          -121            -74            -74            -66            -64            -64            -58            -51            -51            -51            -32 
-#         30 BC          27 BC          27 BC          27 BC          25 BC   16BC or 15BC   16BC or 15BC           6 AD           6 AD           6 AD    9AD or 10AD 
-#           -30            -27            -27            -27            -25            -16            -16              6              6              6              9 
-#   9AD or 10AD          17 AD   42AD or 44AD 42 AD or 44 AD          43 AD          43 AD          46 AD   63AD or 58AD   63AD or 14BC   63AD or 14BC         105 AD 
-#             9             17             42             42             43             43             46             63             63             63            105 
-#        106 AD         114 AD         116 AD         116 AD 
-#           106            114            116            116
-``` -->
+```{r chronout, size="tiny", echo=FALSE, eval=FALSE}
+        272 BC         241 BC         238 BC         238 BC         197 BC         197 BC         197 BC         148 BC        148 BC?         146 BC         133 BC 
+          -272           -241           -238           -238           -197           -197           -197           -148           -148           -146           -133 
+        121 BC   74BC or 64BC          74 BC         66 BC?          64 BC          64 BC    58 or 30 BC          51 BC          51 BC          51 BC   32BC or 10AD 
+          -121            -74            -74            -66            -64            -64            -58            -51            -51            -51            -32 
+         30 BC          27 BC          27 BC          27 BC          25 BC   16BC or 15BC   16BC or 15BC           6 AD           6 AD           6 AD    9AD or 10AD 
+           -30            -27            -27            -27            -25            -16            -16              6              6              6              9 
+   9AD or 10AD          17 AD   42AD or 44AD 42 AD or 44 AD          43 AD          43 AD          46 AD   63AD or 58AD   63AD or 14BC   63AD or 14BC         105 AD 
+             9             17             42             42             43             43             46             63             63             63            105 
+        106 AD         114 AD         116 AD         116 AD 
+           106            114            116            116
+```
 
 <div style="margin-bottom:60px;"> </div>
 
-The code below produces cartographical maps of Roman provinces and regions according to their incorporation to the Roman Empire
+For instance, the plot animation below --with a GIF file produced with the `gifski` package-- shows the Italian regions in year 27 BC.
 
 
-```{r, pchron, echo=TRUE, eval=FALSE}
-for(i in seq_len(length(unique(names(chron))))) 
-	try(plot.map(x=sub(".", "",names(rpmcd)[which(est%in%unique(names(chron))[i])]), date=TRUE))
+```{r, animation.hook="gifski", eval=TRUE, out.width="50%", fig.align="center", fig.cap="Italian regions under Augustus (27 BC)"}
+# exclude 'Ita', first entry in chronology
+reg <- names(rpmcd)[which(est%in%unique(names(chron))[1])][-1]
+	for(j in seq_len(length(reg)))
+		plot.map(x=reg[j], cap=FALSE)
+```
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+### Plotting Roman provinces by date
+In a similar manner as the Italian regions, the code below produces cartographical maps of Roman provinces (as they were in year 117 AD) 
+according to the year of their incorporation to the Roman Empire. 
+
+<div style="margin-bottom:30px;"> </div>
+
+
+```{r, animation.hook="gifski", echo=TRUE, eval=TRUE, out.width="50%", fig.align="center", fig.cap="Roman provinces as in year 117 AD"}
+# discharge oldest date for the Italian regions
+for(i in seq_len(length(unique(names(chron))))[-1]) {
+	# choose provinces according to date
+	prv <- names(rpmcd)[which(est%in%unique(names(chron))[i])]
+	for(j in seq_len(length(prv))) {
+		# plot with customized date color and positioning
+		plot.map(x=prv[j], date=TRUE, fcol2="#FFFF00", xd=.7, yd=.42)
+	}
+}
 ```
 
 
@@ -311,10 +318,10 @@ for(i in seq_len(length(unique(names(chron)))))
 
 
 
-### Note
-Note that the positioning of the dates with `plot.map()` is for a `pdf` output and it may change with another format. 
+
+<!-- Note that the positioning of the dates with `plot.map()` is for a `pdf` output and it may change with another format. 
 Since this function depends on the `"grid"` package and not `"graphics"` you may need `"gridExtra"` for multiple plots rather 
-that `par(mfrow=x,x)`. 
+that `par(mfrow=x,x)`. --> 
 
 
 <div style="margin-bottom:60px;"> </div>
@@ -323,15 +330,16 @@ that `par(mfrow=x,x)`.
 
 ### See also
 
-* [Social Dynamics and complexity in the Ancient Mediterranean Poject](https://sdam-au.github.io/sdam-au/)
+* [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
 <!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) -->
 * [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+* [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
 
 
 
 <div style="margin-bottom:60px;"> </div>
 
-
+&nbsp;
 
 
 

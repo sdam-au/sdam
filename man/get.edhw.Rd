@@ -26,7 +26,7 @@ get.edhw(file = NULL, hd_nr, ...)
 This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg API repository 
 by their HD numbers or, alternatively, a file with a valid format JSON can be specified in \code{file}. 
 
-In any case, the JSON output will be convereted into a list object with the \code{\link[rjson]{rjson}} 
+In any case, the JSON output will be converted into a list object with the \code{\link[rjson]{rjson}} 
 package.
 }
 \value{

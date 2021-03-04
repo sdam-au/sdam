@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -86,6 +86,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -168,13 +171,12 @@ However, it is possible to specify the URL path and subdomain if necessary.</p>
 <p>There are two types of folders in DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> that are <em>personal</em> and <em>shared</em> folders and both requires authentication with credentials.</p>
 <p>The <em>path</em> to the shared folders where the files are located must be specified with the <code>path</code> argument. However, for personal folders is the <code>file</code> argument that includes the path information. Many times, DEiC's <em><a href='https://sciencedata.dk'>https://sciencedata.dk</a></em> places the data on a <em>subdomain</em>, and for some methods like <code>PUT</code> it is required to specify the subdomain as well.</p>
 <p>When a file already exists on the remote server, there is a prompt question for overwriting the file when the <code>PUT</code> method is invoked, and by activating argument <code>force</code> we can prevent confirmation and replace the file.</p>
-<p>In case that accessing the server requires basic authentification, then package "<code>tcltk</code>" may be needed as well to input the credentials with a widget prompt, and there is the <code>cred</code> argument for performing a basic authentification without a prompt. Public folders can be accessed as 
-<code>anonymous</code> user.</p>
+<p>In case that accessing the server requires basic authentication, then package "<code>tcltk</code>" may be needed as well to input the credentials with a widget prompt, and there is the <code>cred</code> argument for performing a basic authentication without a prompt. Public folders can be accessed as <code>anonymous</code> user.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Depends on the method, an action on the server site. 
 A <em>Response</em> message is returned when the method is <code>PUT</code> with the url and items <code>Date</code>, <code>Status</code>, <code>Content-Type</code>.</p>
-<p>Method <code>POST</code> is not currently supported at <em>sciencedata.dk</em>.</p>
+<p>Currently, method <code>POST</code> is not supported at <em>sciencedata.dk</em>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Aliases for this function are <code>sddk()</code> and <code>SDDK()</code>.</p>

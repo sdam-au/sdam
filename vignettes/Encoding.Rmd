@@ -1,0 +1,432 @@
+---
+title: Re-encoding Greek characters from 'EDH' dataset
+#title: Using internal functions of 'sdam'
+#date: "`r format(Sys.time(), '%d %B %Y')`"
+date:  "4 March 2021" 
+author: 
+  - name: "Antonio Rivero Ostoic"
+    affiliation: <center>CEDHAR, Aarhus University</center>
+    email: <center>jaro@cas.au.dk</center>
+output:
+  html_document:
+    theme: united
+    highlight: tango
+    code_folding: none
+    keep_md: true
+  pdf_document: default
+---
+
+<style type="text/css">
+h1, h4 {
+  text-align: center;
+  color: DarkRed;
+}
+h1.title {
+  font-size: 24pt;
+}
+h2 {
+  font-size: 22pt;
+}
+h3 {
+  font-size: 18pt;
+}
+p.output {
+background-color: #FFFFFF;
+padding: 10px;
+border: 1px solid #C0C0C0;
+margin-left: 0px;
+border-radius: 5px;
+font-family: monospace;
+font-size: 11pt;
+font-weight:bold;
+}
+</style>
+
+
+
+
+```{r setup, echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo=TRUE,error=TRUE)
+knitr::opts_chunk$set(comment = "")
+library("sdam")
+source("C:/R/AUArts/Epigraphic/src/cln4.r")
+load(file="C:/R/AUArts/Rmds/data/edhdf.rda")
+```
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 100)
+```
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+### Preliminaries
+`"sdam"` is an `R` package that provides tools for performing analyses within Social Dynamics and complexity in the
+Ancient Mediterranean [SDAM](https://sdam-au.github.io/sdam-au/), which is a research group based at Aarhus University. 
+It allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, 
+visualizing interval time events, compute probabilities of existence of archaeological assemblages and artifacts, and 
+produce similarity matrices by simple matching between these objects. 
+
+
+<!-- ```{r sdam, echo=TRUE, eval=FALSE}
+# remove old version from AU computer
+remove.packages("sdam", lib="C:/Users/AUID/R/win-library/version/")
+# install RC version from Github
+require("devtools")
+devtools::install_github("sdam-au/sdam")
+```
+ -->
+
+
+```{r sdam0, echo=TRUE, eval=FALSE}
+# install RC version from Github
+devtools::install_github("sdam-au/sdam")
+# or the beta version
+devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
+```
+
+
+<div style="margin-bottom:15px;"> </div>
+
+
+```{r}
+# load package and check version
+library("sdam")
+packageVersion("sdam")
+```
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+<!-- 
+```{r, datasets, echo=TRUE, eval=FALSE}
+data(package="sdam")
+```
+```
+Datasets in package `sdam´:
+
+EDH                                                 Epigraphic Database Heidelberg Dataset
+rp                                                  Roman province names and acronyms as in EDH
+rpmp                                                Maps of ancient Roman provinces and Italian regions
+rpmcd                                               Caption maps and affiliation dates of Roman provinces
+```
+<div style="margin-bottom:30px;"> </div>
+For instance, the acronym names of Roman provinces found in the `EDH` dataset 
+-->
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+## EDH people
+`EDH` is a dataset that contains the texts of Latin and Latin-Greek inscriptions of the Roman Empire, which have 
+been retrieved from the [Epigraphic Database Heidelberg API repository](https://edh-www.adw.uni-heidelberg.de/data/api) 
+through routines `get.edh()` and `get.edhw()`. 
+
+The following sample is from the `EDH` dataset where we extract variables with function `edhw()` 
+and record this data in object `edhdf`. 
+
+```{r, edhdf, echo=TRUE, eval=FALSE}
+# people nomen tribus dates provs
+edhdf <- edhw(vars=c("people","not_before","not_after","province_label"), select=c("tribus","nomen"))
+```
+
+<div style="margin-bottom:30px;"> </div>
+
+By default, `edhw()` produces a data frame that in this case has 6 variables:
+
+```{r, edhdfstr, size="tiny"}
+# object list with its structure
+ls.str(edhdf)
+
+```
+
+<div style="margin-bottom:60px;"> </div>
+
+
+
+### People's *nomen* per province
+`"sdam"` comes with a suite of datasets where `"rp"` containes Roman province names and acronyms as in EDH, 
+and we use this data to organize the extracted information per Roman province in `edhdf`. 
+In the following example, each `"rp"` name defines a component of list `edhs` by applying the `province` 
+argument of function `edhw()`. 
+
+
+```{r}
+# load province names and acronyms as in EDH
+data("rp")
+# retrieve data per province
+edhs <- list()
+for(i in names(rp)) {
+	edhs[[length(edhs)+1]] <- edhw(edhdf, province=i)
+}
+names(edhs) <- names(rp)
+```
+
+<div style="margin-bottom:30px;"> </div>
+
+The length of `edhs` is the number of provinces in `rp`.
+
+```{r}
+length(edhs)
+```
+
+<div style="margin-bottom:30px;"> </div>
+
+
+We check for instance the first two entries of `Achaia` whose cartographical map is produced by funtion 
+`plot.map` as in the [Plotting ancient Roman provinces and regions vignette](https://sdam-au.github.io/sdam/articles/RomanProvs.html).
+
+
+```{r, echo=TRUE, eval=FALSE}
+# start at first province
+head(edhs$Ach)
+```
+```{r, echo=FALSE, eval=TRUE}
+utils::head(edhs$Ach)
+```
+
+
+```{r, echo=FALSE, eval=TRUE, out.width="35%", fig.align="center", fig.cap="Roman province of Achaia (117 AD)."}
+plot.map("Ach", cap=FALSE, name=FALSE)
+```
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+### Cleaning EDH *nomen*
+Inscriptions in some provinces were written using Greek characters and, due to encoding and decoding steps in the 
+retrieving of the data (perhaps only specific to MS Windows?), Greek characters are not writen properly with `get.edh()`. 
+<!-- This circumstance can be avoided by activating the `clean` argument in this function that calls the internal function `cln()`. --> 
+
+For instance, we record from `edhs` the last 50 available *nomen* entries of `Achaia` in object `Ach`, and 
+a second step discards the not available information. 
+
+```{r, echo=-4, eval=TRUE}
+# last 50 available entries in Achaia
+Ach <- tail(edhs$Ach$nomen, 50)
+Ach <- Ach[!is.na(Ach)]
+Ach
+```
+```{r, echo=FALSE, eval=FALSE}
+stats::na.omit(utils::tail(edhs$Ach$nomen, 50))
+```
+`r emo::ji("confused")`
+
+<div style="margin-bottom:30px;"> </div>
+
+
+As we can see, these entries in `Ach` have a mixture of Latin extended characters and unicode code points. 
+`cln()` (that stands for "cleaning") is a `sdam` internal function that allows reverting encoding 
+corruption process of Greek texts that we saw in the *nomen* entries of `edhs`.
+
+
+```{r, clnAch, echo=TRUE, eval=FALSE}
+# clean encoding
+cln(Ach)
+```
+
+Which produces these *nomen* with Greek characters:
+
+
+<p class="output">
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[2]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[3]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[4]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[5]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[6]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[7]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[12]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[13]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[15]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[16]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[17]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[18]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[19]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[22]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[24])[[1]])
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[26]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[27]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[38]))
+```
+</p>
+`r emo::ji("smile")`
+
+
+&ast; By default, function `cln()` removes question marks from the input text, 
+unless the `level` argument is set to `0`. It is also possible to raise 
+the cleaning level of the function for other characters in the input such as `*` and `+`. 
+Also note that in the `R` console output asterisks are kept when handling with 
+Greek text (and the above omisions may be due to a `knitr` (or `rmarkdown`) issue. 
+
+
+<!-- for(i in which(!(is.na(utils::tail(edhs$Ach$nomen, 50))))) -->
+<!-- 2  3  4  5  6  7 12 13 15 16 17 18 19 22 24 26 27 38 -->
+
+<!-- "<U+039F><U+1F50><U+03C1><U+03B9><U+03BF><U+03C2>+" -->
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+##### Nomen in Aegyptus
+
+Similarly to `Ach`, entries in `Aegyptus` can be cleaned with `cln()`. 
+
+<div style="margin-bottom:30px;"> </div>
+
+```{r, echo=FALSE, eval=TRUE, out.width="35%", fig.align="center", fig.cap="Roman province of Aegyptus (117 AD)."}
+plot.map("Aeg", cap=FALSE, name=FALSE)
+```
+
+
+<div style="margin-bottom:30px;"> </div>
+
+
+In the following cases from Aegyptus, the entries have both Greek and Latin characters. 
+
+```{r, echo=TRUE, eval=TRUE}
+# record available nomen variable for Aegyptus
+Aeg <- edhs$Aeg$nomen
+Aeg <- Aeg[!is.na(Aeg)]
+```
+```{r, echo=TRUE, eval=TRUE}
+# last five entries
+tail(Aeg, 5)
+```
+
+
+
+<div style="margin-bottom:30px;"> </div>
+
+
+```{r echo=TRUE, eval=FALSE}
+# Greek characters in Aegyptus
+cln(tail(Aeg, 5))
+```
+
+
+<p class="output">
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 5)[1]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 4)[1]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 3)[1]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 2)[1]))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 1)))
+```
+</p>
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+<!-- ```{r echo=TRUE, eval=FALSE}
+cln(tail(Aeg, 3), level=2)
+```
+
+<p class="output">
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 3)[1], level=2))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 2)[1], level=2))
+```
+<br>
+```{r, echo=FALSE, eval=TRUE}
+knitr::asis_output(cln4(utils::tail(Aeg, 1), level=2))
+```
+</p> -->
+
+
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+
+### See also
+
+* [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
+<!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) -->
+* [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+* [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+
+
