@@ -1,6 +1,6 @@
 ## `sdam` v0.4.0
 
-* New functions `plot.map()` and `dts()`. Datasets `rpm` and `rpmcd`
+* New functions `plot.map()`, `dts()` and `cln()`. Datasets `rpm` and `rpmcd`
 
 ## `sdam` v0.3.0
 

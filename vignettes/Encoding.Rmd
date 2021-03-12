@@ -2,7 +2,7 @@
 title: Re-encoding Greek characters from 'EDH' dataset
 #title: Using internal functions of 'sdam'
 #date: "`r format(Sys.time(), '%d %B %Y')`"
-date:  "4 March 2021" 
+date:  "12 March 2021" 
 author: 
   - name: "Antonio Rivero Ostoic"
     affiliation: <center>CEDHAR, Aarhus University</center>
@@ -49,7 +49,6 @@ font-weight:bold;
 knitr::opts_chunk$set(echo=TRUE,error=TRUE)
 knitr::opts_chunk$set(comment = "")
 library("sdam")
-source("C:/R/AUArts/Epigraphic/src/cln4.r")
 load(file="C:/R/AUArts/Rmds/data/edhdf.rda")
 ```
 
@@ -190,7 +189,7 @@ utils::head(edhs$Ach)
 ```
 
 
-```{r, echo=FALSE, eval=TRUE, out.width="35%", fig.align="center", fig.cap="Roman province of Achaia (117 AD)."}
+```{r, echo=FALSE, eval=TRUE, out.width="45%", fig.align="center", fig.cap="Roman province of Achaia (117 AD)."}
 plot.map("Ach", cap=FALSE, name=FALSE)
 ```
 
@@ -236,75 +235,75 @@ Which produces these *nomen* with Greek characters:
 
 <p class="output">
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[2]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[2]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[3]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[3]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[4]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[4]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[5]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[5]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[6]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[6]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[7]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[7]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[12]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[12]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[13]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[13]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[15]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[15]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[16]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[16]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[17]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[17]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[18]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[18]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[19]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[19]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[22]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[22]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[24])[[1]])
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[24])[[1]])
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[26]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[26]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[27]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[27]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(edhs$Ach$nomen, 50)[38]))
+knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[38]))
 ```
 </p>
 `r emo::ji("smile")`
@@ -317,12 +316,6 @@ Also note that in the `R` console output asterisks are kept when handling with
 Greek text (and the above omisions may be due to a `knitr` (or `rmarkdown`) issue. 
 
 
-<!-- for(i in which(!(is.na(utils::tail(edhs$Ach$nomen, 50))))) -->
-<!-- 2  3  4  5  6  7 12 13 15 16 17 18 19 22 24 26 27 38 -->
-
-<!-- "<U+039F><U+1F50><U+03C1><U+03B9><U+03BF><U+03C2>+" -->
-
-
 
 <div style="margin-bottom:60px;"> </div>
 
@@ -333,7 +326,7 @@ Similarly to `Ach`, entries in `Aegyptus` can be cleaned with `cln()`.
 
 <div style="margin-bottom:30px;"> </div>
 
-```{r, echo=FALSE, eval=TRUE, out.width="35%", fig.align="center", fig.cap="Roman province of Aegyptus (117 AD)."}
+```{r, echo=FALSE, eval=TRUE, out.width="45%", fig.align="center", fig.cap="Roman province of Aegyptus (117 AD)."}
 plot.map("Aeg", cap=FALSE, name=FALSE)
 ```
 
@@ -366,23 +359,23 @@ cln(tail(Aeg, 5))
 
 <p class="output">
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 5)[1]))
+knitr::asis_output(cln(utils::tail(Aeg, 5)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 4)[1]))
+knitr::asis_output(cln(utils::tail(Aeg, 4)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 3)[1]))
+knitr::asis_output(cln(utils::tail(Aeg, 3)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 2)[1]))
+knitr::asis_output(cln(utils::tail(Aeg, 2)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 1)))
+knitr::asis_output(cln(utils::tail(Aeg, 1)))
 ```
 </p>
 
@@ -396,15 +389,15 @@ cln(tail(Aeg, 3), level=2)
 
 <p class="output">
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 3)[1], level=2))
+knitr::asis_output(cln(utils::tail(Aeg, 3)[1], level=2))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 2)[1], level=2))
+knitr::asis_output(cln(utils::tail(Aeg, 2)[1], level=2))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln4(utils::tail(Aeg, 1), level=2))
+knitr::asis_output(cln(utils::tail(Aeg, 1), level=2))
 ```
 </p> -->
 

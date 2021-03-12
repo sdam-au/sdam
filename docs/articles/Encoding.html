@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
 </center></a>
       </address>
                   
-            <h4 class="date">4 March 2021</h4>
+            <h4 class="date">12 March 2021</h4>
       
       
       <div class="hidden name"><code>Encoding.Rmd</code></div>
@@ -148,7 +148,7 @@ devtools::install_github("sdam-au/sdam")
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load package and check version</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"sdam"</span>)</pre></body></html></div>
-<pre><code>[1] '0.4.2'</code></pre>
+<pre><code>[1] '0.4.5'</code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
@@ -175,14 +175,14 @@ For instance, the acronym names of Roman provinces found in the `EDH` dataset
 <div id="edh-people" class="section level2">
 <h2 class="hasAnchor">
 <a href="#edh-people" class="anchor"></a>EDH people</h2>
-<p><code>EDH</code> is a dataset that contains the texts of Latin and Latin-Greek inscriptions of the Roman Empire, which have been retrieved from the <a href="https://edh-www.adw.uni-heidelberg.de/data/api">Epigraphic Database Heidelberg API repository</a> through routines <code>get.edh()</code> and <code>get.edhw()</code>.</p>
-<p>The following sample is from the <code>EDH</code> dataset where we extract variables with function <code>edhw()</code> and record this data in object <code>edhdf</code>.</p>
+<p><code>EDH</code> is a dataset that contains the texts of Latin and Latin-Greek inscriptions of the Roman Empire, which have been retrieved from the <a href="https://edh-www.adw.uni-heidelberg.de/data/api">Epigraphic Database Heidelberg API repository</a> through routines <code><a href="../reference/get.edh.html">get.edh()</a></code> and <code><a href="../reference/get.edhw.html">get.edhw()</a></code>.</p>
+<p>The following sample is from the <code>EDH</code> dataset where we extract variables with function <code><a href="../reference/edhw.html">edhw()</a></code> and record this data in object <code>edhdf</code>.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># people nomen tribus dates provs</span>
-<span class="no">edhdf</span> <span class="kw">&lt;-</span> <span class="fu">edhw</span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"people"</span>,<span class="st">"not_before"</span>,<span class="st">"not_after"</span>,<span class="st">"province_label"</span>), <span class="kw">select</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tribus"</span>,<span class="st">"nomen"</span>))</pre></body></html></div>
+<span class="no">edhdf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/edhw.html">edhw</a></span>(<span class="kw">vars</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"people"</span>,<span class="st">"not_before"</span>,<span class="st">"not_after"</span>,<span class="st">"province_label"</span>), <span class="kw">select</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tribus"</span>,<span class="st">"nomen"</span>))</pre></body></html></div>
 <div style="margin-bottom:30px;">
 
 </div>
-<p>By default, <code>edhw()</code> produces a data frame that in this case has 6 variables:</p>
+<p>By default, <code><a href="../reference/edhw.html">edhw()</a></code> produces a data frame that in this case has 6 variables:</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># object list with its structure</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/ls_str.html">ls.str</a></span>(<span class="no">edhdf</span>)</pre></body></html></div>
 <pre><code>id :  chr [1:141507] "HD000001" "HD000001" "HD000001" "HD000002" "HD000003" "HD000004" "HD000004" ...
@@ -197,13 +197,13 @@ tribus :  chr [1:141507] NA NA NA NA "Galeria+" NA NA NA NA NA NA NA NA NA NA NA
 <div id="peoples-nomen-per-province" class="section level3">
 <h3 class="hasAnchor">
 <a href="#peoples-nomen-per-province" class="anchor"></a>People’s <em>nomen</em> per province</h3>
-<p><code>"sdam"</code> comes with a suite of datasets where <code>"rp"</code> containes Roman province names and acronyms as in EDH, and we use this data to organize the extracted information per Roman province in <code>edhdf</code>. In the following example, each <code>"rp"</code> name defines a component of list <code>edhs</code> by applying the <code>province</code> argument of function <code>edhw()</code>.</p>
+<p><code>"sdam"</code> comes with a suite of datasets where <code>"rp"</code> containes Roman province names and acronyms as in EDH, and we use this data to organize the extracted information per Roman province in <code>edhdf</code>. In the following example, each <code>"rp"</code> name defines a component of list <code>edhs</code> by applying the <code>province</code> argument of function <code><a href="../reference/edhw.html">edhw()</a></code>.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># load province names and acronyms as in EDH</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"rp"</span>)
 <span class="co"># retrieve data per province</span>
 <span class="no">edhs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>()
 <span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rp</span>)) {
-    <span class="no">edhs</span><span class="kw">[[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">edhs</span>)+<span class="fl">1</span>]] <span class="kw">&lt;-</span> <span class="fu">edhw</span>(<span class="no">edhdf</span>, <span class="kw">province</span><span class="kw">=</span><span class="no">i</span>)
+    <span class="no">edhs</span><span class="kw">[[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">edhs</span>)+<span class="fl">1</span>]] <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/edhw.html">edhw</a></span>(<span class="no">edhdf</span>, <span class="kw">province</span><span class="kw">=</span><span class="no">i</span>)
 }
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">edhs</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rp</span>)</pre></body></html></div>
 <div style="margin-bottom:30px;">
@@ -226,7 +226,7 @@ tribus :  chr [1:141507] NA NA NA NA "Galeria+" NA NA NA NA NA NA NA NA NA NA NA
 4929 HD002097   &lt;NA&gt;                    &lt;NA&gt;         Achaia       0395      0397
 4930 HD002097   &lt;NA&gt;                    &lt;NA&gt;         Achaia       0395      0397</code></pre>
 <div class="figure" style="text-align: center">
-<img src="Encoding_files/figure-html/unnamed-chunk-6-1.png" alt="Roman province of Achaia (117 AD)." width="35%"><p class="caption">
+<img src="Encoding_files/figure-html/unnamed-chunk-6-1.png" alt="Roman province of Achaia (117 AD)." width="45%"><p class="caption">
 Roman province of Achaia (117 AD).
 </p>
 </div>
@@ -238,7 +238,7 @@ Roman province of Achaia (117 AD).
 <h3 class="hasAnchor">
 <a href="#cleaning-edh-nomen" class="anchor"></a>Cleaning EDH <em>nomen</em>
 </h3>
-<p>Inscriptions in some provinces were written using Greek characters and, due to encoding and decoding steps in the retrieving of the data (perhaps only specific to MS Windows?), Greek characters are not writen properly with <code>get.edh()</code>. <!-- This circumstance can be avoided by activating the `clean` argument in this function that calls the internal function `cln()`. --></p>
+<p>Inscriptions in some provinces were written using Greek characters and, due to encoding and decoding steps in the retrieving of the data (perhaps only specific to MS Windows?), Greek characters are not writen properly with <code><a href="../reference/get.edh.html">get.edh()</a></code>. <!-- This circumstance can be avoided by activating the `clean` argument in this function that calls the internal function `cln()`. --></p>
 <p>For instance, we record from <code>edhs</code> the last 50 available <em>nomen</em> entries of <code>Achaia</code> in object <code>Ach</code>, and a second step discards the not available information.</p>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># last 50 available entries in Achaia</span>
 <span class="no">Ach</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">edhs</span>$<span class="no">Ach</span>$<span class="no">nomen</span>, <span class="fl">50</span>)
@@ -256,30 +256,27 @@ Roman province of Achaia (117 AD).
 <div style="margin-bottom:30px;">
 
 </div>
-<p>As we can see, these entries in <code>Ach</code> have a mixture of Latin extended characters and unicode code points. <code>cln()</code> (that stands for “cleaning”) is a <code>sdam</code> internal function that allows reverting encoding corruption process of Greek texts that we saw in the <em>nomen</em> entries of <code>edhs</code>.</p>
+<p>As we can see, these entries in <code>Ach</code> have a mixture of Latin extended characters and unicode code points. <code><a href="../reference/cln.html">cln()</a></code> (that stands for “cleaning”) is a <code>sdam</code> internal function that allows reverting encoding corruption process of Greek texts that we saw in the <em>nomen</em> entries of <code>edhs</code>.</p>
 <div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># clean encoding</span>
-<span class="fu">cln</span>(<span class="no">Ach</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/cln.html">cln</a></span>(<span class="no">Ach</span>)</pre></body></html></div>
 <p>Which produces these <em>nomen</em> with Greek characters:</p>
 <p class="output">
-Μαρκίλιος <br> Ἰολιος+ <br> Αὐτρνιος <br> Φούλβιος+ <br> Γάλλιος <br> Ἀνχριος <br> [—] <br> Κλαύδιος+<em> <br> Κλαύδιος <br> Κλαύδιος <br> Αὐφιδα <br> Κλαύδιος <br> Κλαύδιος <br> Οὐριος <br> Φλάβιος</em> <br> Κλαύδιος <br> Κλαύδιος <br> Οὐριος+
+Μαρκίλιος <br> Ἰούλιος+ <br> Αὐτρώνιος <br> Φούλβιος+ <br> Γάλλιος <br> Ἀνχάριος <br> [—] <br> Κλαύδιος+<em> <br> Κλαύδιος <br> Κλαύδιος <br> Αὐφιδία <br> Κλαύδιος <br> Κλαύδιος <br> Οὐήριος <br> Φλάβιος</em> <br> Κλαύδιος <br> Κλαύδιος <br> Οὐάριος+
 </p>
 <p>😄</p>
-<p>* By default, function <code>cln()</code> removes question marks from the input text, unless the <code>level</code> argument is set to <code>0</code>. It is also possible to raise the cleaning level of the function for other characters in the input such as <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> and <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>. Also note that in the <code>R</code> console output asterisks are kept when handling with Greek text (and the above omisions may be due to a <code>knitr</code> (or <code>rmarkdown</code>) issue.</p>
-<!-- for(i in which(!(is.na(utils::tail(edhs$Ach$nomen, 50))))) -->
-<!-- 2  3  4  5  6  7 12 13 15 16 17 18 19 22 24 26 27 38 -->
-<!-- "<U+039F><U+1F50><U+03C1><U+03B9><U+03BF><U+03C2>+" -->
+<p>* By default, function <code><a href="../reference/cln.html">cln()</a></code> removes question marks from the input text, unless the <code>level</code> argument is set to <code>0</code>. It is also possible to raise the cleaning level of the function for other characters in the input such as <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> and <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code>. Also note that in the <code>R</code> console output asterisks are kept when handling with Greek text (and the above omisions may be due to a <code>knitr</code> (or <code>rmarkdown</code>) issue.</p>
 <div style="margin-bottom:60px;">
 
 </div>
 <div id="nomen-in-aegyptus" class="section level5">
 <h5 class="hasAnchor">
 <a href="#nomen-in-aegyptus" class="anchor"></a>Nomen in Aegyptus</h5>
-<p>Similarly to <code>Ach</code>, entries in <code>Aegyptus</code> can be cleaned with <code>cln()</code>.</p>
+<p>Similarly to <code>Ach</code>, entries in <code>Aegyptus</code> can be cleaned with <code><a href="../reference/cln.html">cln()</a></code>.</p>
 <div style="margin-bottom:30px;">
 
 </div>
 <div class="figure" style="text-align: center">
-<img src="Encoding_files/figure-html/unnamed-chunk-27-1.png" alt="Roman province of Aegyptus (117 AD)." width="35%"><p class="caption">
+<img src="Encoding_files/figure-html/unnamed-chunk-27-1.png" alt="Roman province of Aegyptus (117 AD)." width="45%"><p class="caption">
 Roman province of Aegyptus (117 AD).
 </p>
 </div>
@@ -301,9 +298,9 @@ Roman province of Aegyptus (117 AD).
 
 </div>
 <div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co"># Greek characters in Aegyptus</span>
-<span class="fu">cln</span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">Aeg</span>, <span class="fl">5</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/cln.html">cln</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">Aeg</span>, <span class="fl">5</span>))</pre></body></html></div>
 <p class="output">
-Caesar / Κασαρ <br> Iulius / Ἰούλιος <br> Sulpicius* / Σουλπκιος <br> Septimius / Σεπτίμιος <br> Ἄννιος / Annius
+Caesar / Καῖσαρ <br> Iulius / Ἰούλιος <br> Sulpicius* / Σουλπίκιος <br> Septimius / Σεπτίμιος <br> Ἄννιος / Annius
 </p>
 <div style="margin-bottom:60px;">
 

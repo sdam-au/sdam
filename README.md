@@ -31,6 +31,8 @@ devtools::install_github("sdam-au/sdam")
 ```r
 ## Load package
 library("sdam")
+packageVersion("sdam")
+#[1] '0.4.5'
 ```
 
 ```r
@@ -41,7 +43,7 @@ data("EDH")
 ```r
 # Look at how many inscriptions?
 length(EDH)
-# [1] 82465
+# [1] 84701
 ```
 
 
@@ -76,7 +78,7 @@ To place Roman inscriptions in Iudaea into a data frame object `iud_df`
 
 ```r
 # extract variables of interes from object `iud` and convert it into a data frame
-iud_df <- edhw(vars=c("not_after", "not_before"), x=iud, as="df")
+iud_df <- edhw(vars=c("not_after", "not_before"), x=iud, as="df", na.rm=FALSE)
 
 # what object types is?
 is(iud_df)
@@ -95,17 +97,17 @@ Now we compare outcomes with these two options.
 
 ```r
 cbind(head(iud_df,10), head(iud_df0,10))
-#         id not_after not_before       id not_after not_before
-#1  HD001461      0130       0071 HD001461      0130       0071
-#2  HD001958      0400       0301 HD001958      0400       0301
-#3  HD001964      0135       0132 HD001964      0135       0132
-#4  HD001973      0130       0071 HD001973      0130       0071
-#5  HD001985      0209       0198 HD001985      0209       0198
-#6  HD002376      0220       0051 HD002376      0220       0051
-#7  HD004074      0036       0026 HD004074      0036       0026
-#8  HD004735      0079       0070 HD004735      0079       0070
-#9  HD006228      0220       0212 HD006228      0220       0212
-#10 HD007068      <NA>       <NA> HD011646      0138       0117
+#         id not_before not_after       id not_before not_after
+#1  HD001461       0071      0130 HD001461       0071      0130
+#2  HD001958       0301      0400 HD001958       0301      0400
+#3  HD001964       0132      0135 HD001964       0132      0135
+#4  HD001973       0071      0130 HD001973       0071      0130
+#5  HD001985       0198      0209 HD001985       0198      0209
+#6  HD002376       0051      0220 HD002376       0051      0220
+#7  HD004074       0026      0036 HD004074       0026      0036
+#8  HD004735       0070      0079 HD004735       0070      0079
+#9  HD006228       0212      0220 HD006228       0212      0220
+#10 HD007068       <NA>      <NA> HD011646       0117      0138
 ```
 
 Hence, not available data is removed in `iud_df0`.

@@ -41,9 +41,6 @@ h3 {
 knitr::opts_chunk$set(echo=TRUE,error=TRUE)
 knitr::opts_chunk$set(comment = "")
 library("sdam")
-#source("C:/R/AUArts/sdam-rev/bld/plot.map3.r")
-#load(file="C:/R/AUArts/data-epi/edhatt.rda")
-#load(file="C:/R/AUArts/data-epi/edh_ppd.rda")
 ```
 
 ```{r set-options, echo=FALSE, cache=FALSE}
@@ -148,7 +145,7 @@ became a Roman province.
 
 As an example, we start with the first province in `"rp"` that corresponds to `"Ach"` or `"Achaia"`:
 
-```{r, mapprov, echo=TRUE, eval=TRUE, out.width="50%", fig.align="center", fig.cap="year 117 AD"}
+```{r, mapprov, echo=TRUE, eval=TRUE, out.width="70%", fig.align="center", fig.cap="year 117 AD"}
 # cartographical map of ancient Achaia
 plot.map(x=names(rp)[1])
 ```
@@ -161,7 +158,7 @@ formally belonging to the Roman Empire in year 117AD plus a silhouette of Italy.
 Below, the Italian peninsula is depicted without a caption by disabling `cap` in the function. 
 
 
-```{r, mapita, echo=TRUE, eval=TRUE, out.width="50%", fig.align="center"}
+```{r, mapita, echo=TRUE, eval=TRUE, out.width="70%", fig.align="center"}
 # silhouette of Italian peninsula
 plot.map(x="Ita", cap=FALSE)
 ```
@@ -283,7 +280,7 @@ chron
 For instance, the plot animation below --with a GIF file produced with the `gifski` package-- shows the Italian regions in year 27 BC.
 
 
-```{r, animation.hook="gifski", eval=TRUE, out.width="50%", fig.align="center", fig.cap="Italian regions under Augustus (27 BC)"}
+```{r, animation.hook="gifski", eval=TRUE, out.width="70%", fig.align="center", fig.cap="Italian regions under Augustus (27 BC)"}
 # exclude 'Ita', first entry in chronology
 reg <- names(rpmcd)[which(est%in%unique(names(chron))[1])][-1]
 	for(j in seq_len(length(reg)))
@@ -301,7 +298,7 @@ according to the year of their incorporation to the Roman Empire.
 <div style="margin-bottom:30px;"> </div>
 
 
-```{r, animation.hook="gifski", echo=TRUE, eval=TRUE, out.width="50%", fig.align="center", fig.cap="Roman provinces as in year 117 AD"}
+```{r, animation.hook="gifski", echo=TRUE, eval=TRUE, out.width="70%", fig.align="center", fig.cap="Roman provinces as in year 117 AD"}
 # discharge oldest date for the Italian regions
 for(i in seq_len(length(unique(names(chron))))[-1]) {
 	# choose provinces according to date

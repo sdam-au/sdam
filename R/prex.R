@@ -3,7 +3,7 @@
 ## FUNCTION prex() to compute probability of existence ot time events
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.8 (22-12-2020)
+## version 0.0.9 (12-03-2021)
 ##
 ## PARAMETERS
 ## x        (list or data frame object from EDH database)
@@ -25,20 +25,22 @@ prex <-
 function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE, 
     weight = 1, DF, out, plot = FALSE, main = NULL, ...) 
 {
-    if (missing(vars) == TRUE) {
+    if (missing(vars) == FALSE) {
+        ifelse(isTRUE(length(vars) == 1L) == TRUE, stop("'vars' needs two values."), 
+            vars <- vars[1:2])
+        taq <- vars[1]
+        tpq <- vars[2]
+    }
+    else {
         ifelse(missing(taq) == TRUE, taq <- "not_before", NA)
         ifelse(missing(tpq) == TRUE, tpq <- "not_after", NA)
         vars <- c(taq, tpq)
     }
-    else {
-        ifelse(isTRUE(length(vars) == 1L) == TRUE, stop("'vars' needs two values."), 
-            vars <- vars[1:2])
-    }
     if (isTRUE(nrow(x) == 0) == TRUE) 
         return(NULL)
     ifelse(is.data.frame(x) == TRUE, xdf <- as.data.frame(x), 
-        xdf <- suppressWarnings(edhw(x = x, vars = c(taq, tpq), 
-            as = "df", ...)))
+        xdf <- suppressWarnings(edhw(x = x, vars = vars, as = "df", 
+            ...)))
     if (missing(out) == FALSE) {
         nb <- as.numeric(as.vector(xdf[, which(colnames(xdf) %in% 
             vars[1])]))
@@ -199,6 +201,7 @@ function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
                 pertmq <- NULL
             }
         }
+        rm(i)
         if (isTRUE(sum(unlist(dur)) < 2) == TRUE) {
             pertq <- c(pertaq, pertpq)
         }

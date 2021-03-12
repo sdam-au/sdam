@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
       </span>
     </div>
 
@@ -86,9 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -183,7 +180,7 @@
 
     <p>This is a convenient function to "extract" <em>variables</em> from the <code>EDH</code> dataset attached 
 to this package. However, the input in <code>x</code> can be fragments of the <code>EDH</code> dataset or from 
-the Epigraphic Database Heidelberg API obtained by functions <code>get.edh()</code> or <code>get.edhw()</code>
+the Epigraphic Database Heidelberg API obtained by functions <code><a href='get.edh.html'>get.edh()</a></code> or <code><a href='get.edhw.html'>get.edhw()</a></code>
 with the <code>rjson</code> format. 
 When <code>x</code> is explicit, it must be at least a list object with a comparable structure to the <code>EDH</code> dataset.</p>
 
@@ -195,7 +192,7 @@ If desired, it is also possible to remove missing data from the output by activa
 work with complete cases.</p>
 <p>Arguments <code>id</code> and <code>limit</code> serve to reduce the returned output either to some Epigraphic 
 Database number or numbers, which are specified by <code>hd_nr</code>, or else by limiting the amount of 
-the returned output. <code>limit</code> here is like the <code>limit</code> argument of function <code>get.edh()</code>, but in 
+the returned output. <code>limit</code> here is like the <code>limit</code> argument of function <code><a href='get.edh.html'>get.edh()</a></code>, but in 
 this case the offset can be specified as a sequence. 
 While <code>"limit"</code> is a faster way to get to entries in the <code>EDH</code> dataset, argument <code>id</code> is for 
 referring to precisely one or more <code>hd_nr</code>s in the Epigraphic Database Heidelberg API.</p>
@@ -222,7 +219,7 @@ for entering a Roman province and people's gender in <code>x</code>.</p>
 in <code>vars</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>get.edh</code>, <code>get.edhw</code>, <code>prex</code>, <code>plot.dates</code>, <code>EDH</code></p></div>
+    <div class='dont-index'><p><code><a href='get.edh.html'>get.edh</a></code>, <code><a href='get.edhw.html'>get.edhw</a></code>, <code><a href='prex.html'>prex</a></code>, <code><a href='plot.dates.html'>plot.dates</a></code>, <code><a href='EDH.html'>EDH</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
