@@ -235,75 +235,75 @@ Which produces these *nomen* with Greek characters:
 
 <p class="output">
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[2]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[2]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[3]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[3]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[4]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[4]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[5]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[5]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[6]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[6]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[7]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[7]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[12]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[12]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[13]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[13]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[15]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[15]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[16]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[16]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[17]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[17]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[18]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[18]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[19]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[19]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[22]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[22]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[24])[[1]])
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[24])[[1]])
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[26]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[26]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[27]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[27]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(edhs$Ach$nomen, 50)[38]))
+knitr::asis_output(cln(utils::tail(as.character(edhs$Ach$nomen), 50)[38]))
 ```
 </p>
 `r emo::ji("smile")`
@@ -359,48 +359,25 @@ cln(tail(Aeg, 5))
 
 <p class="output">
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 5)[1]))
+knitr::asis_output(cln(utils::tail(as.character(Aeg), 5)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 4)[1]))
+knitr::asis_output(cln(utils::tail(as.character(Aeg), 4)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 3)[1]))
+knitr::asis_output(cln(utils::tail(as.character(Aeg), 3)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 2)[1]))
+knitr::asis_output(cln(utils::tail(as.character(Aeg), 2)[1]))
 ```
 <br>
 ```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 1)))
+knitr::asis_output(cln(utils::tail(as.character(Aeg), 1)))
 ```
 </p>
-
-
-<div style="margin-bottom:60px;"> </div>
-
-
-<!-- ```{r echo=TRUE, eval=FALSE}
-cln(tail(Aeg, 3), level=2)
-```
-
-<p class="output">
-```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 3)[1], level=2))
-```
-<br>
-```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 2)[1], level=2))
-```
-<br>
-```{r, echo=FALSE, eval=TRUE}
-knitr::asis_output(cln(utils::tail(Aeg, 1), level=2))
-```
-</p> -->
-
 
 
 

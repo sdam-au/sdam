@@ -9,7 +9,7 @@ A function to plot interval dates.
 }
 \usage{
 plot.dates(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NULL, 
-           xlim = NULL, cex, pch, col, lwd, lty, alpha, ...)
+           xlim = NULL, axes=TRUE, cex, pch, col, lwd, lty, alpha, ...)
 }
 %\method{plot.dates}{plot}(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NULL, 
 %                     xlim = NULL, cex, pch, col, lwd, lty, alpha, \dots)
@@ -44,6 +44,9 @@ plot.dates(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NU
 }
   \item{xlim}{
   plot's \code{x} limits
+}
+  \item{axes}{
+  plot's axes (logical)
 }
   \item{cex}{
   size of \code{pch}

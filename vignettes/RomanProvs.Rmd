@@ -256,7 +256,7 @@ In case an item has two competing dates, which is here related with the word `or
 
 
 
-```{r, chron, echo=-2, eval=TRUE, size="tiny"}
+```{r, chron, echo=-3, eval=TRUE, size="tiny"}
 # dates in the order of their occurrence
 chron <- sort(dts(est[seq_len(length(est)-11)]))
 chron

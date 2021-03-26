@@ -3,7 +3,7 @@
 ## FUNCTION cln() to re-encode Greek characters
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.5 (11-03-2021)
+## version 0.0.7 (26-03-2021)
 ##
 ## PARAMETERS
 ## x        (scalar or vector, with character to clean)
@@ -20,8 +20,8 @@ function (x, level = 1, na.rm)
         TRUE, invisible(NA), x <- Filter(function(y) !all(is.na(y)), 
         x))
     if (isTRUE(length(x) == 1) == TRUE) {
-        x1 <- x
-        if (is.na(x1) == TRUE && isTRUE(flgb == TRUE) == FALSE) 
+        x1 <- as.vector(x)
+        if (is.na(x1) == TRUE) 
             return(x)
         ifelse(isTRUE(level == 0) == TRUE, invisible(NA), x1 <- paste(strsplit(x1, 
             "")[[1]][which(!(strsplit(x1, "")[[1]] == "?"))], 
@@ -43,8 +43,11 @@ function (x, level = 1, na.rm)
         else {
             invisible(NA)
         }
+        gs1 <- which(as.raw(utf8ToInt(x1)) %in% c("e2", "e4", 
+            "f6", "fc"))
         gs2 <- which(as.raw(utf8ToInt(x1)) %in% c("cf", "ce"))
-        gs2a <- which(as.raw(utf8ToInt(x1)) %in% c("c2", "c3"))
+        gs2a <- which(as.raw(utf8ToInt(x1)) %in% c("c2", "c3", 
+            "c4", "c5", "c8"))
         gs3 <- which(as.raw(utf8ToInt(x1)) %in% c("e1"))
         if (isTRUE(length(gs3) > 0) == TRUE) {
             invisible(NA)
@@ -52,14 +55,21 @@ function (x, level = 1, na.rm)
         else {
             gs3 <- NULL
         }
-        if (isTRUE(length(c(gs2, gs2a, gs3)) == 0) == TRUE) 
+        if (isTRUE(length(c(gs1, gs2, gs2a, gs3)) == 0) == TRUE) 
             return(x1)
         xx <- strsplit(rawToChar(as.raw(utf8ToInt(x1))), "")[[1]]
         ifelse(isTRUE(tail(xx, 1) == "+") == TRUE, flgp <- TRUE, 
             flgp <- FALSE)
         ifelse(isTRUE(tail(xx, 1) == "*") == TRUE, flga <- TRUE, 
             flga <- FALSE)
-        gsx <- sort(c(gs2, gs2a, gs3))
+        if (isTRUE(length(c(gs2, gs2a, gs3)) == 0) == TRUE) {
+            res <- paste(xx, collapse = "")
+            names(res) <- x1
+            return(res)
+        }
+        else {
+            gsx <- sort(c(gs2, gs2a, gs3))
+        }
         res <- vector()
         if (isTRUE(min(c(gs2, gs2a, gs3)) > 1) == TRUE) {
             res <- append(res, xx[1:(min(gsx) - 1L)])
@@ -67,6 +77,8 @@ function (x, level = 1, na.rm)
         else {
             invisible(NA)
         }
+        late <- c(c("e2", "e4", "f6", "fc"), c("cf", "ce"), c("c2", 
+            "c3", "c4", "c5", "c8"), c("e1"))
         for (j in seq_along(gsx)) {
             i <- gsx[j]
             if (isTRUE(i %in% c(gs2, gs2a)) == TRUE) {
@@ -239,7 +251,7 @@ function (x, level = 1, na.rm)
             x1 <- unlist(x, use.names = FALSE)
         }
         else {
-            x1 <- x
+            x1 <- as.vector(x)
         }
         n <- length(x1)
         resl <- vector("list", length = n)

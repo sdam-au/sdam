@@ -3,7 +3,7 @@
 ## PLOT FUNCTION plot.dates() to plot time intervals
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.1.0 (11-03-2021)
+## version 0.1.3 (26-03-2021)
 ##
 ## PARAMETERS
 ## x      (data frame object of variables and observations)
@@ -29,13 +29,25 @@
 
 plot.dates <-
 function (x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, 
-    ylab = NULL, xlim = NULL, cex, pch, col, lwd, lty, alpha, 
-    ...) 
+    ylab = NULL, xlim = NULL, axes = TRUE, cex, pch, col, lwd, 
+    lty, alpha, ...) 
 {
     if (is.null(unlist(x)) == TRUE) 
-        stop("\"x\" is NULL")
-    ifelse(missing(taq) == TRUE, taq <- "not_before", NA)
-    ifelse(missing(tpq) == TRUE, tpq <- "not_after", NA)
+        stop("'x' is NULL")
+    if (missing(taq) == TRUE) {
+        taq <- "not_before"
+    }
+    else {
+        ifelse(isTRUE(taq %in% names(x)) == FALSE, stop("\"taq\" not found in 'x'."), 
+            NA)
+    }
+    if (missing(tpq) == TRUE) {
+        tpq <- "not_after"
+    }
+    else {
+        ifelse(isTRUE(tpq %in% names(x)) == FALSE, stop("\"tpq\" not found in 'x'."), 
+            NA)
+    }
     ifelse(missing(lwd) == TRUE, lwd <- 1L, NA)
     ifelse(missing(lty) == TRUE, lty <- 1L, NA)
     ifelse(missing(cex) == TRUE, cex <- 1L, NA)
@@ -61,8 +73,10 @@ function (x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL,
         taq)]))
     na <- as.numeric(as.vector(xdates[, which(colnames(xdates) %in% 
         tpq)]))
-    ifelse(isTRUE(length(nb) == 0) == TRUE, nb <- na, NA)
-    ifelse(isTRUE(length(na) == 0) == TRUE, na <- nb, NA)
+    ifelse(isTRUE(length(nb) == 0) == TRUE || all(is.na(nb)) == 
+        TRUE, nb <- na, NA)
+    ifelse(isTRUE(length(na) == 0) == TRUE || all(is.na(na)) == 
+        TRUE, na <- nb, NA)
     if (missing(out) == FALSE) {
         outliert <- c(tail(sort(boxplot(nb, plot = FALSE)$out), 
             out[1]), tail(sort(boxplot(na, plot = FALSE)$out), 
@@ -97,14 +111,21 @@ function (x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL,
         }
     }
     else {
-        ifelse(is.null(unlist(xdates$id)) == FALSE, ID <- as.numeric(sub("[[:alpha:]]+", 
-            "", xdates$id)), ID <- seq_len(length(xdates$id)))
+        if (is.data.frame(x) == TRUE) {
+            ifelse(is.null(xdates$id) == FALSE, ID <- as.numeric(sub("[[:alpha:]]+", 
+                "", xdates$id)), ID <- as.numeric(seq_along(rownames(x))))
+        }
+        else {
+            ifelse(is.null(unlist(xdates$id)) == FALSE, ID <- as.numeric(sub("[[:alpha:]]+", 
+                "", xdates$id)), ID <- seq_len(length(xdates$id)))
+        }
     }
     if (isTRUE(length(c(na, nb)) > 0) == TRUE) {
         warns = -1
         if (is.null(file) == TRUE) {
             plot(nb, ID, pch = pch, cex = cex, col = col[1], 
-                xlab = xlab, ylab = ylab, xlim = years, main = main)
+                xlab = xlab, ylab = ylab, xlim = xlim, main = main, 
+                axes = axes, ...)
             points(na, ID, pch = pch, cex = cex, col = col[2])
             segments(nb, ID, na, ID, lwd = lwd, lty = lty, col = grDevices::adjustcolor(col[3], 
                 alpha = alpha))
@@ -112,7 +133,8 @@ function (x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL,
         else {
             pdf(file)
             plot(nb, ID, pch = pch, cex = cex, col = col[1], 
-                xlab = xlab, ylab = ylab, xlim = years, main = main)
+                xlab = xlab, ylab = ylab, xlim = xlim, main = main, 
+                axes = axes, ...)
             points(na, ID, pch = pch, cex = cex, col = col[2])
             segments(nb, ID, na, ID, lwd = lwd, lty = lty, col = grDevices::adjustcolor(col[3], 
                 alpha = alpha))

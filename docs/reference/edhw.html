@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -86,6 +86,32 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.4.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.3.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.1.x details</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -113,7 +139,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>edhw</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>vars</span>, <span class='kw'>as</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"df"</span>, <span class='st'>"list"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"long"</span>, <span class='st'>"wide"</span>, <span class='st'>"narrow"</span>), <span class='no'>split</span>,
-     <span class='no'>select</span>, <span class='no'>addID</span>, <span class='no'>limit</span>, <span class='no'>id</span>, <span class='no'>na.rm</span>, <span class='no'>clean</span>, <span class='no'>province</span>, <span class='no'>gender</span>, <span class='no'>...</span>)</pre>
+     <span class='no'>select</span>, <span class='no'>addID</span>, <span class='no'>limit</span>, <span class='no'>id</span>, <span class='no'>na.rm</span>, <span class='no'>ldf</span>, <span class='no'>province</span>, <span class='no'>gender</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -124,7 +150,7 @@
     </tr>
     <tr>
       <th>vars</th>
-      <td><p>Variables of interest from <code>x</code>; if <code>x=NULL</code>, the entire <code>EDH</code> dataset is taken. (optional, vector)</p></td>
+      <td><p>Variables of interest from <code>x</code>; if <code>x=NULL</code>, the entire <code>EDH</code> dataset is taken (optional, vector)</p></td>
     </tr>
     <tr>
       <th>as</th>
@@ -159,12 +185,12 @@
       <td><p>Remove entries with NA data? (optional and logical)</p></td>
     </tr>
     <tr>
-      <th>clean</th>
-      <td><p>clean list object <code>x</code>? (optional and logical)</p></td>
+      <th>ldf</th>
+      <td><p>is <code>x</code> list of data frames? (optional and logical)</p></td>
     </tr>
     <tr>
       <th>province</th>
-      <td><p>Roman province (character, optional)</p></td>
+      <td><p>Roman province in <code>EDH</code> (character, optional)</p></td>
     </tr>
     <tr>
       <th>gender</th>
@@ -178,15 +204,14 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This is a convenient function to "extract" <em>variables</em> from the <code>EDH</code> dataset attached 
+    <p>This is a convenient function to extract <em>variables</em> from the <code>EDH</code> dataset attached 
 to this package. However, the input in <code>x</code> can be fragments of the <code>EDH</code> dataset or from 
 the Epigraphic Database Heidelberg API obtained by functions <code><a href='get.edh.html'>get.edh()</a></code> or <code><a href='get.edhw.html'>get.edhw()</a></code>
-with the <code>rjson</code> format. 
+with the <code>"rjson"</code> format, or transformed data organized, for example, by provinces. 
 When <code>x</code> is explicit, it must be at least a list object with a comparable structure to the <code>EDH</code> dataset.</p>
-
 <p>Through <code>vars</code> argument and return the output either <code>as</code> a list with <code>list</code> 
-or a data frame with <code>df</code>, and when argument <code>vars</code> is missing, then all entries in <code>x</code> are taken.</p>
-<p>By default, a list object is returned, with or without an ID identification provided by the <code>addID</code> argument. 
+or a data frame with <code>df</code>. In case argument <code>vars</code> is missing, then all entries in <code>x</code> are taken.</p>
+<p>By default, a list object is returned, with or without an `ID' identification provided by the <code>addID</code> argument. 
 When the input list is converted into a data frame, the ordering of the variables is given alphabetically. 
 If desired, it is also possible to remove missing data from the output by activating <code>na.rm</code> and 
 work with complete cases.</p>
@@ -194,7 +219,7 @@ work with complete cases.</p>
 Database number or numbers, which are specified by <code>hd_nr</code>, or else by limiting the amount of 
 the returned output. <code>limit</code> here is like the <code>limit</code> argument of function <code><a href='get.edh.html'>get.edh()</a></code>, but in 
 this case the offset can be specified as a sequence. 
-While <code>"limit"</code> is a faster way to get to entries in the <code>EDH</code> dataset, argument <code>id</code> is for 
+While <code>limit</code> is a faster way to get to entries in the <code>EDH</code> dataset, argument <code>id</code> is for 
 referring to precisely one or more <code>hd_nr</code>s in the Epigraphic Database Heidelberg API.</p>
 <p>Component <code>"people"</code> is a separated list in the <code>EDH</code> dataset, and it should be considered as 
 a separate case from the rest of the variables. 
@@ -206,7 +231,8 @@ column by column in the data frame and each record has a single row. Finally, ar
 dividing the data in the data frame into groups by `id', which corresponds to the HD number of inscription 
 in the <code>EDH</code> dataset.</p>
 <p>Ad hoc arguments are the <code>EDH</code> entries <code>province</code> and <code>gender</code> 
-for entering a Roman province and people's gender in <code>x</code>.</p>
+for entering a Roman province and people's gender in <code>x</code>, and <code>ldf</code> when the input is a created list 
+of data frames that is organized by variables rather than by records as in <code>EDH</code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list or a data frame with a long or wide format, depending on the arguments inputs.</p>
@@ -215,7 +241,7 @@ for entering a Roman province and people's gender in <code>x</code>.</p>
     <p>https://edh-www.adw.uni-heidelberg.de/data/api</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>When choosing <code>"people"</code> variables with <code>select</code> with a data frame output, then this attribute should be chosen 
+    <p>When choosing <code>"people"</code> variables with <code>select</code> with a data frame output, then this attribute must be 
 in <code>vars</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -226,11 +252,11 @@ in <code>vars</code>.</p>
 <span class='co'>## load data set</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>EDH</span>)
 
-<span class='co'>## make a list for three variables in 'EDH' (default)</span>
-<span class='fu'>edhw</span>(<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"type_of_inscription"</span>, <span class='st'>"not_after"</span>, <span class='st'>"not_before"</span>) )
+<span class='co'>## make a list for three variables in 'EDH' for first 4 entries</span>
+<span class='fu'>edhw</span>(<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"type_of_inscription"</span>, <span class='st'>"not_after"</span>, <span class='st'>"not_before"</span>), <span class='kw'>limit</span><span class='kw'>=</span><span class='fl'>4</span> )
 
-<span class='co'>## select 'gender' from 'people' in 'EDH' (default)</span>
-<span class='fu'>edhw</span>(<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"people"</span>, <span class='st'>"not_after"</span>, <span class='st'>"not_before"</span>), <span class='kw'>select</span><span class='kw'>=</span><span class='st'>"gender"</span> )}</div></pre>
+<span class='co'>## as before, but also select 'gender' from 'people'</span>
+<span class='fu'>edhw</span>(<span class='kw'>vars</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"people"</span>, <span class='st'>"not_after"</span>, <span class='st'>"not_before"</span>), <span class='kw'>select</span><span class='kw'>=</span><span class='st'>"gender"</span>, <span class='kw'>limit</span><span class='kw'>=</span><span class='fl'>4</span> )}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

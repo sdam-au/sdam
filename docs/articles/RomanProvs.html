@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plotting ancient Roman provinces and regions • sdam</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -61,8 +61,31 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.4.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.3.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.1.x details</a>
+    </li>
+    <li class="divider">
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -132,7 +155,7 @@ h3 {
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load package and check version</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"sdam"</span>)</pre></body></html></div>
-<pre><code>[1] '0.4.5'</code></pre>
+<pre><code>[1] '0.4.9'</code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
@@ -278,23 +301,23 @@ year 117 AD
 </div>
 <p>In the following example, object <code>chron</code> records the dates in ascending order when the territory became officially part of the Roman Empire. In case an item has two competing dates, which is here related with the word <code>or</code>, then <code><a href="../reference/dts.html">dts()</a></code> takes only the first date.</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># dates in the order of their occurrence</span>
-<span class="no">chron</span></pre></body></html></div>
+<span class="no">chron</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="../reference/dts.html">dts</a></span>(<span class="no">est</span>[<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)-<span class="fl">11</span>)]))</pre></body></html></div>
 <pre><code>        272 BC         241 BC         238 BC         238 BC         197 BC         197 BC 
           -272           -241           -238           -238           -197           -197 
         197 BC         148 BC        148 BC?         146 BC         133 BC         121 BC 
           -197           -148           -148           -146           -133           -121 
-  74BC or 64BC          74 BC         66 BC?          64 BC          64 BC          51 BC 
-           -74            -74            -66            -64            -64            -51 
-         51 BC          51 BC   32BC or 10AD          30 BC          27 BC          27 BC 
-           -51            -51            -32            -30            -27            -27 
-         27 BC          25 BC   16BC or 15BC   16BC or 15BC           6 AD           6 AD 
-           -27            -25            -16            -16              6              6 
-          6 AD    9AD or 10AD    9AD or 10AD          17 AD   42AD or 44AD 42 AD or 44 AD 
-             6              9              9             17             42             42 
-         43 AD          43 AD          46 AD   63AD or 58AD   63AD or 14BC   63AD or 14BC 
-            43             43             46             63             63             63 
-        105 AD         106 AD         114 AD         116 AD         116 AD 
-           105            106            114            116            116 </code></pre>
+  74BC or 64BC          74 BC         66 BC?          64 BC          64 BC       58-30 BC 
+           -74            -74            -66            -64            -64            -58 
+         51 BC          51 BC          51 BC   32BC or 10AD          30 BC          27 BC 
+           -51            -51            -51            -32            -30            -27 
+         27 BC          27 BC          25 BC   16BC or 15BC   16BC or 15BC           6 AD 
+           -27            -27            -25            -16            -16              6 
+          6 AD           6 AD    9AD or 10AD    9AD or 10AD          17 AD   42AD or 44AD 
+             6              6              9              9             17             42 
+42 AD or 44 AD          43 AD          43 AD          46 AD   63AD or 58AD   63AD or 14BC 
+            42             43             43             46             63             63 
+  63AD or 14BC         105 AD         106 AD         114 AD         116 AD         116 AD 
+            63            105            106            114            116            116 </code></pre>
 <div style="margin-bottom:60px;">
 
 </div>

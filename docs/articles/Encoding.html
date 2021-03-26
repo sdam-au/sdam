@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Re-encoding Greek characters from 'EDH' dataset • sdam</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -61,8 +61,31 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.4.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.3.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.1.x details</a>
+    </li>
+    <li class="divider">
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -148,7 +171,7 @@ devtools::install_github("sdam-au/sdam")
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load package and check version</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"sdam"</span>)</pre></body></html></div>
-<pre><code>[1] '0.4.5'</code></pre>
+<pre><code>[1] '0.4.9'</code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
@@ -243,15 +266,16 @@ Roman province of Achaia (117 AD).
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># last 50 available entries in Achaia</span>
 <span class="no">Ach</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">edhs</span>$<span class="no">Ach</span>$<span class="no">nomen</span>, <span class="fl">50</span>)
 <span class="no">Ach</span> <span class="kw">&lt;-</span> <span class="no">Ach</span>[!<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">Ach</span>)]</pre></body></html></div>
-<pre><code> [1] "Î&lt;U+009C&gt;Î±Ï\201Îºá½·Î»Î¹Î¿Ï&lt;U+0082&gt;"             "á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;+"                     
- [3] "Î&lt;U+0091&gt;á½\220Ï&lt;U+0084&gt;Ï\201á½½Î½Î¹Î¿Ï&lt;U+0082&gt;"     "Î¦Î¿á½»Î»Î²Î¹Î¿Ï&lt;U+0082&gt;+"                    
- [5] "Î&lt;U+0093&gt;á½±Î»Î»Î¹Î¿Ï&lt;U+0082&gt;"                 "á¼&lt;U+0088&gt;Î½Ï&lt;U+0087&gt;á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;"      
- [7] "[---]"                                         "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;+*"            
- [9] "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"               "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"              
-[11] "Î&lt;U+0091&gt;á½\220Ï&lt;U+0086&gt;Î¹Î´á½·Î±"                "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"              
-[13] "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"               "Î&lt;U+009F&gt;á½\220á½µÏ\201Î¹Î¿Ï&lt;U+0082&gt;"               
-[15] "Î¦Î»á½±Î²Î¹Î¿Ï&lt;U+0082&gt;*"                       "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"              
-[17] "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"               "Î&lt;U+009F&gt;á½\220á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;+"              </code></pre>
+<pre><code> [1] Î&lt;U+009C&gt;Î±Ï\201Îºá½·Î»Î¹Î¿Ï&lt;U+0082&gt;             á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;+                     
+ [3] Î&lt;U+0091&gt;á½\220Ï&lt;U+0084&gt;Ï\201á½½Î½Î¹Î¿Ï&lt;U+0082&gt;     Î¦Î¿á½»Î»Î²Î¹Î¿Ï&lt;U+0082&gt;+                    
+ [5] Î&lt;U+0093&gt;á½±Î»Î»Î¹Î¿Ï&lt;U+0082&gt;                 á¼&lt;U+0088&gt;Î½Ï&lt;U+0087&gt;á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;      
+ [7] [---]                                         Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;+*            
+ [9] Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;               Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;              
+[11] Î&lt;U+0091&gt;á½\220Ï&lt;U+0086&gt;Î¹Î´á½·Î±                Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;              
+[13] Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;               Î&lt;U+009F&gt;á½\220á½µÏ\201Î¹Î¿Ï&lt;U+0082&gt;               
+[15] Î¦Î»á½±Î²Î¹Î¿Ï&lt;U+0082&gt;*                       Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;              
+[17] Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;               Î&lt;U+009F&gt;á½\220á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;+              
+11526 Levels: - -- - / - [----]ius [----]scius [----]us [---] [---] Caesar+ ... Zontius?</code></pre>
 <p>😕</p>
 <div style="margin-bottom:30px;">
 
@@ -289,11 +313,12 @@ Roman province of Aegyptus (117 AD).
 <span class="no">Aeg</span> <span class="kw">&lt;-</span> <span class="no">Aeg</span>[!<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">Aeg</span>)]</pre></body></html></div>
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># last five entries</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">Aeg</span>, <span class="fl">5</span>)</pre></body></html></div>
-<pre><code>[1] "Caesar / Î&lt;U+009A&gt;Î±á¿&lt;U+0096&gt;Ï&lt;U+0083&gt;Î±Ï\201"      
-[2] "Iulius / á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;"                 
-[3] "Sulpicius* / Î£Î¿Ï&lt;U+0085&gt;Î»Ï&lt;U+0080&gt;á½·ÎºÎ¹Î¿Ï&lt;U+0082&gt;"
-[4] "Septimius / Î£ÎµÏ&lt;U+0080&gt;Ï&lt;U+0084&gt;á½·Î¼Î¹Î¿Ï&lt;U+0082&gt;"
-[5] "á¼&lt;U+008C&gt;Î½Î½Î¹Î¿Ï&lt;U+0082&gt; / Annius"             </code></pre>
+<pre><code>[1] Caesar / Î&lt;U+009A&gt;Î±á¿&lt;U+0096&gt;Ï&lt;U+0083&gt;Î±Ï\201      
+[2] Iulius / á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;                 
+[3] Sulpicius* / Î£Î¿Ï&lt;U+0085&gt;Î»Ï&lt;U+0080&gt;á½·ÎºÎ¹Î¿Ï&lt;U+0082&gt;
+[4] Septimius / Î£ÎµÏ&lt;U+0080&gt;Ï&lt;U+0084&gt;á½·Î¼Î¹Î¿Ï&lt;U+0082&gt;
+[5] á¼&lt;U+008C&gt;Î½Î½Î¹Î¿Ï&lt;U+0082&gt; / Annius             
+11526 Levels: - -- - / - [----]ius [----]scius [----]us [---] [---] Caesar+ ... Zontius?</code></pre>
 <div style="margin-bottom:30px;">
 
 </div>
@@ -302,20 +327,6 @@ Roman province of Aegyptus (117 AD).
 <p class="output">
 Caesar / Καῖσαρ <br> Iulius / Ἰούλιος <br> Sulpicius* / Σουλπίκιος <br> Septimius / Σεπτίμιος <br> Ἄννιος / Annius
 </p>
-<div style="margin-bottom:60px;">
-
-</div>
-<!-- ```{r echo=TRUE, eval=FALSE}
-cln(tail(Aeg, 3), level=2)
-```
-
-<p class="output">
-Sulpicius / Σουλπίκιος
-<br>
-Septimius / Σεπτίμιος
-<br>
-Ἄννιος / Annius
-</p> -->
 <div style="margin-bottom:60px;">
 
 </div>

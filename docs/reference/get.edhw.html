@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
       </span>
     </div>
 
@@ -86,6 +86,32 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.4.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.3.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.2.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.1.x details</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -210,40 +236,40 @@ package.</p>
 #&gt; 
 #&gt; [[1]]$people
 #&gt; [[1]]$people[[1]]
-#&gt; [[1]]$people[[1]]$name
-#&gt; [1] "Noniae P.f. Optatae"
-#&gt; 
 #&gt; [[1]]$people[[1]]$cognomen
 #&gt; [1] "Optata"
-#&gt; 
-#&gt; [[1]]$people[[1]]$nomen
-#&gt; [1] "Nonia"
 #&gt; 
 #&gt; [[1]]$people[[1]]$gender
 #&gt; [1] "female"
 #&gt; 
+#&gt; [[1]]$people[[1]]$nomen
+#&gt; [1] "Nonia"
+#&gt; 
 #&gt; [[1]]$people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
+#&gt; [[1]]$people[[1]]$name
+#&gt; [1] "Noniae P.f. Optatae"
+#&gt; 
 #&gt; 
 #&gt; [[1]]$people[[2]]
-#&gt; [[1]]$people[[2]]$person_id
-#&gt; [1] "2"
+#&gt; [[1]]$people[[2]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; [[1]]$people[[2]]$nomen
 #&gt; [1] "Iulius"
 #&gt; 
-#&gt; [[1]]$people[[2]]$gender
-#&gt; [1] "male"
-#&gt; 
 #&gt; [[1]]$people[[2]]$cognomen
 #&gt; [1] "Artemo"
 #&gt; 
-#&gt; [[1]]$people[[2]]$name
-#&gt; [1] "C. Iulio Artemoni"
-#&gt; 
 #&gt; [[1]]$people[[2]]$praenomen
 #&gt; [1] "C."
+#&gt; 
+#&gt; [[1]]$people[[2]]$person_id
+#&gt; [1] "2"
+#&gt; 
+#&gt; [[1]]$people[[2]]$name
+#&gt; [1] "C. Iulio Artemoni"
 #&gt; 
 #&gt; 
 #&gt; [[1]]$people[[3]]
@@ -256,14 +282,14 @@ package.</p>
 #&gt; [[1]]$people[[3]]$praenomen
 #&gt; [1] "C."
 #&gt; 
-#&gt; [[1]]$people[[3]]$gender
-#&gt; [1] "male"
+#&gt; [[1]]$people[[3]]$cognomen
+#&gt; [1] "Optatus"
 #&gt; 
 #&gt; [[1]]$people[[3]]$nomen
 #&gt; [1] "Iulius"
 #&gt; 
-#&gt; [[1]]$people[[3]]$cognomen
-#&gt; [1] "Optatus"
+#&gt; [[1]]$people[[3]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -355,23 +381,23 @@ package.</p>
 #&gt; [[2]]$people[[1]]$gender
 #&gt; [1] "male"
 #&gt; 
-#&gt; [[2]]$people[[1]]$praenomen
-#&gt; [1] "C."
-#&gt; 
-#&gt; [[2]]$people[[1]]$name
-#&gt; [1] "C. Sextius Paris"
+#&gt; [[2]]$people[[1]]$cognomen
+#&gt; [1] "Paris"
 #&gt; 
 #&gt; [[2]]$people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
+#&gt; [[2]]$people[[1]]$name
+#&gt; [1] "C. Sextius Paris"
+#&gt; 
 #&gt; [[2]]$people[[1]]$`age: years`
 #&gt; [1] "70"
 #&gt; 
-#&gt; [[2]]$people[[1]]$cognomen
-#&gt; [1] "Paris"
-#&gt; 
 #&gt; [[2]]$people[[1]]$nomen
 #&gt; [1] "Sextius"
+#&gt; 
+#&gt; [[2]]$people[[1]]$praenomen
+#&gt; [1] "C."
 #&gt; 
 #&gt; 
 #&gt; 
@@ -460,29 +486,29 @@ package.</p>
 #&gt; 
 #&gt; [[3]]$people
 #&gt; [[3]]$people[[1]]
-#&gt; [[3]]$people[[1]]$nomen
-#&gt; [1] "Mummius+"
-#&gt; 
-#&gt; [[3]]$people[[1]]$name
-#&gt; [1] "[P. M]ummio [P.f. Gal. S]isenna[e Rutiliano]"
-#&gt; 
 #&gt; [[3]]$people[[1]]$cognomen
 #&gt; [1] "Sisenna+ Rutilianus+"
 #&gt; 
-#&gt; [[3]]$people[[1]]$status
-#&gt; [1] "senatorial order"
+#&gt; [[3]]$people[[1]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; [[3]]$people[[1]]$tribus
 #&gt; [1] "Galeria+"
 #&gt; 
+#&gt; [[3]]$people[[1]]$name
+#&gt; [1] "[P. M]ummio [P.f. Gal. S]isenna[e Rutiliano]"
+#&gt; 
 #&gt; [[3]]$people[[1]]$person_id
 #&gt; [1] "1"
+#&gt; 
+#&gt; [[3]]$people[[1]]$status
+#&gt; [1] "senatorial order"
 #&gt; 
 #&gt; [[3]]$people[[1]]$praenomen
 #&gt; [1] "P.+"
 #&gt; 
-#&gt; [[3]]$people[[1]]$gender
-#&gt; [1] "male"
+#&gt; [[3]]$people[[1]]$nomen
+#&gt; [1] "Mummius+"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -580,34 +606,34 @@ package.</p>
 #&gt; 
 #&gt; [[4]]$people
 #&gt; [[4]]$people[[1]]
-#&gt; [[4]]$people[[1]]$status
-#&gt; [1] "slaves"
-#&gt; 
-#&gt; [[4]]$people[[1]]$cognomen
-#&gt; [1] "[---]"
-#&gt; 
 #&gt; [[4]]$people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
 #&gt; [[4]]$people[[1]]$name
 #&gt; [1] "[---?]AV(?)S(?)[---]L(?)L(?)A M. Porci Nigri ser."
 #&gt; 
+#&gt; [[4]]$people[[1]]$status
+#&gt; [1] "slaves"
+#&gt; 
+#&gt; [[4]]$people[[1]]$cognomen
+#&gt; [1] "[---]"
+#&gt; 
 #&gt; 
 #&gt; [[4]]$people[[2]]
-#&gt; [[4]]$people[[2]]$name
-#&gt; [1] "M. Porci Nigri"
-#&gt; 
-#&gt; [[4]]$people[[2]]$cognomen
-#&gt; [1] "Niger"
-#&gt; 
 #&gt; [[4]]$people[[2]]$person_id
 #&gt; [1] "2"
+#&gt; 
+#&gt; [[4]]$people[[2]]$nomen
+#&gt; [1] "Porcius"
 #&gt; 
 #&gt; [[4]]$people[[2]]$praenomen
 #&gt; [1] "M."
 #&gt; 
-#&gt; [[4]]$people[[2]]$nomen
-#&gt; [1] "Porcius"
+#&gt; [[4]]$people[[2]]$cognomen
+#&gt; [1] "Niger"
+#&gt; 
+#&gt; [[4]]$people[[2]]$name
+#&gt; [1] "M. Porci Nigri"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -696,34 +722,34 @@ package.</p>
 #&gt; 
 #&gt; [[5]]$people
 #&gt; [[5]]$people[[1]]
+#&gt; [[5]]$people[[1]]$status
+#&gt; [1] "freedmen / freedwomen"
+#&gt; 
+#&gt; [[5]]$people[[1]]$gender
+#&gt; [1] "male"
+#&gt; 
 #&gt; [[5]]$people[[1]]$nomen
 #&gt; [1] "[---]"
 #&gt; 
 #&gt; [[5]]$people[[1]]$name
 #&gt; [1] "[---]l. Successus"
 #&gt; 
-#&gt; [[5]]$people[[1]]$person_id
-#&gt; [1] "1"
-#&gt; 
-#&gt; [[5]]$people[[1]]$gender
-#&gt; [1] "male"
-#&gt; 
-#&gt; [[5]]$people[[1]]$status
-#&gt; [1] "freedmen / freedwomen"
-#&gt; 
 #&gt; [[5]]$people[[1]]$cognomen
 #&gt; [1] "Successus"
+#&gt; 
+#&gt; [[5]]$people[[1]]$person_id
+#&gt; [1] "1"
 #&gt; 
 #&gt; [[5]]$people[[1]]$praenomen
 #&gt; [1] "[-]"
 #&gt; 
 #&gt; 
 #&gt; [[5]]$people[[2]]
-#&gt; [[5]]$people[[2]]$gender
-#&gt; [1] "male"
-#&gt; 
 #&gt; [[5]]$people[[2]]$cognomen
 #&gt; [1] "Irenaeus"
+#&gt; 
+#&gt; [[5]]$people[[2]]$person_id
+#&gt; [1] "2"
 #&gt; 
 #&gt; [[5]]$people[[2]]$praenomen
 #&gt; [1] "[-]"
@@ -731,34 +757,34 @@ package.</p>
 #&gt; [[5]]$people[[2]]$status
 #&gt; [1] "freedmen / freedwomen"
 #&gt; 
-#&gt; [[5]]$people[[2]]$nomen
-#&gt; [1] "[---]"
-#&gt; 
 #&gt; [[5]]$people[[2]]$name
 #&gt; [1] "[---] L.l. Irenaeus"
 #&gt; 
-#&gt; [[5]]$people[[2]]$person_id
-#&gt; [1] "2"
+#&gt; [[5]]$people[[2]]$nomen
+#&gt; [1] "[---]"
+#&gt; 
+#&gt; [[5]]$people[[2]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; 
 #&gt; [[5]]$people[[3]]
-#&gt; [[5]]$people[[3]]$cognomen
-#&gt; [1] "Tyche"
-#&gt; 
-#&gt; [[5]]$people[[3]]$status
-#&gt; [1] "freedmen / freedwomen"
-#&gt; 
-#&gt; [[5]]$people[[3]]$gender
-#&gt; [1] "female"
-#&gt; 
 #&gt; [[5]]$people[[3]]$person_id
 #&gt; [1] "3"
+#&gt; 
+#&gt; [[5]]$people[[3]]$cognomen
+#&gt; [1] "Tyche"
 #&gt; 
 #&gt; [[5]]$people[[3]]$name
 #&gt; [1] "[---] C.l. Tyches(!)"
 #&gt; 
+#&gt; [[5]]$people[[3]]$gender
+#&gt; [1] "female"
+#&gt; 
 #&gt; [[5]]$people[[3]]$nomen
 #&gt; [1] "[---]"
+#&gt; 
+#&gt; [[5]]$people[[3]]$status
+#&gt; [1] "freedmen / freedwomen"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -847,20 +873,20 @@ package.</p>
 #&gt; 
 #&gt; [[6]]$people
 #&gt; [[6]]$people[[1]]
-#&gt; [[6]]$people[[1]]$cognomen
-#&gt; [1] "Auctina+"
-#&gt; 
-#&gt; [[6]]$people[[1]]$name
-#&gt; [1] "Memmia Auctin[a]"
-#&gt; 
-#&gt; [[6]]$people[[1]]$gender
-#&gt; [1] "female"
-#&gt; 
 #&gt; [[6]]$people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
 #&gt; [[6]]$people[[1]]$`age: years`
 #&gt; [1] "70"
+#&gt; 
+#&gt; [[6]]$people[[1]]$cognomen
+#&gt; [1] "Auctina+"
+#&gt; 
+#&gt; [[6]]$people[[1]]$gender
+#&gt; [1] "female"
+#&gt; 
+#&gt; [[6]]$people[[1]]$name
+#&gt; [1] "Memmia Auctin[a]"
 #&gt; 
 #&gt; [[6]]$people[[1]]$nomen
 #&gt; [1] "Memmia"
@@ -958,17 +984,17 @@ package.</p>
 #&gt; 
 #&gt; [[7]]$people
 #&gt; [[7]]$people[[1]]
-#&gt; [[7]]$people[[1]]$nomen
-#&gt; [1] "Clodia"
+#&gt; [[7]]$people[[1]]$gender
+#&gt; [1] "female"
 #&gt; 
 #&gt; [[7]]$people[[1]]$name
 #&gt; [1] "Clodia M.f."
 #&gt; 
+#&gt; [[7]]$people[[1]]$nomen
+#&gt; [1] "Clodia"
+#&gt; 
 #&gt; [[7]]$people[[1]]$person_id
 #&gt; [1] "1"
-#&gt; 
-#&gt; [[7]]$people[[1]]$gender
-#&gt; [1] "female"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -1061,20 +1087,8 @@ package.</p>
 #&gt; 
 #&gt; [[8]]$people
 #&gt; [[8]]$people[[1]]
-#&gt; [[8]]$people[[1]]$status
-#&gt; [1] "freedmen / freedwomen"
-#&gt; 
-#&gt; [[8]]$people[[1]]$cognomen
-#&gt; [1] "Xanthus"
-#&gt; 
-#&gt; [[8]]$people[[1]]$occupation
-#&gt; [1] "data available"
-#&gt; 
 #&gt; [[8]]$people[[1]]$praenomen
 #&gt; [1] "C."
-#&gt; 
-#&gt; [[8]]$people[[1]]$gender
-#&gt; [1] "male"
 #&gt; 
 #&gt; [[8]]$people[[1]]$nomen
 #&gt; [1] "Satrius"
@@ -1082,19 +1096,25 @@ package.</p>
 #&gt; [[8]]$people[[1]]$person_id
 #&gt; [1] "1"
 #&gt; 
+#&gt; [[8]]$people[[1]]$cognomen
+#&gt; [1] "Xanthus"
+#&gt; 
+#&gt; [[8]]$people[[1]]$occupation
+#&gt; [1] "data available"
+#&gt; 
+#&gt; [[8]]$people[[1]]$gender
+#&gt; [1] "male"
+#&gt; 
 #&gt; [[8]]$people[[1]]$name
 #&gt; [1] "C. Satrio Xantho C. Satri Rufi lib."
 #&gt; 
+#&gt; [[8]]$people[[1]]$status
+#&gt; [1] "freedmen / freedwomen"
+#&gt; 
 #&gt; 
 #&gt; [[8]]$people[[2]]
-#&gt; [[8]]$people[[2]]$cognomen
-#&gt; [1] "Rufus"
-#&gt; 
-#&gt; [[8]]$people[[2]]$person_id
-#&gt; [1] "2"
-#&gt; 
-#&gt; [[8]]$people[[2]]$nomen
-#&gt; [1] "Satrius"
+#&gt; [[8]]$people[[2]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; [[8]]$people[[2]]$name
 #&gt; [1] "C. Satri Rufi"
@@ -1102,28 +1122,34 @@ package.</p>
 #&gt; [[8]]$people[[2]]$praenomen
 #&gt; [1] "C."
 #&gt; 
-#&gt; [[8]]$people[[2]]$gender
-#&gt; [1] "male"
+#&gt; [[8]]$people[[2]]$cognomen
+#&gt; [1] "Rufus"
+#&gt; 
+#&gt; [[8]]$people[[2]]$nomen
+#&gt; [1] "Satrius"
+#&gt; 
+#&gt; [[8]]$people[[2]]$person_id
+#&gt; [1] "2"
 #&gt; 
 #&gt; 
 #&gt; [[8]]$people[[3]]
-#&gt; [[8]]$people[[3]]$status
-#&gt; [1] "freedmen / freedwomen?"
-#&gt; 
-#&gt; [[8]]$people[[3]]$cognomen
-#&gt; [1] "Nymphidia"
-#&gt; 
-#&gt; [[8]]$people[[3]]$nomen
-#&gt; [1] "Satria"
+#&gt; [[8]]$people[[3]]$gender
+#&gt; [1] "female"
 #&gt; 
 #&gt; [[8]]$people[[3]]$person_id
 #&gt; [1] "3"
 #&gt; 
+#&gt; [[8]]$people[[3]]$nomen
+#&gt; [1] "Satria"
+#&gt; 
+#&gt; [[8]]$people[[3]]$cognomen
+#&gt; [1] "Nymphidia"
+#&gt; 
 #&gt; [[8]]$people[[3]]$name
 #&gt; [1] "Satria Nymphidia"
 #&gt; 
-#&gt; [[8]]$people[[3]]$gender
-#&gt; [1] "female"
+#&gt; [[8]]$people[[3]]$status
+#&gt; [1] "freedmen / freedwomen?"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -1304,31 +1330,28 @@ package.</p>
 #&gt; 
 #&gt; [[10]]$people
 #&gt; [[10]]$people[[1]]
+#&gt; [[10]]$people[[1]]$gender
+#&gt; [1] "male"
+#&gt; 
 #&gt; [[10]]$people[[1]]$person_id
 #&gt; [1] "1"
-#&gt; 
-#&gt; [[10]]$people[[1]]$name
-#&gt; [1] "L. Asini Poli"
 #&gt; 
 #&gt; [[10]]$people[[1]]$praenomen
 #&gt; [1] "L."
 #&gt; 
-#&gt; [[10]]$people[[1]]$gender
-#&gt; [1] "male"
-#&gt; 
-#&gt; [[10]]$people[[1]]$nomen
-#&gt; [1] "Asinius"
+#&gt; [[10]]$people[[1]]$name
+#&gt; [1] "L. Asini Poli"
 #&gt; 
 #&gt; [[10]]$people[[1]]$cognomen
 #&gt; [1] "Polus"
 #&gt; 
+#&gt; [[10]]$people[[1]]$nomen
+#&gt; [1] "Asinius"
+#&gt; 
 #&gt; 
 #&gt; [[10]]$people[[2]]
-#&gt; [[10]]$people[[2]]$person_id
-#&gt; [1] "2"
-#&gt; 
-#&gt; [[10]]$people[[2]]$status
-#&gt; [1] "freedmen / freedwomen"
+#&gt; [[10]]$people[[2]]$cognomen
+#&gt; [1] "Secundus"
 #&gt; 
 #&gt; [[10]]$people[[2]]$name
 #&gt; [1] "Secundus"
@@ -1336,25 +1359,28 @@ package.</p>
 #&gt; [[10]]$people[[2]]$gender
 #&gt; [1] "male"
 #&gt; 
-#&gt; [[10]]$people[[2]]$cognomen
-#&gt; [1] "Secundus"
+#&gt; [[10]]$people[[2]]$person_id
+#&gt; [1] "2"
+#&gt; 
+#&gt; [[10]]$people[[2]]$status
+#&gt; [1] "freedmen / freedwomen"
 #&gt; 
 #&gt; 
 #&gt; [[10]]$people[[3]]
-#&gt; [[10]]$people[[3]]$person_id
-#&gt; [1] "3"
-#&gt; 
-#&gt; [[10]]$people[[3]]$status
-#&gt; [1] "freedmen / freedwomen"
-#&gt; 
 #&gt; [[10]]$people[[3]]$name
+#&gt; [1] "Orphaeus"
+#&gt; 
+#&gt; [[10]]$people[[3]]$cognomen
 #&gt; [1] "Orphaeus"
 #&gt; 
 #&gt; [[10]]$people[[3]]$gender
 #&gt; [1] "male"
 #&gt; 
-#&gt; [[10]]$people[[3]]$cognomen
-#&gt; [1] "Orphaeus"
+#&gt; [[10]]$people[[3]]$status
+#&gt; [1] "freedmen / freedwomen"
+#&gt; 
+#&gt; [[10]]$people[[3]]$person_id
+#&gt; [1] "3"
 #&gt; 
 #&gt; 
 #&gt; 

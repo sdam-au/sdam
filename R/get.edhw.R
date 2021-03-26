@@ -3,7 +3,7 @@
 ## WRAPPER FUNCTION get.edhw() to retrieve records from EDH database API
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.2.1 (12-11-2020)
+## version 0.2.2 (18-03-2021)
 ##
 ## PARAMETERS
 ## file  (optional file with a JSON format)
@@ -26,5 +26,6 @@ function (file = NULL, hd_nr, ...)
         }
         rm(i)
     }
-    return(smpl)
+    ifelse(missing(hd_nr) == FALSE && isTRUE(length(hd_nr) == 
+        1) == TRUE, return(smpl[[1]]), return(smpl))
 }
