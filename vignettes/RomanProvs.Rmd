@@ -6,7 +6,7 @@ title: Plotting ancient Roman provinces and regions
 shorttitle: "Ancient Roman provinces"
 #subtitle: <h1>dates and regions with "sdam"</h1>
 #date: "`r format(Sys.time(), '%d %B %Y')`"
-date:  "4 March 2021" 
+date:  "19 April 2021" 
 author: 
   - name: "Antonio Rivero Ostoic"
     affiliation: <center>CEDHAR, Aarhus University</center>
@@ -52,14 +52,14 @@ options(width = 100)
 
 
 ### Preliminaries
-`"sdam"` is an `R` package that provides tools for performing analyses within Social Dynamics and complexity in the
+`"sdam"` is an `R` package that provides tools for performing analyses within social dynamics and complexity in the
 Ancient Mediterranean [SDAM](https://sdam-au.github.io/sdam-au/), which is a research group based at Aarhus University. 
-It allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, 
+This package allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, 
 visualizing interval time events, compute probabilities of existence of archaeological assemblages and artifacts, and 
 produce similarity matrices by simple matching between these objects. 
 
-After uninstalling an old version of the `"sdam"` package from local machine and running as administrator, 
-install version 0.4.0 from a GitHub repository. 
+*Note* After uninstalling an old version of the `"sdam"` package from local machine and running as administrator, 
+install latest version from a GitHub repository. 
 
 ```{r sdam, echo=TRUE, eval=FALSE}
 # remove old version from AU computer
@@ -102,7 +102,7 @@ data(package="sdam")
 ```
 Datasets in package ‘sdam’:
 
-EDH                                                 Epigraphic Database Heidelberg Dataset
+EDH                                                 Epigraphic Database Heidelberg dataset
 rp                                                  Roman province names and acronyms as in EDH
 rpmp                                                Maps of ancient Roman provinces and Italian regions
 rpmcd                                               Caption maps and affiliation dates of Roman provinces
@@ -113,7 +113,7 @@ rpmcd                                               Caption maps and affiliation
 <div style="margin-bottom:30px;"> </div>
 
 For instance, the acronym names of Roman provinces found in the `EDH` dataset 
-can be obtained from `"rp"` as following:
+can be obtained from `"rp"` dataset as following:
 
 
 ```{r}
@@ -136,7 +136,7 @@ corresponding to the province with function `edhw()`.
 Cartographical maps of Roman provinces under emperors Trajan and Hadrian (year 117AD), and Italian regions 
 under emperor Augustus (year 27 BC) can be plotted with function `plot.map()`. This is a convenient function that 
 depends on `"rpmp"`, which is a dataset that contains the names and vector shapes of the maps and, if wanted, 
-it also invokes dataset `"rpmcd"` for including map captions in the plot plus date(s) when such territory ``officially'' 
+it also invokes dataset `"rpmcd"` for including map captions in the plot, ands date when such territory officially 
 became a Roman province.
 
 
@@ -186,10 +186,10 @@ rpmcd$Ach$provd
 <div style="margin-bottom:30px;"> </div>
 
 Since all years are located in the second component, we obtain the affiliation dates from these components 
-for all provinces/regions and recorded this information in object `est` (that stand for established). 
+for all provinces/regions and recorded this information in object `est`. 
 
 ```{r, est, echo=-3, eval=TRUE}
-# atomic vector with dates in 'rpmcd' 
+# atomic vector with established dates in 'rpmcd' 
 est <- unlist(lapply(rpmcd, function (x) x[[2]]), use.names=FALSE)
 est
 ```
@@ -224,7 +224,7 @@ est
 ### Treating dates
 
 `"sdam"` has the internal function `dts()` to convert dates having characters into a numerical format, which may 
-be useful in further computations like when working with chronologies. 
+be useful in further computations like when computing with chronologies. 
 
 ```{r, dts, echo=TRUE, eval=FALSE}
 # dates internal function
@@ -277,7 +277,7 @@ chron
 
 <div style="margin-bottom:60px;"> </div>
 
-For instance, the plot animation below --with a GIF file produced with the `gifski` package-- shows the Italian regions in year 27 BC.
+For instance, the plot animation below, which is a GIF file produced with the `gifski` package, shows the Italian regions in year 27 BC.
 
 
 ```{r, animation.hook="gifski", eval=TRUE, out.width="70%", fig.align="center", fig.cap="Italian regions under Augustus (27 BC)"}
@@ -292,7 +292,7 @@ reg <- names(rpmcd)[which(est%in%unique(names(chron))[1])][-1]
 
 
 ### Plotting Roman provinces by date
-In a similar manner as the Italian regions, the code below produces cartographical maps of Roman provinces (as they were in year 117 AD) 
+As with the Italian regions, the code below produces cartographical maps of Roman provinces (as they were in year 117 AD) 
 according to the year of their incorporation to the Roman Empire. 
 
 <div style="margin-bottom:30px;"> </div>

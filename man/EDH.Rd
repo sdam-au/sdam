@@ -2,7 +2,7 @@
 \docType{data}
 \alias{EDH}
 \title{
-Epigraphic Database Heidelberg Dataset
+Epigraphic Database Heidelberg dataset
 }
 \description{
 This is a data set retrieved from the Epigraphic Database Heidelberg API repository. 

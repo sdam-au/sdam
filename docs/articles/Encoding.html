@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -69,6 +69,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.5.x details</a>
+    </li>
     <li>
       <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.4.x details</a>
     </li>
@@ -171,7 +174,7 @@ devtools::install_github("sdam-au/sdam")
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load package and check version</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"sdam"</span>)</pre></body></html></div>
-<pre><code>[1] '0.4.9'</code></pre>
+<pre><code>[1] '0.5.0'</code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
@@ -266,16 +269,15 @@ Roman province of Achaia (117 AD).
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># last 50 available entries in Achaia</span>
 <span class="no">Ach</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">edhs</span>$<span class="no">Ach</span>$<span class="no">nomen</span>, <span class="fl">50</span>)
 <span class="no">Ach</span> <span class="kw">&lt;-</span> <span class="no">Ach</span>[!<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">Ach</span>)]</pre></body></html></div>
-<pre><code> [1] Î&lt;U+009C&gt;Î±Ï\201Îºá½·Î»Î¹Î¿Ï&lt;U+0082&gt;             á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;+                     
- [3] Î&lt;U+0091&gt;á½\220Ï&lt;U+0084&gt;Ï\201á½½Î½Î¹Î¿Ï&lt;U+0082&gt;     Î¦Î¿á½»Î»Î²Î¹Î¿Ï&lt;U+0082&gt;+                    
- [5] Î&lt;U+0093&gt;á½±Î»Î»Î¹Î¿Ï&lt;U+0082&gt;                 á¼&lt;U+0088&gt;Î½Ï&lt;U+0087&gt;á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;      
- [7] [---]                                         Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;+*            
- [9] Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;               Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;              
-[11] Î&lt;U+0091&gt;á½\220Ï&lt;U+0086&gt;Î¹Î´á½·Î±                Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;              
-[13] Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;               Î&lt;U+009F&gt;á½\220á½µÏ\201Î¹Î¿Ï&lt;U+0082&gt;               
-[15] Î¦Î»á½±Î²Î¹Î¿Ï&lt;U+0082&gt;*                       Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;              
-[17] Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;               Î&lt;U+009F&gt;á½\220á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;+              
-11526 Levels: - -- - / - [----]ius [----]scius [----]us [---] [---] Caesar+ ... Zontius?</code></pre>
+<pre><code> [1] "Î&lt;U+009C&gt;Î±Ï\201Îºá½·Î»Î¹Î¿Ï&lt;U+0082&gt;"             "á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;+"                     
+ [3] "Î&lt;U+0091&gt;á½\220Ï&lt;U+0084&gt;Ï\201á½½Î½Î¹Î¿Ï&lt;U+0082&gt;"     "Î¦Î¿á½»Î»Î²Î¹Î¿Ï&lt;U+0082&gt;+"                    
+ [5] "Î&lt;U+0093&gt;á½±Î»Î»Î¹Î¿Ï&lt;U+0082&gt;"                 "á¼&lt;U+0088&gt;Î½Ï&lt;U+0087&gt;á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;"      
+ [7] "[---]"                                         "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;+*"            
+ [9] "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"               "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"              
+[11] "Î&lt;U+0091&gt;á½\220Ï&lt;U+0086&gt;Î¹Î´á½·Î±"                "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"              
+[13] "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"               "Î&lt;U+009F&gt;á½\220á½µÏ\201Î¹Î¿Ï&lt;U+0082&gt;"               
+[15] "Î¦Î»á½±Î²Î¹Î¿Ï&lt;U+0082&gt;*"                       "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"              
+[17] "Î&lt;U+009A&gt;Î»Î±á½»Î´Î¹Î¿Ï&lt;U+0082&gt;"               "Î&lt;U+009F&gt;á½\220á½±Ï\201Î¹Î¿Ï&lt;U+0082&gt;+"              </code></pre>
 <p>😕</p>
 <div style="margin-bottom:30px;">
 
@@ -313,12 +315,11 @@ Roman province of Aegyptus (117 AD).
 <span class="no">Aeg</span> <span class="kw">&lt;-</span> <span class="no">Aeg</span>[!<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="no">Aeg</span>)]</pre></body></html></div>
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># last five entries</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">Aeg</span>, <span class="fl">5</span>)</pre></body></html></div>
-<pre><code>[1] Caesar / Î&lt;U+009A&gt;Î±á¿&lt;U+0096&gt;Ï&lt;U+0083&gt;Î±Ï\201      
-[2] Iulius / á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;                 
-[3] Sulpicius* / Î£Î¿Ï&lt;U+0085&gt;Î»Ï&lt;U+0080&gt;á½·ÎºÎ¹Î¿Ï&lt;U+0082&gt;
-[4] Septimius / Î£ÎµÏ&lt;U+0080&gt;Ï&lt;U+0084&gt;á½·Î¼Î¹Î¿Ï&lt;U+0082&gt;
-[5] á¼&lt;U+008C&gt;Î½Î½Î¹Î¿Ï&lt;U+0082&gt; / Annius             
-11526 Levels: - -- - / - [----]ius [----]scius [----]us [---] [---] Caesar+ ... Zontius?</code></pre>
+<pre><code>[1] "Caesar / Î&lt;U+009A&gt;Î±á¿&lt;U+0096&gt;Ï&lt;U+0083&gt;Î±Ï\201"      
+[2] "Iulius / á¼¸Î¿á½»Î»Î¹Î¿Ï&lt;U+0082&gt;"                 
+[3] "Sulpicius* / Î£Î¿Ï&lt;U+0085&gt;Î»Ï&lt;U+0080&gt;á½·ÎºÎ¹Î¿Ï&lt;U+0082&gt;"
+[4] "Septimius / Î£ÎµÏ&lt;U+0080&gt;Ï&lt;U+0084&gt;á½·Î¼Î¹Î¿Ï&lt;U+0082&gt;"
+[5] "á¼&lt;U+008C&gt;Î½Î½Î¹Î¿Ï&lt;U+0082&gt; / Annius"             </code></pre>
 <div style="margin-bottom:30px;">
 
 </div>

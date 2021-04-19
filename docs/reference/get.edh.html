@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -89,12 +89,30 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
+    </li>
+    <li>
+      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     News
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.5.x details</a>
+    </li>
     <li>
       <a href="https://mplex.github.io/cedhar/sdam.html#news">sdam 0.4.x details</a>
     </li>
@@ -395,14 +413,14 @@ and <code>"bibliography"</code> may be implemented in the future.</p>
 #&gt; 
 #&gt; $people
 #&gt; $people[[1]]
-#&gt; $people[[1]]$person_id
-#&gt; [1] "1"
+#&gt; $people[[1]]$gender
+#&gt; [1] "male"
 #&gt; 
 #&gt; $people[[1]]$name
 #&gt; [1] "[Nerva Traianus]"
 #&gt; 
-#&gt; $people[[1]]$gender
-#&gt; [1] "male"
+#&gt; $people[[1]]$person_id
+#&gt; [1] "1"
 #&gt; 
 #&gt; $people[[1]]$cognomen
 #&gt; [1] "Nerva+ Traianus+"

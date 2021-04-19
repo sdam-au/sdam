@@ -3,7 +3,7 @@
 ## FUNCTION edhw() to manipulate data API from the EDH dataset
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.9.5 (26-03-2021)
+## version 0.9.7 (31-03-2021)
 ##
 ## PARAMETERS
 ##
@@ -20,7 +20,7 @@
 ## limit    (integers, vector with nr records limit in output, offset supported)
 ## id       (integer or character, select only hd_nr records)
 ## na.rm    (logical, remove data entries with <NA>?)
-## ldf      (optional, is x a list of data frames?)
+## ldf      (optional and experimental, is x a list of data frames?)
 ## province (optional, choose EDH province)
 ## gender   (optional, choose EDH gender)
 ##
@@ -49,7 +49,6 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
     else if (isTRUE(is.data.frame(x) == TRUE) == TRUE || isTRUE(is.data.frame(x[[1]]) == 
         TRUE) == TRUE) {
         flgdf <- TRUE
-        class(x) <- NULL
         if (isTRUE(is.data.frame(x[[1]]) == TRUE) == TRUE) {
             warning("\"x\" is list of data frames.")
             x <- data.frame(lapply(do.call("rbind.data.frame", 
@@ -191,10 +190,12 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
             NA
         }
     }
+    ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
+        TRUE, na.rm <- FALSE, na.rm <- TRUE)
     if (missing(addID) == FALSE && isTRUE(addID == FALSE) == 
         TRUE) {
-        if ((missing(na.rm) == FALSE && isTRUE(na.rm == TRUE) == 
-            TRUE) | (match.arg(as) == "df")) {
+        if ((isTRUE(na.rm == TRUE) == TRUE) | (match.arg(as) == 
+            "df")) {
             warning("'addID' is set to TRUE for 'na.rm' and data frame output.")
             addID <- TRUE
         }
@@ -331,13 +332,11 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                 return(NULL)
             }
             else {
-                ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
-                  TRUE) == TRUE, valids <- which(as.vector(unlist(lapply(edhl, 
+                ifelse(isTRUE(na.rm == TRUE) == TRUE, valids <- which(as.vector(unlist(lapply(edhl, 
                   function(x) {
                     all(is.na(as.vector(unlist(x))))
                   }))) == FALSE), valids <- seq_len(length(edhl)))
-                if (missing(na.rm) == FALSE && isTRUE(na.rm == 
-                  TRUE) == TRUE) {
+                if (isTRUE(na.rm == TRUE) == TRUE) {
                   edhrm <- lapply(lapply(lapply(edhl, names), 
                     is.na), all)
                   if (isTRUE(length(which(unlist(edhrm) == TRUE)) > 
@@ -511,8 +510,7 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                     NA)
                 }
                 if (isTRUE(vars == "people") == TRUE) {
-                  if (missing(na.rm) == FALSE && isTRUE(na.rm == 
-                    TRUE) == TRUE) {
+                  if (isTRUE(na.rm == TRUE) == TRUE) {
                     if (isTRUE(nrow(xdfp) != 0) == TRUE && isTRUE(addID == 
                       TRUE) == TRUE) {
                       xdfp <- xdfp[which(apply(xdfp[2:ncol(xdfp)], 
@@ -538,12 +536,15 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                   if (isTRUE(length(edhlq) > 0) == TRUE) {
                     if (isTRUE(length(valids) == 1) == TRUE) {
                       edhlq <- as.list(unlist(edhlq[valids]))
+                      xdfq <- data.frame(matrix(unlist(edhlq), 
+                        ncol = length(edhlq), byrow = TRUE))
+                      colnames(xdfq) <- names(edhlq)
                     }
                     else {
                       edhlq <- edhlq[valids]
+                      xdfq <- as.data.frame(do.call(rbind, lapply(edhlq, 
+                        `length<-`, max(lengths(edhlq)))), stringsAsFactors = TRUE)
                     }
-                    xdfq <- as.data.frame(do.call(rbind, lapply(edhlq, 
-                      `length<-`, max(lengths(edhlq)))), stringsAsFactors = TRUE)
                     if (isTRUE(addID == TRUE) == TRUE) {
                       xdfq$id <- ids[valids]
                       ifelse(isTRUE(flgv == TRUE) == TRUE, xdfq <- rev(xdfq), 
@@ -565,8 +566,7 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                     tmpxdfq$id <- sub("[[:alpha:]]+", "", xdfq$id)
                     xdfpq <- merge(tmpxdfp, tmpxdfq, all = TRUE)
                     xdfpq$id <- paste("HD", xdfpq$id, sep = "")
-                    if (missing(na.rm) == FALSE && isTRUE(na.rm == 
-                      TRUE) == TRUE) {
+                    if (isTRUE(na.rm == TRUE) == TRUE) {
                       if (isTRUE(nrow(xdfpq) != 0) == TRUE && 
                         isTRUE(addID == TRUE) == TRUE) {
                         xdfpq <- xdfpq[which(apply(xdfpq[2:ncol(xdfpq)], 
@@ -581,8 +581,7 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                     else {
                       NA
                     }
-                    if (missing(na.rm) == FALSE && isTRUE(na.rm == 
-                      TRUE) == TRUE) {
+                    if (isTRUE(na.rm == TRUE) == TRUE) {
                       if (isTRUE(nrow(xdfq) != 0) == TRUE && 
                         isTRUE(addID == TRUE) == TRUE) {
                         xdfq <- xdfq[which(apply(xdfq[2:ncol(xdfq)], 
@@ -845,8 +844,7 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
             TRUE) {
             if (missing(select) == FALSE) {
                 edhlp <- lapply(edhlm, `[`, "people")
-                if (missing(na.rm) == FALSE && isTRUE(na.rm == 
-                  TRUE) == TRUE) {
+                if (isTRUE(na.rm == TRUE) == TRUE) {
                   ids <- ids[which(as.vector(unlist(lapply(edhlp, 
                     function(x) all(is.na(x))))) == FALSE)]
                   edhlp0 <- Filter(function(x) !all(is.na(x)), 
@@ -881,8 +879,7 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
             else if (isTRUE("people" %in% vars) == TRUE) {
                 edhlq <- lapply(edhlm, `[`, sort(vars[which(vars != 
                   "people")]))
-                ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
-                  TRUE) == TRUE, edhlq <- Filter(function(x) !all(is.na(x)), 
+                ifelse(isTRUE(na.rm == TRUE) == TRUE, edhlq <- Filter(function(x) !all(is.na(x)), 
                   edhlq), NA)
                 edhl2 <- suppressWarnings(Map(c, people = edhl1, 
                   edhlq))
@@ -890,8 +887,7 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
             else {
                 edhl2 <- lapply(edhlm, `[`, sort(vars[which(vars != 
                   "people")]))
-                ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
-                  TRUE) == TRUE, edhl2 <- Filter(function(x) !all(is.na(x)), 
+                ifelse(isTRUE(na.rm == TRUE) == TRUE, edhl2 <- Filter(function(x) !all(is.na(x)), 
                   edhl2), NA)
             }
         }
