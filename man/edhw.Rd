@@ -9,7 +9,7 @@ A function to obtain variable data and perform transformations on the Epigraphic
 }
 \usage{
 edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), split, 
-     select, addID, limit, id, na.rm, ldf, province, gender, ...)
+     select, addID, limit, id, na.rm, ldf, province, gender, rp, ...)
 }
 
 \arguments{
@@ -47,13 +47,16 @@ edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), s
    is \code{x} list of data frames? (optional and logical)
 }
   \item{province}{
-   Roman province in \code{EDH} (character, optional)
+   Roman province in \code{EDH} as in \code{\link{rp}} dataset
 }
   \item{gender}{
-   people gender in \code{EDH} (character, optional)
+   people gender in \code{EDH} (male or female)
+}
+  \item{rp}{
+   customized list of Roman provinces as in \code{\link{rp}} dataset
 }
   \item{\dots}{
-   Optional arguments if needed.
+   optional arguments if needed.
 }
 }
 \details{
@@ -82,7 +85,7 @@ Component \code{"people"} is a separated list in the \code{EDH} dataset, and it 
 a separate case from the rest of the variables. 
 In the case that the output is a data frame, the default output is a `long' \code{type} table; that is records can 
 appear in different rows and each variable is assigned into a single column, and with this option is possible to 
-\code{select} \code{"people"} variables.
+\code{select} \code{"people"} variables like gender and origin.
 
 By setting \code{"wide"} in \code{type}, it is possible to place the different people from a single entry 
 column by column in the data frame and each record has a single row. Finally, argument \code{split} allows 
@@ -90,8 +93,11 @@ dividing the data in the data frame into groups by `id', which corresponds to th
 in the \code{EDH} dataset. 
 
 Ad hoc arguments are the \code{EDH} entries \code{province} and \code{gender} 
-for entering a Roman province and people's gender in \code{x}, and \code{ldf} when the input is a created list 
-of data frames that is organized by variables rather than by records as in \code{EDH}.
+for entering a Roman province and people's gender in \code{x}, with argument \code{rp} for supplying a own list 
+of Roman provinces when \code{province} is used. 
+
+Last, argument \code{ldf} when the input is a created list of data frames that is 
+organized by variables rather than by records as in \code{EDH}. 
 }
 \value{
 A list or a data frame with a long or wide format, depending on the arguments inputs. 
@@ -128,3 +134,4 @@ edhw(vars=c("people", "not_after", "not_before"), select="gender", limit=4 )}
 % R documentation directory.
 \keyword{ data }% use one of  RShowDoc("KEYWORDS")
 \keyword{ manip }% use one of  RShowDoc("KEYWORDS")
+\keyword{ utilities }

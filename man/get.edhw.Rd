@@ -57,4 +57,4 @@ get.edhw(hd_nr=1:10)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ IO }% use one of  RShowDoc("KEYWORDS")
-\keyword{ manip }% use one of  RShowDoc("KEYWORDS")
+\keyword{ utilities }

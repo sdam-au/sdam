@@ -215,7 +215,7 @@ and \code{"bibliography"} may be implemented in the future.
 %}
 
 \seealso{
-\code{\link{get.edhw}}, \code{\link{plot.map}}, \code{\link{simil}}
+\code{\link{edhw}}, \code{\link{get.edhw}}, \code{\link{plot.map}}, \code{\link{simil}}
 }
 \examples{
 ## get inscriptions from EDH API data
@@ -226,4 +226,4 @@ get.edh(findspot_modern="madrid")
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ IO }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ utilities }

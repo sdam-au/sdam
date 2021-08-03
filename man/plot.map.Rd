@@ -8,23 +8,45 @@ Plot cartographical map
 A function to plot a cartographical map, initially of a Roman province or an Italian region.
 }
 \usage{
-plot.map(x, cap, date, name, fsize, fcol, fsize2, fcol2, xd, yd, ...)
+plot.map(x = NULL, type = c("plain", "rp", "si", "tetra"), settl, roads, shipr, main, 
+         cap, date, name, fsize, fcol, fsize2, fcol2, xd, yd, ...)
 }
-%\method{plot.map}{plot}(x, cap, date, name, fsize, fcol, \dots)
-%\method{plot}{map}(x, cap, date, name, fsize, fcol, \dots)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 (character) acronym of ancient Roman province or Italian region (see \code{\link{get.edh}})
 }
+  \item{type}{
+      Type of cartographical map: 
+        
+        \code{plain}
+        
+        \code{rp} Roman provinces
+        
+        \code{si} Senatorial-Imperial
+        
+        \code{tetra} Tetrarchy
+}
+  \item{settl}{
+  (logical for cartographical map) Display settlements?
+}
+  \item{roads}{
+  (logical for cartographical map) Display roads?
+}
+  \item{shipr}{
+  (logical for cartographical map) Display shipping routes?
+}
+  \item{main}{
+  (optional for cartographical map) Plot's main title
+}
   \item{cap}{
-(optional and logical) display caption?
+(logical for provinces) display caption?
 }
   \item{date}{
-(optional and logical) display date?
+(logical for provinces) display date?
 }
   \item{name}{
-(optional and logical) display main title name?
+(logical for provinces) display province title name?
 }
   \item{fsize}{
 (optional) font size in main title

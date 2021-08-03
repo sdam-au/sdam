@@ -3,19 +3,36 @@
 ## FUNCTION cln() to re-encode Greek characters
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.7 (26-03-2021)
+## version 0.1.0 (03-08-2021)
 ##
 ## PARAMETERS
 ## x        (scalar or vector, with character to clean)
-## level    (clean level, either 0, 1 or 2)
-## na.rm    (logical, remove NA?)
+## level    (optional clean level, either 0 or no-clean, default 1 or 2 with 'what')
+## what     (optional, additional characters to clean)
+## na.rm    (logical and optional, remove NA?)
 
 
 cln <-
-function (x, level = 1, na.rm) 
+function (x, level = 1, what, na.rm) 
 {
-    if (is.data.frame(x) == TRUE) 
-        warning("\"cln()\" does not support yet data frames.")
+    ifelse(missing(what) == TRUE, what <- c("?", "+", "*"), what <- c("?", 
+        "+", "*", what))
+    if (is.data.frame(x) == TRUE) {
+        if (isTRUE(level > 0) == TRUE) {
+            rnx <- rownames(x)
+            for (w in seq_len(length(what))) {
+                x <- as.data.frame(sapply(x, function(z) as.list(gsub(paste0("\\", 
+                  what[w], sep = ""), "", z))))
+            }
+            rm(w)
+            x[is.null(x)] <- NA
+            x[x == ""] <- NA
+            rownames(x) <- rnx
+        }
+        return(x)
+    }
+    else {
+    }
     ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
         TRUE, invisible(NA), x <- Filter(function(y) !all(is.na(y)), 
         x))
@@ -28,12 +45,11 @@ function (x, level = 1, na.rm)
             collapse = ""))
         if (isTRUE(level > 1) == TRUE) {
             x1 <- gsub("\\s*\\([^\\)]\\)", "", x1)
-            x1 <- paste(strsplit(x1, "")[[1]][which(!(strsplit(x1, 
-                "")[[1]] == "?"))], collapse = "")
-            x1 <- paste(strsplit(x1, "")[[1]][which(!(strsplit(x1, 
-                "")[[1]] == "+"))], collapse = "")
-            x1 <- paste(strsplit(x1, "")[[1]][which(!(strsplit(x1, 
-                "")[[1]] == "*"))], collapse = "")
+            for (w in seq_len(length(what))) {
+                x1 <- paste(strsplit(x1, "")[[1]][which(!(strsplit(x1, 
+                  "")[[1]] == what[w]))], collapse = "")
+            }
+            rm(w)
         }
         else if (isTRUE(level == 1) == TRUE) {
             x1 <- gsub("\\s*\\([^\\)]\\)", "", x1)
@@ -253,18 +269,16 @@ function (x, level = 1, na.rm)
         else {
             x1 <- as.vector(x)
         }
-        n <- length(x1)
-        resl <- vector("list", length = n)
-        for (k in seq_len(n)) {
+        resl <- vector("list", length = length(x1))
+        for (k in seq_len(length(x1))) {
             xi <- x1[k]
             if (isTRUE(level > 1) == TRUE) {
                 xi <- gsub("\\s*\\([^\\)]\\)", "", xi)
-                xi <- paste(strsplit(xi, "")[[1]][which(!(strsplit(xi, 
-                  "")[[1]] == "?"))], collapse = "")
-                xi <- paste(strsplit(xi, "")[[1]][which(!(strsplit(xi, 
-                  "")[[1]] == "+"))], collapse = "")
-                xi <- paste(strsplit(xi, "")[[1]][which(!(strsplit(xi, 
-                  "")[[1]] == "*"))], collapse = "")
+                for (w in seq_len(length(what))) {
+                  xi <- paste(strsplit(xi, "")[[1]][which(!(strsplit(xi, 
+                    "")[[1]] == what[w]))], collapse = "")
+                }
+                rm(w)
             }
             else if (isTRUE(level == 1) == TRUE) {
                 xi <- gsub("\\s*\\([^\\)]\\)", "", xi)
@@ -519,13 +533,44 @@ function (x, level = 1, na.rm)
                 }
             }
         }
-        names(resl) <- x1
-        if (missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
-            TRUE) {
-            return(resl)
+        if (isTRUE(length(what) > 3) == TRUE && isTRUE(level > 
+            1) == TRUE) {
+            for (i in seq(4, length(what))) {
+                resl <- rapply(resl, function(x) ifelse(x == 
+                  what[i], NA, x), how = "replace")
+            }
+            rm(i)
         }
         else {
-            return(Filter(function(y) !all(is.na(y)), resl))
+            NA
+        }
+        names(resl) <- x1
+        if (is.null(names(x[[1]])) == TRUE) {
+            resll <- resl
+        }
+        else {
+            n <- length(names(x[[1]]))
+            sts <- seq(1, length(resl), by = n)
+            resll <- list()
+            for (k in seq_along(seq(1, length(resl), by = n))) {
+                tmp <- resl[sts[k]:(sts[k] + n - 1)]
+                names(tmp) <- names(x[[1]])
+                resll[length(resll) + 1] <- list(tmp)
+            }
+            rm(k)
+        }
+        if (missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
+            TRUE) {
+            return(resll)
+        }
+        else {
+            resl2 <- Filter(function(y) !all(is.na(y)), resll)
+            tmp <- resl2
+            resl2 <- lapply(tmp, function(x) {
+                x[x == ""] <- NA
+                return(x)
+            })
+            return(resl2)
         }
     }
 }

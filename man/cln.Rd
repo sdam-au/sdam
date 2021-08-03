@@ -1,12 +1,60 @@
 \name{cln}
 \alias{cln}
+%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-internal function
+Clean and re-encode a vector, list or dataframe
 }
 \description{
-internal function
+A function to re-encode Greek (and other) characters and to remove symbols at the end of a record.
 }
-%\usage{
-%cln(x, level = 1, na.rm)
+\usage{
+cln(x, level = 1, what, na.rm)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{x}{
+    a vector, list or dataframe
+}
+  \item{level}{
+    optional clean level, either \code{0} for no-clean, default \code{1} or \code{2} (see details)
+}
+  \item{what}{
+    additional characters to clean, optional
+}
+  \item{na.rm}{
+   Remove entries with NA data? (optional and logical)
+}
+}
+\details{
+This function is meant to re-encode Greek (and other) characters in the \code{EDH} set given 
+either as list format, vector, or a dataframe produced with function \code{edhw()} for example. 
+By default, symbols \code{"?" "*" "+"} placed at the end of each record are removed after the re-encoding. 
+However, when level is \code{0} only re-enmoding is performed, and level \code{2} is either to force 
+an extra iteration in the re-encoding or when \code{what} is invoked. 
+}
+\value{
+Depending on the input, a vector, list or dataframe.
+}
+%\references{
+%% ~put references to the literature/web site here ~
 %}
-\keyword{internal}
+\author{
+Antonio Rivero Ostoic
+}
+%\note{
+%%  ~~further notes~~
+%}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{
+\code{\link{edhw}}, \code{\link{get.edh}}
+}
+\examples{
+# clean Greek characters
+cln("Caesar?*+")
+}
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
+\keyword{ utilities }% use one of  RShowDoc("KEYWORDS")
+\keyword{ manip }% use one of  RShowDoc("KEYWORDS")

@@ -32,7 +32,7 @@ devtools::install_github("sdam-au/sdam")
 ## Load package
 library("sdam")
 packageVersion("sdam")
-#[1] '0.4.9'
+#[1] '0.6.2'
 ```
 
 ```r
@@ -184,6 +184,7 @@ prex(x=get.edh(search="inscriptions", province="Iud"), vars=c("not_before", "not
 
 * [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
 * [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
+* [Plotting Roman Empire transport network](https://sdam-au.github.io/sdam/articles/TransportNetwork.html)
 
 
 <!-- Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/) to find more about the distinct variables in `EDH` dataset 

@@ -19,6 +19,6 @@ https://edh-www.adw.uni-heidelberg.de/data/api/terms/province
 %\references{
 %}
 \seealso{
-\code{\link{get.edh}}, \code{\link{EDH}}, \code{\link{edhw}}
+\code{\link{get.edh}}, \code{\link{EDH}}, \code{\link{edhw}}, \code{\link{retn}}, \code{\link{rpmp}}, 
 }
 \keyword{datasets}

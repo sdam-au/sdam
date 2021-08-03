@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot cartographical map — plot.map • sdam</title>
+<title>Roman Empire transport network — retn • sdam</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Plot cartographical map — plot.map" />
-<meta property="og:description" content="A function to plot a cartographical map, initially of a Roman province or an Italian region." />
+<meta property="og:title" content="Roman Empire transport network — retn" />
+<meta property="og:description" content="This is a list of lists with specifications to plot different cartographical maps of the Roman Empire and 
+its transport network including settlements, roads, and shipping routes." />
 
 
 
@@ -121,109 +122,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot cartographical map</h1>
+    <h1>Roman Empire transport network</h1>
     
-    <div class="hidden name"><code>plot.map.Rd</code></div>
+    <div class="hidden name"><code>retn.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A function to plot a cartographical map, initially of a Roman province or an Italian region.</p>
+    <p>This is a list of lists with specifications to plot different cartographical maps of the Roman Empire and 
+its transport network including settlements, roads, and shipping routes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot.map</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"plain"</span>, <span class='st'>"rp"</span>, <span class='st'>"si"</span>, <span class='st'>"tetra"</span>), <span class='no'>settl</span>, <span class='no'>roads</span>, <span class='no'>shipr</span>, <span class='no'>main</span>,
-         <span class='no'>cap</span>, <span class='no'>date</span>, <span class='no'>name</span>, <span class='no'>fsize</span>, <span class='no'>fcol</span>, <span class='no'>fsize2</span>, <span class='no'>fcol2</span>, <span class='no'>xd</span>, <span class='no'>yd</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"retn"</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>(character) acronym of ancient Roman province or Italian region (see <code><a href='get.edh.html'>get.edh</a></code>)</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>Type of cartographical map:</p>        
-<p><code>plain</code></p>        
-<p><code>rp</code> Roman provinces</p>        
-<p><code>si</code> Senatorial-Imperial</p>        
-<p><code>tetra</code> Tetrarchy</p></td>
-    </tr>
-    <tr>
-      <th>settl</th>
-      <td><p>(logical for cartographical map) Display settlements?</p></td>
-    </tr>
-    <tr>
-      <th>roads</th>
-      <td><p>(logical for cartographical map) Display roads?</p></td>
-    </tr>
-    <tr>
-      <th>shipr</th>
-      <td><p>(logical for cartographical map) Display shipping routes?</p></td>
-    </tr>
-    <tr>
-      <th>main</th>
-      <td><p>(optional for cartographical map) Plot's main title</p></td>
-    </tr>
-    <tr>
-      <th>cap</th>
-      <td><p>(logical for provinces) display caption?</p></td>
-    </tr>
-    <tr>
-      <th>date</th>
-      <td><p>(logical for provinces) display date?</p></td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td><p>(logical for provinces) display province title name?</p></td>
-    </tr>
-    <tr>
-      <th>fsize</th>
-      <td><p>(optional) font size in main title</p></td>
-    </tr>
-    <tr>
-      <th>fcol</th>
-      <td><p>(optional) font color in main title</p></td>
-    </tr>
-    <tr>
-      <th>fsize2</th>
-      <td><p>(optional) font size in date</p></td>
-    </tr>
-    <tr>
-      <th>fcol2</th>
-      <td><p>(optional) font color in date</p></td>
-    </tr>
-    <tr>
-      <th>xd</th>
-      <td><p>(optional) <em>x</em> positioning for date</p></td>
-    </tr>
-    <tr>
-      <th>yd</th>
-      <td><p>(optional) <em>y</em> positioning for date</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional optional parameters</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>This plot function is for creating cartographical maps of ancient provinces and Italian regions of the Roman Empire around year 117 AD. 
-The input data <code>x</code> can be a character vector, but this is intended for a recording output. 
-By default, arguments <code>name</code> and <code>cap</code> are set to <code>TRUE</code> while <code>date</code> is set to <code>FALSE</code>.</p>
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <p>A list of lists object with the shape data in different slots for 4 cartographical maps of the Roman Empire 
+with names <code>rcoast</code> for a plain map, <code>rpcoast</code> for a map with provinces, <code>rpsi</code> for a map 
+with senatorial and imperial provinces, and <code>rptetra</code> for a tetrarchy map. 
+Three components in <code>retn</code> have coordinates for settlements <code>nds</code>, roads <code>rds</code>, and shipping 
+routes <code>srs</code>.</p>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>A cartographical map plot with a name, and a caption with an approximate province establishment date.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Positions for caption and date are fixed for a PDF output.</p>
+    <p>DARMC, Center for Geographic Analysis, Harvard University</p>
+<p>Rodrigue, Comtois, Slack. (2013) <em>The geography of transport systems</em>. Routledge</p>
+<p>https://commons.wikimedia.org/wiki/File:RomanEmpire_117.svg</p>
+<p>https://commons.wikimedia.org/wiki/File:Roman_provinces_trajan.svg</p>
+<p>https://commons.wikimedia.org/wiki/File:Regioni_dell'Italia_Augustea.svg</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='rpmp.html'>rpmp</a></code>, <code><a href='rpmcd.html'>rpmcd</a></code>, <code><a href='get.edh.html'>get.edh</a></code>, <code><a href='rp.html'>rp</a></code>, <code><a href='EDH.html'>EDH</a></code></p></div>
+    <div class='dont-index'><p><code><a href='plot.map.html'>plot.map</a></code>, <code><a href='rp.html'>rp</a></code>, <code><a href='rpmp.html'>rpmp</a></code>, <code><a href='rpmcd.html'>rpmcd</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>#TBD.
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

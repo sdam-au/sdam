@@ -201,7 +201,6 @@ plot.map("Ach", cap=FALSE, name=FALSE)
 ### Cleaning EDH *nomen*
 Inscriptions in some provinces were written using Greek characters and, due to encoding and decoding steps in the 
 retrieving of the data (perhaps only specific to MS Windows?), Greek characters are not writen properly with `get.edh()`. 
-<!-- This circumstance can be avoided by activating the `clean` argument in this function that calls the internal function `cln()`. --> 
 
 For instance, we record from `edhs` the last 50 available *nomen* entries of `Achaia` in object `Ach`, and 
 a second step discards the not available information. 
@@ -221,7 +220,7 @@ stats::na.omit(utils::tail(edhs$Ach$nomen, 50))
 
 
 As we can see, these entries in `Ach` have a mixture of Latin extended characters and unicode code points. 
-`cln()` (that stands for "cleaning") is a `sdam` internal function that allows reverting encoding 
+`cln()` (that stands for "cleaning") is a `sdam` function that allows reverting encoding 
 corruption process of Greek texts that we saw in the *nomen* entries of `edhs`.
 
 
@@ -389,6 +388,7 @@ knitr::asis_output(cln(utils::tail(as.character(Aeg), 1)))
 ### See also
 
 * [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
+* [Plotting Roman Empire transport network](https://sdam-au.github.io/sdam/articles/TransportNetwork.html)
 <!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) -->
 * [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
 * [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)

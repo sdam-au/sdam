@@ -61,8 +61,7 @@ In case that accessing the server requires basic authentication, then package "\
 }
 \value{
 Depends on the method, an action on the server site. 
-A \emph{Response} message is returned when the method is \code{PUT} with the url and items \code{Date}, \code{Status}, \code{Content-Type}.
-
+A \emph{Response} message is returned when the method is \code{PUT} with the url and items \code{Date}, \code{Status}, \code{Content-Type}. 
 Currently, method \code{POST} is not supported at \emph{sciencedata.dk}.
 }
 %\references{

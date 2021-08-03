@@ -27,6 +27,6 @@ https://commons.wikimedia.org/wiki/File:Regioni_dell'Italia_Augustea.svg
 %\references{
 %}
 \seealso{
-\code{\link{rpmp}}, \code{\link{plot.map}}, \code{\link{rp}}, \code{\link{EDH}}
+\code{\link{retn}}, \code{\link{rpmp}}, \code{\link{plot.map}}, \code{\link{rp}}, \code{\link{EDH}}
 }
 \keyword{datasets}

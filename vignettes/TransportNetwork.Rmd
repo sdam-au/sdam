@@ -1,0 +1,351 @@
+---
+title: Plotting Roman Empire transport network
+#title: Using internal functions of 'sdam'
+#date: "`r format(Sys.time(), '%d %B %Y')`"
+date:  "3 August 2021" 
+author: 
+  - name: "Antonio Rivero Ostoic"
+    affiliation: <center>CEDHAR, Aarhus University</center>
+    email: <center>jaro@cas.au.dk</center>
+output:
+  html_document:
+    theme: united
+    highlight: tango
+    code_folding: none
+    keep_md: true
+  pdf_document: default
+---
+
+<style type="text/css">
+h1, h4 {
+  text-align: center;
+  color: DarkRed;
+}
+h1.title {
+  font-size: 24pt;
+}
+h2 {
+  font-size: 22pt;
+}
+h3 {
+  font-size: 18pt;
+}
+</style>
+
+
+```{r setup, echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo=TRUE,error=TRUE)
+knitr::opts_chunk$set(comment = "")
+library("sdam")
+# local machine paths
+source(file="C:/R/AUArts/Rmds/src/zbindd.r")
+load(file="C:/R/AUArts/Rmds/data/rts.rda")
+#load(file="C:/R/AUArts/networks/data/govt3.rda")
+```
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 100)
+```
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+### Preliminaries
+`"sdam"` is an `R` package that provides tools for performing analyses within Social Dynamics and complexity in the
+Ancient Mediterranean [SDAM](https://sdam-au.github.io/sdam-au/), which is a research group based at Aarhus University. 
+It allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, 
+visualizing interval time events, compute probabilities of existence of archaeological assemblages and artifacts, and 
+produce similarity matrices by simple matching between these objects. 
+
+<!-- After uninstalling an old version of the `"sdam"` package from local machine and running as administrator, 
+install version 0.6.0 from a GitHub repository.  -->
+
+```{r sdam, echo=FALSE, eval=FALSE}
+# remove old version from AU computer
+remove.packages("sdam", lib="C:/Users/AUID/R/win-library/version/")
+# install RC version from Github
+require("devtools")
+devtools::install_github("sdam-au/sdam")
+```
+
+```{r sdam0, echo=TRUE, eval=FALSE}
+# install beta version
+devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
+```
+
+<div style="margin-bottom:30px;"> </div>
+
+
+```{r}
+# load package and check version
+library("sdam")
+packageVersion("sdam")
+```
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+## Datasets
+Package `"sdam"` comes with a suite of datasets related to ancient Rome.
+
+
+```{r, datasets, echo=TRUE, eval=FALSE}
+# retrieve available datasets
+data(package="sdam")
+```
+
+
+```
+Datasets in package ‘sdam’:
+
+EDH                       Epigraphic Database Heidelberg Dataset
+retn                      Roman Empire transport network
+rp                        Roman province names and acronyms as in EDH
+rpmcd                     Caption maps and affiliation dates of Roman provinces
+rpmp                      Maps of ancient Roman provinces and Italian regions
+```
+
+
+
+<div style="margin-bottom:30px;"> </div>
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+## Cartographical maps with Roman provinces
+
+Cartographical maps of ancient Roman provinces can be plotted with function `plot.map()`. 
+
+```{r, mapprov, echo=TRUE, eval=TRUE, out.width="35%", fig.align="center", fig.cap="year 117 AD"}
+# cartographical map of ancient Achaia
+plot.map(x="Ach")
+```
+
+<div style="margin-bottom:30px;"> </div>
+
+where the acronym names of Roman provinces can be found in the `"rp"` dataset.
+
+```{r}
+# Roman province acronyms according to EDH
+data("rp")
+names(unlist(rp))
+```
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+
+### Roman Empire
+
+By default, `x` in `plot.map()` is set to `NULL`, which means that the input data comes instead from the *Roman Empire*. 
+Different features from this dataset are obtained with the `type` argument in this function.
+
+
+<div style="margin-bottom:30px;"> </div>
+
+For instance, the cartographical map of the Roman Empire in year 120AD with provinces is obtained with
+
+
+```{r, tnet1, echo=TRUE, eval=TRUE, out.width="70%", fig.align="center", fig.cap="Roman Empire with provinces in year 120AD"}
+# Roman Empire with provinces
+plot.map(type="rp")
+```
+
+<div style="margin-bottom:60px;"> </div>
+
+
+
+### Transport system in the Roman Empire
+
+Ancient Roman *terrestrial* and *maritime* routes (or roads and shipping routes) along with settlements are 
+found in the `"retn"` dataset. 
+The following examples are representations of the transport system in the Roman Empire without and with 
+human *settlements*.
+
+
+<div class="rts">
+<div class="row">
+<div class="col-md-6">
+```{r, echo=TRUE, eval=TRUE, fig.align="center", fig.cap="Senatorial and Imperial provinces with roads and shipping routes"}
+# Roman Empire transport system with provinces
+plot.map(type="si", roads=TRUE, shipr=TRUE)
+```
+</div>
+<div class="col-md-6">
+```{r, echo=TRUE, eval=TRUE, fig.align="center", fig.cap="Senatorial and Imperial provinces with roads, shipping routes, and settlements"}
+# Roman Empire transport system with provinces
+plot.map(type="si", settl=TRUE, roads=TRUE, shipr=TRUE)
+```
+</div>
+</div>
+</div>
+
+
+
+### Network representation
+
+The Roman Empire transport system from the cartographical maps is a network that can be further abstracted with a graph representation. 
+A multigraph, for instance, would have two types of relationships that are the *terrestrial* and *maritime* routes, and 
+the nodes would be human *settlements* and *crossing points* of two or more routes. 
+
+Object `rts` records main ancient Roman terrestrial and maritime routes (or roads and shipping routes) as adjacency matrices.
+
+
+```{r, echo=TRUE, eval=TRUE}
+str(rts)
+```
+
+Hence, there are in total 168 settlements, crossings, and entry points in this system that are related with these two kinds of relations. 
+In this three-dimensional array, the first matrix corresponds to the roads while the second matrix is for the shipping routes.
+
+<div style="margin-bottom:60px;"> </div>
+
+
+### Graphs
+
+The following examples requires the `"multigraph"` package and it shows a graph with a forced directed layout of the 
+ancient main Roman roads as gray edges and main maritime connections in blue edges. 
+
+
+<div style="margin-bottom:30px;"> </div>
+
+
+```{r, echo=TRUE, eval=TRUE}
+library("multigraph")
+packageVersion("multigraph")
+```
+
+<div style="margin-bottom:30px;"> </div>
+
+Start by defining the scopes for nodes and edges in the graphs.
+
+```{r, echo=TRUE, eval=TRUE}
+# scope for roads and shipping routes
+scp <- list(directed=FALSE, cex=2, pos=0, col="#C0C0C0", lwd=3, fsize=5) 
+```
+
+<div style="margin-bottom:40px;"> </div>
+
+And then the plot of roads that are in the first matrix of `rts` as grey edges.
+
+```{r, rrd, echo=TRUE, eval=TRUE, out.width="100%", fig.align="center", fig.cap="Graph with main Roman roads (ca. 120AD)"}
+# main ancient Roman roads with a rotated graph
+multigraph(rts[,,1], layout="force", seed=1, scope=scp, ecol="#808080", rot=-55)
+```
+
+<div style="margin-bottom:80px;"> </div>
+
+A similar graph can be made just for shipping routes in the second matrix of `rts`. In this case, however, we first remove *isolates* 
+that are settlements and crossing points that are not part of the maritime system with function `rm.isol()` from `"multiplex"` package.
+
+```{r, rmr, echo=TRUE, eval=TRUE, out.width="80%", fig.align="center", fig.cap="Graph with main Roman shipping routes (ca. 120AD)"}
+# main ancient Roman maritime routes
+multigraph(rm.isol(rts[,,2]), layout="force", seed=3, scope=scp, ecol="#AFDDE9")
+```
+
+
+
+<div style="margin-bottom:80px;"> </div>
+
+
+
+### Multigraph of transport network 
+The whole transport network version of the Roman Empire comprises the terrestrial and maritime transport systems, which means that 
+it is a case of a multiplex network.
+
+
+Below is the plot of the multigraph representing an ancient Roman transport network recorded in object `rts` with 
+roads as grey edges and shipping routes as blue edges.
+
+```{r, rts, echo=TRUE, eval=TRUE, out.width="100%", fig.align="center", fig.cap="Multigraph with main Roman transport network (ca. 120AD)"}
+# multigraph with solid edges and customized bundle width
+multigraph(rts, layout="force", seed=3, scope=scp, ecol=c("#808080","#AFDDE9"), lty=1, bwd=.5)
+```
+
+<div style="margin-bottom:60px;"> </div>
+
+
+### Province Affiliations 
+In order to plot affiliations of ancient Roman provinces, we start by clustering the nodes accroding 
+to their political status in year 117AD. In this time, the Roman Empire was divided into *senatorial* 
+and *imperial* provinces, which are the two possible affiliations of network actors in `rts`. 
+
+
+
+```{r, echo=TRUE, eval=FALSE}
+# vector of nodes in transport system
+dimnames(rts)[[1]]
+```
+```
+# [1] "ita1"  "ita2"  "ita3"  "ita9"  "ita12" "ita4"  "ita5"  "ita8"  "ita6"  "ita7" 
+#[11] "ita10" "ita11" "ita15" "ita17" "ita20" "ita13" "ita14" "ita16" "ita18" "ita19"
+#[21] "ita21" "sic1"  "sic2"  "aeg1"  "aeg2"  "aeg3"  "aeg7"  "aeg4"  "aeg5"  "aeg6" 
+#...
+```
+
+
+<div style="margin-bottom:20px;"> </div>
+
+We start by defining the positions of the actors belonging to senatorial provinces.
+
+
+```{r, echo=TRUE, eval=TRUE}
+# senatorial provinces positions
+sen <-c(1,2,4,5,8,11,23,24,25,30,31,40,41,42,43)
+```
+
+<div style="margin-bottom:20px;"> </div>
+
+We create vector `clusi` with the two affiliations and actors' positions. 
+
+```{r, echo=-5, eval=TRUE}
+# clustering vector with imperial 2 by default
+clusi <- rep(2, length=length(dimnames(rts)[[1]]))
+# senatorial nodes
+clusi[which(substr(dimnames(rts)[[1]],1,3)%in%unique(substr(dimnames(rts)[[1]],1,3))[sen])] <- 1L
+clusi
+```
+<!-- clusi[which(substr(dimnames(rts)[[1]],1,3)%in%unique(substr(dimnames(rts)[[1]],1,3))[which(!(1:43%in%sen))])] <- 2L -->
+
+
+Then we proceed with the plot where the main Roman transport network in year 120AD is given as a multigraph 
+with the senatorial and imperial type nodes. 
+
+
+```{r, echo=TRUE, eval=FALSE}
+# re-use scope, but change node colors. Add clustering information and edge colors
+multigraph(rts, layout="force", seed=3, scope=c(scp,list(col=c("#FFFF66","#FFCC66"))), clu=clusi, 
++    ecol=c("#808080","#AFDDE9"), lty=1, bwd=.5)
+```
+```{r, rtssi, echo=FALSE, eval=TRUE, out.width="100%", fig.align="center", fig.cap="Main Roman transport network (ca. 120AD) with senatorial/imperial nodes."}
+multigraph(rts, layout="force", seed=3, scope=c(scp,list(col=c("#FFFF66","#FFCC66"))), clu=clusi, ecol=c("#808080","#AFDDE9"), lty=1, bwd=.5)
+```
+
+<div style="margin-bottom:60px;"> </div>
+
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+
+### See also
+
+* [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
+* [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
+* [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+* [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
+
+
+
+<div style="margin-bottom:60px;"> </div>
+
+&nbsp;
+
+
+

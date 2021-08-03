@@ -2,8 +2,8 @@ Package: sdam
 Type: Package
 Title: Digital tools for the SDAM project at Aarhus University 
 Description: This package provides tools for performing analyses within Social Dynamics and complexity in the Ancient Mediterranean (SDAM), which is a research group based at Aarhus University. 
-Version: 0.5.0
-Date: 2021-04-19
+Version: 0.6.2
+Date: 2021-08-03
 Depends: R (>= 3.6.0)
 Imports: grImport2
 Suggests: httr, rjson, grid, multigraph

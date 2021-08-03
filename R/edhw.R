@@ -3,7 +3,7 @@
 ## FUNCTION edhw() to manipulate data API from the EDH dataset
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.9.7 (31-03-2021)
+## version 0.1.0 (02-08-2021)
 ##
 ## PARAMETERS
 ##
@@ -23,17 +23,19 @@
 ## ldf      (optional and experimental, is x a list of data frames?)
 ## province (optional, choose EDH province)
 ## gender   (optional, choose EDH gender)
+## rp       (optional list of Roman provinces complementing the 'rp' dataset)
 ##
 
 
 edhw <-
 function (x = NULL, vars, as = c("df", "list"), type = c("long", 
     "wide", "narrow"), split, select, addID, limit, id, na.rm, 
-    ldf, province, gender, ...) 
+    ldf, province, gender, rp, ...) 
 {
     flgdf <- FALSE
     if (is.null(x) == TRUE) {
         warning("\"x\" is NULL and dataset \"EDH\" is taken if available.")
+        flglv <- TRUE
         if (!(exists("EDH"))) {
             utils::data("EDH", package = "sdam", envir = environment())
             EDH <- get("EDH", envir = environment())
@@ -41,7 +43,6 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
         else {
             NA
         }
-        flglv <- FALSE
         x <- EDH
         class(x) <- NULL
         comment(x) <- NULL
@@ -60,9 +61,17 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                 NA)
         }
         if (missing(province) == FALSE) {
-            if (!(exists("rp"))) {
+            if (missing(rp) == TRUE) {
                 utils::data("rp", package = "sdam", envir = environment())
                 rp <- get("rp", envir = environment())
+            }
+            else {
+                NA
+            }
+            if (isTRUE(province %in% names(rp)) == FALSE) {
+                if (isTRUE(province %in% rp) == FALSE) 
+                  stop("\"province\" not found. Use \"rp\" argument with province names.")
+                province <- names(rp)[which(rp %in% province)]
             }
             else {
                 NA
@@ -73,13 +82,32 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
         else {
             xp <- x
         }
+        ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
+            TRUE, NA, xp <- xp[which(lapply(strsplit(rownames(xp), 
+            "[.]"), function(x) {
+            "NA" %in% x
+        }) == FALSE), ])
         if (missing(gender) == FALSE) {
             xp <- xp[-which(is.na(xp$gender)), ]
             return(xp[-which(xp$gender != gender), ])
         }
         else {
-            ifelse(missing(province) == FALSE || missing(gender) == 
-                FALSE, return(xp), NA)
+            if (missing(province) == FALSE || missing(gender) == 
+                FALSE) {
+                if (match.arg(as) == "list") {
+                  xpl <- apply(xp, 1, function(x) {
+                    lapply(as.list(x), "as.vector")
+                  })
+                  names(xpl) <- NULL
+                  return(xpl)
+                }
+                else {
+                  return(xp)
+                }
+            }
+            else {
+                NA
+            }
         }
     }
     else if (isTRUE(is.list(x) == TRUE) == TRUE) {
@@ -104,13 +132,51 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
         ifelse(isTRUE(is.character(x) == TRUE) == TRUE, x <- eval(parse(text = x)), 
             NA)
     }
+    ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
+        TRUE, na.rm <- FALSE, na.rm <- TRUE)
+    if (missing(addID) == FALSE && isTRUE(addID == FALSE) == 
+        TRUE) {
+        if ((isTRUE(na.rm == TRUE) == TRUE) | (match.arg(as) == 
+            "df")) {
+            warning("'addID' is set to TRUE for 'na.rm' and data frame output.")
+            addID <- TRUE
+        }
+        else {
+            addID <- FALSE
+        }
+    }
+    else if (missing(addID) == FALSE && isTRUE(addID == TRUE) == 
+        TRUE) {
+        addID <- TRUE
+    }
+    else {
+        ifelse(match.arg(as) == "df", addID <- TRUE, addID <- FALSE)
+    }
     if (missing(vars) == TRUE) {
         flgv <- FALSE
         ifelse(match.arg(as) == "df", flgp <- TRUE, flgp <- FALSE)
         if (match.arg(as) == "list") {
             if (missing(id) == TRUE && missing(limit) == TRUE) {
-                ifelse(isTRUE(flgdf == TRUE) == TRUE, return(as.list(x)), 
-                  return(x))
+                if (isTRUE(flgdf == TRUE) == TRUE) {
+                  edhl <- list()
+                  for (k in seq_len(dim(x)[1])) {
+                    edhll <- vector("list", ncol(x))
+                    attr(edhll, "names") <- colnames(x)
+                    for (i in seq_len(ncol(x))) {
+                      ifelse(isTRUE(length(x[[which(attr(x, "names") == 
+                        colnames(x)[i])]][[k]]) == 0) == TRUE, 
+                        edhll[i] <- NA, edhll[i] <- x[[which(attr(x, 
+                          "names") == colnames(x)[i])]][[k]])
+                    }
+                    rm(i)
+                    edhl[[k]] <- edhll
+                  }
+                  rm(k)
+                  return(edhl)
+                }
+                else {
+                  return(x)
+                }
             }
             else {
                 if (missing(id) == FALSE) {
@@ -189,26 +255,6 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
         else {
             NA
         }
-    }
-    ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
-        TRUE, na.rm <- FALSE, na.rm <- TRUE)
-    if (missing(addID) == FALSE && isTRUE(addID == FALSE) == 
-        TRUE) {
-        if ((isTRUE(na.rm == TRUE) == TRUE) | (match.arg(as) == 
-            "df")) {
-            warning("'addID' is set to TRUE for 'na.rm' and data frame output.")
-            addID <- TRUE
-        }
-        else {
-            addID <- FALSE
-        }
-    }
-    else if (missing(addID) == FALSE && isTRUE(addID == TRUE) == 
-        TRUE) {
-        addID <- TRUE
-    }
-    else {
-        ifelse(match.arg(as) == "df", addID <- TRUE, addID <- FALSE)
     }
     if (isTRUE(flgdf == FALSE) == TRUE) {
         if (missing(id) == FALSE) {

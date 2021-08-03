@@ -13,8 +13,8 @@
 \tabular{ll}{
 Package: \tab sdam \cr
 Type: \tab Package \cr
-Version: \tab 0.5.0 \cr
-Date: \tab 19 April 2021 \cr
+Version: \tab 0.6.2 \cr
+Date: \tab 3 August 2021 \cr
 License: \tab CC BY-SA 4.0 \cr
 }
 
@@ -26,10 +26,10 @@ License: \tab CC BY-SA 4.0 \cr
 Currently, it is possible with the \code{"sdam"} package to access data from the Epigraphic Database 
 Heidelberg API with \code{get.edh()}, and the wrapper function \code{get.edhw()}. 
 Most of the data is available in the \code{EDH} dataset attached to the package, which 
-can be manipulated by using \code{edhw()}. 
+can be manipulated by using \code{edhw()} and \code{cln()}. 
 
 Besides, the \code{request()} function allows performing different types of HTTP requests to 
-DEiC'S \url{https://sciencedata.dk} or another cloud repository with a customized URL address. 
+DEiC'S \code{https://sciencedata.dk} or another cloud repository with a customized URL address. 
 
 There is also the possibility to compute probabilities of existence with \code{prex()} with either 
 the aoristic sum or count matching for observations for different periodization options. 
@@ -37,11 +37,11 @@ Function \code{plot.dates()} allows visualizing interval time events that can be
 internal function \code{dts} as illustrated in a vignette. 
 
 Another plotting function in \code{"sdam"} is found in \code{plot.map()} that allows visualizing maps 
-of ancient Roman provinces that are found in \code{EDH}. This function depends on two datasets that 
-are \code{rpmp} .
+of ancient Roman provinces that are found in \code{EDH}. This function uses datasets \code{rp}, \code{rpmp},
+\code{rpmcd}, and \code{retn} for a Roman Empire transport network.
 
-Similarity by simple matching among column vectors is achieved by the \code{simil()} function (still under development)
-in order to make analyses of relations between assemblages and artifacts. 
+Similarity by simple matching among column vectors is achieved by the \code{simil()} function for making 
+analyses of relations between assemblages and artifacts. 
 }
 \author{
 Author: \packageAuthor{sdam} 
@@ -54,7 +54,8 @@ Maintainer: \packageMaintainer{sdam}
 %~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
 \seealso{
-\code{\link[multigraph]{multigraph}}
+\href{https://sdam-au.github.io/sdam/articles/}{Vignettes}
+%\code{\link[multigraph]{multigraph}}
 }
 %\examples{
 %~~ simple examples of the most important functions ~~

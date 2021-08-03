@@ -1,3 +1,7 @@
+## `sdam` v0.6.0
+
+* Dataset `retn` added.
+
 ## `sdam` v0.5.0
 
 * Dataset `rpmcd` updated.
