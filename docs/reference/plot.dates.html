@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -86,24 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
-    </li>
-    <li>
-      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
-    </li>
-    <li>
-      <a href="../articles/TransportNetwork.html">Plotting Roman Empire transport network</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -130,15 +112,16 @@
     <p>A function to plot interval dates.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot.dates</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>taq</span>, <span class='no'>tpq</span>, <span class='no'>out</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-           <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>axes</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='no'>cex</span>, <span class='no'>pch</span>, <span class='no'>col</span>, <span class='no'>lwd</span>, <span class='no'>lty</span>, <span class='no'>alpha</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plot.dates</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>taq</span>, <span class='no'>tpq</span>, <span class='no'>id</span>, <span class='no'>out</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+           <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>axes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+           <span class='no'>cex</span>, <span class='no'>pch</span>, <span class='no'>col</span>, <span class='no'>lwd</span>, <span class='no'>lty</span>, <span class='no'>alpha</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>data frame object of variables and observations. If <code>NULL</code> then <code>EDH</code> dataset is taken.</p></td>
+      <td><p>dataset as a data frame object of variables and observations.</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -155,6 +138,10 @@
     <tr>
       <th>tpq</th>
       <td><p><em>terminus post quem</em></p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>IDs in dataset <code>x</code></p></td>
     </tr>
     <tr>
       <th>out</th>
@@ -212,10 +199,14 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This plot function is for time interval segments</p>
+    <p>This plot function is for time interval segments given in the dataset <code>x</code>, which is 
+given as a data frame or as a ``tibble'' class object.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A graphical plot.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>If <code>x</code> is <code>NULL</code>, then <code>EDH</code> dataset is taken.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='get.edh.html'>get.edh</a></code>, <code><a href='edhw.html'>edhw</a></code>, <code><a href='prex.html'>prex</a></code>.</p></div>

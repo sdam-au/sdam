@@ -3,7 +3,7 @@
 ## FUNCTION edhw() to manipulate data API from the EDH dataset
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.1.0 (02-08-2021)
+## version 0.1.2 (07-09-2021)
 ##
 ## PARAMETERS
 ##
@@ -35,6 +35,8 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
     flgdf <- FALSE
     if (is.null(x) == TRUE) {
         warning("\"x\" is NULL and dataset \"EDH\" is taken if available.")
+        if (missing(province) == FALSE) 
+            warning("'province' works with 'x' as data frame")
         flglv <- TRUE
         if (!(exists("EDH"))) {
             utils::data("EDH", package = "sdam", envir = environment())
@@ -78,6 +80,8 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
             }
             xp <- x[x$province == unlist(rp[which(names(rp) == 
                 province)], use.names = FALSE), ]
+            ifelse(missing(vars) == TRUE, NA, xp <- xp[, -which(!(colnames(xp) %in% 
+                c(vars, "id")))])
         }
         else {
             xp <- x
@@ -111,6 +115,8 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
         }
     }
     else if (isTRUE(is.list(x) == TRUE) == TRUE) {
+        if (missing(province) == FALSE) 
+            warning("'province' works with 'x' as data frame")
         if (is.list(x[[1]]) == TRUE) {
             ifelse(is.list(x[[1]][[1]]) == FALSE, flglv <- TRUE, 
                 flglv <- FALSE)
@@ -197,6 +203,24 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
             }
         }
         else if (match.arg(as) == "df") {
+            if (isTRUE(is.numeric(id) == TRUE) == TRUE) {
+                if (isTRUE(length(id) == 1) == TRUE) {
+                  id <- paste0("HD", paste(rep(0, 6 - nchar(id)), 
+                    collapse = ""), id, sep = "")
+                }
+                else {
+                  tmp <- vector()
+                  for (i in seq_len(length(id))) {
+                    tmp <- append(tmp, paste0("HD", paste(rep(0, 
+                      6 - nchar(id[i])), collapse = ""), id[i], 
+                      sep = ""))
+                  }
+                  rm(i)
+                  id <- tmp
+                }
+            }
+            ifelse(missing(id) == FALSE && isTRUE(flgdf == TRUE) == 
+                TRUE, x <- x[which(x$id %in% id), ], NA)
             ifelse(isTRUE(flgdf == TRUE) == TRUE || (missing(ldf) == 
                 FALSE && isTRUE(ldf == TRUE) == TRUE), return(x), 
                 vars <- unique(names(unlist(x))))
@@ -345,10 +369,8 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                     return(head(x, limit)), return(x[limit, ]))
                 }
             }
-            else {
-                ifelse(isTRUE(flgv == TRUE) == TRUE, return(x[which(colnames(x) %in% 
-                  c("id", vars))]), return(x))
-            }
+            ifelse(isTRUE(flgv == TRUE) == TRUE, return(x[which(colnames(x) %in% 
+                c("id", vars))]), return(x))
         }
         else if (match.arg(as) == "list") {
             edhl <- list()
@@ -393,10 +415,6 @@ function (x = NULL, vars, as = c("df", "list"), type = c("long",
                   else {
                     NA
                   }
-                  valids <- which(as.vector(unlist(lapply(edhl, 
-                    function(x) {
-                      all(is.na(as.vector(unlist(x))))
-                    }))) == FALSE)
                 }
                 else {
                   ifelse(any(lapply(edhl, function(z) {

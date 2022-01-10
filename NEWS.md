@@ -1,3 +1,7 @@
+## `sdam` v0.8.0
+
+* Dataset `rpd` added. New EDH API in `get.edh()`
+
 ## `sdam` v0.6.0
 
 * Dataset `retn` added.

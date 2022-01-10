@@ -1,9 +1,6 @@
 pandoc: '2.5'
 pkgdown: 1.5.1
 pkgdown_sha: ~
-articles:
-  Encoding: Encoding.html
-  RomanProvs: RomanProvs.html
-  TransportNetwork: TransportNetwork.html
-last_built: 2021-08-03T13:39Z
+articles: []
+last_built: 2022-01-10T20:22Z
 

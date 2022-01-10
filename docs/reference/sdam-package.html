@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -86,24 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
-    </li>
-    <li>
-      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
-    </li>
-    <li>
-      <a href="../articles/TransportNetwork.html">Plotting Roman Empire transport network</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -139,8 +121,8 @@
 <table class='table'>
 <tr><td>Package:</td><td>sdam</td></tr>
 <tr><td>Type:</td><td>Package</td></tr>
-<tr><td>Version:</td><td>0.6.2</td></tr>
-<tr><td>Date:</td><td>3 August 2021</td></tr>
+<tr><td>Version:</td><td>0.8.0</td></tr>
+<tr><td>Date:</td><td>10 January 2022</td></tr>
 <tr><td>License:</td><td>CC BY-SA 4.0</td></tr>
 </table>
 
@@ -160,10 +142,11 @@ the aoristic sum or count matching for observations for different periodization 
 Function <code><a href='plot.dates.html'>plot.dates()</a></code> allows visualizing interval time events that can be manipulated by the 
 internal function <code>dts</code> as illustrated in a vignette.</p>
 <p>Another plotting function in <code>"sdam"</code> is found in <code><a href='plot.map.html'>plot.map()</a></code> that allows visualizing maps 
-of ancient Roman provinces that are found in <code>EDH</code>. This function uses datasets <code>rp</code>, <code>rpmp</code>,
-<code>rpmcd</code>, and <code>retn</code> for a Roman Empire transport network.</p>
+of ancient Roman provinces that are found in <code>EDH</code>. This function uses datasets <code>rp</code>, <code>rpd</code>, 
+<code>rpmp</code>, <code>rpmcd</code>, and <code>retn</code> for a Roman Empire transport network.</p>
 <p>Similarity by simple matching among column vectors is achieved by the <code><a href='simil.html'>simil()</a></code> function for making 
-analyses of relations between assemblages and artifacts.</p>
+analyses of relations between assemblages and artifacts. Such similarity measure is the basis for function 
+<code><a href='edhwpd.html'>edhwpd()</a></code> to organize the EDH dataset per province and dates.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://sdam-au.github.io/sdam/articles/'>Vignettes</a>

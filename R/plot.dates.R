@@ -3,10 +3,10 @@
 ## PLOT FUNCTION plot.dates() to plot time intervals
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.1.3 (26-03-2021)
+## version 0.1.4 (10-01-2022)
 ##
 ## PARAMETERS
-## x      (data frame object of variables and observations)
+## x      (data frame or table of variables and observations)
 ## y      (optional identifiers)
 ## file   (path to file for a PDF format=
 ## taq    (terminus ante quem)
@@ -24,13 +24,14 @@
 ## lwd    (width)
 ## lty    (shape)
 ## alpha  (alpha color transparency)
+## id     (IDs in x)
 ## ...    (optional parameters)
 
 
 plot.dates <-
-function (x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, 
-    ylab = NULL, xlim = NULL, axes = TRUE, cex, pch, col, lwd, 
-    lty, alpha, ...) 
+function (x, y, file = NULL, taq, tpq, id, out, main = NULL, 
+    xlab = NULL, ylab = NULL, xlim = NULL, axes = TRUE, cex, 
+    pch, col, lwd, lty, alpha, ...) 
 {
     if (is.null(unlist(x)) == TRUE) 
         stop("'x' is NULL")
@@ -62,9 +63,28 @@ function (x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL,
     ifelse(missing(alpha) == TRUE, alpha <- 0.25, NA)
     ifelse(is.null(xlab) == TRUE, xlab <- "years", NA)
     if (missing(x) == FALSE) {
-        ifelse(isTRUE(is.data.frame(x) == TRUE) == TRUE, xdates <- x, 
+        if (any(c("tbl_df", "tbl") %in% class(x)) == TRUE) {
+            xdates <- x <- as.data.frame(x)
+        }
+        else if (is.data.frame(x) == TRUE) {
+            xdates <- x
+        }
+        else if (is.list(x) == TRUE) {
             xdates <- suppressWarnings(edhw(x = x, vars = c(taq, 
-                tpq), as = "df", ...)))
+                tpq), as = "df", ...))
+        }
+        else {
+            stop("Unknown data format in \"x\"")
+        }
+        if (missing(id) == FALSE && any(colnames(x) %in% id) == 
+            TRUE) {
+            xdates <- cbind(id = x[, which(colnames(x) %in% id)], 
+                xdates)
+            ifelse(is.null(ylab) == TRUE, ylab <- id, NA)
+        }
+        else {
+            NA
+        }
     }
     else {
         stop("'x' is missing.")

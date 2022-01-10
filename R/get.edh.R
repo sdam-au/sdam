@@ -3,18 +3,19 @@
 ## FUNCTION get.edh() to get data API from the Epigraphic Database Heidelberg EDH
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.2.7 (28-10-2020)
+## version 0.3.0 (10-01-2022)
 ##
-## Parameter description from https://edh-www.adw.uni-heidelberg.de/data/api
+## Parameter description NEW API YEAR 2022 https://edh.ub.uni-heidelberg.de/data/api
 ##
 ## search (whether to search in "inscriptions" or in "geography")
 
 ## SEARCH PARAMETERS FOR INSCRIPTIONS AND GEOGRAPHY:
-## province (get list of valid values at https://edh-www.adw.uni-heidelberg.de/data/api/terms/province, case insensitive)
-## country (get list of valid values at https://edh-www.adw.uni-heidelberg.de/data/api/terms/country, case insensitive)
+## GET LIST OF VALID CODES FOR PROVINCES, COUNTRIES AND TYPE OF INSCRIPTIONS AT https://edh.ub.uni-heidelberg.de/data/api
+## province (Roman province, case insensitive)
+## country (modern country, case insensitive)
 ## findspot_modern (add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
 ## findspot_ancient (add leading and/or trailing truncation by asterisk *, e.g. findspot_ancient=aquae*, case insensitive)
-## bbox (bounding box in the format bbox=minLong , minLat , maxLong , maxLat , example: https://edh-www.adw.uni-heidelberg.de/data/api/inscriptions/search?bbox=11,47,12,48)
+## bbox (bounding box in the format bbox=minLong , minLat , maxLong , maxLat, query example: https://edh-www.adw.uni-heidelberg.de/data/api/inschrift/suche?bbox=11,47,12,48)
 ## offset (which row to start from retrieving data, integer)
 ## limit (limit the number of results, integer or vector)
 ##
@@ -22,9 +23,9 @@
 ## hd_nr (HD-No of inscription)
 ## year_not_before (integer, BC years are negative integers)
 ## year_not_after (integer, BC years are negative integers)
-## tm_nr (integer value)
+## tm_nr (integer, Trismegistos ID)
 ## transcription (automatic leading & trailing truncation, brackets are ignored)
-## type (of inscription, get list of values at https://edh-www.adw.uni-heidelberg.de/data/api/terms/type, case insensitive)
+## type (type of inscription, case insensitive)
 ##
 ## SEARCH PARAMETERS FOR GEOGRAPHY:
 ## findspot (level of village, street etc.; add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
@@ -32,38 +33,34 @@
 ## geonames_id (Geonames identifier of a place; integer value)
 ## 
 ## ADDITIONAL PARAMETERS:
-## maxlimit (Maximum limit of the query; integer with default value)
+## maxlimit (maximum limit of the query; integer with default value)
 ## addID (whether or not add numeric ID to the list)
 ## printQ (also print query?)
 
 
 get.edh <-
-function (search = c("inscriptions", "geography"), url = "https://edh-www.adw.uni-heidelberg.de/data/api", 
+function (search = c("inscriptions", "geography"), url = "https://edh.ub.uni-heidelberg.de/data/api", 
     hd_nr, province, country, findspot_modern, findspot_ancient, 
     year_not_before, year_not_after, tm_nr, transcription, type, 
     bbox, findspot, pleiades_id, geonames_id, offset, limit, 
     maxlimit = 4000, addID, printQ) 
 {
     ifelse(missing(hd_nr) == FALSE, NA, hd_nr <- "")
-    ifelse(missing(province) == FALSE, NA, province <- "")
-    ifelse(missing(country) == FALSE, NA, country <- "")
-    ifelse(missing(findspot_modern) == FALSE, NA, findspot_modern <- "")
-    ifelse(missing(findspot_ancient) == FALSE, NA, findspot_ancient <- "")
-    ifelse(missing(year_not_before) == FALSE, NA, year_not_before <- "")
-    ifelse(missing(year_not_after) == FALSE, NA, year_not_after <- "")
+    ifelse(missing(province) == FALSE, provinz <- province, provinz <- "")
+    ifelse(missing(country) == FALSE, land <- country, land <- "")
+    ifelse(missing(findspot_modern) == FALSE, fo_modern <- findspot_modern, 
+        fo_modern <- "")
+    ifelse(missing(findspot_ancient) == FALSE, fo_antik <- findspot_ancient, 
+        fo_antik <- "")
+    ifelse(missing(year_not_before) == FALSE, dat_jahr_a <- year_not_before, 
+        dat_jahr_a <- "")
+    ifelse(missing(year_not_after) == FALSE, dat_jahr_e <- year_not_after, 
+        dat_jahr_e <- "")
     ifelse(missing(tm_nr) == FALSE, NA, tm_nr <- "")
-    ifelse(missing(transcription) == FALSE, NA, transcription <- "")
-    ifelse(missing(type) == FALSE, NA, type <- "")
-    ifelse(missing(bbox) == FALSE, NA, bbox <- "")
-    ifelse(missing(province) == FALSE, NA, province <- "")
-    ifelse(missing(country) == FALSE, NA, country <- "")
-    ifelse(missing(findspot_modern) == FALSE, NA, findspot_modern <- "")
-    ifelse(missing(findspot_ancient) == FALSE, NA, findspot_ancient <- "")
-    ifelse(missing(year_not_before) == FALSE, NA, year_not_before <- "")
-    ifelse(missing(year_not_after) == FALSE, NA, year_not_after <- "")
-    ifelse(missing(tm_nr) == FALSE, NA, tm_nr <- "")
-    ifelse(missing(transcription) == FALSE, NA, transcription <- "")
-    ifelse(missing(type) == FALSE, NA, type <- "")
+    ifelse(missing(transcription) == FALSE, atext1 <- transcription, 
+        atext1 <- "")
+    ifelse(missing(type) == FALSE, inschriftgattung <- type, 
+        inschriftgattung <- "")
     ifelse(missing(bbox) == FALSE, NA, bbox <- "")
     ifelse(missing(findspot) == FALSE, NA, findspot <- "")
     ifelse(missing(pleiades_id) == FALSE, NA, pleiades_id <- "")
@@ -75,24 +72,22 @@ function (search = c("inscriptions", "geography"), url = "https://edh-www.adw.un
     ifelse(missing(printQ) == FALSE && isTRUE(printQ == TRUE) == 
         TRUE, printQ <- TRUE, printQ <- FALSE)
     if (match.arg(search) == "inscriptions") {
-        URL <- paste(url, match.arg(search), "search?", sep = "/")
-        string <- paste(URL, "hd_nr=", hd_nr, "&", "province=", 
-            province, "&", "country=", country, "&", "findspot_modern=", 
-            findspot_modern, "&", "findspot_ancient=", findspot_ancient, 
-            "&", "year_not_before=", year_not_before, "&", "year_not_after=", 
-            year_not_after, "&", "tm_nr=", tm_nr, "&", "transcription=", 
-            transcription, "&", "type=", type, "&", "bbox=", 
-            bbox, "&", "offset=", offset, "&", "limit=", limit, 
-            sep = "")
+        URL <- paste(url, "inschrift", "suche?", sep = "/")
+        string <- paste(URL, "hd_nr=", hd_nr, "&", "tm_nr=", 
+            tm_nr, "&", "provinz=", provinz, "&", "land=", land, 
+            "&", "fo_antik=", fo_antik, "&", "fo_modern=", fo_modern, 
+            "&", "dat_jahr_a=", dat_jahr_a, "&", "dat_jahr_e=", 
+            dat_jahr_e, "&", "atext1=", atext1, "&", "inschriftgattung=", 
+            inschriftgattung, "&", "bbox=", bbox, "&", "offset=", 
+            offset, "&", "limit=", limit, sep = "")
     }
     else if (match.arg(search) == "geography") {
-        URL <- paste(url, match.arg(search), "search?", sep = "/")
-        string <- paste0(URL, "province=", "%22", province, "%22", 
-            "&", "country=", country, "&", "findspot_modern=", 
-            findspot_modern, "&", "findspot_ancient=", findspot_ancient, 
-            "&", "findspot=", findspot, "&", "bbox=", bbox, "&", 
-            "pleiades_id=", pleiades_id, "&", "geonames_id=", 
-            geonames_id, sep = "")
+        URL <- paste(url, "geographie", "suche?", sep = "/")
+        string <- paste0(URL, "provinz=", "%22", provinz, "%22", 
+            "&", "land=", land, "&", "fo_antik=", fo_antik, "&", 
+            "fo_modern=", fo_modern, "&", "findspot=", findspot, 
+            "&", "bbox=", bbox, "&", "pleiades_id=", pleiades_id, 
+            "&", "geonames_id=", geonames_id, sep = "")
     }
     else {
         stop("Only \"inscriptions\" and \"geography\" parameters are currently supported.")

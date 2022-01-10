@@ -8,15 +8,16 @@ Plot interval dates
 A function to plot interval dates.
 }
 \usage{
-plot.dates(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NULL, 
-           xlim = NULL, axes=TRUE, cex, pch, col, lwd, lty, alpha, ...)
+plot.dates(x, y, file = NULL, taq, tpq, id, out, main = NULL,
+           xlab = NULL, ylab = NULL, xlim = NULL, axes = TRUE,
+           cex, pch, col, lwd, lty, alpha, ...)
 }
 %\method{plot.dates}{plot}(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NULL, 
 %                     xlim = NULL, cex, pch, col, lwd, lty, alpha, \dots)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-  data frame object of variables and observations. If \code{NULL} then \code{EDH} dataset is taken.
+  dataset as a data frame object of variables and observations. 
 }
   \item{y}{
   optional identifiers (vector).
@@ -29,6 +30,9 @@ plot.dates(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NU
 }
   \item{tpq}{
   \emph{terminus post quem}
+}
+  \item{id}{
+  IDs in dataset \code{x}
 }
   \item{out}{
   number of outliers to omit (integer or vector where first entry id for latest date)
@@ -71,7 +75,8 @@ plot.dates(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NU
 }
 }
 \details{
-This plot function is for time interval segments 
+This plot function is for time interval segments given in the dataset \code{x}, which is 
+given as a data frame or as a ``tibble'' class object.
 }
 \value{
 A graphical plot.
@@ -81,9 +86,9 @@ A graphical plot.
 \author{
 Antonio Rivero Ostoic
 }
-%\note{
-%%  ~~further notes~~
-%}
+\note{
+If \code{x} is \code{NULL}, then \code{EDH} dataset is taken.
+}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 

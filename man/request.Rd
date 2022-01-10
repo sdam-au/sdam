@@ -1,7 +1,7 @@
 \name{request}
 \alias{request}
-\alias{ssdk}
-\alias{SSDK}
+%\alias{ssdk}
+%\alias{SSDK}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Perform an HTTP request
@@ -23,7 +23,7 @@ request(file, URL = "https://sciencedata.dk", method = c("GET", "POST", "PUT", "
    protocol and domain of the url
 }
   \item{method}{
-   the http \emph{verb} for the object
+   the http verb for the object
 }
   \item{anonymous}{
     unauthenticated user? (logical) 
@@ -93,20 +93,20 @@ request("filename.extension", method="GET", anonymous=TRUE)}
 
 ## put a file in remote server
 \dontrun{
-sddk("filename.extension", method="PUT")}
+request("filename.extension", method="PUT")}
 
 ## put an existing file in remote server and force overwriting
 \dontrun{
-sddk("filename.extension", method="PUT", force=TRUE)}
+request("filename.extension", method="PUT", force=TRUE)}
 
 ## put an existing file in remote server and remove file from local machine
 \dontrun{
-sddk("filename.extension", method="PUT", rm.file=TRUE)}
+request("filename.extension", method="PUT", rm.file=TRUE)}
 
 
 ## remove a file in remote server
 \dontrun{
-SDDK("filename.extension", method="DELETE")}
+request("filename.extension", method="DELETE")}
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

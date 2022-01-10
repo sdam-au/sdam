@@ -4,7 +4,7 @@
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
 ## First aimed to interact with DEiC's sciencedata.dk
-## version 0.2.5 (29-10-2020)
+## version 0.2.6 (20-09-2021)
 ##
 ## PARAMETERS
 ## file      (object under 'method')
@@ -23,7 +23,6 @@
 ## force     (optional, force remote file overwriting)
 ## ...       (extra parameters if required)
 ##
-## Aliases: sddk(), SDDK()
 
 
 request <-
@@ -143,5 +142,3 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                 as.vector(cred[2])), httr::add_headers(Accept = "")))
     }
 }
-SDDK <- sddk <- request
-request <- SDDK

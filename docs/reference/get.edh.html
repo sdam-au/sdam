@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Get data from the Epigraphic Database Heidelberg API — get.edh" />
-<meta property="og:description" content="A function to obtain data from the Epigraphic Database Heidelberg API repository." />
+<meta property="og:description" content="A function to obtain data from the Epigraphic Database Heidelberg new API repository." />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -86,24 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
-    </li>
-    <li>
-      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
-    </li>
-    <li>
-      <a href="../articles/TransportNetwork.html">Plotting Roman Empire transport network</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -127,15 +109,15 @@
     </div>
 
     <div class="ref-description">
-    <p>A function to obtain data from the Epigraphic Database Heidelberg API repository.</p>
+    <p>A function to obtain data from the Epigraphic Database Heidelberg new API repository.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get.edh</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"inscriptions"</span>, <span class='st'>"geography"</span>),
-        <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://edh-www.adw.uni-heidelberg.de/data/api"</span>,
-        <span class='no'>hd_nr</span>, <span class='no'>province</span>, <span class='no'>country</span>, <span class='no'>findspot_modern</span>, <span class='no'>findspot_ancient</span>,
-        <span class='no'>year_not_before</span>, <span class='no'>year_not_after</span>, <span class='no'>tm_nr</span>, <span class='no'>transcription</span>, <span class='no'>type</span>,
-        <span class='no'>bbox</span>, <span class='no'>findspot</span>, <span class='no'>pleiades_id</span>, <span class='no'>geonames_id</span>, <span class='no'>offset</span>, <span class='no'>limit</span>,
-        <span class='kw'>maxlimit</span> <span class='kw'>=</span> <span class='fl'>4000</span>, <span class='no'>addID</span>, <span class='no'>printQ</span>)</pre>
+    <pre class="usage"><span class='fu'>get.edh</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"inscriptions"</span>, <span class='st'>"geography"</span>), <span class='kw'>url</span> <span class='kw'>=</span>
+                 <span class='st'>"https://edh.ub.uni-heidelberg.de/data/api"</span>, <span class='no'>hd_nr</span>,
+                 <span class='no'>province</span>, <span class='no'>country</span>, <span class='no'>findspot_modern</span>, <span class='no'>findspot_ancient</span>,
+                 <span class='no'>year_not_before</span>, <span class='no'>year_not_after</span>, <span class='no'>tm_nr</span>, <span class='no'>transcription</span>,
+                 <span class='no'>type</span>, <span class='no'>bbox</span>, <span class='no'>findspot</span>, <span class='no'>pleiades_id</span>, <span class='no'>geonames_id</span>,
+                 <span class='no'>offset</span>, <span class='no'>limit</span>, <span class='kw'>maxlimit</span> <span class='kw'>=</span> <span class='fl'>4000</span>, <span class='no'>addID</span>, <span class='no'>printQ</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,7 +160,7 @@
     </tr>
     <tr>
       <th>tm_nr</th>
-      <td><p>Trismegistos' database number (?)</p></td>
+      <td><p>Trismegistos ID (integer)</p></td>
     </tr>
     <tr>
       <th>transcription</th>
@@ -234,33 +216,7 @@ at the beginning of the list with the identifier with a numerical format.</p>
 <p>Notice that <code>hd_nr</code> is not the same as <code>ID</code> nor <code>id</code>.</p>
 
 <p>Use function <code><a href='get.edhw.html'>get.edhw</a></code> in case you want to grab several items.</p>
-<p>Entries in <code>country</code> are abbreviated country names where the inscription was located. 
-A list with the of valid values for countries from the EDH API are</p>
-<table class='table'>
-<tr><td><code>"ad"</code></td><td>Andorra</td><td><code>"gr"</code></td><td>Greece</td><td><code>"pl"</code></td><td>Poland</td></tr>
-<tr><td><code>"al"</code></td><td>Albania</td><td><code>"hr"</code></td><td>Croatia</td><td><code>"pt"</code></td><td>Portugal</td></tr>
-<tr><td><code>"am"</code></td><td>Armenia</td><td><code>"hu"</code></td><td>Hungary</td><td><code>"rks"</code></td><td>Kosovo</td></tr>
-<tr><td><code>"at"</code></td><td>Austria</td><td><code>"il"</code></td><td>Israel</td><td><code>"ro"</code></td><td>Romania</td></tr>
-<tr><td><code>"az"</code></td><td>Azerbaijan</td><td><code>"iq"</code></td><td>Iraq</td><td><code>"rs"</code></td><td>Serbia</td></tr>
-<tr><td><code>"ba"</code></td><td>Bosnia and Herzegovina</td><td><code>"it"</code></td><td>Italy</td><td><code>"ru"</code></td><td>Russia</td></tr>
-<tr><td><code>"be"</code></td><td>Belgium</td><td><code>"jo"</code></td><td>Jordan</td><td><code>"sa"</code></td><td>Saudi Arabia</td></tr>
-<tr><td><code>"bg"</code></td><td>Bulgaria</td><td><code>"kg"</code></td><td>Kyrgyzstan</td><td><code>"sd"</code></td><td>Sudan</td></tr>
-<tr><td><code>"ch"</code></td><td>Switzerland</td><td><code>"kz"</code></td><td>Kazakhstan</td><td><code>"se"</code></td><td>Sweden</td></tr>
-<tr><td><code>"cy"</code></td><td>Cyprus</td><td><code>"lb"</code></td><td>Lebanon</td><td><code>"si"</code></td><td>Slovenia</td></tr>
-<tr><td><code>"cz"</code></td><td>Czech Republic</td><td><code>"li"</code></td><td>Liechtenstein</td><td><code>"sk"</code></td><td>Slovakia</td></tr>
-<tr><td><code>"de"</code></td><td>Germany</td><td><code>"lu"</code></td><td>Luxembourg</td><td><code>"sm"</code></td><td>San Marino</td></tr>
-<tr><td><code>"dk"</code></td><td>Denmark</td><td><code>"ly"</code></td><td>Libyan Arab Jamahiriya</td><td><code>"sy"</code></td><td>Syrian Arab Republic</td></tr>
-<tr><td><code>"dz"</code></td><td>Algeria</td><td><code>"ma"</code></td><td>Morocco</td><td><code>"tj"</code></td><td>Tajikistan</td></tr>
-<tr><td><code>"eg"</code></td><td>Egypt</td><td><code>"mc"</code></td><td>Monaco</td><td><code>"tn"</code></td><td>Tunisia</td></tr>
-<tr><td><code>"es"</code></td><td>Spain</td><td><code>"md"</code></td><td>Moldova</td><td><code>"tr"</code></td><td>Turkey</td></tr>
-<tr><td><code>"fr"</code></td><td>France</td><td><code>"me"</code></td><td>Montenegro</td><td><code>"ua"</code></td><td>Ukraine</td></tr>
-<tr><td><code>"gb"</code></td><td>United Kingdom</td><td><code>"mk"</code></td><td>Macedonia</td><td><code>"uz"</code></td><td>Uzbekistan</td></tr>
-<tr><td><code>"ge"</code></td><td>Georgia</td><td><code>"mt"</code></td><td>Malta</td><td><code>"va"</code></td><td>Vatican City State</td></tr>
-<tr><td><code>"gi"</code></td><td>Gibraltar</td><td><code>"nl"</code></td><td>Netherlands</td><td><code>"ye"</code></td><td>Yemen</td></tr>
-</table>
-
-
-<p>And for the ancient Roman provinces the valid values are</p>
+<p>A list with the of valid values from the EDH API for the ancient Roman provinces are</p>
 <table class='table'>
 <tr><td><code>"Ach"</code></td><td>Achaia</td><td><code>"Cor"</code></td><td>Corsica</td><td><code>"Mes"</code></td><td>Mesopotamia</td></tr>
 <tr><td><code>"Aeg"</code></td><td>Aegyptus</td><td><code>"Cre"</code></td><td>Creta</td><td><code>"MoI"</code></td><td>Moesia inferior</td></tr>
@@ -285,6 +241,32 @@ A list with the of valid values for countries from the EDH API are</p>
 <tr><td><code>"Cap"</code></td><td>Cappadocia</td><td><code>"MaT"</code></td><td>Mauretania Tingitana</td><td><code>"Val"</code></td><td>Valeria</td></tr>
 <tr><td><code>"Cil"</code></td><td>Cilicia</td><td><code>"Mak"</code></td><td>Macedonia</td><td><code>"VeH"</code></td><td>Venetia et Histria (Regio X)</td></tr>
 </table>
+
+
+<p>And the valid values for <code>country</code> entries are abbreviated country names where the inscription was located.</p>
+<table class='table'>
+<tr><td><code>"ad"</code></td><td>Andorra</td><td><code>"gr"</code></td><td>Greece</td><td><code>"pl"</code></td><td>Poland</td></tr>
+<tr><td><code>"al"</code></td><td>Albania</td><td><code>"hr"</code></td><td>Croatia</td><td><code>"pt"</code></td><td>Portugal</td></tr>
+<tr><td><code>"am"</code></td><td>Armenia</td><td><code>"hu"</code></td><td>Hungary</td><td><code>"rks"</code></td><td>Kosovo</td></tr>
+<tr><td><code>"at"</code></td><td>Austria</td><td><code>"il"</code></td><td>Israel</td><td><code>"ro"</code></td><td>Romania</td></tr>
+<tr><td><code>"az"</code></td><td>Azerbaijan</td><td><code>"iq"</code></td><td>Iraq</td><td><code>"rs"</code></td><td>Serbia</td></tr>
+<tr><td><code>"ba"</code></td><td>Bosnia and Herzegovina</td><td><code>"it"</code></td><td>Italy</td><td><code>"ru"</code></td><td>Russia</td></tr>
+<tr><td><code>"be"</code></td><td>Belgium</td><td><code>"jo"</code></td><td>Jordan</td><td><code>"sa"</code></td><td>Saudi Arabia</td></tr>
+<tr><td><code>"bg"</code></td><td>Bulgaria</td><td><code>"kg"</code></td><td>Kyrgyzstan</td><td><code>"sd"</code></td><td>Sudan</td></tr>
+<tr><td><code>"ch"</code></td><td>Switzerland</td><td><code>"kz"</code></td><td>Kazakhstan</td><td><code>"se"</code></td><td>Sweden</td></tr>
+<tr><td><code>"cy"</code></td><td>Cyprus</td><td><code>"lb"</code></td><td>Lebanon</td><td><code>"si"</code></td><td>Slovenia</td></tr>
+<tr><td><code>"cz"</code></td><td>Czech Republic</td><td><code>"li"</code></td><td>Liechtenstein</td><td><code>"sk"</code></td><td>Slovakia</td></tr>
+<tr><td><code>"de"</code></td><td>Germany</td><td><code>"lu"</code></td><td>Luxembourg</td><td><code>"sm"</code></td><td>San Marino</td></tr>
+<tr><td><code>"dk"</code></td><td>Denmark</td><td><code>"ly"</code></td><td>Libyan Arab Jamahiriya</td><td><code>"sy"</code></td><td>Syrian Arab Republic</td></tr>
+<tr><td><code>"dz"</code></td><td>Algeria</td><td><code>"ma"</code></td><td>Morocco</td><td><code>"tj"</code></td><td>Tajikistan</td></tr>
+<tr><td><code>"eg"</code></td><td>Egypt</td><td><code>"mc"</code></td><td>Monaco</td><td><code>"tn"</code></td><td>Tunisia</td></tr>
+<tr><td><code>"es"</code></td><td>Spain</td><td><code>"md"</code></td><td>Moldova</td><td><code>"tr"</code></td><td>Turkey</td></tr>
+<tr><td><code>"fr"</code></td><td>France</td><td><code>"me"</code></td><td>Montenegro</td><td><code>"ua"</code></td><td>Ukraine</td></tr>
+<tr><td><code>"gb"</code></td><td>United Kingdom</td><td><code>"mk"</code></td><td>Macedonia</td><td><code>"uz"</code></td><td>Uzbekistan</td></tr>
+<tr><td><code>"ge"</code></td><td>Georgia</td><td><code>"mt"</code></td><td>Malta</td><td><code>"va"</code></td><td>Vatican City State</td></tr>
+<tr><td><code>"gi"</code></td><td>Gibraltar</td><td><code>"nl"</code></td><td>Netherlands</td><td><code>"ye"</code></td><td>Yemen</td></tr>
+</table>
+
 
 
 
@@ -338,93 +320,147 @@ And also the query is printed if specified by printQ.
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>https://edh-www.adw.uni-heidelberg.de/data/api</p>
-<p>https://edh-www.adw.uni-heidelberg.de/data/api/terms/country</p>
-<p>https://edh-www.adw.uni-heidelberg.de/data/api/terms/province</p>
+    <p>https://edh.ub.uni-heidelberg.de/data/api</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The other two search options from the [EDH] database [API], which are <code>"photos"</code> 
-and <code>"bibliography"</code> may be implemented in the future.</p>
+    <p>This function is for the new [EDH] database [API] in year 2022.</p>
+    <h2 class="hasAnchor" id="warning-"><a class="anchor" href="#warning-"></a>Warning </h2>
+
+    <p>Queries with more than 4000 records can produce a timeout from the server, and a <em>Warning</em> 
+message is produced.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='edhw.html'>edhw</a></code>, <code><a href='get.edhw.html'>get.edhw</a></code>, <code><a href='plot.map.html'>plot.map</a></code>, <code><a href='simil.html'>simil</a></code></p></div>
+    <div class='dont-index'><p><code><a href='get.edhw.html'>get.edhw</a></code>, <code><a href='edhw.html'>edhw</a></code>, <code><a href='edhwpd.html'>edhwpd</a></code>, <code><a href='plot.map.html'>plot.map</a></code>, <code><a href='simil.html'>simil</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## get inscriptions from EDH API data</span>
-<span class='co'>## Not run:</span>
-<span class='fu'>get.edh</span>(<span class='kw'>findspot_modern</span><span class='kw'>=</span><span class='st'>"madrid"</span>)</div><div class='output co'>#&gt; $ID
-#&gt; [1] "041220"
-#&gt; 
-#&gt; $commentary
-#&gt; [1] " Verschollen. Mögliche Datierung: 99-100."
-#&gt; 
-#&gt; $country
+    <pre class="examples"><div class='input'><span class='co'>## Not run:</span>
+<span class='co'># get inscriptions from EDH API data</span>
+<span class='fu'>get.edh</span>(<span class='kw'>findspot_modern</span><span class='kw'>=</span><span class='st'>"madrid"</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt; [[1]]$country
 #&gt; [1] "Spain"
 #&gt; 
-#&gt; $diplomatic_text
+#&gt; [[1]]$diplomatic_text
+#&gt; [1] "SINEVRSA / ET QVINTILLVS / FILIVS AN XX / H S SVNT"
+#&gt; 
+#&gt; [[1]]$findspot_modern
+#&gt; [1] "Madrid?"
+#&gt; 
+#&gt; [[1]]$id
+#&gt; [1] "HD015327"
+#&gt; 
+#&gt; [[1]]$language
+#&gt; [1] "L"
+#&gt; 
+#&gt; [[1]]$last_update
+#&gt; [1] "1997-06-03"
+#&gt; 
+#&gt; [[1]]$letter_size
+#&gt; NULL
+#&gt; 
+#&gt; [[1]]$literature
+#&gt; [1] "AE 1989, 0361d. ;"
+#&gt; 
+#&gt; [[1]]$responsible_individual
+#&gt; [1] "Scheithauer"
+#&gt; 
+#&gt; [[1]]$transcription
+#&gt; [1] "Sineursa(?) / et Quintillus / filius an(norum) XX / h(ic) s(iti) sunt"
+#&gt; 
+#&gt; [[1]]$trismegistos_uri
+#&gt; [1] "https://www.trismegistos.org/text/236310"
+#&gt; 
+#&gt; [[1]]$work_status
+#&gt; [1] "provisional"
+#&gt; 
+#&gt; 
+#&gt; [[2]]
+#&gt; [[2]]$country
+#&gt; [1] "Spain"
+#&gt; 
+#&gt; [[2]]$diplomatic_text
+#&gt; [1] "L IVNIVS / EPAGATVS / AN XI / H S E S T T L"
+#&gt; 
+#&gt; [[2]]$findspot_modern
+#&gt; [1] "Madrid?"
+#&gt; 
+#&gt; [[2]]$id
+#&gt; [1] "HD015330"
+#&gt; 
+#&gt; [[2]]$language
+#&gt; [1] "L"
+#&gt; 
+#&gt; [[2]]$last_update
+#&gt; [1] "1997-06-03"
+#&gt; 
+#&gt; [[2]]$letter_size
+#&gt; NULL
+#&gt; 
+#&gt; [[2]]$literature
+#&gt; [1] "AE 1989, 0361e. ;"
+#&gt; 
+#&gt; [[2]]$responsible_individual
+#&gt; [1] "Scheithauer"
+#&gt; 
+#&gt; [[2]]$transcription
+#&gt; [1] "L(ucius) Iunius / Epagatus / an(norum) XI / h(ic) s(itus) e(st) s(it) t(ibi) t(erra) l(evis)"
+#&gt; 
+#&gt; [[2]]$trismegistos_uri
+#&gt; [1] "https://www.trismegistos.org/text/236309"
+#&gt; 
+#&gt; [[2]]$work_status
+#&gt; [1] "provisional"
+#&gt; 
+#&gt; 
+#&gt; [[3]]
+#&gt; [[3]]$commentary
+#&gt; [1] "Verschollen. Mögliche Datierung: 99-100."
+#&gt; 
+#&gt; [[3]]$country
+#&gt; [1] "Spain"
+#&gt; 
+#&gt; [[3]]$diplomatic_text
 #&gt; [1] "[ ] / [ ] / [ ] / GER PO[ ]TIF / [ ] / [ ] / [ ] / ["
 #&gt; 
-#&gt; $edh_geography_uri
-#&gt; [1] "https://edh-www.adw.uni-heidelberg.de/edh/geographie/11008"
-#&gt; 
-#&gt; $findspot
+#&gt; [[3]]$findspot
 #&gt; [1] "Puerta de Moros"
 #&gt; 
-#&gt; $findspot_modern
+#&gt; [[3]]$findspot_modern
 #&gt; [1] "Madrid"
 #&gt; 
-#&gt; $id
+#&gt; [[3]]$id
 #&gt; [1] "HD041220"
 #&gt; 
-#&gt; $language
-#&gt; [1] "Latin"
+#&gt; [[3]]$language
+#&gt; [1] "L"
 #&gt; 
-#&gt; $last_update
+#&gt; [[3]]$last_update
 #&gt; [1] "2020-09-01"
 #&gt; 
-#&gt; $literature
-#&gt; [1] "J. Lostal Pros, Los miliarios de la provincia tarraconense (conventos tarraconense, cesaraugustano, cluniense y cartaginense) (Zaragoza 1992) 70, Nr. 65.; CIL 02, 03056."
+#&gt; [[3]]$letter_size
+#&gt; NULL
 #&gt; 
-#&gt; $people
-#&gt; $people[[1]]
-#&gt; $people[[1]]$cognomen
-#&gt; [1] "Nerva+ Traianus+"
+#&gt; [[3]]$literature
+#&gt; [1] "J. Lostal Pros, Los miliarios de la provincia tarraconense (conventos tarraconense, cesaraugustano, cluniense y cartaginense) (Zaragoza 1992) 70, Nr. 65. ; CIL 02, 03056. ;"
 #&gt; 
-#&gt; $people[[1]]$gender
-#&gt; [1] "male"
-#&gt; 
-#&gt; $people[[1]]$person_id
-#&gt; [1] "1"
-#&gt; 
-#&gt; $people[[1]]$name
-#&gt; [1] "[Nerva Traianus]"
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; $province_label
-#&gt; [1] "Hispania citerior"
-#&gt; 
-#&gt; $responsible_individual
+#&gt; [[3]]$responsible_individual
 #&gt; [1] "Garcia"
 #&gt; 
-#&gt; $transcription
+#&gt; [[3]]$transcription
 #&gt; [1] "[Imp(erator) Nerva] / [Caesar Aug(ustus)] / [Traianus] / Ger(manicus) po[n]tif(ex) / [max(imus) trib(unicia)] / [pot(estate) IIII p(ater) p(atriae)] / [co(n)s(ul) II] / [------"
 #&gt; 
-#&gt; $trismegistos_uri
+#&gt; [[3]]$trismegistos_uri
 #&gt; [1] "https://www.trismegistos.org/text/228383"
 #&gt; 
-#&gt; $type_of_inscription
+#&gt; [[3]]$type_of_inscription
 #&gt; [1] "mile-/leaguestone"
 #&gt; 
-#&gt; $type_of_monument
+#&gt; [[3]]$type_of_monument
 #&gt; [1] "mile-/leaguestone"
 #&gt; 
-#&gt; $uri
-#&gt; [1] "https://edh-www.adw.uni-heidelberg.de/edh/inschrift/HD041220"
-#&gt; 
-#&gt; $work_status
+#&gt; [[3]]$work_status
 #&gt; [1] "no image"
-#&gt; </div><div class='input'>## End(**Not run**)
+#&gt; 
+#&gt; </div><div class='input'>## End(Not run)
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

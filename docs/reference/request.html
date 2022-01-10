@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -86,24 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
-    </li>
-    <li>
-      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
-    </li>
-    <li>
-      <a href="../articles/TransportNetwork.html">Plotting Roman Empire transport network</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -147,7 +129,7 @@
     </tr>
     <tr>
       <th>method</th>
-      <td><p>the http <em>verb</em> for the object</p></td>
+      <td><p>the http verb for the object</p></td>
     </tr>
     <tr>
       <th>anonymous</th>
@@ -208,20 +190,20 @@ Currently, method <code>POST</code> is not supported at <em>sciencedata.dk</em>.
 
 <span class='co'>## put a file in remote server</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>sddk</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>)}
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>)}
 
 <span class='co'>## put an existing file in remote server and force overwriting</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>sddk</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>force</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>force</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
 
 <span class='co'>## put an existing file in remote server and remove file from local machine</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>sddk</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>rm.file</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"PUT"</span>, <span class='kw'>rm.file</span><span class='kw'>=</span><span class='fl'>TRUE</span>)}
 
 
 <span class='co'>## remove a file in remote server</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>SDDK</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"DELETE"</span>)}</div></pre>
+<span class='fu'>request</span>(<span class='st'>"filename.extension"</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"DELETE"</span>)}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

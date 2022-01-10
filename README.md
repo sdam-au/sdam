@@ -32,7 +32,7 @@ devtools::install_github("sdam-au/sdam")
 ## Load package
 library("sdam")
 packageVersion("sdam")
-#[1] '0.6.2'
+#[1] '0.8.0'
 ```
 
 ```r
@@ -55,8 +55,9 @@ str(EDH)
 
 ### Get particular inscriptions
 
-For instance, the following commands extract people named in Roman inscriptions in Iudaea and record them 
-in object `iud`.
+Starting with `sdam` v0.8.0, it is possible to extract inscriptions from the *new* `API` of the `EDH` database. 
+For instance, the following commands extract people named in Roman inscriptions in Iudaea and record them with 
+a `list` data object in `iud`.
 
 
 ```r
@@ -73,8 +74,9 @@ length(iud)
 
 ### Relative dating
 
-Since `sdam` v0.2.0 there is the option in `edhw()` to extract variables from a `EDH` dataset *fragments*. 
-To place Roman inscriptions in Iudaea into a data frame object `iud_df`
+In `sdam` there is the option  to extract variables from a `EDH` dataset *fragments* with function `edhw()`, 
+which allos making transformations as weel. For instance, te ode snippet below is to place Roman inscriptions 
+in lists from Iudaea into a data frame in object `iud_df`.
 
 ```r
 # extract variables of interes from object `iud` and convert it into a data frame
@@ -193,5 +195,6 @@ and applications with the different functions. -->
 
 ### See also
 * [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+* [Code snippets using `"sdam"`](https://github.com/sdam-au/R_code)
 * [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
 

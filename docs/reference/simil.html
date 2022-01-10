@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simple matching counting of data frame coocurrences — simil • sdam</title>
+<title>Similarity between (column) vectors — simil • sdam</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Simple matching counting of data frame coocurrences — simil" />
-<meta property="og:description" content="A function to compute the similarity between columns in a dataframe or list entries by simple matching counting." />
+<meta property="og:title" content="Similarity between (column) vectors — simil" />
+<meta property="og:description" content="A function to compute similarity between vectors, which can arise from columns in a data frame or list entries." />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -86,24 +86,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
-    </li>
-    <li>
-      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
-    </li>
-    <li>
-      <a href="../articles/TransportNetwork.html">Plotting Roman Empire transport network</a>
-    </li>
-  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -121,13 +103,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simple matching counting of data frame coocurrences</h1>
+    <h1>Similarity between (column) vectors</h1>
     
     <div class="hidden name"><code>simil.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A function to compute the similarity between columns in a dataframe or list entries by simple matching counting.</p>
+    <p>A function to compute similarity between vectors, which can arise from columns in a data frame or list entries.</p>
     </div>
 
     <pre class="usage"><span class='fu'>simil</span>(<span class='no'>x</span>, <span class='no'>vars</span>, <span class='no'>uniq</span>, <span class='no'>diag.incl</span>)</pre>
@@ -137,15 +119,15 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A list or a data frame</p></td>
+      <td><p>A list or a data frame object</p></td>
     </tr>
     <tr>
       <th>vars</th>
-      <td><p>Column(s) in <code>x</code> representing attributes (vector)</p></td>
+      <td><p>Column(s) in <code>x</code> representing variable attributes (vector)</p></td>
     </tr>
     <tr>
       <th>uniq</th>
-      <td><p>Only unique elements? (optional and logical)</p></td>
+      <td><p>unique entries? (optional and logical)</p></td>
     </tr>
     <tr>
       <th>diag.incl</th>
@@ -162,10 +144,10 @@ In case that an ID column does not exists, then the first column is taken provid
     <p>A valued matrix with similarities among units by simple matching.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>This function is in an early development phase.</p>
+    <p>Other similarity measures will be added in the near future.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='edhw.html'>edhw</a></code>, <code><a href='prex.html'>prex</a></code>, <code><a href='get.edh.html'>get.edh</a></code></p></div>
+    <div class='dont-index'><p><code><a href='get.edh.html'>get.edh</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'># TBD 

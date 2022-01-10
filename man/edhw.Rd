@@ -8,8 +8,8 @@ Wrapper function for manipulation of \code{EDH} dataset
 A function to obtain variable data and perform transformations on the Epigraphic Database Heidelberg \code{EDH} dataset.
 }
 \usage{
-edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), split, 
-     select, addID, limit, id, na.rm, ldf, province, gender, rp, ...)
+edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), 
+     split, select, addID, limit, id, na.rm, ldf, province, gender, rp, ...)
 }
 
 \arguments{
@@ -60,7 +60,7 @@ edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), s
 }
 }
 \details{
-This is a convenient function to extract \emph{variables} from the \code{EDH} dataset attached 
+This is an interface to extract attribute variables in \code{vars} from the \code{EDH} dataset attached 
 to this package. However, the input in \code{x} can be fragments of the \code{EDH} dataset or from 
 the Epigraphic Database Heidelberg API obtained by functions \code{get.edh()} or \code{get.edhw()}
 with the \code{"rjson"} format, or transformed data organized, for example, by provinces. 
@@ -92,15 +92,16 @@ column by column in the data frame and each record has a single row. Finally, ar
 dividing the data in the data frame into groups by `id', which corresponds to the HD number of inscription 
 in the \code{EDH} dataset. 
 
-Ad hoc arguments are the \code{EDH} entries \code{province} and \code{gender} 
-for entering a Roman province and people's gender in \code{x}, with argument \code{rp} for supplying a own list 
-of Roman provinces when \code{province} is used. 
+Ad hoc arguments are the \code{EDH} entries \code{province} and \code{gender} for entering a Roman province 
+and people's gender in \code{x} as a data frame; otherwise these arguments are ignored. 
+When \code{province} is used, it is possible to refer to a customized list of provinces with argument \code{rp}; 
+otherwise dataset \code{"rp"} is employed. 
 
-Last, argument \code{ldf} when the input is a created list of data frames that is 
+Argument \code{ldf} is a flag when the input is a created list of data frames that is 
 organized by variables rather than by records as in \code{EDH}. 
 }
 \value{
-A list or a data frame with a long or wide format, depending on the arguments inputs. 
+A list or a data frame with a long or wide format, depending on the input arguments. 
 }
 \references{
 https://edh-www.adw.uni-heidelberg.de/data/api
@@ -116,11 +117,11 @@ in \code{vars}.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{prex}}, \code{\link{plot.dates}}, \code{\link{EDH}}
+\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{edhwpd}}, \code{\link{prex}}, \code{\link{plot.dates}}, \code{\link{EDH}}
 }
 \examples{
 \dontrun{
-## load data set
+## load dataset
 data(EDH)
 
 ## make a list for three variables in 'EDH' for first 4 entries

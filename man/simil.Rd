@@ -2,24 +2,24 @@
 \alias{simil}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Simple matching counting of data frame coocurrences
+Similarity between (column) vectors
 }
 \description{
-A function to compute the similarity between columns in a dataframe or list entries by simple matching counting.
+A function to compute similarity between vectors, which can arise from columns in a data frame or list entries.
 }
 \usage{
-simil(x, vars, uniq, diag.incl)
+simil(x, vars, uniq, diag.incl) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-	A list or a data frame 
+	A list or a data frame object
 }
   \item{vars}{
-	Column(s) in \code{x} representing attributes (vector)
+	Column(s) in \code{x} representing variable attributes (vector)
 }
   \item{uniq}{
-	Only unique elements? (optional and logical)
+	unique entries? (optional and logical)
 }
   \item{diag.incl}{
 	include entries in matrix diagonal? (optional and logical) 
@@ -39,13 +39,13 @@ A valued matrix with similarities among units by simple matching.
 Antonio Rivero Ostoic
 }
 \note{
-This function is in an early development phase.
+Other similarity measures will be added in the near future.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{edhw}}, \code{\link{prex}}, \code{\link{get.edh}}
+\code{\link{get.edh}}
 }
 \examples{
 # TBD 
