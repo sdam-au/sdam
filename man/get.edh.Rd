@@ -5,7 +5,7 @@
 Get data from the Epigraphic Database Heidelberg API
 }
 \description{
-A function to obtain data from the Epigraphic Database Heidelberg new API repository.
+A function to obtain data from the Epigraphic Database Heidelberg API repository.
 }
 \usage{
 get.edh(search = c("inscriptions", "geography"), url =
@@ -45,7 +45,7 @@ get.edh(search = c("inscriptions", "geography"), url =
 	Year, not after (integer, BC years are negative)
 }
   \item{tm_nr}{
-	Trismegistos ID (integer)
+	Trismegistos' database number (?)
 }
   \item{transcription}{
 	Automatic leading and trailing truncation (brackets are ignored)
@@ -82,6 +82,8 @@ get.edh(search = c("inscriptions", "geography"), url =
 }
 }
 \details{
+This function is for the new [EDH] database [API] in year 2022. 
+
 Since with the \code{inscriptions} option the \code{id} "component" of the 
 output list is not with a numeric format, then the function adds an \code{ID} 
 at the beginning of the list with the identifier with a numerical format. 
@@ -199,11 +201,10 @@ https://edh.ub.uni-heidelberg.de/data/api
 \author{
 Antonio Rivero Ostoic
 }
-\note{
-This function is for the new [EDH] database [API] in year 2022. 
-}
+%\note{
 %The other two search options from the [EDH] database [API], which are \code{"photos"} 
 %and \code{"bibliography"} may be implemented in the future. 
+%}
 
 
 \section{Warning }{

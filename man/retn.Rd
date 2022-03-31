@@ -2,11 +2,11 @@
 \docType{data}
 \alias{retn}
 \title{
-Roman Empire transport network 
+Roman Empire transport network and Mediterranean sea
 }
 \description{
 This is a list of lists with specifications to plot different cartographical maps of the Roman Empire and 
-its transport network including settlements, roads, and shipping routes. 
+the Mediterranean sea with transport network including settlements, roads, and shipping routes. 
 }
 \usage{
 data("retn")
@@ -16,7 +16,10 @@ A list of lists object with the shape data in different slots for 4 cartographic
 with names \code{rcoast} for a plain map, \code{rpcoast} for a map with provinces, \code{rpsi} for a map 
 with senatorial and imperial provinces, and \code{rptetra} for a tetrarchy map. 
 Three components in \code{retn} have coordinates for settlements \code{nds}, roads \code{rds}, and shipping 
-routes \code{srs}.
+routes \code{srs} for this maps. 
+
+In addition, the dataset has a cartographical map of the Mediterranean sea in \code{med} where settlements 
+and transport network is yet to complete.
 }
 \source{
 DARMC, Center for Geographic Analysis, Harvard University

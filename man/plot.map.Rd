@@ -8,8 +8,8 @@ Plot cartographical map
 A function to plot a cartographical map, initially of a Roman province or an Italian region.
 }
 \usage{
-plot.map(x = NULL, type = c("plain", "rp", "si", "tetra"), settl, roads, shipr, main, 
-         cap, date, name, fsize, fcol, fsize2, fcol2, xd, yd, ...)
+plot.map(x = NULL, type = c("plain", "rp", "si", "tetra", "med"), settl, roads, shipr, 
+         main, cap, date, name, fsize, fcol, fsize2, fcol2, xd, yd, new, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,6 +26,8 @@ plot.map(x = NULL, type = c("plain", "rp", "si", "tetra"), settl, roads, shipr, 
         \code{si} Senatorial-Imperial
         
         \code{tetra} Tetrarchy
+        
+        \code{med} Mediterranean sea
 }
   \item{settl}{
   (logical for cartographical map) Display settlements?
@@ -66,6 +68,9 @@ plot.map(x = NULL, type = c("plain", "rp", "si", "tetra"), settl, roads, shipr, 
   \item{yd}{
 (optional) \emph{y} positioning for date
 }
+  \item{new}{
+(optional) whether or not plotted map has superimposed graphics
+}
   \item{\dots}{
   additional optional parameters
 }
@@ -74,6 +79,8 @@ plot.map(x = NULL, type = c("plain", "rp", "si", "tetra"), settl, roads, shipr, 
 This plot function is for creating cartographical maps of ancient provinces and Italian regions of the Roman Empire around year 117 AD. 
 The input data \code{x} can be a character vector, but this is intended for a recording output. 
 By default, arguments \code{name} and \code{cap} are set to \code{TRUE} while \code{date} is set to \code{FALSE}. 
+
+The \code{type} argument allows plotting cartographical maps related to the Roman Empire and Mediterranean sea. 
 }
 \value{
 A cartographical map plot with a name, and a caption with an approximate province establishment date.

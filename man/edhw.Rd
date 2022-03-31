@@ -8,7 +8,7 @@ Wrapper function for manipulation of \code{EDH} dataset
 A function to obtain variable data and perform transformations on the Epigraphic Database Heidelberg \code{EDH} dataset.
 }
 \usage{
-edhw(x = NULL, vars, as = c("df", "list"), type = c("long", "wide", "narrow"), 
+edhw(x = "EDH", vars, as = c("df", "list"), type = c("long", "wide", "narrow"), 
      split, select, addID, limit, id, na.rm, ldf, province, gender, rp, ...)
 }
 
@@ -104,7 +104,7 @@ organized by variables rather than by records as in \code{EDH}.
 A list or a data frame with a long or wide format, depending on the input arguments. 
 }
 \references{
-https://edh-www.adw.uni-heidelberg.de/data/api
+https://edh.ub.uni-heidelberg.de/data/api
 }
 \author{
 Antonio Rivero Ostoic

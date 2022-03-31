@@ -34,7 +34,7 @@ A list of lists object with the items described in \code{\link{get.edh}}.
 
 }
 \references{
-https://edh-www.adw.uni-heidelberg.de/data/api
+https://edh.ub.uni-heidelberg.de/data/api
 }
 \author{
 Antonio Rivero Ostoic

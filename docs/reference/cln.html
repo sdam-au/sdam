@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.5</span>
       </span>
     </div>
 
@@ -112,7 +112,7 @@
     <p>A function to re-encode Greek (and other) characters and to remove symbols at the end of a record.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cln</span>(<span class='no'>x</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>what</span>, <span class='no'>na.rm</span>)</pre>
+    <pre class="usage"><span class='fu'>cln</span>(<span class='no'>x</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>what</span>, <span class='no'>na.rm</span>, <span class='no'>case</span>, <span class='no'>repl</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,11 +127,19 @@
     </tr>
     <tr>
       <th>what</th>
-      <td><p>additional characters to clean, optional</p></td>
+      <td><p>additional characters to clean (optional)</p></td>
     </tr>
     <tr>
       <th>na.rm</th>
       <td><p>Remove entries with NA data? (optional and logical)</p></td>
+    </tr>
+    <tr>
+      <th>case</th>
+      <td><p>case for text <code>1</code> for 1st uppercase, code2 for lowercase, code3 for uppercase (optional)</p></td>
+    </tr>
+    <tr>
+      <th>repl</th>
+      <td><p>data frame with text to replace (optional)</p></td>
     </tr>
     </table>
 
@@ -140,8 +148,9 @@
     <p>This function is meant to re-encode Greek (and other) characters in the <code>EDH</code> set given 
 either as list format, vector, or a dataframe produced with function <code><a href='edhw.html'>edhw()</a></code> for example. 
 By default, symbols <code>"?" "*" "+"</code> placed at the end of each record are removed after the re-encoding. 
-However, when level is <code>0</code> only re-enmoding is performed, and level <code>2</code> is either to force 
-an extra iteration in the re-encoding or when <code>what</code> is invoked.</p>
+However, when level is <code>0</code> only re-encoding is performed, and level <code>2</code> is either to force 
+an extra iteration in the re-encoding, removing extra spaces, or clean <code>what</code> is invoked. 
+With <code>repl</code>, is possible to replace a list of text in two columns, for `text to replace' and for `text that replace'</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Depending on the input, a vector, list or dataframe.</p>

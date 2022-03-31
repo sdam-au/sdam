@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.5</span>
       </span>
     </div>
 
@@ -112,8 +112,8 @@
     <p>A function to plot a cartographical map, initially of a Roman province or an Italian region.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot.map</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"plain"</span>, <span class='st'>"rp"</span>, <span class='st'>"si"</span>, <span class='st'>"tetra"</span>), <span class='no'>settl</span>, <span class='no'>roads</span>, <span class='no'>shipr</span>, <span class='no'>main</span>,
-         <span class='no'>cap</span>, <span class='no'>date</span>, <span class='no'>name</span>, <span class='no'>fsize</span>, <span class='no'>fcol</span>, <span class='no'>fsize2</span>, <span class='no'>fcol2</span>, <span class='no'>xd</span>, <span class='no'>yd</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>plot.map</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"plain"</span>, <span class='st'>"rp"</span>, <span class='st'>"si"</span>, <span class='st'>"tetra"</span>, <span class='st'>"med"</span>), <span class='no'>settl</span>, <span class='no'>roads</span>, <span class='no'>shipr</span>,
+         <span class='no'>main</span>, <span class='no'>cap</span>, <span class='no'>date</span>, <span class='no'>name</span>, <span class='no'>fsize</span>, <span class='no'>fcol</span>, <span class='no'>fsize2</span>, <span class='no'>fcol2</span>, <span class='no'>xd</span>, <span class='no'>yd</span>, <span class='no'>new</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,7 +128,8 @@
 <p><code>plain</code></p>        
 <p><code>rp</code> Roman provinces</p>        
 <p><code>si</code> Senatorial-Imperial</p>        
-<p><code>tetra</code> Tetrarchy</p></td>
+<p><code>tetra</code> Tetrarchy</p>        
+<p><code>med</code> Mediterranean sea</p></td>
     </tr>
     <tr>
       <th>settl</th>
@@ -183,6 +184,10 @@
       <td><p>(optional) <em>y</em> positioning for date</p></td>
     </tr>
     <tr>
+      <th>new</th>
+      <td><p>(optional) whether or not plotted map has superimposed graphics</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>additional optional parameters</p></td>
     </tr>
@@ -193,6 +198,7 @@
     <p>This plot function is for creating cartographical maps of ancient provinces and Italian regions of the Roman Empire around year 117 AD. 
 The input data <code>x</code> can be a character vector, but this is intended for a recording output. 
 By default, arguments <code>name</code> and <code>cap</code> are set to <code>TRUE</code> while <code>date</code> is set to <code>FALSE</code>.</p>
+<p>The <code>type</code> argument allows plotting cartographical maps related to the Roman Empire and Mediterranean sea.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A cartographical map plot with a name, and a caption with an approximate province establishment date.</p>

@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Get data from the Epigraphic Database Heidelberg API — get.edh" />
-<meta property="og:description" content="A function to obtain data from the Epigraphic Database Heidelberg new API repository." />
+<meta property="og:description" content="A function to obtain data from the Epigraphic Database Heidelberg API repository." />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.5</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
     </div>
 
     <div class="ref-description">
-    <p>A function to obtain data from the Epigraphic Database Heidelberg new API repository.</p>
+    <p>A function to obtain data from the Epigraphic Database Heidelberg API repository.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get.edh</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"inscriptions"</span>, <span class='st'>"geography"</span>), <span class='kw'>url</span> <span class='kw'>=</span>
@@ -160,7 +160,7 @@
     </tr>
     <tr>
       <th>tm_nr</th>
-      <td><p>Trismegistos ID (integer)</p></td>
+      <td><p>Trismegistos' database number (?)</p></td>
     </tr>
     <tr>
       <th>transcription</th>
@@ -210,7 +210,8 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Since with the <code>inscriptions</code> option the <code>id</code> "component" of the 
+    <p>This function is for the new [EDH] database [API] in year 2022.</p>
+<p>Since with the <code>inscriptions</code> option the <code>id</code> "component" of the 
 output list is not with a numeric format, then the function adds an <code>ID</code> 
 at the beginning of the list with the identifier with a numerical format.</p>
 <p>Notice that <code>hd_nr</code> is not the same as <code>ID</code> nor <code>id</code>.</p>
@@ -321,9 +322,6 @@ And also the query is printed if specified by printQ.
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>https://edh.ub.uni-heidelberg.de/data/api</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>This function is for the new [EDH] database [API] in year 2022.</p>
     <h2 class="hasAnchor" id="warning-"><a class="anchor" href="#warning-"></a>Warning </h2>
 
     <p>Queries with more than 4000 records can produce a timeout from the server, and a <em>Warning</em> 

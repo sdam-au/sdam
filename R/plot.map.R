@@ -1,14 +1,14 @@
 
 ## 
-## FUNCTION plot.map() to plot cartographical maps of the Roman Empire
+## FUNCTION plot.map() to plot cartographical maps of the Roman Empire and the Mediterranean Sea
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.7 (03-08-2021)
+## version 0.1.1 (31-03-2022)
 ##
 ## OPTIONAL PARAMETERS
 ##
 ## x      (char or vector, province or region acronym)
-## type   (if x=NULL, type of c. map: plain, roman provinces, senatorial-imperial, tetrarchy)
+## type   (if x=NULL, type of c. map: plain, roman provinces, senatorial-imperial, tetrarchy, Mediterranean sea)
 ## settl  (optional and logical, display settlements?)
 ## roads  (optional and logical, display roads?)
 ## shipr  (optional and logical, display shipping routes?)
@@ -22,13 +22,14 @@
 ## fcol2  (only province or region, date's font color)
 ## xd     (only province or region, x positioning for date)
 ## yd     (only province or region, y positioning for date)
+## new    (optional, whether plot has superimposed graphic)
 ##
 
 
 plot.map <-
-function (x = NULL, type = c("plain", "rp", "si", "tetra"), settl, 
-    roads, shipr, main, cap, date, name, fsize, fcol, fsize2, 
-    fcol2, xd, yd, ...) 
+function (x = NULL, type = c("plain", "rp", "si", "tetra", "med"), 
+    settl, roads, shipr, main, cap, date, name, fsize, fcol, 
+    fsize2, fcol2, xd, yd, new, ...) 
 {
     if (is.null(x) == TRUE) {
         if (!(exists("retn"))) {
@@ -38,43 +39,54 @@ function (x = NULL, type = c("plain", "rp", "si", "tetra"), settl,
         else {
             invisible(NA)
         }
+        if (missing(new) == FALSE && isTRUE(new == TRUE) == TRUE) {
+            invisible(plot.new())
+        }
+        else {
+            invisible(NA)
+        }
         grid::grid.newpage()
         switch(match.arg(type), plain = {
             grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[2]]", "[[1]]", sep = "")))))
+                "[[3]]", "[[1]]", sep = "")))))
         }, rp = {
             grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[4]]", "[[1]]", sep = "")))))
+                "[[5]]", "[[1]]", sep = "")))))
         }, si = {
             grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[5]]", "[[1]]", sep = "")))))
+                "[[6]]", "[[1]]", sep = "")))))
         }, tetra = {
             grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[6]]", "[[1]]", sep = "")))))
-        })
-        if (missing(roads) == FALSE && isTRUE(roads == TRUE) == 
-            TRUE) {
-            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[3]]", "[[1]]", sep = "")))))
-        }
-        else {
-            invisible(NA)
-        }
-        if (missing(shipr) == FALSE && isTRUE(shipr == TRUE) == 
-            TRUE) {
-            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
                 "[[7]]", "[[1]]", sep = "")))))
-        }
-        else {
-            invisible(NA)
-        }
-        if (missing(settl) == FALSE && isTRUE(settl == TRUE) == 
-            TRUE) {
+        }, med = {
             grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
                 "[[1]]", "[[1]]", sep = "")))))
-        }
-        else {
-            invisible(NA)
+        })
+        if (match.arg(type) != "med") {
+            if (missing(roads) == FALSE && isTRUE(roads == TRUE) == 
+                TRUE) {
+                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
+                  "[[4]]", "[[1]]", sep = "")))))
+            }
+            else {
+                invisible(NA)
+            }
+            if (missing(shipr) == FALSE && isTRUE(shipr == TRUE) == 
+                TRUE) {
+                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
+                  "[[8]]", "[[1]]", sep = "")))))
+            }
+            else {
+                invisible(NA)
+            }
+            if (missing(settl) == FALSE && isTRUE(settl == TRUE) == 
+                TRUE) {
+                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
+                  "[[2]]", "[[1]]", sep = "")))))
+            }
+            else {
+                invisible(NA)
+            }
         }
         if (missing(main) == TRUE) {
             invisible(NA)

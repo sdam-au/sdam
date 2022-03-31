@@ -3,7 +3,7 @@
 ## FUNCTION prex() to compute probability of existence ot time events
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.9 (12-03-2021)
+## version 0.1.0 (11-01-2022)
 ##
 ## PARAMETERS
 ## x        (list or data frame object from EDH database)
@@ -18,14 +18,16 @@
 ## out      (number of outliers to omit)
 ## plot     (plot results?)
 ## main     (plot's main title)
+## ylim     (limit y axis, only with plot)
 ## ...      (additional parameters)
 
 
 prex <-
 function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE, 
-    weight = 1, DF, out, plot = FALSE, main = NULL, ...) 
+    weight = 1, DF, out, plot = FALSE, main = NULL, ylim, ...) 
 {
-    if (missing(vars) == FALSE) {
+    if (missing(vars) == FALSE && (missing(taq) == TRUE | missing(tpq) == 
+        TRUE)) {
         ifelse(isTRUE(length(vars) == 1L) == TRUE, stop("'vars' needs two values."), 
             vars <- vars[1:2])
         taq <- vars[1]
@@ -34,8 +36,8 @@ function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
     else {
         ifelse(missing(taq) == TRUE, taq <- "not_before", NA)
         ifelse(missing(tpq) == TRUE, tpq <- "not_after", NA)
-        vars <- c(taq, tpq)
     }
+    vars <- c(taq, tpq)
     if (isTRUE(nrow(x) == 0) == TRUE) 
         return(NULL)
     ifelse(is.data.frame(x) == TRUE, xdf <- as.data.frame(x), 
@@ -64,7 +66,6 @@ function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
         NA
     }
     ifelse(missing(cp) == TRUE, cp <- "bin5", NA)
-    ifelse(is.list(bins) == TRUE, flgb <- FALSE, flgb <- TRUE)
     if (is.null(bins) == TRUE) {
         flgb <- FALSE
         if (isTRUE(cp == "bin8") == TRUE) {
@@ -82,14 +83,17 @@ function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
                 Byz = rev(seq(from = 650, to = 1200)))
         }
         else {
+            if (isTRUE(typeof(cp) == "list") == FALSE) 
+                stop("\"cp\" must be a list type object.")
             bins <- cp
         }
     }
     else if (is.numeric(bins) == TRUE && isTRUE(length(bins) == 
         1L) == TRUE) {
+        ifelse(is.list(bins) == TRUE, flgb <- FALSE, flgb <- TRUE)
         if (isTRUE(bins > 1000L) == TRUE) {
             bins <- 1000L
-            warning("'bins' value too large, set to 1000.")
+            warning("Value in \"bins\" too large, set to 1000.")
         }
         else {
             NA
@@ -156,6 +160,8 @@ function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
                 TRUE, dur[[i]] <- 0, dur[[i]] <- 1L)
         }
         else {
+            if (isTRUE(tpq[i] - taq[i] < 0) == TRUE) 
+                stop("'Terminus ante quem' greater than 'terminus post quem' detected.")
             dur[[i]] <- tpq[i] - taq[i]
         }
     }
@@ -190,7 +196,7 @@ function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
                   tmpmq <- taq[i], tmpmq <- which(breaks %in% 
                     seq(taq[i], taq[i] + (unlist(dur)[i] - 1L))))
             }
-            if (isTRUE(sum(unlist(dur)) < 2) == FALSE) {
+            if (isTRUE(sum(abs(unlist(dur))) < 2) == FALSE) {
                 for (k in tmpmq) {
                   tmpm <- append(pertmq[[k]], i)
                   pertmq[[k]] <- tmpm
@@ -286,6 +292,8 @@ function (x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
         }
     }
     else {
-        graphics::barplot(unlist(prxs, use.names = TRUE), main = main)
+        ifelse(missing(ylim) == FALSE, graphics::barplot(unlist(prxs, 
+            use.names = TRUE), main = main, ylim = ylim), graphics::barplot(unlist(prxs, 
+            use.names = TRUE), main = main))
     }
 }

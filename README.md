@@ -1,5 +1,3 @@
-
-
 # sdam
 
 ## Digital tools for the SDAM project at Aarhus University
@@ -8,6 +6,7 @@ This package provides digital tools for the [*Social Dynamics and complexity
 in the Ancient Mediterranean*](https://sdam-au.github.io/sdam-au/) (SDAM) project 
 at the School of Culture and Society at Aarhus University.
 
+
 <br/>
 
 ### Vignettes
@@ -15,7 +14,6 @@ at the School of Culture and Society at Aarhus University.
 * [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
 * [Plotting Roman Empire transport network](https://sdam-au.github.io/sdam/articles/TransportNetwork.html)
 * [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
-
 
 <br/>
 
@@ -38,27 +36,26 @@ devtools::install_github("sdam-au/sdam")
 ### Usage
 
 ```r
-## load package
+## Load package
 library("sdam")
-## release candidate version
 packageVersion("sdam")
-#[1] '0.8.0'
+#[1] '0.8.5'
 ```
 
 ```r
-## load epigraphic data
+## Load epigraphic data
 data("EDH")
 ```
 
 ```r
-# number of inscriptions in EDH dataset
+# Look at how many inscriptions?
 length(EDH)
 # [1] 84701
 ```
 
 
 ```r
-# also look at the object structure
+# Also look at the object structure
 str(EDH)
 ```
 
@@ -125,11 +122,6 @@ cbind(head(iud_df,10), head(iud_df0,10))
 Hence, not available data is removed in `iud_df0`.
 
 
-<br/>
-<br/>
-
-## **WARNING. variable `people` is for `EDH` dataset.**
-
 
 ### People
 
@@ -174,11 +166,6 @@ edhw(vars="people", as="df", id=4444)
 #3 HD004444  Mercurialis   male       Iul. Mercurialis  Iulius*         3      <NA> equestrian order
 ```
 
-<br/>
-<br/>
-
-## **WARNING. Probability of existence is for `EDH` dataset.**
-
 
 ### Probability of existence
 
@@ -200,11 +187,7 @@ prex(x=get.edh(search="inscriptions", province="Iud"), vars=c("not_before", "not
 ```
 
 
-
-
-<!-- Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/) to find more about the distinct variables in `EDH` dataset 
-and applications with the different functions. -->
-
+<br/>
 
 ### See also
 * [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
