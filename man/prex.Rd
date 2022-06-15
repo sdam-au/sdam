@@ -8,13 +8,23 @@ Compute probability of existence
 A function to compute the probability of existence of events.
 }
 \usage{
-prex(x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE, 
-     weight = 1, DF, out, plot = FALSE, main = NULL, ylim, ...)
+prex(x, type = c("aoristic", "mp", "other"), taq, tpq, vars, 
+     bins = NULL, cp, weight = 1, DF, out, plot = FALSE, main = NULL, 
+     ylim, keep, ...)
 }
 
 \arguments{
   \item{x}{
   list or data frame object of variables and observations.
+}
+  \item{type}{
+      Type of date format to plot: 
+        
+        \code{aoristic} aoristic sum
+        
+        \code{mp} mid points and range
+        
+        \code{other} 
 }
   \item{taq}{
   \emph{terminus ante quem} (TAQ)
@@ -30,9 +40,6 @@ prex(x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
 }
   \item{cp}{
   chronological phase
-}
-  \item{aoristic}{
-  return aoristic sum? (logical)
 }
   \item{weight}{
   weight to observations
@@ -52,6 +59,9 @@ prex(x, taq, tpq, vars, bins = NULL, cp, aoristic = TRUE,
   \item{ylim}{
   limit in \eqn{y}-axis (optional, only with plot)
 }
+  \item{keep}{
+  for \code{mp}, keep variables in output? (optional)
+}
   \item{\dots}{
   additional optional parameters
 }
@@ -68,7 +78,8 @@ as a list object.
 When \code{aoristic} is set to \code{FALSE}, then a simple matching of only TAQ and TPQ is computed from \code{x}. 
 }
 \value{
-A data frame with values according to either \code{bins} or \code{cp}.
+A data frame with values according to either \code{bins} or \code{cp}. 
+If \code{plot}, a bar plot with bars of outcomes by \code{bins} or \code{cp}.
 }
 \references{
 For aoristic sum: Crema, E. (2012) ``Modelling temporal uncertainty in archaeological analysis'' \emph{J Archaeol Method Theory}.
@@ -90,7 +101,5 @@ Antonio Rivero Ostoic
 \examples{
 #TBD.
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+\keyword{ datagen }%
 \keyword{ metrics }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -1,6 +1,10 @@
+## `sdam` v0.9.0
+
+* New internal function `cs()`
+
 ## `sdam` v0.8.0
 
-* Dataset `rpd` added and `retn` updated. New EDH API in `get.edh()`
+* Dataset `rpd` added and `retn` updated. New EDH API for `get.edh()`, `get.edhw()`
 
 ## `sdam` v0.6.0
 

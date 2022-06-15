@@ -38,6 +38,7 @@ knitr::opts_chunk$set(echo=TRUE,error=TRUE)
 knitr::opts_chunk$set(comment = "")
 library("sdam")
 # local machine paths
+source("C:/R/AUArts/sdam-rev/bld/plot.map67.r") # new arg
 source(file="C:/R/AUArts/Rmds/src/zbindd.r")
 load(file="C:/R/AUArts/Rmds/data/rts.rda")
 #load(file="C:/R/AUArts/networks/data/govt3.rda")
@@ -151,9 +152,12 @@ Different features from this dataset are obtained with the `type` argument in th
 For instance, the cartographical map of the Roman Empire in year 120AD with provinces is obtained with
 
 
-```{r, tnet1, echo=TRUE, eval=TRUE, out.width="70%", fig.align="center", fig.cap="Roman Empire with provinces in year 120AD"}
+```{r, echo=TRUE, eval=FALSE}
 # Roman Empire with provinces
 plot.map(type="rp")
+```
+```{r, tnet1, echo=FALSE, eval=TRUE, out.width="70%", fig.align="center", fig.cap="Roman Empire with provinces in year 120AD"}
+plot.map67(type="rp", new=FALSE)
 ```
 
 <div style="margin-bottom:60px;"> </div>
@@ -171,15 +175,21 @@ human *settlements*.
 <div class="rts">
 <div class="row">
 <div class="col-md-6">
-```{r, echo=TRUE, eval=TRUE, fig.align="center", fig.cap="Senatorial and Imperial provinces with roads and shipping routes"}
+```{r, echo=TRUE, eval=FALSE}
 # Roman Empire transport system with provinces
 plot.map(type="si", roads=TRUE, shipr=TRUE)
 ```
+```{r, echo=FALSE, eval=TRUE, fig.align="center", fig.cap="Senatorial and Imperial provinces with roads and shipping routes"}
+plot.map67(type="si", roads=TRUE, shipr=TRUE, new=FALSE)
+```
 </div>
 <div class="col-md-6">
-```{r, echo=TRUE, eval=TRUE, fig.align="center", fig.cap="Senatorial and Imperial provinces with roads, shipping routes, and settlements"}
+```{r, echo=TRUE, eval=FALSE}
 # Roman Empire transport system with provinces
 plot.map(type="si", settl=TRUE, roads=TRUE, shipr=TRUE)
+```
+```{r, echo=FALSE, eval=TRUE, fig.align="center", fig.cap="Senatorial and Imperial provinces with roads, shipping routes, and settlements"}
+plot.map67(type="si", settl=TRUE, roads=TRUE, shipr=TRUE, new=FALSE)
 ```
 </div>
 </div>
@@ -338,8 +348,15 @@ multigraph(rts, layout="force", seed=3, scope=c(scp,list(col=c("#FFFF66","#FFCC6
 
 * [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
 * [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
-* [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+<br/>
 * [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
+* [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+* [Code snippets using `"sdam"`](https://github.com/sdam-au/R_code)
+  + [Shipwrecks network in the Mediterranean Basin (3-June-2022)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Shipwrecks%20Network%20in%20the%20Mediterranean%20Basin.html)
+  + [Centrality measures in ORBIS Roman transport network (24-Nov-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Centrality%20measures%20in%20ORBIS%20Roman%20transport%20network.html)
+  + [ORBIS Roman World transport network (14-Sep-2021, update: 22-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/ORBIS%20Roman%20World%20transport%20network%20centrality%20measures.html)
+  + [Plotting Roman Roads (update: 14-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20(update).html)
+  + [Plotting Roman Roads and Time (17-Aug-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20and%20Time.html)
 
 
 

@@ -13,8 +13,8 @@
 \tabular{ll}{
 Package: \tab sdam \cr
 Type: \tab Package \cr
-Version: \tab 0.8.5 \cr
-Date: \tab 31 March 2022 \cr
+Version: \tab 0.9.3 \cr
+Date: \tab 14 June 2022 \cr
 License: \tab CC BY-SA 4.0 \cr
 }
 
@@ -56,7 +56,7 @@ Maintainer: \packageMaintainer{sdam}
 \keyword{ package }
 \seealso{
 \href{https://sdam-au.github.io/sdam/articles/}{Vignettes}
-%\code{\link[multigraph]{multigraph}}
+%\code{\link[multiplex]{multiplex}}
 }
 %\examples{
 %~~ simple examples of the most important functions ~~

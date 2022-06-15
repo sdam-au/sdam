@@ -4,7 +4,7 @@
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
 ## First aimed to interact with DEiC's sciencedata.dk
-## version 0.2.6 (20-09-2021)
+## version 0.2.7 (23-05-2022)
 ##
 ## PARAMETERS
 ## file      (object under 'method')
@@ -142,3 +142,5 @@ function (file, URL = "https://sciencedata.dk", method = c("GET",
                 as.vector(cred[2])), httr::add_headers(Accept = "")))
     }
 }
+SDDK <- sddk <- request
+request <- SDDK

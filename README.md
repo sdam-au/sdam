@@ -7,30 +7,24 @@ in the Ancient Mediterranean*](https://sdam-au.github.io/sdam-au/) (SDAM) projec
 at the School of Culture and Society at Aarhus University.
 
 
-<br/>
-
-### Vignettes
-
-* [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
-* [Plotting Roman Empire transport network](https://sdam-au.github.io/sdam/articles/TransportNetwork.html)
-* [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
 
 <br/>
 
 ### Installation
 
-You can install the `sdam` package from these GitHub repositories using the R console or RStudio if you wish.
-
-```r
-## install beta version
-devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
-```
-or 
+You can install the `sdam` package from these GitHub repositories using the R console or RStudio.
 
 ```r
 ## install release candidate
 devtools::install_github("sdam-au/sdam")
 ```
+or 
+
+```r
+## install beta version
+devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
+```
+
 
 
 ### Usage
@@ -39,7 +33,7 @@ devtools::install_github("sdam-au/sdam")
 ## Load package
 library("sdam")
 packageVersion("sdam")
-#[1] '0.8.5'
+#[1] '0.9.3'
 ```
 
 ```r
@@ -187,10 +181,25 @@ prex(x=get.edh(search="inscriptions", province="Iud"), vars=c("not_before", "not
 ```
 
 
-<br/>
+
+
+### Vignettes
+
+* [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
+* [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
+* [Plotting Roman Empire transport network](https://sdam-au.github.io/sdam/articles/TransportNetwork.html)
+
+
+<!-- Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/) to find more about the distinct variables in `EDH` dataset 
+and applications with the different functions. -->
+
 
 ### See also
+* [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
 * [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
 * [Code snippets using `"sdam"`](https://github.com/sdam-au/R_code)
-* [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
-
+  + [Shipwrecks network in the Mediterranean Basin (3-June-2022)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Shipwrecks%20Network%20in%20the%20Mediterranean%20Basin.html)
+  + [Centrality measures in ORBIS Roman transport network (24-Nov-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Centrality%20measures%20in%20ORBIS%20Roman%20transport%20network.html)
+  + [ORBIS Roman World transport network (14-Sep-2021, update: 22-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/ORBIS%20Roman%20World%20transport%20network%20centrality%20measures.html)
+  + [Plotting Roman Roads (update: 14-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20(update).html)
+  + [Plotting Roman Roads and Time (17-Aug-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20and%20Time.html)

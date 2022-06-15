@@ -1,13 +1,13 @@
 \name{request}
 \alias{request}
-%\alias{ssdk}
-%\alias{SSDK}
+\alias{ssdk}
+\alias{SSDK}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Perform an HTTP request
+Perform a HTTP request
 }
 \description{
-A function to perform an HTTP request
+A function to perform a HTTP request
 }
 \usage{
 request(file, URL = "https://sciencedata.dk", method = c("GET", "POST", "PUT", "DELETE"), 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plotting Roman Empire transport network • sdam</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -64,8 +60,44 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.9.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.8.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.6.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.5.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.4.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.3.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.2.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.1.x details</a>
+    </li>
+    <li class="divider">
+    </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -82,7 +114,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Plotting Roman Empire transport network</h1>
-                        <h4 class="author">Antonio Rivero Ostoic</h4>
+                        <h4 data-toc-skip class="author">Antonio Rivero Ostoic</h4>
             <address class="author_afil">
       <center>
       CEDHAR, Aarhus University
@@ -92,7 +124,7 @@
 </center></a>
       </address>
                   
-            <h4 class="date">3 August 2021</h4>
+            <h4 data-toc-skip class="date">3 August 2021</h4>
       
       
       <div class="hidden name"><code>TransportNetwork.Rmd</code></div>
@@ -119,31 +151,34 @@ h3 {
 <div style="margin-bottom:60px;">
 
 </div>
-<div id="preliminaries" class="section level3">
-<h3 class="hasAnchor">
-<a href="#preliminaries" class="anchor"></a>Preliminaries</h3>
-<p><code>"sdam"</code> is an <code>R</code> package that provides tools for performing analyses within Social Dynamics and complexity in the Ancient Mediterranean <a href="https://sdam-au.github.io/sdam-au/">SDAM</a>, which is a research group based at Aarhus University. It allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, visualizing interval time events, compute probabilities of existence of archaeological assemblages and artifacts, and produce similarity matrices by simple matching between these objects.</p>
+<div class="section level3">
+<h3 id="preliminaries">Preliminaries<a class="anchor" aria-label="anchor" href="#preliminaries"></a>
+</h3>
+<p><code>"sdam"</code> is an <code>R</code> package that provides tools for performing analyses within Social Dynamics and complexity in the Ancient Mediterranean <a href="https://sdam-au.github.io/sdam-au/" class="external-link">SDAM</a>, which is a research group based at Aarhus University. It allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, visualizing interval time events, compute probabilities of existence of archaeological assemblages and artifacts, and produce similarity matrices by simple matching between these objects.</p>
 <!-- After uninstalling an old version of the `"sdam"` package from local machine and running as administrator, 
 install version 0.6.0 from a GitHub repository.  -->
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># install beta version</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"mplex/cedhar"</span>, <span class="kw">subdir</span><span class="kw">=</span><span class="st">"pkg/sdam"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install beta version</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mplex/cedhar"</span>, subdir<span class="op">=</span><span class="st">"pkg/sdam"</span><span class="op">)</span></code></pre></div>
 <div style="margin-bottom:30px;">
 
 </div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load package and check version</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"sdam"</span>)</pre></body></html></div>
-<pre><code>[1] '0.8.5'</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># load package and check version</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"sdam"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"sdam"</span><span class="op">)</span></code></pre></div>
+<pre><code>[1] '0.9.3'</code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
 </div>
-<div id="datasets" class="section level2">
-<h2 class="hasAnchor">
-<a href="#datasets" class="anchor"></a>Datasets</h2>
+<div class="section level2">
+<h2 id="datasets">Datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
+</h2>
 <p>Package <code>"sdam"</code> comes with a suite of datasets related to ancient Rome.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># retrieve available datasets</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">package</span><span class="kw">=</span><span class="st">"sdam"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># retrieve available datasets</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"sdam"</span><span class="op">)</span></code></pre></div>
 <pre><code>Datasets in package ‘sdam’:
 
 EDH                       Epigraphic Database Heidelberg Dataset
@@ -158,12 +193,13 @@ rpmp                      Maps of ancient Roman provinces and Italian regions</c
 
 </div>
 </div>
-<div id="cartographical-maps-with-roman-provinces" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cartographical-maps-with-roman-provinces" class="anchor"></a>Cartographical maps with Roman provinces</h2>
+<div class="section level2">
+<h2 id="cartographical-maps-with-roman-provinces">Cartographical maps with Roman provinces<a class="anchor" aria-label="anchor" href="#cartographical-maps-with-roman-provinces"></a>
+</h2>
 <p>Cartographical maps of ancient Roman provinces can be plotted with function <code><a href="../reference/plot.map.html">plot.map()</a></code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># cartographical map of ancient Achaia</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="st">"Ach"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># cartographical map of ancient Achaia</span>
+<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Ach"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="TransportNetwork_files/figure-html/mapprov-1.png" alt="year 117 AD" width="35%"><p class="caption">
 year 117 AD
@@ -173,9 +209,10 @@ year 117 AD
 
 </div>
 <p>where the acronym names of Roman provinces can be found in the <code>"rp"</code> dataset.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># Roman province acronyms according to EDH</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"rp"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">rp</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Roman province acronyms according to EDH</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"rp"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">rp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code> [1] "Ach" "Aeg" "Aem" "Afr" "AlC" "AlG" "AlM" "AlP" "ApC" "Aqu" "Ara" "Arm" "Asi" "Ass" "Bae" "Bar"
 [17] "Bel" "BiP" "BrL" "Bri" "Cap" "Cil" "Cor" "Cre" "Cyp" "Cyr" "Dac" "Dal" "Epi" "Etr" "Gal" "GeI"
 [33] "GeS" "HiC" "Inc" "Iud" "LaC" "Lig" "Lug" "Lus" "LyP" "MaC" "MaT" "Mak" "Mes" "MoI" "MoS" "Nar"
@@ -184,16 +221,17 @@ year 117 AD
 <div style="margin-bottom:60px;">
 
 </div>
-<div id="roman-empire" class="section level3">
-<h3 class="hasAnchor">
-<a href="#roman-empire" class="anchor"></a>Roman Empire</h3>
+<div class="section level3">
+<h3 id="roman-empire">Roman Empire<a class="anchor" aria-label="anchor" href="#roman-empire"></a>
+</h3>
 <p>By default, <code>x</code> in <code><a href="../reference/plot.map.html">plot.map()</a></code> is set to <code>NULL</code>, which means that the input data comes instead from the <em>Roman Empire</em>. Different features from this dataset are obtained with the <code>type</code> argument in this function.</p>
 <div style="margin-bottom:30px;">
 
 </div>
 <p>For instance, the cartographical map of the Roman Empire in year 120AD with provinces is obtained with</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># Roman Empire with provinces</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">type</span><span class="kw">=</span><span class="st">"rp"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Roman Empire with provinces</span>
+<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"rp"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="TransportNetwork_files/figure-html/tnet1-1.png" alt="Roman Empire with provinces in year 120AD" width="70%"><p class="caption">
 Roman Empire with provinces in year 120AD
@@ -203,26 +241,28 @@ Roman Empire with provinces in year 120AD
 
 </div>
 </div>
-<div id="transport-system-in-the-roman-empire" class="section level3">
-<h3 class="hasAnchor">
-<a href="#transport-system-in-the-roman-empire" class="anchor"></a>Transport system in the Roman Empire</h3>
+<div class="section level3">
+<h3 id="transport-system-in-the-roman-empire">Transport system in the Roman Empire<a class="anchor" aria-label="anchor" href="#transport-system-in-the-roman-empire"></a>
+</h3>
 <p>Ancient Roman <em>terrestrial</em> and <em>maritime</em> routes (or roads and shipping routes) along with settlements are found in the <code>"retn"</code> dataset. The following examples are representations of the transport system in the Roman Empire without and with human <em>settlements</em>.</p>
 <div class="rts">
 <div class="row">
 <div class="col-md-6">
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># Roman Empire transport system with provinces</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">type</span><span class="kw">=</span><span class="st">"si"</span>, <span class="kw">roads</span><span class="kw">=</span><span class="fl">TRUE</span>, <span class="kw">shipr</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Roman Empire transport system with provinces</span>
+<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"si"</span>, roads<span class="op">=</span><span class="cn">TRUE</span>, shipr<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="TransportNetwork_files/figure-html/unnamed-chunk-3-1.png" alt="Senatorial and Imperial provinces with roads and shipping routes" width="700"><p class="caption">
+<img src="TransportNetwork_files/figure-html/unnamed-chunk-5-1.png" alt="Senatorial and Imperial provinces with roads and shipping routes" width="700"><p class="caption">
 Senatorial and Imperial provinces with roads and shipping routes
 </p>
 </div>
 </div>
 <div class="col-md-6">
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># Roman Empire transport system with provinces</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">type</span><span class="kw">=</span><span class="st">"si"</span>, <span class="kw">settl</span><span class="kw">=</span><span class="fl">TRUE</span>, <span class="kw">roads</span><span class="kw">=</span><span class="fl">TRUE</span>, <span class="kw">shipr</span><span class="kw">=</span><span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Roman Empire transport system with provinces</span>
+<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"si"</span>, settl<span class="op">=</span><span class="cn">TRUE</span>, roads<span class="op">=</span><span class="cn">TRUE</span>, shipr<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="TransportNetwork_files/figure-html/unnamed-chunk-4-1.png" alt="Senatorial and Imperial provinces with roads, shipping routes, and settlements" width="700"><p class="caption">
+<img src="TransportNetwork_files/figure-html/unnamed-chunk-7-1.png" alt="Senatorial and Imperial provinces with roads, shipping routes, and settlements" width="700"><p class="caption">
 Senatorial and Imperial provinces with roads, shipping routes, and settlements
 </p>
 </div>
@@ -230,12 +270,13 @@ Senatorial and Imperial provinces with roads, shipping routes, and settlements
 </div>
 </div>
 </div>
-<div id="network-representation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#network-representation" class="anchor"></a>Network representation</h3>
+<div class="section level3">
+<h3 id="network-representation">Network representation<a class="anchor" aria-label="anchor" href="#network-representation"></a>
+</h3>
 <p>The Roman Empire transport system from the cartographical maps is a network that can be further abstracted with a graph representation. A multigraph, for instance, would have two types of relationships that are the <em>terrestrial</em> and <em>maritime</em> routes, and the nodes would be human <em>settlements</em> and <em>crossing points</em> of two or more routes.</p>
 <p>Object <code>rts</code> records main ancient Roman terrestrial and maritime routes (or roads and shipping routes) as adjacency matrices.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">rts</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">rts</span><span class="op">)</span></code></pre></div>
 <pre><code> num [1:168, 1:168, 1:2] 0 0 0 0 0 0 0 0 0 0 ...
  - attr(*, "dimnames")=List of 3
   ..$ : chr [1:168] "ita1" "ita2" "ita3" "ita9" ...
@@ -246,28 +287,38 @@ Senatorial and Imperial provinces with roads, shipping routes, and settlements
 
 </div>
 </div>
-<div id="graphs" class="section level3">
-<h3 class="hasAnchor">
-<a href="#graphs" class="anchor"></a>Graphs</h3>
+<div class="section level3">
+<h3 id="graphs">Graphs<a class="anchor" aria-label="anchor" href="#graphs"></a>
+</h3>
 <p>The following examples requires the <code>"multigraph"</code> package and it shows a graph with a forced directed layout of the ancient main Roman roads as gray edges and main maritime connections in blue edges.</p>
 <div style="margin-bottom:30px;">
 
 </div>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"multigraph"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"multigraph"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/mplex/multigraph/" class="external-link">"multigraph"</a></span><span class="op">)</span></code></pre></div>
+<pre><code>Loading required package: multiplex</code></pre>
+<pre><code>
+Attaching package: 'multiplex'</code></pre>
+<pre><code>The following object is masked _by_ '.GlobalEnv':
+
+    zbindd</code></pre>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"multigraph"</span><span class="op">)</span></code></pre></div>
 <pre><code>[1] '0.96.2'</code></pre>
 <div style="margin-bottom:30px;">
 
 </div>
 <p>Start by defining the scopes for nodes and edges in the graphs.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># scope for roads and shipping routes</span>
-<span class="no">scp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">directed</span><span class="kw">=</span><span class="fl">FALSE</span>, <span class="kw">cex</span><span class="kw">=</span><span class="fl">2</span>, <span class="kw">pos</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">"#C0C0C0"</span>, <span class="kw">lwd</span><span class="kw">=</span><span class="fl">3</span>, <span class="kw">fsize</span><span class="kw">=</span><span class="fl">5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># scope for roads and shipping routes</span>
+<span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>directed<span class="op">=</span><span class="cn">FALSE</span>, cex<span class="op">=</span><span class="fl">2</span>, pos<span class="op">=</span><span class="fl">0</span>, col<span class="op">=</span><span class="st">"#C0C0C0"</span>, lwd<span class="op">=</span><span class="fl">3</span>, fsize<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </code></pre></div>
 <div style="margin-bottom:40px;">
 
 </div>
 <p>And then the plot of roads that are in the first matrix of <code>rts</code> as grey edges.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># main ancient Roman roads with a rotated graph</span>
-<span class="fu"><a href="https://rdrr.io/pkg/multigraph/man/multigraph.html">multigraph</a></span>(<span class="no">rts</span>[,,<span class="fl">1</span>], <span class="kw">layout</span><span class="kw">=</span><span class="st">"force"</span>, <span class="kw">seed</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">scope</span><span class="kw">=</span><span class="no">scp</span>, <span class="kw">ecol</span><span class="kw">=</span><span class="st">"#808080"</span>, <span class="kw">rot</span><span class="kw">=</span>-<span class="fl">55</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># main ancient Roman roads with a rotated graph</span>
+<span class="fu"><a href="https://rdrr.io/pkg/multigraph/man/multigraph.html" class="external-link">multigraph</a></span><span class="op">(</span><span class="va">rts</span><span class="op">[</span>,,<span class="fl">1</span><span class="op">]</span>, layout<span class="op">=</span><span class="st">"force"</span>, seed<span class="op">=</span><span class="fl">1</span>, scope<span class="op">=</span><span class="va">scp</span>, ecol<span class="op">=</span><span class="st">"#808080"</span>, rot<span class="op">=</span><span class="op">-</span><span class="fl">55</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="TransportNetwork_files/figure-html/rrd-1.png" alt="Graph with main Roman roads (ca. 120AD)" width="100%"><p class="caption">
 Graph with main Roman roads (ca. 120AD)
@@ -276,9 +327,10 @@ Graph with main Roman roads (ca. 120AD)
 <div style="margin-bottom:80px;">
 
 </div>
-<p>A similar graph can be made just for shipping routes in the second matrix of <code>rts</code>. In this case, however, we first remove <em>isolates</em> that are settlements and crossing points that are not part of the maritime system with function <code>rm.isol()</code> from <code>"multiplex"</code> package.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co"># main ancient Roman maritime routes</span>
-<span class="fu"><a href="https://rdrr.io/pkg/multigraph/man/multigraph.html">multigraph</a></span>(<span class="fu">rm.isol</span>(<span class="no">rts</span>[,,<span class="fl">2</span>]), <span class="kw">layout</span><span class="kw">=</span><span class="st">"force"</span>, <span class="kw">seed</span><span class="kw">=</span><span class="fl">3</span>, <span class="kw">scope</span><span class="kw">=</span><span class="no">scp</span>, <span class="kw">ecol</span><span class="kw">=</span><span class="st">"#AFDDE9"</span>)</pre></body></html></div>
+<p>A similar graph can be made just for shipping routes in the second matrix of <code>rts</code>. In this case, however, we first remove <em>isolates</em> that are settlements and crossing points that are not part of the maritime system with function <code><a href="https://rdrr.io/pkg/multiplex/man/rm.isol.html" class="external-link">rm.isol()</a></code> from <code>"multiplex"</code> package.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># main ancient Roman maritime routes</span>
+<span class="fu"><a href="https://rdrr.io/pkg/multigraph/man/multigraph.html" class="external-link">multigraph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multiplex/man/rm.isol.html" class="external-link">rm.isol</a></span><span class="op">(</span><span class="va">rts</span><span class="op">[</span>,,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>, layout<span class="op">=</span><span class="st">"force"</span>, seed<span class="op">=</span><span class="fl">3</span>, scope<span class="op">=</span><span class="va">scp</span>, ecol<span class="op">=</span><span class="st">"#AFDDE9"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="TransportNetwork_files/figure-html/rmr-1.png" alt="Graph with main Roman shipping routes (ca. 120AD)" width="80%"><p class="caption">
 Graph with main Roman shipping routes (ca. 120AD)
@@ -288,13 +340,14 @@ Graph with main Roman shipping routes (ca. 120AD)
 
 </div>
 </div>
-<div id="multigraph-of-transport-network" class="section level3">
-<h3 class="hasAnchor">
-<a href="#multigraph-of-transport-network" class="anchor"></a>Multigraph of transport network</h3>
+<div class="section level3">
+<h3 id="multigraph-of-transport-network">Multigraph of transport network<a class="anchor" aria-label="anchor" href="#multigraph-of-transport-network"></a>
+</h3>
 <p>The whole transport network version of the Roman Empire comprises the terrestrial and maritime transport systems, which means that it is a case of a multiplex network.</p>
 <p>Below is the plot of the multigraph representing an ancient Roman transport network recorded in object <code>rts</code> with roads as grey edges and shipping routes as blue edges.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># multigraph with solid edges and customized bundle width</span>
-<span class="fu"><a href="https://rdrr.io/pkg/multigraph/man/multigraph.html">multigraph</a></span>(<span class="no">rts</span>, <span class="kw">layout</span><span class="kw">=</span><span class="st">"force"</span>, <span class="kw">seed</span><span class="kw">=</span><span class="fl">3</span>, <span class="kw">scope</span><span class="kw">=</span><span class="no">scp</span>, <span class="kw">ecol</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#808080"</span>,<span class="st">"#AFDDE9"</span>), <span class="kw">lty</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">bwd</span><span class="kw">=</span><span class="fl">.5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># multigraph with solid edges and customized bundle width</span>
+<span class="fu"><a href="https://rdrr.io/pkg/multigraph/man/multigraph.html" class="external-link">multigraph</a></span><span class="op">(</span><span class="va">rts</span>, layout<span class="op">=</span><span class="st">"force"</span>, seed<span class="op">=</span><span class="fl">3</span>, scope<span class="op">=</span><span class="va">scp</span>, ecol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#808080"</span>,<span class="st">"#AFDDE9"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fl">1</span>, bwd<span class="op">=</span><span class="fl">.5</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="TransportNetwork_files/figure-html/rts-1.png" alt="Multigraph with main Roman transport network (ca. 120AD)" width="100%"><p class="caption">
 Multigraph with main Roman transport network (ca. 120AD)
@@ -304,39 +357,42 @@ Multigraph with main Roman transport network (ca. 120AD)
 
 </div>
 </div>
-<div id="province-affiliations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#province-affiliations" class="anchor"></a>Province Affiliations</h3>
+<div class="section level3">
+<h3 id="province-affiliations">Province Affiliations<a class="anchor" aria-label="anchor" href="#province-affiliations"></a>
+</h3>
 <p>In order to plot affiliations of ancient Roman provinces, we start by clustering the nodes accroding to their political status in year 117AD. In this time, the Roman Empire was divided into <em>senatorial</em> and <em>imperial</em> provinces, which are the two possible affiliations of network actors in <code>rts</code>.</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># vector of nodes in transport system</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span>(<span class="no">rts</span>)<span class="kw">[[</span><span class="fl">1</span>]]</pre></body></html></div>
-<pre><code># [1] "ita1"  "ita2"  "ita3"  "ita9"  "ita12" "ita4"  "ita5"  "ita8"  "ita6"  "ita7" 
-#[11] "ita10" "ita11" "ita15" "ita17" "ita20" "ita13" "ita14" "ita16" "ita18" "ita19"
-#[21] "ita21" "sic1"  "sic2"  "aeg1"  "aeg2"  "aeg3"  "aeg7"  "aeg4"  "aeg5"  "aeg6" 
-#...</code></pre>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># vector of nodes in transport system</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">rts</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code><span class="co"># [1] "ita1"  "ita2"  "ita3"  "ita9"  "ita12" "ita4"  "ita5"  "ita8"  "ita6"  "ita7" </span>
+<span class="co">#[11] "ita10" "ita11" "ita15" "ita17" "ita20" "ita13" "ita14" "ita16" "ita18" "ita19"</span>
+<span class="co">#[21] "ita21" "sic1"  "sic2"  "aeg1"  "aeg2"  "aeg3"  "aeg7"  "aeg4"  "aeg5"  "aeg6" </span>
+<span class="co">#...</span></code></pre>
 <div style="margin-bottom:20px;">
 
 </div>
 <p>We start by defining the positions of the actors belonging to senatorial provinces.</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="co"># senatorial provinces positions</span>
-<span class="no">sen</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">8</span>,<span class="fl">11</span>,<span class="fl">23</span>,<span class="fl">24</span>,<span class="fl">25</span>,<span class="fl">30</span>,<span class="fl">31</span>,<span class="fl">40</span>,<span class="fl">41</span>,<span class="fl">42</span>,<span class="fl">43</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># senatorial provinces positions</span>
+<span class="va">sen</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">8</span>,<span class="fl">11</span>,<span class="fl">23</span>,<span class="fl">24</span>,<span class="fl">25</span>,<span class="fl">30</span>,<span class="fl">31</span>,<span class="fl">40</span>,<span class="fl">41</span>,<span class="fl">42</span>,<span class="fl">43</span><span class="op">)</span></code></pre></div>
 <div style="margin-bottom:20px;">
 
 </div>
 <p>We create vector <code>clusi</code> with the two affiliations and actors’ positions.</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co"># clustering vector with imperial 2 by default</span>
-<span class="no">clusi</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">2</span>, <span class="kw">length</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span>(<span class="no">rts</span>)<span class="kw">[[</span><span class="fl">1</span>]]))
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># clustering vector with imperial 2 by default</span>
+<span class="va">clusi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2</span>, length<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">rts</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># senatorial nodes</span>
-<span class="no">clusi</span>[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span>(<span class="no">rts</span>)<span class="kw">[[</span><span class="fl">1</span>]],<span class="fl">1</span>,<span class="fl">3</span>)<span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span>(<span class="no">rts</span>)<span class="kw">[[</span><span class="fl">1</span>]],<span class="fl">1</span>,<span class="fl">3</span>))[<span class="no">sen</span>])] <span class="kw">&lt;-</span> <span class="fl">1L</span></pre></body></html></div>
+<span class="va">clusi</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">rts</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">rts</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">sen</span><span class="op">]</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1L</span></code></pre></div>
 <pre><code>  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 1 1
  [48] 1 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
  [95] 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 2 1 2 2 2 2
 [142] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1 1 2 1 1 2 2</code></pre>
 <!-- clusi[which(substr(dimnames(rts)[[1]],1,3)%in%unique(substr(dimnames(rts)[[1]],1,3))[which(!(1:43%in%sen))])] <- 2L -->
 <p>Then we proceed with the plot where the main Roman transport network in year 120AD is given as a multigraph with the senatorial and imperial type nodes.</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"># re-use scope, but change node colors. Add clustering information and edge colors
-multigraph(rts, layout="force", seed=3, scope=c(scp,list(col=c("#FFFF66","#FFCC66"))), clu=clusi, 
-+    ecol=c("#808080","#AFDDE9"), lty=1, bwd=.5)</pre></body></html></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># re-use scope, but change node colors. Add clustering information and edge colors</span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="kw">multigraph</span>(rts, <span class="dt">layout=</span><span class="st">"force"</span>, <span class="dt">seed=</span><span class="dv">3</span>, <span class="dt">scope=</span><span class="kw">c</span>(scp,<span class="kw">list</span>(<span class="dt">col=</span><span class="kw">c</span>(<span class="st">"#FFFF66"</span>,<span class="st">"#FFCC66"</span>))), <span class="dt">clu=</span>clusi, </a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="op">+</span><span class="st">    </span><span class="dt">ecol=</span><span class="kw">c</span>(<span class="st">"#808080"</span>,<span class="st">"#AFDDE9"</span>), <span class="dt">lty=</span><span class="dv">1</span>, <span class="dt">bwd=</span>.<span class="dv">5</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="TransportNetwork_files/figure-html/rtssi-1.png" alt="Main Roman transport network (ca. 120AD) with senatorial/imperial nodes." width="100%"><p class="caption">
 Main Roman transport network (ca. 120AD) with senatorial/imperial nodes.
@@ -349,14 +405,26 @@ Main Roman transport network (ca. 120AD) with senatorial/imperial nodes.
 
 </div>
 </div>
-<div id="see-also" class="section level3">
-<h3 class="hasAnchor">
-<a href="#see-also" class="anchor"></a>See also</h3>
+<div class="section level3">
+<h3 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a>
+</h3>
 <ul>
-<li><a href="https://sdam-au.github.io/sdam/articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a></li>
-<li><a href="https://sdam-au.github.io/sdam/articles/Encoding.html">Re-encoding Greek characters from ‘EDH’ dataset</a></li>
-<li><a href="https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf"><code>"sdam"</code> manual</a></li>
-<li><a href="https://sdam-au.github.io/sdam-au/">Social Dynamics and complexity in the Ancient Mediterranean Project</a></li>
+<li><a href="https://sdam-au.github.io/sdam/articles/RomanProvs.html" class="external-link">Plotting ancient Roman provinces and regions</a></li>
+<li>
+<a href="https://sdam-au.github.io/sdam/articles/Encoding.html" class="external-link">Re-encoding Greek characters from ‘EDH’ dataset</a> <br>
+</li>
+<li><a href="https://sdam-au.github.io/sdam-au/" class="external-link">Social Dynamics and complexity in the Ancient Mediterranean Project</a></li>
+<li><a href="https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf" class="external-link"><code>"sdam"</code> manual</a></li>
+<li>
+<a href="https://github.com/sdam-au/R_code" class="external-link">Code snippets using <code>"sdam"</code></a>
+<ul>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Shipwrecks%20Network%20in%20the%20Mediterranean%20Basin.html" class="external-link">Shipwrecks network in the Mediterranean Basin (3-June-2022)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Centrality%20measures%20in%20ORBIS%20Roman%20transport%20network.html" class="external-link">Centrality measures in ORBIS Roman transport network (24-Nov-2021)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/ORBIS%20Roman%20World%20transport%20network%20centrality%20measures.html" class="external-link">ORBIS Roman World transport network (14-Sep-2021, update: 22-Sep-2021)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20(update).html" class="external-link">Plotting Roman Roads (update: 14-Sep-2021)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20and%20Time.html" class="external-link">Plotting Roman Roads and Time (17-Aug-2021)</a></li>
+</ul>
+</li>
 </ul>
 <div style="margin-bottom:60px;">
 
@@ -377,11 +445,13 @@ Main Roman transport network (ca. 120AD) with senatorial/imperial nodes.
 
 
       <footer><div class="copyright">
-  <p>Developed by Antonio Rivero Ostoic.</p>
+  <p></p>
+<p>Developed by Antonio Rivero Ostoic.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer>
@@ -389,6 +459,8 @@ Main Roman transport network (ca. 120AD) with senatorial/imperial nodes.
 
   
 
+
+  
 
   </body>
 </html>

@@ -1,9 +1,9 @@
 
 ## 
-## FUNCTION plot.map() to plot cartographical maps of the Roman Empire and the Mediterranean Sea
+## FUNCTION plot.map() to plot cartographical maps of the Roman Empire and the Mediterranean Basin
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.1.1 (31-03-2022)
+## version 0.1.4 (30-04-2022)
 ##
 ## OPTIONAL PARAMETERS
 ##
@@ -15,14 +15,14 @@
 ## main   (plot's title)
 ## cap    (only province or region, logical, display caption?)
 ## date   (only province or region, logical, display est date in caption?)
-## name   (only province or region, logical, display title's name?)
+## name   (only province or region, logical, display name?)
 ## fsize  (title's font size)
 ## fcol   (title's font color)
 ## fsize2 (only province or region, date's font size)
 ## fcol2  (only province or region, date's font color)
 ## xd     (only province or region, x positioning for date)
 ## yd     (only province or region, y positioning for date)
-## new    (optional, whether plot has superimposed graphic)
+## new    (optional, new plot as superimposed graphic?)
 ##
 
 
@@ -47,55 +47,46 @@ function (x = NULL, type = c("plain", "rp", "si", "tetra", "med"),
         }
         grid::grid.newpage()
         switch(match.arg(type), plain = {
-            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[3]]", "[[1]]", sep = "")))))
+            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$rcoast", 
+                "[[1]]", sep = "")))))
         }, rp = {
-            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[5]]", "[[1]]", sep = "")))))
+            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$rpcoast", 
+                "[[1]]", sep = "")))))
         }, si = {
-            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[6]]", "[[1]]", sep = "")))))
+            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$rpsi", 
+                "[[1]]", sep = "")))))
         }, tetra = {
-            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[7]]", "[[1]]", sep = "")))))
+            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$rptetra", 
+                "[[1]]", sep = "")))))
         }, med = {
-            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                "[[1]]", "[[1]]", sep = "")))))
+            grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$med", 
+                "[[1]]", sep = "")))))
         })
         if (match.arg(type) != "med") {
             if (missing(roads) == FALSE && isTRUE(roads == TRUE) == 
                 TRUE) {
-                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                  "[[4]]", "[[1]]", sep = "")))))
+                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$rds", 
+                  "[[1]]", sep = "")))))
             }
             else {
                 invisible(NA)
             }
             if (missing(shipr) == FALSE && isTRUE(shipr == TRUE) == 
                 TRUE) {
-                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                  "[[8]]", "[[1]]", sep = "")))))
+                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$srs", 
+                  "[[1]]", sep = "")))))
             }
             else {
                 invisible(NA)
             }
             if (missing(settl) == FALSE && isTRUE(settl == TRUE) == 
                 TRUE) {
-                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn", 
-                  "[[2]]", "[[1]]", sep = "")))))
+                grid::grid.draw(x = grImport2::pictureGrob(picture = eval(parse(text = paste("retn$nds", 
+                  "[[1]]", sep = "")))))
             }
             else {
                 invisible(NA)
             }
-        }
-        if (missing(main) == TRUE) {
-            invisible(NA)
-        }
-        else {
-            ifelse(missing(fsize) == TRUE, fsize <- 15, invisible(NA))
-            ifelse(missing(fcol) == TRUE, fcol <- "black", invisible(NA))
-            grid::grid.text(main, x = 0.5, y = 0.966, gp = grid::gpar(fontsize = fsize, 
-                col = fcol))
         }
     }
     else {
@@ -153,17 +144,23 @@ function (x = NULL, type = c("plain", "rp", "si", "tetra", "med"),
                 invisible(NA)
             }
         }
-        if (missing(name) == FALSE && isTRUE(name == FALSE) == 
-            TRUE) {
-            invisible(NA)
+        if (missing(main) == TRUE) {
+            if (missing(name) == FALSE && isTRUE(name == FALSE) == 
+                TRUE) {
+                invisible(NA)
+            }
+            else {
+                ifelse(missing(fsize) == TRUE, fsize <- 20, invisible(NA))
+                ifelse(missing(fcol) == TRUE, fcol <- "grey", 
+                  invisible(NA))
+                grid::grid.text(eval(parse(text = paste(paste("rpmp[[", 
+                  which(names(rpmp) %in% x), "]]", sep = ""), 
+                  "provn", sep = "$"))), x = 0.5, y = 0.966, 
+                  gp = grid::gpar(fontsize = fsize, col = fcol))
+            }
         }
         else {
-            ifelse(missing(fsize) == TRUE, fsize <- 20, invisible(NA))
-            ifelse(missing(fcol) == TRUE, fcol <- "grey", invisible(NA))
-            grid::grid.text(eval(parse(text = paste(paste("rpmp[[", 
-                which(names(rpmp) %in% x), "]]", sep = ""), "provn", 
-                sep = "$"))), x = 0.5, y = 0.966, gp = grid::gpar(fontsize = fsize, 
-                col = fcol))
+            invisible(NA)
         }
         if (isTRUE(length(x) > 1) == TRUE) {
             for (k in seq_len(length(x) - 1)) {
@@ -215,6 +212,21 @@ function (x = NULL, type = c("plain", "rp", "si", "tetra", "med"),
         }
         else {
             invisible(NA)
+        }
+    }
+    if (missing(main) == TRUE) {
+        invisible(NA)
+    }
+    else {
+        ifelse(missing(fsize) == TRUE, fsize <- 15, invisible(NA))
+        ifelse(missing(fcol) == TRUE, fcol <- "black", invisible(NA))
+        if (is.null(x) == TRUE) {
+            grid::grid.text(main, x = 0.5, y = 0.06, gp = grid::gpar(fontsize = fsize, 
+                col = fcol))
+        }
+        else {
+            grid::grid.text(main, x = 0.5, y = 0.966, gp = grid::gpar(fontsize = fsize, 
+                col = fcol))
         }
     }
 }

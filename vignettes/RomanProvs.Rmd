@@ -330,8 +330,15 @@ that `par(mfrow=x,x)`. -->
 * [Plotting Roman Empire transport network](https://sdam-au.github.io/sdam/articles/TransportNetwork.html)
 * [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
 <!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) -->
-* [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+<br/>
 * [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
+* [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
+* [Code snippets using `"sdam"`](https://github.com/sdam-au/R_code)
+  + [Shipwrecks network in the Mediterranean Basin (3-June-2022)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Shipwrecks%20Network%20in%20the%20Mediterranean%20Basin.html)
+  + [Centrality measures in ORBIS Roman transport network (24-Nov-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Centrality%20measures%20in%20ORBIS%20Roman%20transport%20network.html)
+  + [ORBIS Roman World transport network (14-Sep-2021, update: 22-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/ORBIS%20Roman%20World%20transport%20network%20centrality%20measures.html)
+  + [Plotting Roman Roads (update: 14-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20(update).html)
+  + [Plotting Roman Roads and Time (17-Aug-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20and%20Time.html)
 
 
 

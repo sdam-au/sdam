@@ -8,7 +8,7 @@ Clean and re-encode a vector, list or dataframe
 A function to re-encode Greek (and other) characters and to remove symbols at the end of a record.
 }
 \usage{
-cln(x, level = 1, what, na.rm, case, repl)
+cln(x, level, what, na.rm, case, repl)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

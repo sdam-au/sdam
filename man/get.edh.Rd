@@ -1,11 +1,10 @@
 \name{get.edh}
 \alias{get.edh}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Get data from the Epigraphic Database Heidelberg API
 }
 \description{
-A function to obtain data from the Epigraphic Database Heidelberg API repository.
+A function to obtain data from the Epigraphic Database Heidelberg new API repository.
 }
 \usage{
 get.edh(search = c("inscriptions", "geography"), url =
@@ -15,7 +14,6 @@ get.edh(search = c("inscriptions", "geography"), url =
                  type, bbox, findspot, pleiades_id, geonames_id,
                  offset, limit, maxlimit = 4000, addID, printQ)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{search}{
 	Whether the search is on \code{inscriptions} \emph{or} on \code{geography}.
@@ -45,7 +43,7 @@ get.edh(search = c("inscriptions", "geography"), url =
 	Year, not after (integer, BC years are negative)
 }
   \item{tm_nr}{
-	Trismegistos' database number (?)
+	Trismegistos ID (integer)
 }
   \item{transcription}{
 	Automatic leading and trailing truncation (brackets are ignored)
@@ -78,12 +76,10 @@ get.edh(search = c("inscriptions", "geography"), url =
 	Add identification to the output? (optional and logical)
 }
   \item{printQ}{
-	Also print query? (optional and logical)
+	Print also query? (optional and logical)
 }
 }
 \details{
-This function is for the new [EDH] database [API] in year 2022. 
-
 Since with the \code{inscriptions} option the \code{id} "component" of the 
 output list is not with a numeric format, then the function adds an \code{ID} 
 at the beginning of the list with the identifier with a numerical format. 
@@ -150,8 +146,6 @@ And the valid values for \code{country} entries are abbreviated country names wh
 \value{
 A list object with at least one the following items:
 
-\item{"ID"}{(Optional), only if \code{addID} is set to \code{TRUE}.}
-\item{}{ }
 \item{"commentary"}{ }
 \item{"fotos"}{ }
 \item{"country"}{ }
@@ -192,8 +186,10 @@ A list object with at least one the following items:
 \item{"work_status"}{ }
 \item{"year_of_find"}{ }
 \item{}{ }
+\item{"ID"}{(Optional), only if \code{addID} is set to \code{TRUE}.}
+\item{}{ }
 
-And also the query is printed if specified by \code{printQ}. 
+And the query is printed if specified by \code{printQ}. 
 }
 \references{
 https://edh.ub.uni-heidelberg.de/data/api
@@ -201,15 +197,15 @@ https://edh.ub.uni-heidelberg.de/data/api
 \author{
 Antonio Rivero Ostoic
 }
-%\note{
+\note{
+This function is for the [EDH] database [API] starting in year January 2022. 
+}
 %The other two search options from the [EDH] database [API], which are \code{"photos"} 
 %and \code{"bibliography"} may be implemented in the future. 
-%}
 
 
 \section{Warning }{
-Queries with more than 4000 records can produce a timeout from the server, and a \emph{Warning} 
-message is produced.
+For queries having more than 4000 records, which can produce a timeout from the server.
 }
 
 \seealso{
@@ -221,7 +217,5 @@ message is produced.
 get.edh(findspot_modern="madrid")
 ## End(Not run)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{ IO }% use one of  RShowDoc("KEYWORDS")
 \keyword{ utilities }

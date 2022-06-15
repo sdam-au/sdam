@@ -5,7 +5,7 @@
 Plot cartographical map
 }
 \description{
-A function to plot a cartographical map, initially of a Roman province or an Italian region.
+A function to plot a cartographical map of Roman world and Mediterranean region.
 }
 \usage{
 plot.map(x = NULL, type = c("plain", "rp", "si", "tetra", "med"), settl, roads, shipr, 
@@ -30,16 +30,16 @@ plot.map(x = NULL, type = c("plain", "rp", "si", "tetra", "med"), settl, roads, 
         \code{med} Mediterranean sea
 }
   \item{settl}{
-  (logical for cartographical map) Display settlements?
+  (logical for cartographical map) display settlements?
 }
   \item{roads}{
-  (logical for cartographical map) Display roads?
+  (logical for cartographical map) display terretrial routes?
 }
   \item{shipr}{
-  (logical for cartographical map) Display shipping routes?
+  (logical for cartographical map) display shipping routes?
 }
   \item{main}{
-  (optional for cartographical map) Plot's main title
+  (optional) Plot's main title
 }
   \item{cap}{
 (logical for provinces) display caption?
@@ -78,12 +78,12 @@ plot.map(x = NULL, type = c("plain", "rp", "si", "tetra", "med"), settl, roads, 
 \details{
 This plot function is for creating cartographical maps of ancient provinces and Italian regions of the Roman Empire around year 117 AD. 
 The input data \code{x} can be a character vector, but this is intended for a recording output. 
-By default, arguments \code{name} and \code{cap} are set to \code{TRUE} while \code{date} is set to \code{FALSE}. 
+By default, arguments \code{name} and \code{cap} are set to \code{TRUE} while \code{date} is set to \code{FALSE}; however, \code{main} prevails over \code{name}.
 
-The \code{type} argument allows plotting cartographical maps related to the Roman Empire and Mediterranean sea. 
+The \code{type} argument allows plotting cartographical maps related to the Roman Empire and the Mediterranean basin. 
 }
 \value{
-A cartographical map plot with a name, and a caption with an approximate province establishment date.
+A plot of a cartographical map for the Roman world with a title name, and a caption with an approximate province establishment date.
 }
 %\references{
 %% ~put references to the literature/web site here ~

@@ -9,7 +9,7 @@ A function to obtain variable data and perform transformations on the Epigraphic
 }
 \usage{
 edhw(x = "EDH", vars, as = c("df", "list"), type = c("long", "wide", "narrow"), 
-     split, select, addID, limit, id, na.rm, ldf, province, gender, rp, ...)
+     split, select, addID, limit, id, na.rm, ldf, province, gender, rp, clean, ...)
 }
 
 \arguments{
@@ -54,6 +54,9 @@ edhw(x = "EDH", vars, as = c("df", "list"), type = c("long", "wide", "narrow"),
 }
   \item{rp}{
    customized list of Roman provinces as in \code{\link{rp}} dataset
+}
+  \item{clean}{
+   optional, clean output with \code{\link{cln}}
 }
   \item{\dots}{
    optional arguments if needed.
@@ -117,7 +120,7 @@ in \code{vars}.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{edhwpd}}, \code{\link{prex}}, \code{\link{plot.dates}}, \code{\link{EDH}}
+\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{edhwpd}}, \code{\link{prex}}, \code{\link{plot.dates}}, \code{\link{EDH}}, \code{\link{cln}}
 }
 \examples{
 \dontrun{

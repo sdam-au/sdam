@@ -1,25 +1,44 @@
 
 ## 
-## FUNCTION cln() to re-encode Greek characters
+## FUNCTION cln() to clean and re-encode glyphs and Greek characters
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.2.0 (30-03-2022)
+## version 0.3.3 (14-06-2022)
+##
 ##
 ## PARAMETERS
+##
 ## x        (scalar or vector, with character to clean)
-## level    (optional clean level, 0 for no-clean, default 1 or 2 with 'what')
-## what     (optional, additional characters to clean)
-## na.rm    (logical and optional, remove NAs?)
-## case     (optional, 1 for 1st uppercase, 2 lower, 3 upper)
-## repl     (optional, data frame with text for replacement)
+## level    (clean level, 0 for no-clean, default 1 or 2 with 'what')
+##
+## OPTIONAL PARAMETERS
+##
+## what     (additional characters to clean)
+## na.rm    (logical, remove NAs?)
+## case     (1 for 1st uppercase, 2 lower, 3 upper)
+## repl     (data frame with text for replacement)
+##
+## DEPENDS: cs() (if 'case')
+##
 
 cln <-
 function (x, level = 1, what, na.rm, case, repl) 
 {
+    xo <- x
     ifelse(missing(what) == TRUE, what <- c("?", "+", "*"), what <- c("?", 
         "+", "*", what))
+    ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == TRUE) == 
+        TRUE, na.rm <- TRUE, na.rm <- FALSE)
     if (isTRUE(level > 0) == TRUE) {
-        if (is.data.frame(x) == TRUE) {
+        if (isTRUE(is.data.frame(x) == TRUE) == TRUE || isTRUE(is.data.frame(x[[1]]) == 
+            TRUE) == TRUE) {
+            if (isTRUE(is.data.frame(x[[1]]) == TRUE) == TRUE) {
+                warning("\"x\" is list of data frames and only first data frame is considered.")
+                x <- as.data.frame(x[[1]])
+            }
+            else {
+                invisible(NA)
+            }
             flgdf <- TRUE
             rnx <- rownames(x)
             for (w in seq_len(length(what))) {
@@ -46,13 +65,17 @@ function (x, level = 1, what, na.rm, case, repl)
                   "/", z)), check.names = FALSE)
                 xdf <- as.data.frame(apply(xdf, 2, function(z) gsub("\\s$", 
                   "", z)), check.names = FALSE)
-                rownames(xdf) <- rnx
+                ifelse(isTRUE(length(rnx) == 1) == TRUE, xdf <- as.data.frame(t(xdf), 
+                  row.names = rnx), rownames(xdf) <- rnx)
             }
             x <- as.list(sapply(xdf, as.character))
         }
         else {
             flgdf <- FALSE
+            ifelse(is.factor(x) == TRUE, x <- as.vector(x), NA)
             ifelse(is.vector(x) == TRUE, flgvc <- TRUE, flgvc <- FALSE)
+            ifelse(is.list(x) == TRUE, flgvl <- TRUE, flgvl <- FALSE)
+            is.na(x) <- x == "NULL"
             if (isTRUE(level > 1) == TRUE) {
                 x <- gsub("\\s+", " ", x)
                 x <- gsub("-\\s", "-", x)
@@ -66,41 +89,6 @@ function (x, level = 1, what, na.rm, case, repl)
     else {
         return(x)
     }
-    if (missing(case) == FALSE && is.numeric(case) == TRUE) {
-        if (isTRUE(flgdf == TRUE) == TRUE) {
-            if (isTRUE(case == 1L) == TRUE) {
-                x[] <- lapply(x, function(z) {
-                  gsub("(^[[:alpha:]])", "\\U\\1", z, perl = TRUE)
-                })
-                ifelse(isTRUE(level > 1) == TRUE, x[] <- lapply(x, 
-                  function(z) {
-                    gsub("\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2", 
-                      z, perl = TRUE)
-                  }), NA)
-            }
-            else if (isTRUE(case == 2L) == TRUE) {
-                x[] <- lapply(x, tolower)
-            }
-            else if (isTRUE(case == 3L) == TRUE) {
-                x[] <- lapply(x, toupper)
-            }
-        }
-        else {
-            if (isTRUE(case == 1L) == TRUE) {
-                x <- gsub("\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2", 
-                  x, perl = TRUE)
-            }
-            else if (isTRUE(case == 2L) == TRUE) {
-                x <- tolower(x)
-            }
-            else if (isTRUE(case == 3L) == TRUE) {
-                x <- toupper(x)
-            }
-        }
-    }
-    else {
-        NA
-    }
     if (isTRUE(flgdf == FALSE) == TRUE && isTRUE(length(x) == 
         1) == TRUE) {
         xx1 <- strsplit(x, "")[[1]]
@@ -109,29 +97,20 @@ function (x, level = 1, what, na.rm, case, repl)
         xx1 <- strsplit(paste(as.vector(unlist(x)), collapse = ""), 
             "")[[1]]
     }
-    if (isTRUE(level > 0) == TRUE && (isTRUE("<" %in% xx1) == 
-        TRUE && isTRUE(">" %in% xx1) == TRUE)) {
-        flgx <- TRUE
-        dbe <- c("<U+0080>", "\201"     , "<U+0082>", "<U+0083>", 
-            "<U+0084>", "<U+0085>", "<U+0086>", "<U+0087>", "<U+0088>", 
-            "<U+0089>", "<U+008A>", "<U+008B>", "<U+008C>", "\215"     , 
-            "<U+008E>", "\217"     , "\220"     , "<U+0091>", 
-            "<U+0092>", "<U+0093>", "<U+0094>", "<U+0095>", "<U+0096>", 
-            "<U+0097>", "<U+0099>", "<U+0099>", "<U+009A>", "<U+009B>", 
-            "<U+009C>", "\235"     , "<U+009E>", "<U+009F>")
-        names(dbe) <- c("80", "81", "82", "83", "84", "85", "86", 
-            "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", 
-            "90", "91", "92", "93", "94", "95", "96", "97", "99", 
-            "99", "9A", "9B", "9C", "9D", "9E", "9F")
-    }
-    else {
-        flgx <- FALSE
-    }
-    if (isTRUE(flgdf == FALSE) == TRUE) {
-        ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
-            TRUE, invisible(NA), x <- Filter(function(y) !all(is.na(y)), 
-            x))
-    }
+    dbe <- c("<U+0080>", "\201"     , "<U+0082>", "<U+0083>", 
+        "<U+0084>", "<U+0085>", "<U+0086>", "<U+0087>", "<U+0088>", 
+        "<U+0089>", "<U+008A>", "<U+008B>", "<U+008C>", "\215"     , 
+        "<U+008E>", "\217"     , "\220"     , "<U+0091>", "<U+0092>", 
+        "<U+0093>", "<U+0094>", "<U+0095>", "<U+0096>", "<U+0097>", 
+        "<U+0099>", "<U+0099>", "<U+009A>", "<U+009B>", "<U+009C>", 
+        "\235"     , "<U+009E>", "<U+009F>")
+    names(dbe) <- c("80", "81", "82", "83", "84", "85", "86", 
+        "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", 
+        "90", "91", "92", "93", "94", "95", "96", "97", "99", 
+        "99", "9A", "9B", "9C", "9D", "9E", "9F")
+    ifelse(isTRUE(level > 0) == TRUE && (isTRUE("<" %in% xx1) == 
+        TRUE && isTRUE(">" %in% xx1) == TRUE), flgx <- TRUE, 
+        flgx <- FALSE)
     if (isTRUE(length(x) == 1) == TRUE) {
         if (isTRUE(flgx == TRUE) == TRUE) {
             ck <- which(xx1 %in% "<")
@@ -167,7 +146,6 @@ function (x, level = 1, what, na.rm, case, repl)
             rm(w)
         }
         else if (isTRUE(level == 1) == TRUE) {
-            x1 <- gsub("\\s*\\([^\\)]\\)", "", x1)
             x1 <- paste(strsplit(x1, "")[[1]][which(!(strsplit(x1, 
                 "")[[1]] == "?"))], collapse = "")
         }
@@ -196,8 +174,16 @@ function (x, level = 1, what, na.rm, case, repl)
         else {
             gs3 <- NULL
         }
-        if (isTRUE(length(c(gs1, gs2, gs2a, gs3)) == 0) == TRUE) 
-            return(x1)
+        if (isTRUE(length(c(gs1, gs2, gs2a, gs3)) == 0) == TRUE) {
+            if (missing(case) == FALSE && is.numeric(case) == 
+                TRUE) {
+                return(cs(x1, level = level, case = case, flgdf = flgdf, 
+                  na.rm = na.rm))
+            }
+            else {
+                return(x1)
+            }
+        }
         xx <- strsplit(rawToChar(as.raw(utix1)), "")[[1]]
         ifelse(isTRUE(tail(xx, 1) == "+") == TRUE, flgp <- TRUE, 
             flgp <- FALSE)
@@ -205,8 +191,15 @@ function (x, level = 1, what, na.rm, case, repl)
             flga <- FALSE)
         if (isTRUE(length(c(gs2, gs2a, gs3)) == 0) == TRUE) {
             res <- paste(xx, collapse = "")
-            names(res) <- x1
-            return(res)
+            names(res) <- xo
+            if (missing(case) == FALSE && is.numeric(case) == 
+                TRUE) {
+                return(cs(res, level = level, case = case, flgdf = flgdf, 
+                  na.rm = na.rm))
+            }
+            else {
+                return(res)
+            }
         }
         else {
             res <- vector()
@@ -283,6 +276,11 @@ function (x, level = 1, what, na.rm, case, repl)
                 invisible(NA)
             }
         }
+        else if ((isTRUE(max(gsx) == length(res)) == TRUE) && 
+            (any(is.na(xx[(length(res) + (max(gsx))):length(xx)])) == 
+                FALSE)) {
+            res <- append(res, xx[(length(res) + (max(gsx))):length(xx)])
+        }
         if ("+" %in% xx[max(c(gs2, gs2a, gs3)):(length(xx) - 
             1)]) {
             res <- append(res, "+")
@@ -299,12 +297,6 @@ function (x, level = 1, what, na.rm, case, repl)
                 if (isTRUE(min(c(gs2, gs2a, gs3)) > 1) == TRUE) {
                   tmpr <- NULL
                   resl <- as.list(paste(c(tmpr, res), collapse = ""))
-                  if (isTRUE(level < 2) == TRUE) {
-                    ifelse(isTRUE(flgp == TRUE) == TRUE, resl <- as.list(paste(c(resl, 
-                      "+"), collapse = "")), NA)
-                    ifelse(isTRUE(flga == TRUE) == TRUE, resl <- as.list(paste(c(resl, 
-                      "*"), collapse = "")), NA)
-                  }
                 }
                 else {
                   tmpr <- iconv(iconv(paste(xx[(max(which(xx %in% 
@@ -316,18 +308,19 @@ function (x, level = 1, what, na.rm, case, repl)
             }
             else {
                 resl <- as.list(paste(res, collapse = ""))
-                if (isTRUE(level < 2) == TRUE) {
-                  ifelse(isTRUE(flgp == TRUE) == TRUE, resl <- as.list(paste(c(resl, 
-                    "+"), collapse = "")), NA)
-                  ifelse(isTRUE(flga == TRUE) == TRUE, resl <- as.list(paste(c(resl, 
-                    "*"), collapse = "")), NA)
-                }
             }
             if (isTRUE(length(strsplit(paste(resl[[1]], tmp, 
                 sep = ""), "")[[1]]) == length(strsplit(x, "")[[1]])) == 
                 TRUE) {
-                names(resl) <- x
-                return(resl)
+                names(resl) <- xo
+                if (missing(case) == FALSE && is.numeric(case) == 
+                  TRUE) {
+                  return(cs(resl, level = level, case = case, 
+                    flgdf = flgdf, na.rm = na.rm))
+                }
+                else {
+                  return(resl)
+                }
             }
             else {
                 if (isTRUE(flgc == TRUE) == TRUE) {
@@ -340,8 +333,15 @@ function (x, level = 1, what, na.rm, case, repl)
                 else {
                   invisible(NA)
                 }
-                names(resl) <- x
-                return(resl)
+                names(resl) <- xo
+                if (missing(case) == FALSE && is.numeric(case) == 
+                  TRUE) {
+                  return(cs(resl, level = level, case = case, 
+                    flgdf = flgdf, na.rm = na.rm))
+                }
+                else {
+                  return(resl)
+                }
             }
         }
         else {
@@ -356,36 +356,41 @@ function (x, level = 1, what, na.rm, case, repl)
             else {
                 gs3p <- NULL
             }
-            xxp <- strsplit(x1p, "")[[1]]
-            xxpp <- xxp[min(c(gs2p, gs3p)):length(xxp)]
-            x1pp <- paste(xxpp, collapse = "")
-            gs2pp <- which(as.raw(utf8ToInt(x1pp)) %in% c("cf", 
-                "ce"))
-            gs3pp <- which(as.raw(utf8ToInt(x1pp)) %in% c("e1"))
-            if (isTRUE(length(gs3pp) > 0) == TRUE) {
-                gs3pp <- gs3pp[which(gs3pp%%2 != 0)]
+            if (isTRUE(length(c(gs2p, gs3p)) > 0) == TRUE) {
+                xxp <- strsplit(x1p, "")[[1]]
+                xxpp <- xxp[min(c(gs2p, gs3p)):length(xxp)]
+                x1pp <- paste(xxpp, collapse = "")
+                gs2pp <- which(as.raw(utf8ToInt(x1pp)) %in% c("cf", 
+                  "ce"))
+                gs3pp <- which(as.raw(utf8ToInt(x1pp)) %in% c("e1"))
+                if (isTRUE(length(gs3pp) > 0) == TRUE) {
+                  gs3pp <- gs3pp[which(gs3pp%%2 != 0)]
+                }
+                else {
+                  gs3pp <- NULL
+                }
+                x3 <- strsplit(rawToChar(as.raw(utf8ToInt(x1pp))), 
+                  "")[[1]]
+                resp <- vector()
+                for (i in sort(c(gs2pp, gs3pp))) {
+                  if (isTRUE(i %in% c(gs2pp)) == TRUE) {
+                    tmp <- paste(x3[i:(i + 1L)], collapse = "")
+                    resp <- append(resp, iconv(iconv(tmp, from = "UTF-8", 
+                      to = "UTF-16LE", toRaw = TRUE), from = "UTF-16LE", 
+                      to = "UTF-8"))
+                  }
+                  else if (isTRUE(i %in% gs3pp) == TRUE) {
+                    tmp <- paste(x3[i:(i + 2L)], collapse = "")
+                    resp <- append(resp, iconv(iconv(tmp, from = "UTF-8", 
+                      to = "UTF-16LE", toRaw = TRUE), from = "UTF-16LE", 
+                      to = "UTF-8"))
+                  }
+                }
+                rm(i)
             }
             else {
-                gs3pp <- NULL
+                resp <- res
             }
-            x3 <- strsplit(rawToChar(as.raw(utf8ToInt(x1pp))), 
-                "")[[1]]
-            resp <- vector()
-            for (i in sort(c(gs2pp, gs3pp))) {
-                if (isTRUE(i %in% c(gs2pp)) == TRUE) {
-                  tmp <- paste(x3[i:(i + 1L)], collapse = "")
-                  resp <- append(resp, iconv(iconv(tmp, from = "UTF-8", 
-                    to = "UTF-16LE", toRaw = TRUE), from = "UTF-16LE", 
-                    to = "UTF-8"))
-                }
-                else if (isTRUE(i %in% gs3pp) == TRUE) {
-                  tmp <- paste(x3[i:(i + 2L)], collapse = "")
-                  resp <- append(resp, iconv(iconv(tmp, from = "UTF-8", 
-                    to = "UTF-16LE", toRaw = TRUE), from = "UTF-16LE", 
-                    to = "UTF-8"))
-                }
-            }
-            rm(i)
             if (all(c(" ", "/", " ") %in% strsplit(x, "")[[1]]) == 
                 TRUE) {
                 if (isTRUE(min(c(gs2, gs2a, gs3)) > 1) == TRUE) {
@@ -394,12 +399,6 @@ function (x, level = 1, what, na.rm, case, repl)
                     to = "UTF-16LE", toRaw = TRUE), from = "UTF-16LE", 
                     to = "UTF-8")
                   respl <- as.list(paste(c(tmpr, resp), collapse = ""))
-                  if (isTRUE(level < 2) == TRUE) {
-                    ifelse(isTRUE(flgp == TRUE) == TRUE, respl <- as.list(paste(c(respl, 
-                      "+"), collapse = "")), NA)
-                    ifelse(isTRUE(flga == TRUE) == TRUE, respl <- as.list(paste(c(respl, 
-                      "*"), collapse = "")), NA)
-                  }
                 }
                 else {
                   tmpr <- iconv(iconv(paste(xx[(max(which(xx %in% 
@@ -411,15 +410,22 @@ function (x, level = 1, what, na.rm, case, repl)
             }
             else {
                 respl <- as.list(paste(resp, collapse = ""))
-                if (isTRUE(level < 2) == TRUE) {
-                  ifelse(isTRUE(flgp == TRUE) == TRUE, respl <- as.list(paste(c(respl, 
-                    "+"), collapse = "")), NA)
-                  ifelse(isTRUE(flga == TRUE) == TRUE, respl <- as.list(paste(c(respl, 
-                    "*"), collapse = "")), NA)
-                }
             }
-            names(respl) <- x
-            return(respl)
+            if (isTRUE(level < 1) == TRUE) {
+                ifelse(isTRUE(flgp == TRUE) == TRUE, respl <- as.list(paste(c(respl, 
+                  "+"), collapse = "")), NA)
+                ifelse(isTRUE(flga == TRUE) == TRUE, respl <- as.list(paste(c(respl, 
+                  "*"), collapse = "")), NA)
+            }
+            names(respl) <- xo
+            if (missing(case) == FALSE && is.numeric(case) == 
+                TRUE) {
+                return(cs(respl, level = level, case = case, 
+                  flgdf = flgdf, na.rm = na.rm))
+            }
+            else {
+                return(respl)
+            }
         }
     }
     else if (isTRUE(length(x) > 1) == TRUE) {
@@ -469,7 +475,6 @@ function (x, level = 1, what, na.rm, case, repl)
                 xi <- paste(trimws(strsplit(xi, "/")[[1]]), collapse = "/")
             }
             else if (isTRUE(level == 1) == TRUE) {
-                xi <- gsub("\\s*\\([^\\)]\\)", "", xi)
                 xi <- paste(strsplit(xi, "")[[1]][which(!(strsplit(xi, 
                   "")[[1]] == "?"))], collapse = "")
             }
@@ -479,7 +484,10 @@ function (x, level = 1, what, na.rm, case, repl)
             ifelse(isTRUE(level == 0) == TRUE, invisible(NA), 
                 xi <- paste(strsplit(xi, "")[[1]][which(!(strsplit(xi, 
                   "")[[1]] == "?"))], collapse = ""))
-            if (is.na(xi) == TRUE) {
+            if (is.na(xi) == TRUE || all(strsplit(xi, "")[[1]] %in% 
+                c(letters, LETTERS, " ", strsplit(intToUtf8(c(33:47, 
+                  58:64, 91:96, c(228, 235, 239, 246, 252))), 
+                  "")[[1]])) == TRUE) {
                 resl[[k]] <- xi
             }
             else {
@@ -599,13 +607,21 @@ function (x, level = 1, what, na.rm, case, repl)
                       invisible(NA)
                     }
                   }
-                  if ("+" %in% xx[max(c(gs2, gs2a, gs3)):(length(xx) - 
-                    1)]) {
-                    res <- append(res, "+")
+                  else if ((isTRUE(max(gsx) == length(res)) == 
+                    TRUE) && (any(is.na(xx[(length(res) + (max(gsx))):length(xx)])) == 
+                    FALSE)) {
+                    res <- append(res, xx[(length(res) + (max(gsx))):length(xx)])
                   }
-                  else if ("*" %in% xx[max(c(gs2, gs2a, gs3)):(length(xx) - 
-                    1)]) {
-                    res <- append(res, "*")
+                  if (isTRUE(length(c(gs2, gs2a, gs3)) > 0) == 
+                    TRUE) {
+                    if ("+" %in% xx[max(c(gs2, gs2a, gs3)):(length(xx) - 
+                      1)]) {
+                      res <- append(res, "+")
+                    }
+                    else if ("*" %in% xx[max(c(gs2, gs2a, gs3)):(length(xx) - 
+                      1)]) {
+                      res <- append(res, "*")
+                    }
                   }
                   if (isTRUE(length(gs2a) > 0) == TRUE && suppressWarnings(any(as.raw(utf8ToInt(paste(res, 
                     collapse = ""))) %in% c(c("cf", "ce"), c("c2", 
@@ -621,106 +637,129 @@ function (x, level = 1, what, na.rm, case, repl)
                     else {
                       gs3p <- NULL
                     }
-                    xxp <- strsplit(xj, "")[[1]]
-                    xxpp <- xxp[min(c(gs2p, gs3p)):length(xxp)]
-                    x1pp <- paste(xxpp, collapse = "")
-                    gs2pp <- which(as.raw(utf8ToInt(x1pp)) %in% 
-                      c("cf", "ce"))
-                    gs3pp <- which(as.raw(utf8ToInt(x1pp)) %in% 
-                      c("e1"))
-                    if (isTRUE(length(gs3pp) > 0) == TRUE) {
-                      gs3pp <- gs3pp[which(gs3pp%%2 != 0)]
+                    if (isTRUE(length(c(gs2p, gs3p)) == 0) == 
+                      TRUE) {
+                      resl[[k]] <- xj
                     }
                     else {
-                      gs3pp <- NULL
-                    }
-                    if (isTRUE(length(c(gs2pp, gs3pp)) > 0) == 
-                      TRUE) {
-                      x3 <- strsplit(rawToChar(as.raw(utf8ToInt(x1pp))), 
-                        "")[[1]]
-                      res <- vector()
-                      for (i in sort(c(gs2pp, gs3pp))) {
-                        if (isTRUE(i %in% c(gs2pp)) == TRUE) {
-                          tmp <- paste(x3[i:(i + 1L)], collapse = "")
-                          res <- append(res, iconv(iconv(tmp, 
-                            from = "UTF-8", to = "UTF-16LE", 
-                            toRaw = TRUE), from = "UTF-16LE", 
-                            to = "UTF-8"))
-                        }
-                        else if (isTRUE(i %in% gs3p) == TRUE) {
-                          tmp <- paste(x3[i:(i + 2L)], collapse = "")
-                          res <- append(res, iconv(iconv(tmp, 
-                            from = "UTF-8", to = "UTF-16LE", 
-                            toRaw = TRUE), from = "UTF-16LE", 
-                            to = "UTF-8"))
-                        }
+                      xxp <- strsplit(xj, "")[[1]]
+                      xxpp <- xxp[min(c(gs2p, gs3p)):length(xxp)]
+                      x1pp <- paste(xxpp, collapse = "")
+                      gs2pp <- which(as.raw(utf8ToInt(x1pp)) %in% 
+                        c("cf", "ce"))
+                      gs3pp <- which(as.raw(utf8ToInt(x1pp)) %in% 
+                        c("e1"))
+                      if (isTRUE(length(gs3pp) > 0) == TRUE) {
+                        gs3pp <- gs3pp[which(gs3pp%%2 != 0)]
                       }
-                      rm(i)
-                      if (all(c(" ", "/", " ") %in% strsplit(xi, 
-                        "")[[1]]) == TRUE) {
-                        if (isTRUE(min(c(gs2, gs2a, gs3)) > 1) == 
-                          TRUE) {
-                          tmpr <- NULL
-                          if (isTRUE(flgp == TRUE) == TRUE && 
-                            isTRUE(level < 2) == TRUE) {
-                            resl[[k]] <- paste(c(tmpr, res, "+"), 
-                              collapse = "")
+                      else {
+                        gs3pp <- NULL
+                      }
+                      if (isTRUE(length(c(gs2pp, gs3pp)) > 0) == 
+                        TRUE) {
+                        x3 <- strsplit(rawToChar(as.raw(utf8ToInt(x1pp))), 
+                          "")[[1]]
+                        res <- vector()
+                        for (i in sort(c(gs2pp, gs3pp))) {
+                          if (isTRUE(i %in% c(gs2pp)) == TRUE) {
+                            tmp <- paste(x3[i:(i + 1L)], collapse = "")
+                            res <- append(res, iconv(iconv(tmp, 
+                              from = "UTF-8", to = "UTF-16LE", 
+                              toRaw = TRUE), from = "UTF-16LE", 
+                              to = "UTF-8"))
                           }
-                          else if (isTRUE(flga == TRUE) == TRUE && 
-                            isTRUE(level < 2) == TRUE) {
-                            resl[[k]] <- paste(c(tmpr, res, "*"), 
-                              collapse = "")
+                          else if (isTRUE(i %in% gs3p) == TRUE) {
+                            tmp <- paste(x3[i:(i + 2L)], collapse = "")
+                            res <- append(res, iconv(iconv(tmp, 
+                              from = "UTF-8", to = "UTF-16LE", 
+                              toRaw = TRUE), from = "UTF-16LE", 
+                              to = "UTF-8"))
+                          }
+                        }
+                        rm(i)
+                        if (isTRUE(flgna == TRUE) == TRUE && 
+                          isTRUE(flgc == TRUE) == TRUE) {
+                          if (isTRUE(which(strsplit(xi, "")[[1]] %in% 
+                            strsplit(tmp, "")[[1]]) < length(utix0)) == 
+                            TRUE) {
+                            st <- which(strsplit(xi, "")[[1]] %in% 
+                              strsplit(tmp, "")[[1]])
+                            ed <- length(utix0)
+                            resl[[k]] <- paste(c(res, strsplit(xi, 
+                              "")[[1]][(st + 1):ed]), collapse = "")
                           }
                           else {
-                            resl[[k]] <- paste(c(tmpr, res), 
-                              collapse = "")
+                            invisible(NA)
+                          }
+                        }
+                        if (all(c(" ", "/", " ") %in% strsplit(xi, 
+                          "")[[1]]) == TRUE) {
+                          if (isTRUE(length(c(gs2, gs2a, gs3)) > 
+                            0) == TRUE && isTRUE(min(c(gs2, gs2a, 
+                            gs3)) > 1) == TRUE) {
+                            tmpr <- NULL
+                            if (isTRUE(flgp == TRUE) == TRUE && 
+                              isTRUE(level < 2) == TRUE) {
+                              resl[[k]] <- paste(c(tmpr, res, 
+                                "+"), collapse = "")
+                            }
+                            else if (isTRUE(flga == TRUE) == 
+                              TRUE && isTRUE(level < 2) == TRUE) {
+                              resl[[k]] <- paste(c(tmpr, res, 
+                                "*"), collapse = "")
+                            }
+                            else {
+                              resl[[k]] <- paste(c(tmpr, res), 
+                                collapse = "")
+                            }
+                          }
+                          else {
+                            tmpr <- iconv(iconv(paste(xx[(max(which(xx %in% 
+                              c(" ", "/", " "))) - 2):length(xx)], 
+                              collapse = ""), from = "UTF-8", 
+                              to = "UTF-16LE", toRaw = TRUE), 
+                              from = "UTF-16LE", to = "UTF-8")
+                            if (isTRUE(flgp == TRUE) == TRUE && 
+                              isTRUE(level < 2) == TRUE) {
+                              resl[[k]] <- paste(c(res, tmpr, 
+                                "+"), collapse = "")
+                            }
+                            else if (isTRUE(flga == TRUE) == 
+                              TRUE && isTRUE(level < 2) == TRUE) {
+                              resl[[k]] <- paste(c(res, tmpr, 
+                                "*"), collapse = "")
+                            }
+                            else {
+                              resl[[k]] <- paste(c(res, tmpr), 
+                                collapse = "")
+                            }
                           }
                         }
                         else {
-                          tmpr <- iconv(iconv(paste(xx[(max(which(xx %in% 
-                            c(" ", "/", " "))) - 2):length(xx)], 
-                            collapse = ""), from = "UTF-8", to = "UTF-16LE", 
-                            toRaw = TRUE), from = "UTF-16LE", 
-                            to = "UTF-8")
                           if (isTRUE(flgp == TRUE) == TRUE && 
                             isTRUE(level < 2) == TRUE) {
-                            resl[[k]] <- paste(c(res, tmpr, "+"), 
-                              collapse = "")
+                            resl[[k]] <- paste(c(res, "+"), collapse = "")
                           }
-                          else if (isTRUE(flga == TRUE) == TRUE && 
-                            isTRUE(level < 2) == TRUE) {
-                            resl[[k]] <- paste(c(res, tmpr, "*"), 
-                              collapse = "")
+                          else if (isTRUE(flga == TRUE && isTRUE(level < 
+                            2) == TRUE) == TRUE) {
+                            resl[[k]] <- paste(c(res, "*"), collapse = "")
                           }
                           else {
-                            resl[[k]] <- paste(c(res, tmpr), 
-                              collapse = "")
+                            resl[[k]] <- paste(res, collapse = "")
                           }
                         }
                       }
                       else {
-                        if (isTRUE(flgp == TRUE) == TRUE && isTRUE(level < 
-                          2) == TRUE) {
-                          resl[[k]] <- paste(c(res, "+"), collapse = "")
-                        }
-                        else if (isTRUE(flga == TRUE && isTRUE(level < 
-                          2) == TRUE) == TRUE) {
-                          resl[[k]] <- paste(c(res, "*"), collapse = "")
-                        }
-                        else {
-                          resl[[k]] <- paste(res, collapse = "")
-                        }
+                        invisible(NA)
                       }
-                    }
-                    else {
-                      invisible(NA)
                     }
                   }
                   else {
                     if (all(c(" ", "/", " ") %in% strsplit(xi, 
                       "")[[1]]) == TRUE) {
-                      if (isTRUE(min(c(gs2, gs2a, gs3)) > 1) == 
-                        TRUE) {
+                      if (isTRUE(length(c(gs2, gs2a, gs3)) > 
+                        0) == TRUE && isTRUE(min(c(gs2, gs2a, 
+                        gs3)) > 1) == TRUE) {
                         tmpr <- NULL
                         if (isTRUE(flgp == TRUE) == TRUE && isTRUE(level < 
                           2) == TRUE) {
@@ -759,21 +798,6 @@ function (x, level = 1, what, na.rm, case, repl)
                     }
                   }
                 }
-                if (isTRUE(flgna == TRUE) == TRUE && isTRUE(flgc == 
-                  TRUE) == TRUE) {
-                  if (isTRUE(which(strsplit(xi, "")[[1]] %in% 
-                    strsplit(tmp, "")[[1]]) < length(utix0)) == 
-                    TRUE) {
-                    st <- which(strsplit(xi, "")[[1]] %in% strsplit(tmp, 
-                      "")[[1]])
-                    ed <- length(utix0)
-                    resl[[k]] <- paste(c(res, strsplit(xi, "")[[1]][(st + 
-                      1):ed]), collapse = "")
-                  }
-                  else {
-                    invisible(NA)
-                  }
-                }
             }
         }
         rm(k)
@@ -804,9 +828,18 @@ function (x, level = 1, what, na.rm, case, repl)
             rm(k)
         }
         if (isTRUE(flgdf == TRUE) == TRUE) {
-            resdf <- data.frame(matrix(unlist(resll), ncol = ncol(xdf), 
-                byrow = FALSE, dimnames = list(rownames(xdf), 
-                  colnames(xdf))), check.names = FALSE, stringsAsFactors = FALSE)
+            if (isTRUE(flgx == TRUE) == TRUE || any(xx1 %in% 
+                dbe) == TRUE) {
+                Sys.setlocale(category = "LC_ALL", locale = ".1250")
+                resdf <- noquote(matrix(unlist(resll), ncol = ncol(xdf), 
+                  byrow = FALSE, dimnames = list(rownames(xdf), 
+                    colnames(xdf))), right = TRUE)
+            }
+            else {
+                resdf <- data.frame(matrix(unlist(resll), ncol = ncol(xdf), 
+                  byrow = FALSE, dimnames = list(rownames(xdf), 
+                    colnames(xdf))), check.names = FALSE, stringsAsFactors = FALSE)
+            }
             if (missing(repl) == FALSE) {
                 if ((is.data.frame(repl) == FALSE | isTRUE(ncol(repl) < 
                   2) == TRUE) && is.vector(repl) == FALSE) {
@@ -814,7 +847,8 @@ function (x, level = 1, what, na.rm, case, repl)
                   invisible(NA)
                 }
                 else {
-                  if (is.vector(repl) == TRUE) {
+                  if (is.vector(repl) == TRUE && is.data.frame(repl) == 
+                    FALSE) {
                     resdf <- as.data.frame(mapply(gsub, repl[1], 
                       repl[2], resdf, USE.NAMES = FALSE), stringsAsFactors = FALSE)
                   }
@@ -826,34 +860,54 @@ function (x, level = 1, what, na.rm, case, repl)
                     }
                     rm(i)
                   }
+                  rownames(resdf) <- rownames(xdf)
                   colnames(resdf) <- colnames(xdf)
                 }
             }
-            resdf[is.null(resdf)] <- NA
+            is.na(resdf) <- resdf == "NULL"
             resdf[resdf == ""] <- NA
-            ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
-                TRUE) == TRUE, return(resdf[complete.cases(resdf), 
-                ]), return(resdf))
-        }
-        else if (isTRUE(flgdf == FALSE) == TRUE) {
-            if (missing(repl) == FALSE && is.vector(repl) == 
+            if (missing(case) == FALSE && is.numeric(case) == 
                 TRUE) {
-                resll <- as.data.frame(mapply(gsub, repl[1], 
-                  repl[2], resll, USE.NAMES = FALSE), stringsAsFactors = FALSE)
-            }
-            if (missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
-                TRUE) {
-                return(resll)
+                return(cs(resdf, level = level, case = case, 
+                  flgdf = flgdf, na.rm = na.rm))
             }
             else {
-                resl2 <- Filter(function(y) !all(is.na(y)), resll)
-                tmp <- resl2
-                resl2 <- lapply(tmp, function(x) {
-                  x[x == ""] <- NA
-                  return(x)
+                ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == 
+                  TRUE) == TRUE, return(resdf[complete.cases(resdf), 
+                  ]), return(resdf))
+            }
+        }
+        else if (isTRUE(flgdf == FALSE) == TRUE) {
+            if (missing(repl) == FALSE) {
+                if (is.vector(repl) == TRUE && is.data.frame(repl) == 
+                  FALSE) {
+                  resll <- as.data.frame(mapply(gsub, repl[1], 
+                    repl[2], resll, USE.NAMES = FALSE), stringsAsFactors = FALSE)
+                }
+                else {
+                  resdfl <- data.frame(matrix(unlist(resll), 
+                    ncol = 1, byrow = FALSE), check.names = FALSE, 
+                    stringsAsFactors = FALSE)
+                  for (i in seq_len(nrow(repl))) {
+                    resdfl <- as.data.frame(mapply(gsub, repl[i, 
+                      1], repl[i, 2], resdfl, USE.NAMES = FALSE), 
+                      stringsAsFactors = FALSE)
+                  }
+                  rm(i)
+                  resll <- as.vector(resdfl)
+                }
+            }
+            if (missing(case) == FALSE && is.numeric(case) == 
+                TRUE) {
+                return(cs(resll, level = level, case = case, 
+                  flgdf = flgdf, na.rm = na.rm))
+            }
+            else {
+                resll <- lapply(resll, function(z) {
+                  ifelse(isTRUE(z == "") == TRUE, z <- NA, NA)
+                  return(z)
                 })
-                ifelse(isTRUE(flgvc == TRUE) == TRUE, return(unlist(resl2, 
-                  use.names = FALSE)), return(resl2))
+                return(resll)
             }
         }
     }

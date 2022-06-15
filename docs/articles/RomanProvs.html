@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plotting ancient Roman provinces and regions • sdam</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -64,8 +60,44 @@
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.9.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.8.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.6.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.5.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.4.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.3.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.2.x details</a>
+    </li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.1.x details</a>
+    </li>
+    <li class="divider">
+    </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -82,7 +114,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Plotting ancient Roman provinces and regions</h1>
-                        <h4 class="author">Antonio Rivero Ostoic</h4>
+                        <h4 data-toc-skip class="author">Antonio Rivero Ostoic</h4>
             <address class="author_afil">
       <center>
       CEDHAR, Aarhus University
@@ -92,7 +124,7 @@
 </center></a>
       </address>
                   
-            <h4 class="date">19 April 2021</h4>
+            <h4 data-toc-skip class="date">19 April 2021</h4>
       
       
       <div class="hidden name"><code>RomanProvs.Rmd</code></div>
@@ -119,33 +151,36 @@ h3 {
 <div style="margin-bottom:60px;">
 
 </div>
-<div id="preliminaries" class="section level3">
-<h3 class="hasAnchor">
-<a href="#preliminaries" class="anchor"></a>Preliminaries</h3>
-<p><code>"sdam"</code> is an <code>R</code> package that provides tools for performing analyses within social dynamics and complexity in the Ancient Mediterranean <a href="https://sdam-au.github.io/sdam-au/">SDAM</a>, which is a research group based at Aarhus University. This package allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, visualizing interval time events, compute probabilities of existence of archaeological assemblages and artifacts, and produce similarity matrices by simple matching between these objects.</p>
+<div class="section level3">
+<h3 id="preliminaries">Preliminaries<a class="anchor" aria-label="anchor" href="#preliminaries"></a>
+</h3>
+<p><code>"sdam"</code> is an <code>R</code> package that provides tools for performing analyses within social dynamics and complexity in the Ancient Mediterranean <a href="https://sdam-au.github.io/sdam-au/" class="external-link">SDAM</a>, which is a research group based at Aarhus University. This package allows accessing and manipulating data from the Epigraphic Database Heidelberg API, performing HTTP requests, visualizing interval time events, compute probabilities of existence of archaeological assemblages and artifacts, and produce similarity matrices by simple matching between these objects.</p>
 <p><em>Note</em> After uninstalling an old version of the <code>"sdam"</code> package from local machine and running as administrator, install latest version from a GitHub repository.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># remove old version from AU computer</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html">remove.packages</a></span>(<span class="st">"sdam"</span>, <span class="kw">lib</span><span class="kw">=</span><span class="st">"C:/Users/AUID/R/win-library/version/"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># remove old version from AU computer</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html" class="external-link">remove.packages</a></span><span class="op">(</span><span class="st">"sdam"</span>, lib<span class="op">=</span><span class="st">"C:/Users/AUID/R/win-library/version/"</span><span class="op">)</span>
 <span class="co"># install RC version from Github</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"devtools"</span>)
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"sdam-au/sdam"</span>)</pre></body></html></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"sdam-au/sdam"</span><span class="op">)</span></code></pre></div>
 <div style="margin-bottom:30px;">
 
 </div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load package and check version</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"sdam"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span>(<span class="st">"sdam"</span>)</pre></body></html></div>
-<pre><code>[1] '0.8.5'</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># load package and check version</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"sdam"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"sdam"</span><span class="op">)</span></code></pre></div>
+<pre><code>[1] '0.9.3'</code></pre>
 <div style="margin-bottom:60px;">
 
 </div>
 </div>
-<div id="roman-provinces" class="section level2">
-<h2 class="hasAnchor">
-<a href="#roman-provinces" class="anchor"></a>Roman provinces</h2>
+<div class="section level2">
+<h2 id="roman-provinces">Roman provinces<a class="anchor" aria-label="anchor" href="#roman-provinces"></a>
+</h2>
 <p>Package <code>"sdam"</code> comes with some datasets related to the Epigraphic Database Heidelberg, and also information about ancient Roman provinces and regions.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># retrieve available datasets</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="kw">package</span><span class="kw">=</span><span class="st">"sdam"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># retrieve available datasets</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"sdam"</span><span class="op">)</span></code></pre></div>
 <pre><code>Datasets in package ‘sdam’:
 
 EDH                                                 Epigraphic Database Heidelberg dataset
@@ -156,9 +191,10 @@ rpmcd                                               Caption maps and affiliation
 
 </div>
 <p>For instance, the acronym names of Roman provinces found in the <code>EDH</code> dataset can be obtained from <code>"rp"</code> dataset as following:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># Roman province acronyms according to EDH</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"rp"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">rp</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Roman province acronyms according to EDH</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"rp"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">rp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code> [1] "Ach" "Aeg" "Aem" "Afr" "AlC" "AlG" "AlM" "AlP" "ApC" "Aqu" "Ara" "Arm" "Asi" "Ass" "Bae" "Bar"
 [17] "Bel" "BiP" "BrL" "Bri" "Cap" "Cil" "Cor" "Cre" "Cyp" "Cyr" "Dac" "Dal" "Epi" "Etr" "Gal" "GeI"
 [33] "GeS" "HiC" "Inc" "Iud" "LaC" "Lig" "Lug" "Lus" "LyP" "MaC" "MaT" "Mak" "Mes" "MoI" "MoS" "Nar"
@@ -172,16 +208,17 @@ rpmcd                                               Caption maps and affiliation
 
 </div>
 </div>
-<div id="cartographical-maps" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cartographical-maps" class="anchor"></a>Cartographical maps</h2>
+<div class="section level2">
+<h2 id="cartographical-maps">Cartographical maps<a class="anchor" aria-label="anchor" href="#cartographical-maps"></a>
+</h2>
 <p>Cartographical maps of Roman provinces under emperors Trajan and Hadrian (year 117AD), and Italian regions under emperor Augustus (year 27 BC) can be plotted with function <code><a href="../reference/plot.map.html">plot.map()</a></code>. This is a convenient function that depends on <code>"rpmp"</code>, which is a dataset that contains the names and vector shapes of the maps and, if wanted, it also invokes dataset <code>"rpmcd"</code> for including map captions in the plot, ands date when such territory officially became a Roman province.</p>
 <div style="margin-bottom:30px;">
 
 </div>
 <p>As an example, we start with the first province in <code>"rp"</code> that corresponds to <code>"Ach"</code> or <code>"Achaia"</code>:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># cartographical map of ancient Achaia</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rp</span>)[<span class="fl">1</span>])</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># cartographical map of ancient Achaia</span>
+<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">rp</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="RomanProvs_files/figure-html/mapprov-1.png" alt="year 117 AD" width="70%"><p class="caption">
 year 117 AD
@@ -191,27 +228,30 @@ year 117 AD
 
 </div>
 <p>Not all entries in <code>"rp"</code> are currently supported in <code><a href="../reference/plot.map.html">plot.map()</a></code>, only the territories formally belonging to the Roman Empire in year 117AD plus a silhouette of Italy. Below, the Italian peninsula is depicted without a caption by disabling <code>cap</code> in the function.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># silhouette of Italian peninsula</span>
-<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="st">"Ita"</span>, <span class="kw">cap</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># silhouette of Italian peninsula</span>
+<span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Ita"</span>, cap<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="RomanProvs_files/figure-html/mapita-1.png" width="70%" style="display: block; margin: auto;"></p>
 <div style="margin-bottom:60px;">
 
 </div>
 </div>
-<div id="dating-provinces" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dating-provinces" class="anchor"></a>Dating provinces</h2>
+<div class="section level2">
+<h2 id="dating-provinces">Dating provinces<a class="anchor" aria-label="anchor" href="#dating-provinces"></a>
+</h2>
 <p>As with the <code>"rpmp"</code> dataset, <code>"rpmcd"</code> is another set of data with a list of lists format where the shapes of cartographical maps are recorded in different slots of the first component. Additionally to the plotted map information, the dataset <code>"rpmcd"</code> contains in the <code>provd</code> component of each entry, the approx. year when the province became part of the Roman Empire. In the case of the regions, such date corresponds to a year of the Italian consolidation.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># date for each province is in 'provd' component of dataset</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"rpmcd"</span>)
-<span class="no">rpmcd</span>$<span class="no">Ach</span>$<span class="no">provd</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># date for each province is in 'provd' component of dataset</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"rpmcd"</span><span class="op">)</span>
+<span class="va">rpmcd</span><span class="op">$</span><span class="va">Ach</span><span class="op">$</span><span class="va">provd</span></code></pre></div>
 <pre><code>[1] "27 BC"</code></pre>
 <div style="margin-bottom:30px;">
 
 </div>
 <p>Since all years are located in the second component, we obtain the affiliation dates from these components for all provinces/regions and recorded this information in object <code>est</code>.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># atomic vector with established dates in 'rpmcd' </span>
-<span class="no">est</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">rpmcd</span>, <span class="kw">function</span> (<span class="no">x</span>) <span class="no">x</span><span class="kw">[[</span><span class="fl">2</span>]]), <span class="kw">use.names</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># atomic vector with established dates in 'rpmcd' </span>
+<span class="va">est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">rpmcd</span>, <span class="kw">function</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, use.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code> [1] "27 BC"              "30 BC"              "146 BC"             "63AD or 58AD"      
  [5] "63AD or 14BC"       "63AD or 14BC"       "51 BC"              "105 AD"            
  [9] "114 AD"             "133 BC"             "116 AD"             "197 BC"            
@@ -231,8 +271,9 @@ year 117 AD
 
 </div>
 <p>Then we use a regular expression to remove the text <code>" (Ita c)"</code> from the last 11 entries in <code>est</code> that correspond to the Italian regions. In this way, we count only date information in this object for further computation:</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># remove text in regions</span>
-<span class="no">est</span>[(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)-<span class="fl">10</span>):<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span>(<span class="st">" [(].*"</span>,<span class="st">""</span>,<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">est</span>,<span class="fl">11</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># remove text in regions</span>
+<span class="va">est</span><span class="op">[</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">est</span><span class="op">)</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">est</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">" [(].*"</span>,<span class="st">""</span>,<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">est</span>,<span class="fl">11</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code> [1] "27 BC"          "30 BC"          "146 BC"         "63AD or 58AD"   "63AD or 14BC"  
  [6] "63AD or 14BC"   "51 BC"          "105 AD"         "114 AD"         "133 BC"        
 [11] "116 AD"         "197 BC"         "51 BC"          "74BC or 64BC"   "43 AD"         
@@ -256,12 +297,13 @@ year 117 AD
 <div style="margin-bottom:60px;">
 
 </div>
-<div id="treating-dates" class="section level3">
-<h3 class="hasAnchor">
-<a href="#treating-dates" class="anchor"></a>Treating dates</h3>
+<div class="section level3">
+<h3 id="treating-dates">Treating dates<a class="anchor" aria-label="anchor" href="#treating-dates"></a>
+</h3>
 <p><code>"sdam"</code> has the internal function <code><a href="../reference/dts.html">dts()</a></code> to convert dates having characters into a numerical format, which may be useful in further computations like when computing with chronologies.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># dates internal function</span>
-<span class="fu"><a href="../reference/dts.html">dts</a></span>(<span class="no">est</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># dates internal function</span>
+<span class="fu"><a href="../reference/dts.html">dts</a></span><span class="op">(</span><span class="va">est</span><span class="op">)</span></code></pre></div>
 <!-- ```{r dtsout, size="tiny", echo=TRUE, eval=FALSE}
 #         27 BC          30 BC         146 BC   63AD or 58AD   63AD or 14BC   63AD or 14BC          51 BC         105 AD         114 AD         133 BC         116 AD 
 #           -27            -30           -146             63             63             63            -51            105            114           -133            116 
@@ -280,8 +322,9 @@ year 117 AD
 
 </div>
 <p>In the following example, object <code>chron</code> records the dates in ascending order when the territory became officially part of the Roman Empire. In case an item has two competing dates, which is here related with the word <code>or</code>, then <code><a href="../reference/dts.html">dts()</a></code> takes only the first date.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co"># dates in the order of their occurrence</span>
-<span class="no">chron</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="../reference/dts.html">dts</a></span>(<span class="no">est</span>[<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">est</span>)-<span class="fl">11</span>)]))</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># dates in the order of their occurrence</span>
+<span class="va">chron</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="../reference/dts.html">dts</a></span><span class="op">(</span><span class="va">est</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">est</span><span class="op">)</span><span class="op">-</span><span class="fl">11</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>        272 BC         241 BC         238 BC         238 BC         197 BC         197 BC 
           -272           -241           -238           -238           -197           -197 
         197 BC         148 BC        148 BC?         146 BC         133 BC         121 BC 
@@ -302,10 +345,11 @@ year 117 AD
 
 </div>
 <p>For instance, the plot animation below, which is a GIF file produced with the <code>gifski</code> package, shows the Italian regions in year 27 BC.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># exclude 'Ita', first entry in chronology</span>
-<span class="no">reg</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rpmcd</span>)[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">est</span><span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>))[<span class="fl">1</span>])][-<span class="fl">1</span>]
-    <span class="kw">for</span>(<span class="no">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">reg</span>)))
-        <span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">reg</span>[<span class="no">j</span>], <span class="kw">cap</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># exclude 'Ita', first entry in chronology</span>
+<span class="va">reg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">rpmcd</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">est</span><span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">chron</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+    <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">reg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+        <span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">reg</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>, cap<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="RomanProvs_files/figure-html/unnamed-chunk-3-.gif" alt="Italian regions under Augustus (27 BC)" width="70%"><p class="caption">
 Italian regions under Augustus (27 BC)
@@ -315,22 +359,23 @@ Italian regions under Augustus (27 BC)
 
 </div>
 </div>
-<div id="plotting-roman-provinces-by-date" class="section level3">
-<h3 class="hasAnchor">
-<a href="#plotting-roman-provinces-by-date" class="anchor"></a>Plotting Roman provinces by date</h3>
+<div class="section level3">
+<h3 id="plotting-roman-provinces-by-date">Plotting Roman provinces by date<a class="anchor" aria-label="anchor" href="#plotting-roman-provinces-by-date"></a>
+</h3>
 <p>As with the Italian regions, the code below produces cartographical maps of Roman provinces (as they were in year 117 AD) according to the year of their incorporation to the Roman Empire.</p>
 <div style="margin-bottom:30px;">
 
 </div>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># discharge oldest date for the Italian regions</span>
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>))))[-<span class="fl">1</span>]) {
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># discharge oldest date for the Italian regions</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">chron</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">{</span>
     <span class="co"># choose provinces according to date</span>
-    <span class="no">prv</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">rpmcd</span>)[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">est</span><span class="kw">%in%</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">chron</span>))[<span class="no">i</span>])]
-    <span class="kw">for</span>(<span class="no">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">prv</span>))) {
+    <span class="va">prv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">rpmcd</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">est</span><span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">chron</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">]</span>
+    <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">prv</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
         <span class="co"># plot with customized date color and positioning</span>
-        <span class="fu"><a href="../reference/plot.map.html">plot.map</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">prv</span>[<span class="no">j</span>], <span class="kw">date</span><span class="kw">=</span><span class="fl">TRUE</span>, <span class="kw">fcol2</span><span class="kw">=</span><span class="st">"#FFFF00"</span>, <span class="kw">xd</span><span class="kw">=</span><span class="fl">.7</span>, <span class="kw">yd</span><span class="kw">=</span><span class="fl">.42</span>)
-    }
-}</pre></body></html></div>
+        <span class="fu"><a href="../reference/plot.map.html">plot.map</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">prv</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>, date<span class="op">=</span><span class="cn">TRUE</span>, fcol2<span class="op">=</span><span class="st">"#FFFF00"</span>, xd<span class="op">=</span><span class="fl">.7</span>, yd<span class="op">=</span><span class="fl">.42</span><span class="op">)</span>
+    <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="RomanProvs_files/figure-html/unnamed-chunk-4-.gif" alt="Roman provinces as in year 117 AD" width="70%"><p class="caption">
 Roman provinces as in year 117 AD
@@ -346,16 +391,26 @@ that `par(mfrow=x,x)`. -->
 
 </div>
 </div>
-<div id="see-also" class="section level3">
-<h3 class="hasAnchor">
-<a href="#see-also" class="anchor"></a>See also</h3>
+<div class="section level3">
+<h3 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a>
+</h3>
 <ul>
-<li><a href="https://sdam-au.github.io/sdam/articles/TransportNetwork.html">Plotting Roman Empire transport network</a></li>
+<li><a href="https://sdam-au.github.io/sdam/articles/TransportNetwork.html" class="external-link">Plotting Roman Empire transport network</a></li>
 <li>
-<a href="https://sdam-au.github.io/sdam/articles/Encoding.html">Re-encoding Greek characters from ‘EDH’ dataset</a> <!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) -->
+<a href="https://sdam-au.github.io/sdam/articles/Encoding.html" class="external-link">Re-encoding Greek characters from ‘EDH’ dataset</a> <!-- * [R package `"sdam"`](https://sdam-au.github.io/sdam/) --> <br>
 </li>
-<li><a href="https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf"><code>"sdam"</code> manual</a></li>
-<li><a href="https://sdam-au.github.io/sdam-au/">Social Dynamics and complexity in the Ancient Mediterranean Project</a></li>
+<li><a href="https://sdam-au.github.io/sdam-au/" class="external-link">Social Dynamics and complexity in the Ancient Mediterranean Project</a></li>
+<li><a href="https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf" class="external-link"><code>"sdam"</code> manual</a></li>
+<li>
+<a href="https://github.com/sdam-au/R_code" class="external-link">Code snippets using <code>"sdam"</code></a>
+<ul>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Shipwrecks%20Network%20in%20the%20Mediterranean%20Basin.html" class="external-link">Shipwrecks network in the Mediterranean Basin (3-June-2022)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Centrality%20measures%20in%20ORBIS%20Roman%20transport%20network.html" class="external-link">Centrality measures in ORBIS Roman transport network (24-Nov-2021)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/ORBIS%20Roman%20World%20transport%20network%20centrality%20measures.html" class="external-link">ORBIS Roman World transport network (14-Sep-2021, update: 22-Sep-2021)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20(update).html" class="external-link">Plotting Roman Roads (update: 14-Sep-2021)</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20and%20Time.html" class="external-link">Plotting Roman Roads and Time (17-Aug-2021)</a></li>
+</ul>
+</li>
 </ul>
 <div style="margin-bottom:60px;">
 
@@ -376,11 +431,13 @@ that `par(mfrow=x,x)`. -->
 
 
       <footer><div class="copyright">
-  <p>Developed by Antonio Rivero Ostoic.</p>
+  <p></p>
+<p>Developed by Antonio Rivero Ostoic.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer>
@@ -388,6 +445,8 @@ that `par(mfrow=x,x)`. -->
 
   
 
+
+  
 
   </body>
 </html>

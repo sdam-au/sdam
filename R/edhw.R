@@ -3,7 +3,7 @@
 ## FUNCTION edhw() to manipulate data API from the EDH dataset
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.1.5 (01-03-2022)
+## version 0.2.0 (19-05-2022)
 ##
 ## PARAMETERS
 ##
@@ -19,21 +19,23 @@
 ## addID    (logical, add "HD id" to output?)
 ## limit    (integers, vector with nr records limit in output, offset supported)
 ## id       (integer or character, select only hd_nr records)
-## na.rm    (logical, remove data entries with <NA>?)
-## ldf      (optional and experimental, is x a list of data frames?)
-## province (optional, choose EDH province)
-## gender   (optional, choose EDH gender)
-## rp       (optional list of Roman provinces complementing the 'rp' dataset)
-##
+## na.rm    (logical, remove entries with missing data?)
+## ldf      (experimental, is 'x' a list of data frames?)
+## province (choose EDH province)
+## gender   (choose EDH gender)
+## rp       (list of Roman provinces complementing the 'rp' dataset)
+## clean    (clean output?)
 
 
 edhw <-
 function (x = "EDH", vars, as = c("df", "list"), type = c("long", 
     "wide", "narrow"), split, select, addID, limit, id, na.rm, 
-    ldf, province, gender, rp, ...) 
+    ldf, province, gender, rp, clean, ...) 
 {
     if (is.null(x) == TRUE) 
         stop("'x' is NULL")
+    ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == TRUE) == 
+        TRUE, na.rm <- TRUE, na.rm <- FALSE)
     flgdf <- FALSE
     if (isTRUE(x == "EDH") == TRUE) {
         warning("\"x\" is for dataset \"EDH\".")
@@ -64,6 +66,43 @@ function (x = "EDH", vars, as = c("df", "list"), type = c("long",
             ifelse(isTRUE(is.list(x) == TRUE) == TRUE, x <- as.data.frame(x), 
                 NA)
         }
+        if (match.arg(as) == "df") {
+            if (missing(id) == FALSE) {
+                if (missing(vars) == FALSE) {
+                  ifelse(all(vars %in% colnames(x)) == TRUE, 
+                    return(x[which(x$id %in% id), vars]), NA)
+                }
+                else {
+                  return(x[which(x$id %in% id), ])
+                }
+            }
+            else if (missing(limit) == FALSE) {
+                NA
+            }
+        }
+        else if (match.arg(as) == "list") {
+            if (missing(id) == FALSE) {
+                if (missing(vars) == FALSE) {
+                  ifelse(all(vars %in% colnames(x)) == TRUE, 
+                    return(as.list(x[which(x$id %in% id), vars])), 
+                    NA)
+                }
+                else {
+                  return(as.list(x[which(x$id %in% id), ]))
+                }
+            }
+            else if (missing(limit) == FALSE) {
+                if (missing(vars) == FALSE) {
+                  ifelse(all(vars %in% colnames(x)) == TRUE, 
+                    xll <- as.list(x[seq_len(limit), which(colnames(x) %in% 
+                      c("id", vars))]), NA)
+                }
+                else {
+                  xll <- as.list(x[seq_len(limit), ])
+                }
+                return(xll)
+            }
+        }
         if (missing(province) == FALSE) {
             if (missing(rp) == TRUE) {
                 utils::data("rp", package = "sdam", envir = environment())
@@ -88,14 +127,16 @@ function (x = "EDH", vars, as = c("df", "list"), type = c("long",
         else {
             xp <- x
         }
-        ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
-            TRUE, NA, xp <- xp[which(lapply(strsplit(rownames(xp), 
+        ifelse(isTRUE(na.rm == FALSE) == TRUE, NA, xp <- xp[which(lapply(strsplit(rownames(xp), 
             "[.]"), function(x) {
             "NA" %in% x
         }) == FALSE), ])
         if (missing(gender) == FALSE) {
             xp <- xp[-which(is.na(xp$gender)), ]
-            return(xp[-which(xp$gender != gender), ])
+            ifelse(missing(clean) == FALSE && isTRUE(clean == 
+                TRUE) == TRUE, return(cln(xp[-which(xp$gender != 
+                gender), ])), return(xp[-which(xp$gender != gender), 
+                ]))
         }
         else {
             if (missing(province) == FALSE || missing(gender) == 
@@ -105,10 +146,24 @@ function (x = "EDH", vars, as = c("df", "list"), type = c("long",
                     lapply(as.list(x), "as.vector")
                   })
                   names(xpl) <- NULL
-                  return(xpl)
+                  ifelse(missing(clean) == FALSE && isTRUE(clean == 
+                    TRUE) == TRUE, return(cln(xpl)), return(xpl))
                 }
                 else {
-                  return(xp)
+                  if (missing(clean) == FALSE && isTRUE(clean == 
+                    TRUE) == TRUE) {
+                    xpc <- cln(xp)
+                    if (isTRUE(class(xpc) == "noquote") == TRUE) {
+                      xpcdf <- as.data.frame.matrix(as.table(xpc))
+                      return(xpcdf)
+                    }
+                    else {
+                      return(xpc)
+                    }
+                  }
+                  else {
+                    return(xp)
+                  }
                 }
             }
             else {
@@ -140,8 +195,6 @@ function (x = "EDH", vars, as = c("df", "list"), type = c("long",
         ifelse(isTRUE(is.character(x) == TRUE) == TRUE, x <- eval(parse(text = x)), 
             NA)
     }
-    ifelse(missing(na.rm) == FALSE && isTRUE(na.rm == FALSE) == 
-        TRUE, na.rm <- FALSE, na.rm <- TRUE)
     if (missing(addID) == FALSE && isTRUE(addID == FALSE) == 
         TRUE) {
         if ((isTRUE(na.rm == TRUE) == TRUE) | (match.arg(as) == 
@@ -957,6 +1010,11 @@ function (x = "EDH", vars, as = c("df", "list"), type = c("long",
                 ifelse(isTRUE(na.rm == TRUE) == TRUE, edhl2 <- Filter(function(x) !all(is.na(x)), 
                   edhl2), NA)
             }
+        }
+        if (missing(clean) == FALSE && isTRUE(clean == TRUE) == 
+            TRUE) {
+            ifelse(isTRUE(flgp == FALSE) == TRUE, edhl <- cln(edhl), 
+                edhl2 <- cln(edhl2))
         }
         if (isTRUE(addID == TRUE) == TRUE) {
             ifelse(isTRUE(flgp == FALSE) == TRUE, return(Map(c, 

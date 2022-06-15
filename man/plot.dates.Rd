@@ -8,9 +8,9 @@ Plot interval dates
 A function to plot interval dates.
 }
 \usage{
-plot.dates(x, y, file = NULL, taq, tpq, id, out, main = NULL,
-           xlab = NULL, ylab = NULL, xlim = NULL, axes = TRUE,
-           cex, pch, col, lwd, lty, alpha, ...)
+plot.dates(x, y, type = c("ts", "mp", "rg"), taq, tpq, id, out, 
+    col, cex, lwd, lty, pch, main = NULL, xlab = NULL, ylab = NULL, 
+    xlim = NULL, axes = TRUE, alpha, file = NULL, ...)
 }
 %\method{plot.dates}{plot}(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NULL, 
 %                     xlim = NULL, cex, pch, col, lwd, lty, alpha, \dots)
@@ -22,8 +22,14 @@ plot.dates(x, y, file = NULL, taq, tpq, id, out, main = NULL,
   \item{y}{
   optional identifiers (vector).
 }
-  \item{file}{
-  path to file for a PDF format (optional)
+  \item{type}{
+      Type of date format to plot: 
+        
+        \code{ts} timespans
+        
+        \code{mp} mid points and range
+        
+        \code{rg} only range
 }
   \item{taq}{
   \emph{terminus ante quem}
@@ -32,10 +38,25 @@ plot.dates(x, y, file = NULL, taq, tpq, id, out, main = NULL,
   \emph{terminus post quem}
 }
   \item{id}{
-  IDs in dataset \code{x}
+  IDs as variable or rownames in dataset \code{x}
 }
   \item{out}{
   number of outliers to omit (integer or vector where first entry id for latest date)
+}
+  \item{col}{
+  color of \code{pch}
+}
+  \item{cex}{
+  size of \code{pch}
+}
+  \item{lwd}{
+  width of time interval segments
+}
+  \item{lty}{
+  shape of time interval segments
+}
+  \item{pch}{
+  symbol for \code{taq} and \code{tpq}
 }
   \item{main}{
   plot's main tile
@@ -52,23 +73,11 @@ plot.dates(x, y, file = NULL, taq, tpq, id, out, main = NULL,
   \item{axes}{
   plot's axes (logical)
 }
-  \item{cex}{
-  size of \code{pch}
-}
-  \item{pch}{
-  symbol for \code{taq} and \code{tpq}
-}
-  \item{col}{
-  color of \code{pch}
-}
-  \item{lwd}{
-  width of time interval segments
-}
-  \item{lty}{
-  shape of time interval segments
-}
   \item{alpha}{
   alpha transparency for time interval segments
+}
+  \item{file}{
+  path to file for a PDF format (optional)
 }
   \item{\dots}{
   additional optional parameters

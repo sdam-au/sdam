@@ -8,7 +8,7 @@ Similarity between (column) vectors
 A function to compute similarity between vectors, which can arise from columns in a data frame or list entries.
 }
 \usage{
-simil(x, vars, uniq, diag.incl) 
+simil(x, vars, uniq, diag.incl, dichot, rm.isol, k)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,6 +23,15 @@ simil(x, vars, uniq, diag.incl)
 }
   \item{diag.incl}{
 	include entries in matrix diagonal? (optional and logical) 
+}
+  \item{dichot}{
+	dichotomize output? (optional and logical) 
+}
+  \item{rm.isol}{
+	remove isolates in output? (optional and logical) 
+}
+  \item{k}{
+	cut-off for dichotomization. If not specified, \code{max} of output.
 }
 }
 \details{
@@ -45,7 +54,7 @@ Other similarity measures will be added in the near future.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}
+\code{\link{get.edh}}, \code{\link[multiplex:dichot]{dichot}}, \code{\link[multiplex:rm.isol]{rm.isol}}
 }
 \examples{
 # TBD 
@@ -54,4 +63,5 @@ Other similarity measures will be added in the near future.
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ metrics }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }% use one of  RShowDoc("KEYWORDS")
+\keyword{ utilities }
