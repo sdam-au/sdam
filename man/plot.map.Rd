@@ -1,86 +1,92 @@
 \name{plot.map}
 \alias{plot.map}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Plot cartographical map
+Plot cartographical maps
 }
 \description{
-A function to plot a cartographical map of Roman world and Mediterranean region.
+A function to plot cartographical maps of the Roman world and Mediterranean region.
 }
 \usage{
-plot.map(x = NULL, type = c("plain", "rp", "si", "tetra", "med"), settl, roads, shipr, 
-         main, cap, date, name, fsize, fcol, fsize2, fcol2, xd, yd, new, ...)
+\method{plot}{map}(x = NULL, type = c("plain", "rp", "si", "tetra", "med"), settl, roads, shipr, 
+         main, cap, date, name, fsize, fcol, fsize2, fcol2, xd, yd, new, \dots)
+%plot.map(x = NULL, type = c("plain", "rp", "si", "tetra", "med"), settl, roads, shipr, 
+%         main, cap, date, name, fsize, fcol, fsize2, fcol2, xd, yd, new, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-(character) acronym of ancient Roman province or Italian region (see \code{\link{get.edh}})
+ acronym of ancient Roman province or Italian region (see "\code{\link{rp}}")
 }
   \item{type}{
       Type of cartographical map: 
         
-        \code{plain}
+        \code{plain} most of Europe and land around the Mediterranean
         
-        \code{rp} Roman provinces
+        \code{rp} ancient Roman provinces
         
-        \code{si} Senatorial-Imperial
+        \code{si} Senatorial-Imperial provinces
         
-        \code{tetra} Tetrarchy
+        \code{tetra} First Tetrarchy
         
-        \code{med} Mediterranean sea
+        \code{med} Mediterranean region
 }
   \item{settl}{
-  (logical for cartographical map) display settlements?
+  display settlements? (optional and logical, for cartographical map)
 }
   \item{roads}{
-  (logical for cartographical map) display terretrial routes?
+  display terrestrial routes? (optional and logical, for cartographical map)
 }
   \item{shipr}{
-  (logical for cartographical map) display shipping routes?
+  display shipping routes? (optional and logical, for cartographical map)
 }
   \item{main}{
-  (optional) Plot's main title
+  plot's main title (optional)
 }
   \item{cap}{
-(logical for provinces) display caption?
+ display caption? (optional and logical, for provinces)
 }
   \item{date}{
-(logical for provinces) display date?
+ display date? (optional and logical, for provinces)
 }
   \item{name}{
-(logical for provinces) display province title name?
+ display map title name? (optional and logical, for provinces)
 }
   \item{fsize}{
-(optional) font size in main title
+ font size in main title (optional)
 }
   \item{fcol}{
-(optional) font color in main title
+ font color in main title (optional)
 }
   \item{fsize2}{
-(optional) font size in date
+ font size in date (optional)
 }
   \item{fcol2}{
-(optional) font color in date
+ font color in date (optional)
 }
   \item{xd}{
-(optional) \emph{x} positioning for date
+ \emph{x} positioning for the date (optional)
 }
   \item{yd}{
-(optional) \emph{y} positioning for date
+ \emph{y} positioning for the date (optional)
 }
   \item{new}{
-(optional) whether or not plotted map has superimposed graphics
+ whether the plotted map has superimposed graphics (optional)
 }
   \item{\dots}{
   additional optional parameters
 }
 }
 \details{
-This plot function is for creating cartographical maps of ancient provinces and Italian regions of the Roman Empire around year 117 AD. 
+This plot function is for creating cartographical maps of ancient provinces and Italian regions of the Roman Empire around the year AD 117. 
 The input data \code{x} can be a character vector, but this is intended for a recording output. 
-By default, arguments \code{name} and \code{cap} are set to \code{TRUE} while \code{date} is set to \code{FALSE}; however, \code{main} prevails over \code{name}.
+By default, the argument's \code{name} and \code{cap} are set to \code{TRUE} while the \code{date} is set to \code{FALSE}; 
+however, the argument \code{main} prevails over \code{name}.
 
-The \code{type} argument allows plotting cartographical maps related to the Roman Empire and the Mediterranean basin. 
+
+The \code{type} argument allows plotting cartographical maps related to the Roman Empire and the Mediterranean basin 
+as specified in \code{\link{rpmp}} and \code{\link{rpmcd}} datasets. 
+In the cartographical maps, settlements are displayed as circles while squares are for military forts, while terrestrial and maritime routes are given as solid paths with different colours. 
+Shapes of places and routes are specified in the \code{\link{retn}} dataset.
 }
 \value{
 A plot of a cartographical map for the Roman world with a title name, and a caption with an approximate province establishment date.
@@ -92,18 +98,20 @@ A plot of a cartographical map for the Roman world with a title name, and a capt
 Antonio Rivero Ostoic
 }
 \note{
-Positions for caption and date are fixed for a PDF output. 
+Positions for caption and date are for a PDF output and the rendering may vary for browser displays. 
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{rpmp}}, \code{\link{rpmcd}}, \code{\link{get.edh}}, \code{\link{rp}}, \code{\link{EDH}}
+\code{\link{rpmp}}, \code{\link{rpmcd}}, \code{\link{retn}}, \code{\link{get.edh}}
 }
 \examples{
-#TBD.
+# Roman province of Aegyptus
+plot.map(x="Aeg")
+
+# Roman Empire transport network
+plot.map(roads=TRUE, shipr=TRUE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ graphs }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ graphs }
+\keyword{ utilities }

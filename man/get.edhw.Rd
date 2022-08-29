@@ -1,11 +1,10 @@
 \name{get.edhw}
 \alias{get.edhw}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Wrapper to get data from the Epigraphic Database Heidelberg API
 }
 \description{
-A wrapper function to obtain data from the Epigraphic Database Heidelberg repository.
+A wrapper function to obtain data from the Epigraphic Database Heidelberg REST like API repository.
 }
 \usage{
 get.edhw(file = NULL, hd_nr, ...)
@@ -19,14 +18,14 @@ get.edhw(file = NULL, hd_nr, ...)
 	HD number of inscriptions
 }
   \item{\dots}{
-	Additional arguments
+	additional arguments
 }
 }
 \details{
-This is a wrapper function to obtain a sample data from the Epigraphic Database Heidelberg API repository 
-by their HD numbers or, alternatively, a file with a valid format JSON can be specified in \code{file}. 
+This wrapper function aims to obtain sample data from the Epigraphic Database Heidelberg API repository 
+by their HD numbers or a file with a valid format JSON can be specified in \code{file}. 
 
-In any case, the JSON output will be converted into a list object with the \code{\link[rjson]{rjson}} 
+In any case, the JSON output becomes a list object with the \code{\link[rjson]{rjson}} 
 package.
 }
 \value{
@@ -46,7 +45,7 @@ Large samples can take a lot of time.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}, \code{\link{simil}}
+\code{\link{get.edh}}, \code{\link{simil}}, \code{\link[rjson]{rjson}}
 }
 \examples{
 ## get 10 records from EDH API data
@@ -56,5 +55,5 @@ get.edhw(hd_nr=1:10)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ IO }% use one of  RShowDoc("KEYWORDS")
+\keyword{ IO }
 \keyword{ utilities }

@@ -13,8 +13,8 @@
 \tabular{ll}{
 Package: \tab sdam \cr
 Type: \tab Package \cr
-Version: \tab 0.9.3 \cr
-Date: \tab 14 June 2022 \cr
+Version: \tab 1.1.1 (development) \cr
+Date: \tab 29 August 2022 \cr
 License: \tab CC BY-SA 4.0 \cr
 }
 
@@ -23,41 +23,55 @@ License: \tab CC BY-SA 4.0 \cr
 %\packageDESCRIPTION{sdam}
 
 %\packageIndices{sdam}
-Currently, it is possible with the \code{"sdam"} package to access data from the Epigraphic Database 
-Heidelberg API with \code{get.edh()}, and the wrapper function \code{get.edhw()}. 
-Most of the data is available in the \code{EDH} dataset attached to the package, which 
-can be manipulated by using \code{edhw()} and \code{cln()}. 
+The \code{"sdam"} package is a suite of tools for performing analyses in the history of the Mediterranean world 
+and its neighbouring regions in the antiquity period before the Middle Ages. 
+Currently, it is possible to access data of writing material from the Epigraphic Database Heidelberg API with function \code{\link{get.edh}} 
+and the wrapper function \code{\link{get.edhw}}. Most of the epigraphic data, at least until 10-11-2020, is available 
+in the \code{\link{EDH}} dataset, which can be transformed in diverse ways by using function \code{\link{edhw}} and function \code{\link{cln}} for re-encoding and 
+cleaning portions of text in inscriptions in the \code{\link{EDH}} dataset.
 
-Besides, the \code{request()} function allows performing different types of HTTP requests to 
-DEiC'S \code{https://sciencedata.dk} or another cloud repository with a customized URL address. 
+With function \code{\link{prex}}, there is also the possibility to compute probabilities of existence of inscriptions and 
+other artefacts with either the aoristic sum or count matching for observations for different periodization options. 
+Function \code{\link{plot.dates}} allow visualizing interval time events that can be adjusted by the internal function \code{\link{dts}} 
+as illustrated in a vignette.
 
-There is also the possibility to compute probabilities of existence with \code{prex()} with either 
-the aoristic sum or count matching for observations for different periodization options. 
-Function \code{plot.dates()} allows visualizing interval time events that can be manipulated by the 
-internal function \code{dts} as illustrated in a vignette. 
+\code{\link{request}} function allows, with user authentication, performing different types of HTTP requests 
+aimed to DEiC's servers in \code{https://sciencedata.dk} or another cloud repository with a customized URL address.
 
-Another plotting function in \code{"sdam"} is found in \code{plot.map()} that allows visualizing maps 
-of ancient Roman provinces that are found in \code{EDH}. This function uses datasets \code{rp}, \code{rpd}, 
-\code{rpmp}, \code{rpmcd}, and \code{retn} for a Roman Empire transport network.
+A plotting function is found in \code{\link{plot.map}} that allows visualizing cartographical maps of ancient Roman provinces 
+that are part of the \code{\link{EDH}} dataset. It relies other datasets from the package that are related to the Roman world in 
+\code{\link{rp}}, \code{\link{rpd}}, \code{\link{rpmp}}, \code{\link{rpmcd}}, \code{\link{rpcp}}, and \code{\link{retn}} for a transport network with terrestrial and maritime main routes.
 
-Similarity by simple matching among column vectors is achieved by the \code{simil()} function for making 
-analyses of relations between assemblages and artifacts. Such similarity measure is the basis for function 
-\code{edhwpd()} to organize the EDH dataset per province and dates. 
+Similarity by simple matching among column vectors in a table or data frame is achieved by function \code{\link{simil}} 
+for making analyses of relations between e.g. assemblages and artefacts. 
+Function \code{\link{edhwpd}} is to organize the \code{\link{EDH}} dataset per province and dates based on a similarity measure, and it is the basis for 
+function \code{\link{rmids}} to compute values of missing dates with a restricted imputation on data subsets of artefacts.
 }
 \author{
 Author: \packageAuthor{sdam} 
 
 Maintainer: \packageMaintainer{sdam}
 }
-%\references{
-%~~ Literature or other references for background information ~~
-%}
-%~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
+\references{
+\emph{Epigraphic Database Heidelberg -- Data Reuse Options}, (Online; retrieved on 16 June 2019). URL https://edh-www.adw.uni-heidelberg.de/data
+
+}
 \keyword{ package }
 \seealso{
-\href{https://sdam-au.github.io/sdam/articles/}{Vignettes}
-%\code{\link[multiplex]{multiplex}}
+\href{../doc/Intro.html}{Datasets in \code{"sdam"} package}
+
+\href{../doc/Encoding.html}{Re-encoding \code{people} in the \code{\link{EDH}} dataset}
+
+\href{../doc/Dates.html}{Dates and missing dating data}
+
+\href{../doc/Maps.html}{Cartographical maps and networks}
+
+
+\href{https://sdam-au.github.io/sdam/articles/}{Articles using "\code{sdam}"}
+
+\href{https://github.com/sdam-au/sdam}{Release candidate version}
+
 }
-%\examples{
-%~~ simple examples of the most important functions ~~
-%}
+\examples{
+data(package="sdam")
+}

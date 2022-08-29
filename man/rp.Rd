@@ -2,16 +2,16 @@
 \docType{data}
 \alias{rp}
 \title{
-Roman province names and acronyms as in EDH
+Roman province names and acronyms as in EDH dataset
 }
 \description{
-This is a list with Roman province names and acronyms as in the Epigraphic Database Heidelberg, EDH. 
+This is a list with Roman province names and acronyms as in the Epigraphic Database Heidelberg recorded in \code{\link{EDH}} dataset. 
 }
 \usage{
 data("rp")
 }
 \format{
-A list object of 66 Roman provinces named with \code{"province_label"}.
+A list object of 66 Roman provinces names and acronyms as in \code{"province_label"} in \code{\link{EDH}} dataset.
 }
 \source{
 https://edh-www.adw.uni-heidelberg.de/data/api/terms/province

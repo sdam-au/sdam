@@ -1,45 +1,48 @@
 \name{simil}
 \alias{simil}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Similarity between (column) vectors
+Similarity between vectors in columns
 }
 \description{
-A function to compute similarity between vectors, which can arise from columns in a data frame or list entries.
+A function to compute similarity between vectors from columns in a data frame based on common attribute characteristics.
 }
 \usage{
 simil(x, vars, uniq, diag.incl, dichot, rm.isol, k)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-	A list or a data frame object
+	a list or a data frame object
 }
   \item{vars}{
-	Column(s) in \code{x} representing variable attributes (vector)
+  vector with column(s) in \code{x} representing variable attributes
 }
   \item{uniq}{
-	unique entries? (optional and logical)
+  unique entries? (optional and logical)
 }
   \item{diag.incl}{
-	include entries in matrix diagonal? (optional and logical) 
+  include also entries in matrix diagonal? (optional and logical) 
 }
   \item{dichot}{
-	dichotomize output? (optional and logical) 
+  dichotomize output? (optional and logical) 
 }
   \item{rm.isol}{
-	remove isolates in output? (optional and logical) 
+  remove isolates in output? (optional and logical) 
 }
   \item{k}{
-	cut-off for dichotomization. If not specified, \code{max} of output.
+  cut-off for dichotomization (if not specified, \code{max} of output)
 }
 }
 \details{
-At this point, the ID column in the input represents the labels of the nodes. 
-In case that an ID column does not exists, then the first column is taken provided that there are not duplicated entry names. 
+This is a function to compute the similarity between two or more vectors, which can arise from columns in a data frame and from list entries. 
+The similarity of artefacts or other units having common variable attributes specified in \code{vars} is by simple matching, and 
+this represents a measure of proximity among the items to compare. Comparison takes an \code{id} column from \code{x}; 
+otherwise, the first column is taken provided that there are no duplicated entry names.
+
+Both the dichotomization of the output and the removing isolated items from the system of co-occurrence relations depends on functions 
+from package \code{"multiplex"}.
 }
 \value{
-A valued matrix with similarities among units by simple matching.
+A valued matrix of similarities among items in \code{x}.
 }
 %\references{
 %% ~put references to the literature/web site here ~
@@ -47,21 +50,28 @@ A valued matrix with similarities among units by simple matching.
 \author{
 Antonio Rivero Ostoic
 }
-\note{
-Other similarity measures will be added in the near future.
-}
+
+%\note{
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{get.edh}}, \code{\link[multiplex:dichot]{dichot}}, \code{\link[multiplex:rm.isol]{rm.isol}}
+\code{\link{edhw}}, \code{\link{get.edh}}, \code{\link[multiplex:dichot]{dichot}}, \code{\link[multiplex:rm.isol]{rm.isol}}, \code{\link[multigraph]{multigraph}}.
 }
 \examples{
-# TBD 
+## Not run:
+# get inscriptions from a Roman province
+arm <- edhw(province="Armenia")
 
+# choose variables to a data frame
+armv <- edhw(x=arm, as="df", 
+        vars=c("findspot_ancient", "type_of_inscription", "type_of_monument", "language"))
+
+# matrix of similarities of two variables
+simil(armv, vars=c("findspot_ancient", "language"))
+## End(Not run)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ metrics }% use one of  RShowDoc("KEYWORDS")
-\keyword{ manip }% use one of  RShowDoc("KEYWORDS")
+\keyword{ metrics }
+\keyword{ manip }
 \keyword{ utilities }

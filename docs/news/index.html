@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -26,28 +26,34 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/Encoding.html">Re-encoding Greek characters from 'EDH' dataset</a>
+      <a href="../articles/Dates.html">Dates and missing dating data in `"sdam"`</a>
     </li>
     <li>
-      <a href="../articles/RomanProvs.html">Plotting ancient Roman provinces and regions</a>
+      <a href="../articles/Encoding.html">Re-encoding `people` in the `EDH` dataset</a>
     </li>
     <li>
-      <a href="../articles/TransportNetwork.html">Plotting Roman Empire transport network</a>
+      <a href="../articles/Intro.html">Datasets in `"sdam"` package</a>
+    </li>
+    <li>
+      <a href="../articles/Maps.html">Cartographical maps and networks</a>
     </li>
   </ul></li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 1.1.x details</a>
+    </li>
     <li>
       <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.9.x details</a>
     </li>
@@ -77,7 +83,13 @@
       <a href="../news/index.html">Changelog</a>
     </li>
   </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/sdam-au/sdam/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -87,13 +99,17 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      
+      <small>Source: <a href="https://github.com/sdam-au/sdam/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="1.1.1" id="sdam-v111">
+<code>sdam</code> v1.1.1<a class="anchor" aria-label="anchor" href="#sdam-v111"></a></h2>
+<ul><li>CRAN submission.</li></ul></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.9.0" id="sdam-v090">
 <code>sdam</code> v0.9.0<a class="anchor" aria-label="anchor" href="#sdam-v090"></a></h2>
-<ul><li>New internal function <code><a href="../reference/cs.html">cs()</a></code>
+<ul><li>New internal function <code><a href="../reference/cs.html">cs()</a></code>, and external functions <code><a href="../reference/rmids.html">rmids()</a></code> and <code><a href="../reference/edhwpd.html">edhwpd()</a></code>
 </li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.8.0" id="sdam-v080">
@@ -103,11 +119,11 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.0" id="sdam-v060">
 <code>sdam</code> v0.6.0<a class="anchor" aria-label="anchor" href="#sdam-v060"></a></h2>
-<ul><li>Dataset <code>retn</code> added.</li></ul></div>
+<ul><li>Dataset <code>retn</code> added</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0" id="sdam-v050">
 <code>sdam</code> v0.5.0<a class="anchor" aria-label="anchor" href="#sdam-v050"></a></h2>
-<ul><li>Dataset <code>rpmcd</code> updated.</li></ul></div>
+<ul><li>Dataset <code>rpmcd</code> updated</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.0" id="sdam-v040">
 <code>sdam</code> v0.4.0<a class="anchor" aria-label="anchor" href="#sdam-v040"></a></h2>
@@ -116,8 +132,7 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="sdam-v030">
 <code>sdam</code> v0.3.0<a class="anchor" aria-label="anchor" href="#sdam-v030"></a></h2>
-<ul><li>New functions <code><a href="../reference/prex.html">prex()</a></code> and <code><a href="../reference/plot.dates.html">plot.dates()</a></code>. Dataset <code>rp</code>
-</li></ul></div>
+<ul><li>New functions <code><a href="../reference/prex.html">prex()</a></code> and <code><a href="../reference/plot.dates.html">plot.dates()</a></code>. Dataset <code>rp</code> added</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="sdam-v020">
 <code>sdam</code> v0.2.0<a class="anchor" aria-label="anchor" href="#sdam-v020"></a></h2>

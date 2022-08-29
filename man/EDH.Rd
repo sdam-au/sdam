@@ -2,17 +2,17 @@
 \docType{data}
 \alias{EDH}
 \title{
-Epigraphic Database Heidelberg Dataset
+Epigraphic Database Heidelberg dataset
 }
 \description{
-This is a data set retrieved from the Epigraphic Database Heidelberg API repository. 
+A data set of Latin epigraphy retrieved from the Epigraphic Database Heidelberg API repository. 
 }
 \usage{
 data("EDH")
 }
 \format{
-A list object of 84701 records (until 10-11-2020) with at least one of the following 47 
-(or more) names in the EDH list: 
+Epigraphs or inscriptions in this dataset is recorded in a list object of 84701 items (until 10-11-2020) 
+with at least one of the following 47 (or more) names in the EDH list: 
 
 \code{"ID"}, \code{"commentary"}, \code{"fotos"}, \code{"country"}, 
 \code{"depth"}, \code{"diplomatic_text"}, \code{"edh_geography_uri"}, \code{"findspot"}, 
@@ -28,11 +28,13 @@ A list object of 84701 records (until 10-11-2020) with at least one of the follo
 \code{"work_status"}, and \code{"year_of_find"}. 
 }
 \source{
-https://edh-www.adw.uni-heidelberg.de/data/api
+https://edh-www.adw.uni-heidelberg.de/data/api (retrieved on November 2020)
 }
-%\references{
-%}
+\references{
+\emph{Epigraphic Database Heidelberg -- Data Reuse Options}, (Online; retrieved on 16 June 2019). URL https://edh-www.adw.uni-heidelberg.de/data
+
+}
 \seealso{
-\code{\link{get.edh}}, \code{\link{get.edhw}},\code{\link{edhw}}
+\code{\link{get.edh}}, \code{\link{get.edhw}}, \code{\link{edhw}}
 }
 \keyword{datasets}

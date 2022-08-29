@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sdam</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.1</span>
       </span>
     </div>
 
@@ -26,12 +26,34 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/Dates.html">Dates and missing dating data in `"sdam"`</a>
+    </li>
+    <li>
+      <a href="../articles/Encoding.html">Re-encoding `people` in the `EDH` dataset</a>
+    </li>
+    <li>
+      <a href="../articles/Intro.html">Datasets in `"sdam"` package</a>
+    </li>
+    <li>
+      <a href="../articles/Maps.html">Cartographical maps and networks</a>
+    </li>
+  </ul></li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 1.1.x details</a>
+    </li>
     <li>
       <a href="https://mplex.github.io/cedhar/sdam.html#news" class="external-link">sdam 0.9.x details</a>
     </li>
@@ -61,7 +83,13 @@
       <a href="../news/index.html">Changelog</a>
     </li>
   </ul></li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/sdam-au/sdam/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -76,23 +104,23 @@
     </div>
 
     <div class="ref-description">
-    <p>Wrapper function to organize EDH dataset province and dates by simple match similarity.</p>
+    <p>Wrapper function to organize <code><a href="EDH.html">EDH</a></code> dataset province and dates by simple match similarity.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">edhwpd</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">vars</span>, <span class="va">province</span>, <span class="va">dates</span>, <span class="va">clean</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">edhwpd</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"EDH"</span>, <span class="va">vars</span>, <span class="va">province</span>, <span class="va">dates</span>, <span class="va">clean</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
-<dd><p>typically fragments of EDH dataset or database API (optional, list)</p></dd>
+<dd><p>EDH dataset, or fragments of, or database via API (optional, list)</p></dd>
 
   <dt>vars</dt>
-<dd><p>variables or attributes to be chosen from <code>x</code> (vector)</p></dd>
+<dd><p>vector with variables or attributes chosen from <code>x</code></p></dd>
 
   <dt>province</dt>
-<dd><p>choosen EDH province abbreviation</p></dd>
+<dd><p>Roman province abbreviation as in <code>rp</code></p></dd>
 
   <dt>dates</dt>
 <dd><p>vector with TAQ and TPQ (optional)</p></dd>
@@ -100,18 +128,24 @@
   <dt>clean</dt>
 <dd><p>whether to remove special characters in text (optional and logical)</p></dd>
 
+  <dt>...</dt>
+<dd><p>additional arguments if needed</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>As with function <code>edhw</code>, this is an interface to extract attribute variables 
-in <code>vars</code> from the <code>EDH</code> or similar dataset if <code>x</code> is not specified. 
-The aim is to organize data per province and dates by simple match similarity among
-records.</p>
+    <p>This wrapper function aims to organize data per Roman province and date by simple match similarities 
+among inscriptions in the <code><a href="EDH.html">EDH</a></code> dataset. 
+As with function <code><a href="edhw.html">edhw</a></code>, it is an interface to extract attribute variables 
+in <code>vars</code> from the <code><a href="EDH.html">EDH</a></code> or similar dataset if <code>x</code> is not specified.</p>
 <p>The Roman Empire <code>province</code> is the abbreviation used in the value given by 
-function <code>get.edh</code> and which is in <code>"rp"</code> dataset.</p>
+function <code><a href="get.edh.html">get.edh</a></code> and which is in <code><a href="rp.html">rp</a></code> dataset.</p>
 <p>Argument <code>dates</code> is optional to specify the variables for time intervals 
-(TAQ and TPQ) that in <code>EDH</code> are <code>"not_after"</code> and <code>"not_before"</code>.</p>
-<p>Argument <code>clean</code> applies function <code>cln</code> to the province data frame with the chosen 
+(TAQ and TPQ) that in <code><a href="EDH.html">EDH</a></code> are <code>not_after</code> and <code>not_before</code>, 
+but other datasets may have different names for the endpoints of the timespan. 
+Another dependence with this function is from package <code>"multiplex"</code> to find clusters of items having similar 
+characteristics as co-occurrence relations and for removing isolated items from the system of relations.</p>
+<p>Argument <code>clean</code> applies function <code><a href="cln.html">cln</a></code> to the province data frame with the chosen 
 variables to remove special characters such as <code>?*+</code> and, if needed, re-encode the text.</p>
 <p>The output is a list of data frames with similar arguments by descending matches. The records 
 with one or less similarity matches (or having <code>NA</code> attribute values) are placed in the 
@@ -121,8 +155,9 @@ last data frame of the list.</p>
     <h2>Value</h2>
     
 
-<p>List of data frames of a <code>EDH</code> class object that includes the province with the number of
-records.</p>
+<p>A <code><a href="EDH.html">EDH</a></code> class object with the province and the number of records with a list of data frames organised 
+by components where the first one has records having most common attribute variables, whereas the 
+last component is a dataframe with records having least common attribute variables.</p>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -130,7 +165,7 @@ records.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="edhw.html">edhw</a></code>, <code><a href="get.edh.html">get.edh</a></code>, <code><a href="cln.html">cln</a></code></p></div>
+    <div class="dont-index"><p><code><a href="rmids.html">rmids</a></code>, <code><a href="rp.html">rp</a></code>, <code><a href="edhw.html">edhw</a></code>, <code><a href="get.edh.html">get.edh</a></code>, <code><a href="cln.html">cln</a></code></p></div>
     </div>
 
     <div id="ref-examples">

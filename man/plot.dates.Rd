@@ -1,47 +1,47 @@
 \name{plot.dates}
 \alias{plot.dates}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Plot interval dates
 }
 \description{
-A function to plot interval dates.
+A function to plot interval dates with different forms.
 }
 \usage{
-plot.dates(x, y, type = c("ts", "mp", "rg"), taq, tpq, id, out, 
+\method{plot}{dates}(x, y, type = c("ts", "mp", "rg"), taq, tpq, id, out, 
     col, cex, lwd, lty, pch, main = NULL, xlab = NULL, ylab = NULL, 
-    xlim = NULL, axes = TRUE, alpha, file = NULL, ...)
+    xlim = NULL, axes = TRUE, alpha, file = NULL, \dots)
+%plot.dates(x, y, type = c("ts", "mp", "rg"), taq, tpq, id, out, 
+%    col, cex, lwd, lty, pch, main = NULL, xlab = NULL, ylab = NULL, 
+%    xlim = NULL, axes = TRUE, alpha, file = NULL, ...)
 }
-%\method{plot.dates}{plot}(x, y, file = NULL, taq, tpq, out, main = NULL, xlab = NULL, ylab = NULL, 
-%                     xlim = NULL, cex, pch, col, lwd, lty, alpha, \dots)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
   dataset as a data frame object of variables and observations. 
 }
   \item{y}{
-  optional identifiers (vector).
+  vector of identifiers (optional)
 }
   \item{type}{
       Type of date format to plot: 
         
-        \code{ts} timespans
+        \code{ts} timespans with endpoints
         
         \code{mp} mid points and range
         
-        \code{rg} only range
+        \code{rg} range only
 }
   \item{taq}{
-  \emph{terminus ante quem}
+  timespan endpoint \emph{terminus ante quem} (TAQ)
 }
   \item{tpq}{
-  \emph{terminus post quem}
+  timespan endpoint \emph{terminus post quem} (TPQ)
 }
   \item{id}{
   IDs as variable or rownames in dataset \code{x}
 }
   \item{out}{
-  number of outliers to omit (integer or vector where first entry id for latest date)
+  integer or vector with number of outliers to omit (first entry id for latest date)
 }
   \item{col}{
   color of \code{pch}
@@ -77,7 +77,7 @@ plot.dates(x, y, type = c("ts", "mp", "rg"), taq, tpq, id, out,
   alpha transparency for time interval segments
 }
   \item{file}{
-  path to file for a PDF format (optional)
+  path to produce a file with a PDF format (optional)
 }
   \item{\dots}{
   additional optional parameters
@@ -85,7 +85,7 @@ plot.dates(x, y, type = c("ts", "mp", "rg"), taq, tpq, id, out,
 }
 \details{
 This plot function is for time interval segments given in the dataset \code{x}, which is 
-given as a data frame or as a ``tibble'' class object.
+given as a dataframe or as a ``tibble'' class object.
 }
 \value{
 A graphical plot.
@@ -96,18 +96,24 @@ A graphical plot.
 Antonio Rivero Ostoic
 }
 \note{
-If \code{x} is \code{NULL}, then \code{EDH} dataset is taken.
+If \code{x} is \code{NULL}, then \code{\link{EDH}} dataset is taken by default.
 }
-
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-\code{\link{get.edh}}, \code{\link{edhw}}, \code{\link{prex}}.
+\code{\link{dts}}, \code{\link{get.edh}}, \code{\link{edhw}}, \code{\link{prex}}, \code{\link[tibble]{tibble}}
 }
 \examples{
-#TBD.
+## Not run:
+# first 100 entries in the EDH dataset
+data("EDH")
+EDHdates <- edhw(vars=c("not_after", "not_before"), as="df", limit=100)
+
+# timespans
+plot.dates(EDHdates, taq="not_before", tpq="not_after")
+
+# mid points
+plot.dates(EDHdates, type="mp", taq="not_before", tpq="not_after")
+## End(Not run)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ graphs }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ graphs }
+\keyword{ utilities }
