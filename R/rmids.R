@@ -3,23 +3,25 @@
 ## FUNCTION rmids() for restricted multiply-imputed data subsets
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.5 (22-09-2021)
+## version 0.0.6 (29-08-2022)
 ##
 ## PARAMETERS
-## x         (data set to impute, data frame or lists of data frames)
+## x         (data set to impute, dataframe or lists of dataframes)
 ## vars      (attribute variables in x, optional vector)
-## collapse  (collapse list of data frames?, optional and logical)
+## collapse  (collapse list of dataframes?, optional and logical)
 
 
 rmids <-
-function (x, vars, collapse) 
+function (x, vars, collapse, pool, type = c("1", "2")) 
 {
     if (is.null(x) == TRUE) 
-        return(NULL)
+        stop("'x' is NULL")
     ifelse(missing(vars) == TRUE, vars <- c("not_before", "not_after"), 
         NA)
     ifelse(missing(collapse) == FALSE && isTRUE(collapse == TRUE) == 
         TRUE, collapse <- TRUE, collapse <- FALSE)
+    ifelse(missing(pool) == FALSE && isTRUE(pool == TRUE) == 
+        TRUE, pool <- TRUE, pool <- FALSE)
     ocl <- class(x)
     xc <- x
     if (isTRUE(is.data.frame(x) == TRUE) == TRUE) {
@@ -38,7 +40,7 @@ function (x, vars, collapse)
             for (i in seq_len(length(rpd))) {
                 if (any(attr(rpd[[i]], "class") == as.vector(x$id)[1]) == 
                   TRUE) {
-                  warning("avg taken from province.")
+                  message("avg taken from province.")
                   avg <- rpd[[i]][1]
                   break
                 }
@@ -56,7 +58,7 @@ function (x, vars, collapse)
             for (i in seq_len(length(rpd))) {
                 if (any(attr(rpd[[i]], "class") == as.vector(x$id)[1]) == 
                   TRUE) {
-                  warning("min TAQ taken from province.")
+                  message("min TAQ taken from province.")
                   mtaq <- rpd[[i]][2]
                   break
                 }
@@ -74,7 +76,7 @@ function (x, vars, collapse)
             for (i in seq_len(length(rpd))) {
                 if (any(attr(rpd[[i]], "class") == as.vector(x$id)[1]) == 
                   TRUE) {
-                  warning("max TPQ taken from province.")
+                  message("max TPQ taken from province.")
                   mtpq <- rpd[[i]][3]
                   break
                 }
@@ -98,7 +100,7 @@ function (x, vars, collapse)
             for (i in seq_len(length(rpd))) {
                 if (any(attr(rpd[[i]], "class") == as.vector(x$id)[1]) == 
                   TRUE) {
-                  warning("avg len TS taken from province.")
+                  message("avg len TS taken from province.")
                   avgts <- rpd[[i]][4]
                   break
                 }
@@ -110,6 +112,10 @@ function (x, vars, collapse)
         }
         compl <- list()
         compln <- vector()
+        if (isTRUE(pool == TRUE) == TRUE) {
+            pl <- list()
+            pln <- vector()
+        }
         for (j in seq_len(nrow(x))) {
             if (any(is.na(x[j, vrs]) == TRUE) == FALSE) {
                 compl[[length(compl) + 1L]] <- x[j, ]
@@ -125,6 +131,24 @@ function (x, vars, collapse)
                   temp[5, vrs] <- rep(avg, 2)
                   compl[[length(compl) + 1L]] <- temp[2:5, ]
                   compln <- append(compln, "NA-NA")
+                  if (isTRUE(pool == TRUE) == TRUE) {
+                    if (match.arg(type) == "1") {
+                      temp[1, vrs] <- c(min(as.numeric(unlist(temp[2:5, 
+                        vrs[1]]))), max(as.numeric(unlist(temp[2:5, 
+                        vrs[2]]))))
+                    }
+                    else if (match.arg(type) == "2") {
+                      ifelse(isTRUE(max(as.numeric(unlist(temp[2:5, 
+                        vrs[1]]))) > min(as.numeric(unlist(temp[2:5, 
+                        vrs[2]])))) == TRUE, temp[1, vrs] <- rev(c(max(as.numeric(unlist(temp[2:5, 
+                        vrs[1]]))), min(as.numeric(unlist(temp[2:5, 
+                        vrs[2]]))))), temp[1, vrs] <- c(max(as.numeric(unlist(temp[2:5, 
+                        vrs[1]]))), min(as.numeric(unlist(temp[2:5, 
+                        vrs[2]])))))
+                    }
+                    pl[[length(pl) + 1L]] <- temp[1, ]
+                    pln <- append(pln, "NA-NA")
+                  }
                 }
                 else {
                   temp <- x[j, ][rep(row.names(x[j, ]), 3), ]
@@ -146,6 +170,18 @@ function (x, vars, collapse)
                     vrs[1]]))) + avgts)
                   compl[[length(compl) + 1L]] <- temp[2:3, ]
                   compln <- append(compln, "taq-NA")
+                  if (isTRUE(pool == TRUE) == TRUE) {
+                    if (match.arg(type) == "1") {
+                      temp[1, vrs[2]] <- max(as.numeric(unlist(temp[2:3, 
+                        vrs])))
+                    }
+                    else if (match.arg(type) == "2") {
+                      temp[1, vrs[2]] <- min(as.numeric(unlist(temp[2:3, 
+                        vrs[2]])))
+                    }
+                    pl[[length(pl) + 1L]] <- temp[1, ]
+                    pln <- append(pln, "taq-NA")
+                  }
                 }
                 else if (is.na(x[j, vrs[1]]) == TRUE && is.na(x[j, 
                   vrs[2]]) == FALSE) {
@@ -156,20 +192,40 @@ function (x, vars, collapse)
                     vrs[2]]))) - avgts)
                   compl[[length(compl) + 1L]] <- temp[2:3, ]
                   compln <- append(compln, "NA-tpq")
+                  if (isTRUE(pool == TRUE) == TRUE) {
+                    temp[1, vrs[1]] <- min(as.numeric(unlist(temp[2:3, 
+                      vrs])))
+                    pl[[length(pl) + 1L]] <- temp[1, ]
+                    pln <- append(pln, "NA-tpq")
+                  }
                 }
             }
         }
         rm(j)
         names(compl) <- compln
-        if (isTRUE(collapse == FALSE) == TRUE) {
-            xc <- compl
-            class(xc) <- noquote(length(compl))
+        if (isTRUE(pool == TRUE) == TRUE) {
+            names(pl) <- pln
+        }
+        if (isTRUE(pool == TRUE) == TRUE) {
+            if (isTRUE(collapse == TRUE) == TRUE) {
+                plc <- do.call("rbind", pl)
+                return(plc)
+            }
+            else {
+                return(pl)
+            }
         }
         else {
-            xc <- do.call("rbind", compl)
-            class(xc) <- noquote(c(ocl, nrow(xc)))
+            if (isTRUE(collapse == FALSE) == TRUE) {
+                xc <- compl
+                class(xc) <- noquote(length(compl))
+            }
+            else {
+                xc <- do.call("rbind", compl)
+                class(xc) <- noquote(c(ocl, nrow(xc)))
+            }
+            return(xc)
         }
-        return(xc)
     }
     else {
         cnt <- vector()
@@ -243,7 +299,7 @@ function (x, vars, collapse)
                       for (l in seq_len(length(rpd))) {
                         if (any(attr(rpd[[l]], "class") == as.vector(x[[k]][[i]]$id)[1]) == 
                           TRUE) {
-                          warning("max TPQ taken from province.")
+                          message("max TPQ taken from province.")
                           flgna <- TRUE
                           mtpq <- rpd[[l]][3]
                           break
@@ -269,7 +325,7 @@ function (x, vars, collapse)
                       for (l in seq_len(length(rpd))) {
                         if (any(attr(rpd[[l]], "class") == as.vector(x[[k]][[i]]$id)[1]) == 
                           TRUE) {
-                          warning("avg len TS taken from province.")
+                          message("avg len TS taken from province.")
                           flgna <- TRUE
                           avgts <- rpd[[l]][4]
                           break
@@ -284,6 +340,10 @@ function (x, vars, collapse)
                     }
                     compl <- list()
                     compln <- vector()
+                    if (isTRUE(pool == TRUE) == TRUE) {
+                      pl <- list()
+                      pln <- vector()
+                    }
                     for (j in seq_len(nrow(x[[k]][[i]]))) {
                       if (any(is.na(x[[k]][[i]][j, vrs]) == TRUE) == 
                         FALSE) {
@@ -305,6 +365,26 @@ function (x, vars, collapse)
                           compl[[length(compl) + 1L]] <- temp[2:5, 
                             ]
                           compln <- append(compln, "NA-NA")
+                          if (isTRUE(pool == TRUE) == TRUE) {
+                            if (match.arg(type) == "1") {
+                              temp[1, vrs] <- c(min(as.numeric(unlist(temp[2:5, 
+                                vrs[1]]))), max(as.numeric(unlist(temp[2:5, 
+                                vrs[2]]))))
+                            }
+                            else if (match.arg(type) == "2") {
+                              ifelse(isTRUE(max(as.numeric(unlist(temp[2:5, 
+                                vrs[1]]))) > min(as.numeric(unlist(temp[2:5, 
+                                vrs[2]])))) == TRUE, temp[1, 
+                                vrs] <- rev(c(max(as.numeric(unlist(temp[2:5, 
+                                vrs[1]]))), min(as.numeric(unlist(temp[2:5, 
+                                vrs[2]]))))), temp[1, vrs] <- c(max(as.numeric(unlist(temp[2:5, 
+                                vrs[1]]))), min(as.numeric(unlist(temp[2:5, 
+                                vrs[2]])))))
+                            }
+                            pl[[length(pl) + 1L]] <- temp[1, 
+                              ]
+                            pln <- append(pln, "NA-NA")
+                          }
                         }
                         else {
                           temp <- x[[k]][[i]][j, ][rep(row.names(x[[k]][[i]][j, 
@@ -334,6 +414,19 @@ function (x, vars, collapse)
                           compl[[length(compl) + 1L]] <- temp[2:3, 
                             ]
                           compln <- append(compln, "taq-NA")
+                          if (isTRUE(pool == TRUE) == TRUE) {
+                            if (match.arg(type) == "1") {
+                              temp[1, vrs[2]] <- max(as.numeric(unlist(temp[2:3, 
+                                vrs])))
+                            }
+                            else if (match.arg(type) == "2") {
+                              temp[1, vrs[2]] <- min(as.numeric(unlist(temp[2:3, 
+                                vrs[2]])))
+                            }
+                            pl[[length(pl) + 1L]] <- temp[1, 
+                              ]
+                            pln <- append(pln, "taq-NA")
+                          }
                         }
                         else if (is.na(x[[k]][[i]][j, vrs[1]]) == 
                           TRUE && is.na(x[[k]][[i]][j, vrs[2]]) == 
@@ -347,11 +440,21 @@ function (x, vars, collapse)
                           compl[[length(compl) + 1L]] <- temp[2:3, 
                             ]
                           compln <- append(compln, "NA-tpq")
+                          if (isTRUE(pool == TRUE) == TRUE) {
+                            temp[1, vrs[1]] <- min(as.numeric(unlist(temp[2:3, 
+                              vrs])))
+                            pl[[length(pl) + 1L]] <- temp[1, 
+                              ]
+                            pln <- append(pln, "NA-tpq")
+                          }
                         }
                       }
                     }
                     rm(j)
                     names(compl) <- compln
+                    if (isTRUE(pool == TRUE) == TRUE) {
+                      names(pl) <- pln
+                    }
                     ifelse(isTRUE(collapse == TRUE) == TRUE && 
                       isTRUE(is.data.frame(compl) == FALSE) == 
                         TRUE, xc[[k]][[i]] <- do.call("rbind", 
@@ -375,7 +478,6 @@ function (x, vars, collapse)
                   else {
                     invisible(NA)
                   }
-                  warns = -1
                   if (all(is.na(x[[k]][, vrs])) == FALSE) {
                     avg <- round(mean(stats::na.omit(as.numeric(as.vector(unlist(x[[k]][, 
                       vrs]))))))
@@ -385,7 +487,7 @@ function (x, vars, collapse)
                     for (i in seq_len(length(rpd))) {
                       if (any(attr(rpd[[i]], "class") == as.vector(x[[k]]$id)[1]) == 
                         TRUE) {
-                        warning("avg taken from province.")
+                        message("avg taken from province.")
                         flgna <- TRUE
                         avg <- rpd[[i]][1]
                         break
@@ -408,7 +510,7 @@ function (x, vars, collapse)
                     for (i in seq_len(length(rpd))) {
                       if (any(attr(rpd[[i]], "class") == as.vector(x[[k]]$id)[1]) == 
                         TRUE) {
-                        warning("min TAQ taken from province.")
+                        message("min TAQ taken from province.")
                         flgna <- TRUE
                         mtaq <- rpd[[i]][2]
                         break
@@ -431,7 +533,7 @@ function (x, vars, collapse)
                     for (i in seq_len(length(rpd))) {
                       if (any(attr(rpd[[i]], "class") == as.vector(x[[k]]$id)[1]) == 
                         TRUE) {
-                        warning("max TPQ taken from province.")
+                        message("max TPQ taken from province.")
                         flgna <- TRUE
                         mtpq <- rpd[[i]][3]
                         break
@@ -456,7 +558,7 @@ function (x, vars, collapse)
                     for (i in seq_len(length(rpd))) {
                       if (any(attr(rpd[[i]], "class") == as.vector(x[[k]]$id)[1]) == 
                         TRUE) {
-                        warning("avg len TS taken from province.")
+                        message("avg len TS taken from province.")
                         flgna <- TRUE
                         avgts <- rpd[[i]][4]
                         break
@@ -469,9 +571,12 @@ function (x, vars, collapse)
                     ifelse(isTRUE(flgna == TRUE) == TRUE, NA, 
                       avgts <- 177)
                   }
-                  warns = 0
                   compl <- list()
                   compln <- vector()
+                  if (isTRUE(pool == TRUE) == TRUE) {
+                    pl <- list()
+                    pln <- vector()
+                  }
                   for (j in seq_len(nrow(x[[k]]))) {
                     if (any(is.na(x[[k]][j, vrs]) == TRUE) == 
                       FALSE) {
@@ -491,6 +596,24 @@ function (x, vars, collapse)
                         compl[[length(compl) + 1L]] <- temp[2:5, 
                           ]
                         compln <- append(compln, "NA-NA")
+                        if (isTRUE(pool == TRUE) == TRUE) {
+                          if (match.arg(type) == "1") {
+                            temp[1, vrs] <- c(min(as.numeric(unlist(temp[2:5, 
+                              vrs[1]]))), max(as.numeric(unlist(temp[2:5, 
+                              vrs[2]]))))
+                          }
+                          else if (match.arg(type) == "2") {
+                            ifelse(isTRUE(max(as.numeric(unlist(temp[2:5, 
+                              vrs[1]]))) > min(as.numeric(unlist(temp[2:5, 
+                              vrs[2]])))) == TRUE, temp[1, vrs] <- rev(c(max(as.numeric(unlist(temp[2:5, 
+                              vrs[1]]))), min(as.numeric(unlist(temp[2:5, 
+                              vrs[2]]))))), temp[1, vrs] <- c(max(as.numeric(unlist(temp[2:5, 
+                              vrs[1]]))), min(as.numeric(unlist(temp[2:5, 
+                              vrs[2]])))))
+                          }
+                          pl[[length(pl) + 1L]] <- temp[1, ]
+                          pln <- append(pln, "NA-NA")
+                        }
                       }
                       else {
                         temp <- x[[k]][j, ][rep(row.names(x[[k]][j, 
@@ -514,6 +637,19 @@ function (x, vars, collapse)
                           compl[[length(compl) + 1L]] <- temp[2:3, 
                             ]
                           compln <- append(compln, "taq-NA")
+                          if (isTRUE(pool == TRUE) == TRUE) {
+                            if (match.arg(type) == "1") {
+                              temp[1, vrs[2]] <- max(as.numeric(unlist(temp[2:3, 
+                                vrs])))
+                            }
+                            else if (match.arg(type) == "2") {
+                              temp[1, vrs[2]] <- min(as.numeric(unlist(temp[2:3, 
+                                vrs[2]])))
+                            }
+                            pl[[length(pl) + 1L]] <- temp[1, 
+                              ]
+                            pln <- append(pln, "taq-NA")
+                          }
                         }
                         else if (is.na(x[[k]][j, vrs[1]]) == 
                           TRUE && is.na(x[[k]][j, vrs[2]]) == 
@@ -527,12 +663,22 @@ function (x, vars, collapse)
                           compl[[length(compl) + 1L]] <- temp[2:3, 
                             ]
                           compln <- append(compln, "NA-tpq")
+                          if (isTRUE(pool == TRUE) == TRUE) {
+                            temp[1, vrs[1]] <- min(as.numeric(unlist(temp[2:3, 
+                              vrs])))
+                            pl[[length(pl) + 1L]] <- temp[1, 
+                              ]
+                            pln <- append(pln, "NA-tpq")
+                          }
                         }
                       }
                     }
                   }
                   rm(j)
                   names(compl) <- compln
+                  if (isTRUE(pool == TRUE) == TRUE) {
+                    names(pl) <- pln
+                  }
                 }
                 else if (any(is.na(x[[k]][, vrs])) == FALSE) {
                   compl <- x[[k]]
@@ -548,23 +694,35 @@ function (x, vars, collapse)
         }
         rm(k)
     }
-    if (isTRUE(collapse == TRUE) == TRUE) {
-        xcc <- vector("list", length = length(x))
-        for (k in seq_len(length(xc))) {
-            if (isTRUE(is.data.frame(xc[[k]]) == FALSE) == TRUE) {
-                xcc[[k]] <- do.call("rbind", xc[[k]])
-            }
-            else {
-                xcc[[k]] <- xc[[k]]
-            }
+    if (isTRUE(pool == TRUE) == TRUE) {
+        if (isTRUE(collapse == TRUE) == TRUE) {
+            plc <- do.call("rbind", pl)
+            return(plc)
         }
-        rm(k)
-        class(xcc) <- noquote(c(ocl, apply(do.call("rbind", lapply(xcc, 
-            nrow)), 2, sum)))
-        xcc
+        else {
+            return(pl)
+        }
     }
     else {
-        class(xc) <- noquote(c(ocl, sum(cnt)))
-        xc
+        if (isTRUE(collapse == TRUE) == TRUE) {
+            xcc <- vector("list", length = length(x))
+            for (k in seq_len(length(xc))) {
+                if (isTRUE(is.data.frame(xc[[k]]) == FALSE) == 
+                  TRUE) {
+                  xcc[[k]] <- do.call("rbind", xc[[k]])
+                }
+                else {
+                  xcc[[k]] <- xc[[k]]
+                }
+            }
+            rm(k)
+            class(xcc) <- noquote(c(ocl, apply(do.call("rbind", 
+                lapply(xcc, nrow)), 2, sum)))
+            xcc
+        }
+        else {
+            class(xc) <- noquote(c(ocl, sum(cnt)))
+            xc
+        }
     }
 }

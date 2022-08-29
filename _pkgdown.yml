@@ -8,6 +8,8 @@ template:
 
 news:
  releases:
+ - text: "sdam 1.1.x details"
+   href: https://mplex.github.io/cedhar/sdam.html#news
  - text: "sdam 0.9.x details"
    href: https://mplex.github.io/cedhar/sdam.html#news
  - text: "sdam 0.8.x details"

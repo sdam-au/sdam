@@ -3,7 +3,7 @@
 ## FUNCTION edhwpd() to organize EDH dataset province and dates by similarity
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.2 (20-09-2021)
+## version 0.0.3 (01-08-2022)
 ##
 ## PARAMETERS
 ##
@@ -19,13 +19,26 @@
 
 
 edhwpd <-
-function (x = NULL, vars, province, dates, clean) 
+function (x = "EDH", vars, province, dates, clean, ...) 
 {
+    if (is.null(x) == TRUE) 
+        stop("'x' is NULL")
     ifelse(missing(dates) == TRUE, dates <- c("not_after", "not_before"), 
         NA)
-    if (is.null(x) == TRUE) {
-        xdf <- suppressWarnings(edhw(vars = c(dates, vars, "province_label"), 
-            as = "df"))
+    if (isTRUE(x == "EDH") == TRUE) {
+        warning("\"x\" is for dataset \"EDH\".")
+        if (!(exists("EDH"))) {
+            utils::data("EDH", package = "sdam", envir = environment())
+            EDH <- get("EDH", envir = environment())
+        }
+        else {
+            NA
+        }
+        x <- EDH
+        class(x) <- NULL
+        comment(x) <- NULL
+        xdf <- suppressWarnings(edhw(x = x, vars = c(dates, vars, 
+            "province_label"), as = "df"))
     }
     else {
         xdf <- edhw(x = x, vars = c(dates, vars, "province_label"), 
@@ -36,7 +49,7 @@ function (x = NULL, vars, province, dates, clean)
     if (isTRUE(nrow(prv) == 0) == TRUE) 
         return(NULL)
     ifelse(missing(clean) == FALSE && isTRUE(clean == TRUE) == 
-        TRUE, prv <- cln(prv), NA)
+        TRUE, prv <- cln(prv, ...), NA)
     smat <- simil(prv, vars = vars)
     mat <- multiplex::rm.isol(multiplex::dichot(smat, c = max(smat)))
     cmps <- multiplex::comps(mat)

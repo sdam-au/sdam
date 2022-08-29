@@ -3,7 +3,7 @@
 ## PLOT FUNCTION plot.dates() to plot time intervals
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.1.6 (03-05-2022)
+## version 0.1.7 (09-08-2022)
 ##
 ## PARAMETERS
 ## x      (data frame or table of variables and observations)
@@ -187,7 +187,7 @@ function (x, y, type = c("ts", "mp", "rg"), taq, tpq, id, out,
         rm(taqa, tpqa)
     }
     else {
-        mpp <- vector(length = nrow(x))
+        mpp <- vector(length = nrow(xdates))
     }
     ifelse(is.null(xlim) == TRUE, xlim <- years, NA)
     if (missing(y) == FALSE) {

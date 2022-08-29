@@ -1,28 +1,39 @@
 
 ## 
-## FUNCTION dts() to convert date formats into numerical
+## FUNCTION dts() for converting dates to numerical format
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.0.6 (24-03-2021)
+## version 0.1.1 (21-08-2022)
 ##
 ## PARAMETERS
-## x        (scalar or vector,  with character dates)
-## cent     (optional and logiucal, centuries?)
+## x        (scalar, vector or list with character dates)
+## cent     (optional and logical, use centuries?)
 ## sep      (separator, works only for 'cent')
+## last     (optional and logical, take last input value?)
 
 
 dts <-
-function (x, cent, sep) 
+function (x, cent, sep, last) 
 {
+    if (isTRUE(is.list(x)) == TRUE) {
+        flgl <- TRUE
+        x <- unlist(x)
+    }
+    else {
+        flgl <- FALSE
+    }
     if (is.numeric(x) == TRUE) {
         x
     }
     else {
+        ifelse(missing(last) == FALSE && isTRUE(last == TRUE) == 
+            TRUE, flgla <- TRUE, flgla <- FALSE)
         if (missing(cent) == FALSE && isTRUE(cent == TRUE) == 
             TRUE) {
-            x <- as.vector(x)
             cnt <- which(suppressWarnings(grepl(c("t", "h"), 
                 tolower(x))) == TRUE)
+            ifelse(isTRUE(length(x) == 1) == TRUE, x0 <- as.vector(x), 
+                x0 <- as.vector(x[which(!(seq_along(x) %in% cnt))]))
             xcnt <- x[cnt]
             tmp0 <- sapply(xcnt, function(z) {
                 paste(strsplit(z, "")[[1]][which(!(strsplit(z, 
@@ -43,10 +54,15 @@ function (x, cent, sep)
             for (k in seq_len(length(vec))) {
                 if (isTRUE(any(strsplit(names(tmp), "")[[k]] %in% 
                   c(".", "c")) == TRUE) == TRUE) {
-                  vec[k] <- paste(head(seq(to = tmp[k] * 100L, 
-                    from = ((tmp[k] - 1L) * 100L) + 1L), 1), 
-                    tail(seq(to = tmp[k] * 100L, from = ((tmp[k] - 
-                      1L) * 100L) + 1L), 1), sep = sep)
+                  if (is.na(tmp[k]) == FALSE) {
+                    vec[k] <- paste(head(seq(to = tmp[k] * 100L, 
+                      from = ((tmp[k] - 1L) * 100L) + 1L), 1), 
+                      tail(seq(to = tmp[k] * 100L, from = ((tmp[k] - 
+                        1L) * 100L) + 1L), 1), sep = sep)
+                  }
+                  else {
+                    NA
+                  }
                 }
                 else {
                   NA
@@ -55,23 +71,36 @@ function (x, cent, sep)
             rm(k)
         }
         else {
+            x0 <- as.vector(x)
             ifelse(isTRUE(length(x) > 1) == TRUE && is.na(suppressWarnings(as.numeric(x))) == 
                 FALSE, return(as.numeric(x)), NA)
         }
-        ifelse(missing(cent) == FALSE && isTRUE(cent == TRUE) == 
-            TRUE, x0 <- x[which(!(seq_along(x) %in% cnt))], x0 <- x)
         if (any(c("E", "e") %in% strsplit(x0, "")[[1]]) == TRUE) {
-            xn <- sub("e", "", sub("[.].*", "", sub("or.*", "", 
-                x0, ignore.case = TRUE)), ignore.case = TRUE)
+            ifelse(isTRUE(flgla == TRUE) == TRUE, xn <- sub("e", 
+                "", sub("[.].*", "", sub(".*or", "", x0, ignore.case = TRUE)), 
+                ignore.case = TRUE), xn <- sub("e", "", sub("[.].*", 
+                "", sub("or.*", "", x0, ignore.case = TRUE)), 
+                ignore.case = TRUE))
         }
         else {
-            xn <- sub("or.*", "", x0, ignore.case = TRUE)
+            ifelse(isTRUE(flgla == TRUE) == TRUE, xn <- sub(".*or", 
+                "", x0, ignore.case = TRUE), xn <- sub("or.*", 
+                "", x0, ignore.case = TRUE))
+        }
+        if (any(c("-") %in% strsplit(xn, "")[[1]]) == TRUE) {
+            ifelse(isTRUE(flgla == TRUE) == TRUE, xn <- gsub("\\s+", 
+                "", paste0(sub("[[:alpha:]]+", "", gsub(".*-", 
+                  "\\1", xn)), " ", gsub("([^A-Za-z])+", "", 
+                  gsub(".*-", "\\1", xn)))), xn <- gsub("-.*", 
+                "\\1", xn))
         }
         pck <- which(gsub("[^-]", "", xn) %in% "-")
         if (isTRUE(length(pck) > 0) == TRUE) {
-            xn[pck] <- gsub("\\s+", "", paste0(sub("[[:alpha:]]+", 
-                "", gsub("-.*", "\\1", xn[pck])), " ", gsub("([^A-Za-z])+", 
-                "", gsub(".*-", "\\1", xn[pck]))))
+            ifelse(isTRUE(flgla == TRUE) == TRUE, xn[pck] <- gsub("\\s+", 
+                "", paste0(sub("[[:alpha:]]+", "", gsub(".*-", 
+                  "\\1", xn[pck])), " ", gsub("([^A-Za-z])+", 
+                  "", gsub(".*-", "\\1", xn[pck])))), xn[pck] <- gsub("-.*", 
+                "\\1", xn[pck]))
         }
         else {
             NA
@@ -103,6 +132,7 @@ function (x, cent, sep)
             ndts <- xnd
         }
         names(ndts) <- x
-        return(ndts)
+        ifelse(isTRUE(flgl == TRUE) == TRUE, return(as.list(ndts)), 
+            return(ndts))
     }
 }

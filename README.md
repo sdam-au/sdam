@@ -1,18 +1,16 @@
 # sdam
 
-## Digital tools for the SDAM project at Aarhus University
+## Digital Tools for the SDAM Project at Aarhus University
 
-This package provides digital tools for the [*Social Dynamics and complexity
-in the Ancient Mediterranean*](https://sdam-au.github.io/sdam-au/) (SDAM) project 
-at the School of Culture and Society at Aarhus University.
-
+Provides digital tools for performing analyses within [*Social Dynamics and complexity
+in the Ancient Mediterranean*](https://sdam-au.github.io/sdam-au/) (SDAM), which is a research group based at the Department of History and Classical Studies at Aarhus University.
 
 
 <br/>
 
 ### Installation
 
-You can install the `sdam` package from these GitHub repositories using the R console or RStudio.
+Install `sdam` package from these GitHub repositories using the R console or RStudio.
 
 ```r
 ## install release candidate
@@ -33,7 +31,7 @@ devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
 ## Load package
 library("sdam")
 packageVersion("sdam")
-#[1] '0.9.3'
+#[1] '1.1.1'
 ```
 
 ```r
@@ -81,7 +79,7 @@ in lists from Iudaea into a data frame in object `iud_df`.
 
 ```r
 # extract variables of interes from object `iud` and convert it into a data frame
-iud_df <- edhw(vars=c("not_after", "not_before"), x=iud, as="df", na.rm=FALSE)
+iud_df <- edhw(x=iud, vars=c("not_after", "not_before"), as="df", na.rm=FALSE)
 
 # what object types is?
 is(iud_df)
@@ -93,7 +91,7 @@ To remove missing data form `iud_df`, we activate `na.rm` argument in the functi
 
 ```r
 # extract variables of interes from object `iud` and convert it into a data frame
-iud_df0 <- edhw(vars=c("not_after", "not_before"), x=iud, as="df", na.rm=TRUE)
+iud_df0 <- edhw(x=iud, vars=c("not_after", "not_before"), as="df", na.rm=TRUE)
 ```
 
 Now we compare outcomes with these two options.
@@ -185,20 +183,18 @@ prex(x=get.edh(search="inscriptions", province="Iud"), vars=c("not_before", "not
 
 ### Vignettes
 
-* [Plotting ancient Roman provinces and regions](https://sdam-au.github.io/sdam/articles/RomanProvs.html)
-* [Re-encoding Greek characters from 'EDH' dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
-* [Plotting Roman Empire transport network](https://sdam-au.github.io/sdam/articles/TransportNetwork.html)
+* [Datasets in `"sdam"` package](https://sdam-au.github.io/sdam/articles/Intro.html)
+* [Dates and missing dating data](https://sdam-au.github.io/sdam/articles/Dates.html)
+* [Re-encoding `people` in the `EDH` dataset](https://sdam-au.github.io/sdam/articles/Encoding.html)
+* [Cartographical maps and networks](https://sdam-au.github.io/sdam/articles/Maps.html)
 
-
-<!-- Look at the ['sdam' R package documentation](https://sdam-au.github.io/sdam/) to find more about the distinct variables in `EDH` dataset 
-and applications with the different functions. -->
 
 
 ### See also
 * [Social Dynamics and complexity in the Ancient Mediterranean Project](https://sdam-au.github.io/sdam-au/)
 * [`"sdam"` manual](https://github.com/mplex/cedhar/blob/master/typesetting/reports/sdam.pdf)
 * [Code snippets using `"sdam"`](https://github.com/sdam-au/R_code)
-  + [Shipwrecks network in the Mediterranean Basin (3-June-2022)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Shipwrecks%20Network%20in%20the%20Mediterranean%20Basin.html)
+  + [Shipwrecks network in the Mediterranean Basin (23-June-2022)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Shipwrecks%20Network%20in%20the%20Mediterranean%20Basin.html)
   + [Centrality measures in ORBIS Roman transport network (24-Nov-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Centrality%20measures%20in%20ORBIS%20Roman%20transport%20network.html)
   + [ORBIS Roman World transport network (14-Sep-2021, update: 22-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/ORBIS%20Roman%20World%20transport%20network%20centrality%20measures.html)
   + [Plotting Roman Roads (update: 14-Sep-2021)](https://htmlpreview.github.io/?https://github.com/sdam-au/R_code/blob/master/HTML/Plotting%20Roman%20Roads%20(update).html)

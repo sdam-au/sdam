@@ -1,10 +1,10 @@
 Package: sdam
 Type: Package
-Title: Digital tools for the SDAM project at Aarhus University
-Description: This package provides tools for performing analyses within Social Dynamics and complexity in the Ancient Mediterranean (SDAM), which is a research group based at Aarhus University. 
-Version: 0.9.3
-Date: 2022-06-14
-Depends: R (>= 3.6.0)
+Title: Digital Tools for the SDAM Project at Aarhus University
+Description: Provides digital tools for performing analyses within Social Dynamics and complexity in the Ancient Mediterranean (SDAM), which is a research group based at the Department of History and Classical Studies at Aarhus University. 
+Version: 1.1.1
+Date: 2022-08-29
+Depends: R (>= 4.1.0)
 Imports: grImport2, multiplex
 Suggests: httr, rjson, grid, multigraph
 Authors@R: c(person("Antonio Rivero", "Ostoic", email = "jaro@cas.au.dk",
@@ -18,6 +18,9 @@ Author: Antonio Rivero Ostoic [aut, cre],
         Vojtech Kase [ctb],
         Petra Hermankova [ctb]
 Maintainer: Antonio Rivero Ostoic <jaro@cas.au.dk>
+URL: https://github.com/sdam-au/sdam/
+BugReports: https://github.com/sdam-au/sdam/issues/
+Repository: CRAN
 License: CC BY 4.0
 NeedsCompilation: no
-Packaged: 2022-06-14 11:11:05 UTC; au209026
+Packaged: 2022-08-29 18:00:05 UTC; au209026

@@ -3,7 +3,7 @@
 ## FUNCTION get.edh() to get data API from the Epigraphic Database Heidelberg EDH
 ## (CC BY-SA 4.0) Antonio Rivero Ostoic, jaro@cas.au.dk 
 ##
-## version 0.3.0 (10-01-2022)
+## version 0.3.1 (26-08-2022)
 ##
 ## Parameter description NEW API YEAR 2022 https://edh.ub.uni-heidelberg.de/data/api
 ##
@@ -13,9 +13,9 @@
 ## GET LIST OF VALID CODES FOR PROVINCES, COUNTRIES AND TYPE OF INSCRIPTIONS AT https://edh.ub.uni-heidelberg.de/data/api
 ## province (Roman province, case insensitive)
 ## country (modern country, case insensitive)
-## findspot_modern (add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
-## findspot_ancient (add leading and/or trailing truncation by asterisk *, e.g. findspot_ancient=aquae*, case insensitive)
-## bbox (bounding box in the format bbox=minLong , minLat , maxLong , maxLat, query example: https://edh-www.adw.uni-heidelberg.de/data/api/inschrift/suche?bbox=11,47,12,48)
+## findspot_modern (add leading and/or trailing truncation by asterisk *
+## findspot_ancient (add leading and/or trailing truncation by asterisk *
+## bbox (bounding box in the format bbox=minLong , minLat , maxLong , maxLat, query example: https://edh.ub.uni-heidelberg.de/data/api/inschrift/suche?bbox=11,47,12,48)
 ## offset (which row to start from retrieving data, integer)
 ## limit (limit the number of results, integer or vector)
 ##
@@ -28,7 +28,7 @@
 ## type (type of inscription, case insensitive)
 ##
 ## SEARCH PARAMETERS FOR GEOGRAPHY:
-## findspot (level of village, street etc.; add leading and/or trailing truncation by asterisk *, e.g. findspot_modern=köln*, case insensitive)
+## findspot (level of village, street etc.; add leading and/or trailing truncation by asterisk *
 ## pleiades_id (Pleiades identifier of a place; integer value)
 ## geonames_id (Geonames identifier of a place; integer value)
 ## 
