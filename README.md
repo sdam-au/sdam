@@ -1,25 +1,30 @@
 # sdam
 
-## Digital Tools for the SDAM Project at Aarhus University
+## Social Dynamics and Complexity in the Ancient Mediterranean
 
-Provides digital tools for performing analyses within [*Social Dynamics and complexity
-in the Ancient Mediterranean*](https://sdam-au.github.io/sdam-au/) (SDAM), which is a research group based at the Department of History and Classical Studies at Aarhus University.
+Provides digital tools for performing analyses within Social Dynamics and complexity in the Ancient Mediterranean (SDAM), which is a research group based at the Department of History and Classical Studies at Aarhus University.
 
 
 <br/>
 
 ### Installation
 
-Install `sdam` package from these GitHub repositories using the R console or RStudio.
+Install `sdam` package from CRAN or a GitHub repository.
 
 ```r
-## install release candidate
+## from CRAN
+install.packages("sdam")
+```
+
+
+```r
+## development version
 devtools::install_github("sdam-au/sdam")
 ```
 or 
 
 ```r
-## install beta version
+## legacy version R-3.6.x
 devtools::install_github("mplex/cedhar", subdir="pkg/sdam")
 ```
 
